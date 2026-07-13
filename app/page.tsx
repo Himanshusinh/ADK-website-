@@ -3,7 +3,9 @@
 import React from "react";
 import Link from "next/link";
 import { useEnquiry } from "@/components/EnquiryContext";
-import { categories, applications, testimonials } from "@/lib/data";
+import { categories, applications, companyInfo, whyChooseAdk, clientMarqueeRowA, clientMarqueeRowB } from "@/lib/data";
+import Reveal from "@/components/Reveal";
+import ClientLogoMarquee from "@/components/ClientLogoMarquee";
 
 export default function Home() {
   const { openEnquiry } = useEnquiry();
@@ -11,85 +13,103 @@ export default function Home() {
   return (
     <div className="flex flex-col w-full">
       {/* Technical Hero Section */}
-      <section className="relative w-full min-h-[650px] md:min-h-[750px] bg-surface tech-grid flex items-center overflow-hidden border-b border-charcoal/10 py-16">
+      <section className="relative w-full min-h-[650px] md:min-h-[750px] bg-surface tech-grid flex items-center overflow-hidden border-b border-border py-16">
         <div className="absolute inset-0 opacity-30 pointer-events-none">
-          <div className="h-full w-full border-x border-on-surface/5 max-w-[1440px] mx-auto"></div>
+          <div className="adk-container h-full border-x border-on-surface/5"></div>
         </div>
-        <div className="relative z-10 w-full px-6 md:px-20 max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div className="border-l-4 border-primary pl-6 md:pl-10">
-            <div className="font-mono text-primary text-xs md:text-sm uppercase tracking-[0.3em] mb-4">
+        <div className="relative z-10 adk-container w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="border-l-4 border-primary pl-6 md:pl-9">
+            <div className="font-mono text-primary text-xs md:text-sm uppercase tracking-[0.3em] mb-5">
               [ SCHEMATIC_REF: ADK_V3 ]
             </div>
-            <h1 className="font-headline text-[48px] leading-[1.05] md:text-[68px] text-charcoal uppercase mb-6 tracking-tighter">
+            <h1 className="font-headline text-[48px] leading-[1.12] md:text-[68px] text-foreground uppercase mb-8 tracking-tighter">
+              Crafting <br />
               Precision <br />
-              Engineering <br />
-              Architecture.
+              Shaping Tomorrow.
             </h1>
-            <p className="font-mono text-xs md:text-sm text-tertiary mb-10 max-w-md leading-relaxed border-t border-charcoal/10 pt-6">
-              SYSTEM_OVERVIEW: High-performance fiber laser cutting, CNC plasma cutting, and CNC press
-              brakes engineered for extreme tolerances and industrial reliability.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4">
+            <ul
+              className="font-mono text-xs md:text-sm text-tertiary space-y-2.5 max-w-md border-t border-border pt-7 mb-10"
+              role="list"
+            >
+              <li className="flex gap-2">
+                <span className="text-primary shrink-0">▸</span>
+                <span>Fiber Laser Cutting up to 60kW</span>
+              </li>
+              <li className="flex gap-2">
+                <span className="text-primary shrink-0">▸</span>
+                <span>CNC Plasma Systems</span>
+              </li>
+              <li className="flex gap-2">
+                <span className="text-primary shrink-0">▸</span>
+                <span>Press Brakes &amp; Panel Benders</span>
+              </li>
+              <li className="flex gap-2">
+                <span className="text-primary shrink-0">▸</span>
+                <span>{companyInfo.stats.installations} Installations Across India</span>
+              </li>
+            </ul>
+            <div className="flex flex-col sm:flex-row gap-5">
               <button
                 onClick={() => openEnquiry("General Catalogue Inquiry")}
-                className="bg-charcoal text-white font-mono text-[13px] uppercase px-8 py-4 hover:bg-primary transition-colors tracking-[0.15em] cursor-pointer"
+                className="bg-charcoal text-white border border-charcoal font-mono text-[13px] uppercase font-bold px-9 py-3.5 hover:bg-primary hover:border-primary transition-colors duration-200 tracking-[0.18em] cursor-pointer"
               >
                 INITIATE_CATALOGUE
               </button>
               <Link
                 href="/resources"
-                className="bg-transparent text-charcoal border border-charcoal font-mono text-[13px] uppercase px-8 py-4 hover:bg-charcoal hover:text-white transition-colors tracking-[0.15em] text-center"
+                className="bg-transparent text-tertiary border border-border font-mono text-[13px] uppercase px-9 py-3.5 hover:text-foreground hover:border-foreground/40 transition-colors duration-200 tracking-[0.18em] text-center"
               >
                 VIEW_SPECS.PDF
               </Link>
             </div>
           </div>
 
-          <div className="relative flex items-center justify-center lg:justify-end">
-            <div className="relative w-full max-w-lg bg-transparent">
+          <div className="relative flex items-center justify-center lg:justify-center">
+            <div className="relative w-full max-w-lg bg-transparent lg:-translate-x-6 lg:pl-4">
               <img
                 alt="High-detail machine schematic blueprint asset"
-                className="w-full h-auto relative z-10 mix-blend-multiply"
+                className="w-full h-auto relative z-10 mix-blend-multiply dark:mix-blend-normal"
                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOzIemnEm6V7GR2bo2GIhMBDg-NJl725eBjH6It2PL5Sjo3WhVXoleVnbj2RcKOtirLuRswUqVRNvXpHSz2a0kKCw-CTpTVqGVLS7GCKiWDHyrcsm_fQB46p0q66NNXsvVYrOjLtLu818Swx4zkFGA9-Fn2yq50Rx7pQADrf3UTTpD-48Xwfjm7Zxli8zgv18UZ5_YoHFaIvX_LtmhrsF5NXHgkt5MrIIZGMyZ0t623K4ca27FPmHufTV1KZmThJQB2H5pD3sq7CBy5-E"
               />
 
               {/* Schematic Callouts */}
-              <div className="absolute top-[25%] -right-[2%] flex items-center gap-2 z-20">
-                <div className="w-12 h-px bg-primary"></div>
-                <div className="bg-white border border-primary p-2 font-mono text-[9px] uppercase tracking-widest shadow-sm">
+              <div className="absolute top-[25%] right-0 flex items-center gap-2 z-20">
+                <div className="w-16 h-px bg-primary/90"></div>
+                <div className="bg-card border border-primary/80 p-2.5 font-mono text-[9px] uppercase tracking-[0.2em]">
                   Precision 0.01mm
                 </div>
               </div>
-              <div className="absolute top-[40%] -left-[5%] flex items-center gap-2 z-20">
-                <div className="bg-white border border-primary p-2 font-mono text-[9px] uppercase tracking-widest shadow-sm">
+              <div className="absolute top-[40%] left-0 flex items-center gap-2 z-20">
+                <div className="bg-card border border-primary/80 p-2.5 font-mono text-[9px] uppercase tracking-[0.2em]">
                   Fiber Laser Source
                 </div>
-                <div className="w-12 h-px bg-primary"></div>
+                <div className="w-16 h-px bg-primary/90"></div>
               </div>
-              <div className="absolute bottom-[10%] left-[20%] flex flex-col items-center gap-1 z-20">
-                <div className="w-px h-12 bg-primary"></div>
-                <div className="bg-white border border-primary p-2 font-mono text-[9px] uppercase tracking-widest shadow-sm">
+              <div className="absolute top-[46%] left-[44%] -translate-x-1/2 flex flex-col items-center z-20 pointer-events-none">
+                <div
+                  className="w-1.5 h-1.5 rounded-full bg-primary shadow-[0_0_8px_rgba(157,5,24,0.65)]"
+                  aria-hidden="true"
+                />
+                <div className="w-px h-12 md:h-14 bg-primary/90" />
+                <div className="bg-card border border-primary/80 p-2.5 font-mono text-[9px] uppercase tracking-[0.2em] whitespace-nowrap">
                   CNC_CONTROL_UNIT
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div className="absolute bottom-6 left-6 md:left-20 hidden lg:block font-mono text-[10px] text-tertiary/40">
-          COORD_DATA: 23.0225° N, 72.5714° E <br />
-          STATUS: SYSTEM_READY // CALIBRATION_OPTIMAL
-        </div>
       </section>
 
       {/* Grid Categories */}
-      <section className="py-20 bg-white">
-        <div className="w-full px-6 md:px-20 max-w-[1440px] mx-auto">
-          <div className="mb-12 border-b border-charcoal/10 pb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
+      <Reveal>
+      <section className="py-20 bg-card">
+        <div className="adk-container w-full">
+          <div className="mb-12 border-b border-border pb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div className="max-w-2xl">
               <span className="font-mono text-primary text-xs uppercase tracking-widest block mb-3">
                 [ 01_CATEGORIES ]
               </span>
-              <h2 className="font-headline text-[38px] md:text-[52px] text-charcoal uppercase tracking-tighter leading-none">
+              <h2 className="font-headline text-[38px] md:text-[52px] text-foreground uppercase tracking-tighter leading-none">
                 Machine Classification
               </h2>
             </div>
@@ -98,19 +118,19 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border-t border-l border-charcoal/10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border-t border-l border-border">
             {categories.slice(0, 4).map((c, idx) => (
               <Link
                 key={c.slug}
                 href={`/products/${c.slug}`}
-                className="p-10 border-r border-b border-charcoal/10 group hover:bg-tech-blue transition-all duration-300 flex flex-col justify-between min-h-[280px]"
+                className="p-10 border-r border-b border-border group hover:bg-tech-blue transition-all duration-300 flex flex-col justify-between min-h-[280px]"
               >
                 <div>
                   <div className="font-mono text-[10px] text-primary mb-6">SR_0{idx + 1}</div>
-                  <span className="material-symbols-outlined text-[48px] text-charcoal mb-6 group-hover:text-primary transition-colors">
+                  <span className="material-symbols-outlined text-[48px] text-foreground mb-6 group-hover:text-primary transition-colors">
                     {c.icon}
                   </span>
-                  <h3 className="font-headline text-2xl text-charcoal uppercase mb-3 group-hover:text-primary transition-colors">
+                  <h3 className="font-headline text-2xl text-foreground uppercase mb-3 group-hover:text-primary transition-colors">
                     {c.name}
                   </h3>
                   <p className="font-sans text-[13px] text-tertiary leading-relaxed">
@@ -125,56 +145,60 @@ export default function Home() {
           </div>
         </div>
       </section>
+      </Reveal>
 
       {/* Metrics Bar */}
-      <section className="py-16 bg-surface-container border-y border-charcoal/10">
-        <div className="w-full px-6 md:px-20 max-w-[1440px] mx-auto">
+      <Reveal delay={100}>
+      <section className="py-16 bg-surface-container border-y border-border">
+        <div className="adk-container w-full">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <div className="text-center md:border-r border-charcoal/10 last:border-0 px-4">
+            <div className="text-center md:border-r border-border last:border-0 px-4">
               <div className="font-mono text-[10px] uppercase text-tertiary mb-3 tracking-widest">
-                Installed_Units
+                Happy_Customers
               </div>
-              <div className="font-headline text-4xl md:text-5xl lg:text-6xl text-charcoal font-bold">
-                750+
+              <div className="font-headline text-4xl md:text-5xl lg:text-6xl text-foreground font-bold">
+                {companyInfo.stats.customers}
               </div>
             </div>
-            <div className="text-center md:border-r border-charcoal/10 last:border-0 px-4">
+            <div className="text-center md:border-r border-border last:border-0 px-4">
               <div className="font-mono text-[10px] uppercase text-tertiary mb-3 tracking-widest">
                 Operating_Exp
               </div>
-              <div className="font-headline text-4xl md:text-5xl lg:text-6xl text-charcoal font-bold">
-                16+ <span className="text-xl md:text-2xl font-mono align-middle font-normal">YRS</span>
+              <div className="font-headline text-4xl md:text-5xl lg:text-6xl text-foreground font-bold">
+                {companyInfo.stats.yearsExperience} <span className="text-xl md:text-2xl font-mono align-middle font-normal">YRS</span>
               </div>
             </div>
-            <div className="text-center md:border-r border-charcoal/10 last:border-0 px-4">
+            <div className="text-center md:border-r border-border last:border-0 px-4">
               <div className="font-mono text-[10px] uppercase text-tertiary mb-3 tracking-widest">
-                SLA_Support
+                Installations
               </div>
-              <div className="font-headline text-4xl md:text-5xl lg:text-6xl text-charcoal font-bold">
-                24/7
+              <div className="font-headline text-4xl md:text-5xl lg:text-6xl text-foreground font-bold">
+                {companyInfo.stats.installations}
               </div>
             </div>
             <div className="text-center px-4">
               <div className="font-mono text-[10px] uppercase text-tertiary mb-3 tracking-widest">
-                Service_Nodes
+                Branch_Offices
               </div>
-              <div className="font-headline text-4xl md:text-5xl lg:text-6xl text-charcoal font-bold">
+              <div className="font-headline text-4xl md:text-5xl lg:text-6xl text-foreground font-bold">
                 08
               </div>
             </div>
           </div>
         </div>
       </section>
+      </Reveal>
 
       {/* Featured Machinery Showcases */}
-      <section className="py-20 bg-white">
-        <div className="w-full px-6 md:px-20 max-w-[1440px] mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-12 border-b border-charcoal/10 pb-6">
+      <Reveal delay={100}>
+      <section className="py-20 bg-card">
+        <div className="adk-container w-full">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-12 border-b border-border pb-6">
             <div>
               <span className="font-mono text-primary text-xs uppercase tracking-widest block mb-3">
                 [ 02_EQUIPMENT ]
               </span>
-              <h2 className="font-headline text-[38px] md:text-[52px] text-charcoal uppercase tracking-tighter">
+              <h2 className="font-headline text-[38px] md:text-[52px] text-foreground uppercase tracking-tighter">
                 Advanced Machinery
               </h2>
             </div>
@@ -194,7 +218,7 @@ export default function Home() {
               return (
                 <div
                   key={model.slug}
-                  className="bg-white p-6 border border-charcoal/10 hover:border-primary transition-all duration-300 flex flex-col h-full shadow-sm hover:shadow-xl group"
+                  className="bg-card p-6 border border-border hover:border-primary transition-all duration-300 flex flex-col h-full shadow-sm hover:shadow-xl group"
                 >
                   <div className="font-mono text-[9px] text-tertiary mb-4 uppercase tracking-tighter flex justify-between">
                     <span>SPEC_ID: {model.id}</span>
@@ -202,12 +226,12 @@ export default function Home() {
                   </div>
                   <div className="h-56 mb-6 bg-tech-blue flex items-center justify-center p-6 overflow-hidden">
                     <img
-                      className="object-contain h-full w-full mix-blend-multiply transition-transform duration-500 group-hover:scale-105"
+                      className="object-contain h-full w-full mix-blend-multiply dark:mix-blend-normal transition-transform duration-500 group-hover:scale-105"
                       alt={model.name}
                       src={model.image}
                     />
                   </div>
-                  <h3 className="font-headline text-2xl text-charcoal uppercase mb-4 tracking-tight group-hover:text-primary transition-colors">
+                  <h3 className="font-headline text-2xl text-foreground uppercase mb-4 tracking-tight group-hover:text-primary transition-colors">
                     {model.name}
                   </h3>
 
@@ -217,7 +241,7 @@ export default function Home() {
                       {Object.entries(model.specsSummary).map(([key, val]) => (
                         <React.Fragment key={key}>
                           <div className="text-tertiary uppercase">{key}:</div>
-                          <div className="text-charcoal font-bold text-right">{val}</div>
+                          <div className="text-foreground font-bold text-right">{val}</div>
                         </React.Fragment>
                       ))}
                     </div>
@@ -226,7 +250,7 @@ export default function Home() {
                   <div className="mt-auto space-y-2">
                     <Link
                       href={`/products/${category.slug}/${model.slug}`}
-                      className="w-full border border-charcoal py-3 font-mono text-[11px] uppercase hover:bg-charcoal hover:text-white transition-all tracking-widest flex items-center justify-center gap-2 text-center"
+                      className="w-full border border-foreground py-3 font-mono text-[11px] uppercase hover:bg-charcoal hover:text-white transition-all tracking-widest flex items-center justify-center gap-2 text-center"
                     >
                       [ SYSTEM_SCHEMATICS ]
                     </Link>
@@ -243,16 +267,61 @@ export default function Home() {
           </div>
         </div>
       </section>
+      </Reveal>
+
+      {/* Why Choose ADK */}
+      <Reveal delay={100}>
+      <section className="py-20 bg-surface border-y border-border">
+        <div className="adk-container w-full">
+          <div className="mb-12 border-b border-border pb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div>
+              <span className="font-mono text-primary text-xs uppercase tracking-widest block mb-3">
+                [ 03_ADVANTAGES ]
+              </span>
+              <h2 className="font-headline text-[38px] md:text-[52px] text-foreground uppercase tracking-tighter">
+                Why Choose ADK
+              </h2>
+            </div>
+            <p className="font-mono text-[11px] text-tertiary uppercase max-w-[280px] leading-relaxed border-l border-primary pl-5">
+              Your machine is your capital — we keep it running with precision service and proven engineering.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {whyChooseAdk.map((item, idx) => (
+              <div
+                key={item.title}
+                className="bg-card p-6 border border-border hover:border-primary hover-lift transition-all group"
+              >
+                <span className="material-symbols-outlined text-3xl text-foreground group-hover:text-primary transition-colors mb-4 block">
+                  {item.icon}
+                </span>
+                <h3 className="font-headline text-lg text-foreground uppercase font-bold mb-2 group-hover:text-primary transition-colors">
+                  {item.title}
+                </h3>
+                <p className="font-sans text-xs text-tertiary leading-relaxed">
+                  {item.description}
+                </p>
+                <span className="font-mono text-[9px] text-primary/50 mt-3 block">
+                  ADV_0{idx + 1}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+      </Reveal>
 
       {/* Featured Applications Section */}
-      <section className="py-20 bg-surface border-t border-charcoal/10">
-        <div className="w-full px-6 md:px-20 max-w-[1440px] mx-auto">
-          <div className="mb-12 border-b border-charcoal/10 pb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
+      <Reveal delay={100}>
+      <section className="py-20 bg-card border-t border-border">
+        <div className="adk-container w-full">
+          <div className="mb-12 border-b border-border pb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div>
               <span className="font-mono text-primary text-xs uppercase tracking-widest block mb-3">
                 [ 03_SYSTEM_INTEGRATION ]
               </span>
-              <h2 className="font-headline text-[38px] md:text-[52px] text-charcoal uppercase tracking-tighter">
+              <h2 className="font-headline text-[38px] md:text-[52px] text-foreground uppercase tracking-tighter">
                 Industries Served
               </h2>
             </div>
@@ -270,12 +339,12 @@ export default function Home() {
               <Link
                 key={app.slug}
                 href={`/applications/${app.slug}`}
-                className="bg-white p-6 border border-charcoal/10 hover:border-primary hover:shadow-md transition-all duration-300 flex flex-col items-center text-center group"
+                className="bg-card p-6 border border-border hover:border-primary hover:shadow-md transition-all duration-300 flex flex-col items-center text-center group"
               >
-                <span className="material-symbols-outlined text-4xl text-charcoal/75 group-hover:text-primary transition-colors mb-4">
+                <span className="material-symbols-outlined text-4xl text-foreground/75 group-hover:text-primary transition-colors mb-4">
                   {app.icon}
                 </span>
-                <h4 className="font-headline text-lg text-charcoal uppercase tracking-tight font-bold group-hover:text-primary transition-colors">
+                <h4 className="font-headline text-lg text-foreground uppercase tracking-tight font-bold group-hover:text-primary transition-colors">
                   {app.name}
                 </h4>
               </Link>
@@ -283,55 +352,68 @@ export default function Home() {
           </div>
         </div>
       </section>
+      </Reveal>
 
-      {/* Testimonials */}
-      <section className="py-20 bg-white">
-        <div className="w-full px-6 md:px-20 max-w-[1440px] mx-auto">
-          <div className="mb-12 border-b border-charcoal/10 pb-6 text-center max-w-xl mx-auto">
+      {/* Trusted Customers */}
+      <Reveal delay={100}>
+      <section className="py-20 bg-surface">
+        <div className="adk-container w-full">
+          <div className="mb-12 border-b border-border pb-6 text-center max-w-xl mx-auto">
             <span className="font-mono text-primary text-xs uppercase tracking-widest block mb-3">
-              [ 04_FEEDBACK ]
+              [ 04_TRUSTED_BY ]
             </span>
-            <h2 className="font-headline text-[38px] md:text-[52px] text-charcoal uppercase tracking-tighter">
-              Client Testimonials
+            <h2 className="font-headline text-[38px] md:text-[52px] text-foreground uppercase tracking-tighter">
+              Trusted by Industry Leaders
             </h2>
+            <p className="font-sans text-sm text-tertiary mt-4">
+              {companyInfo.stats.customers} installations including ISRO, Bajaj Steel, and leading fabrication companies.
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {testimonials.map((t) => (
-              <div
-                key={t.id}
-                className="bg-surface p-8 border border-charcoal/10 relative flex flex-col justify-between"
-              >
-                <div>
-                  <div className="flex text-primary mb-4">
-                    {Array.from({ length: t.rating }).map((_, i) => (
-                      <span key={i} className="material-symbols-outlined text-sm font-bold">
-                        star
-                      </span>
-                    ))}
-                  </div>
-                  <p className="font-sans text-sm text-tertiary italic leading-relaxed mb-6">
-                    &ldquo;{t.content}&rdquo;
-                  </p>
-                </div>
-                <div className="border-t border-charcoal/5 pt-4 flex justify-between items-center">
-                  <div>
-                    <h5 className="font-headline text-lg text-charcoal uppercase font-bold">
-                      {t.name}
-                    </h5>
-                    <span className="font-mono text-[10px] text-tertiary/75">
-                      {t.company} {"//"} {t.role}
-                    </span>
-                  </div>
-                  <span className="material-symbols-outlined text-4xl text-charcoal/10">
-                    format_quote
-                  </span>
-                </div>
-              </div>
-            ))}
+          <ClientLogoMarquee rowA={clientMarqueeRowA} rowB={clientMarqueeRowB} />
+          <div className="text-center mt-8">
+            <Link
+              href="/clients"
+              className="font-mono text-xs uppercase text-primary hover:underline tracking-widest font-bold"
+            >
+              VIEW_ALL_CLIENTS →
+            </Link>
           </div>
         </div>
       </section>
+      </Reveal>
+
+      {/* Enquiry CTA Strip */}
+      <Reveal delay={100}>
+      <section className="py-20 bg-charcoal text-white border-t border-primary/30">
+        <div className="adk-container w-full text-center">
+          <span className="font-mono text-primary text-[10px] uppercase tracking-[0.2em] mb-4 block">
+            [ READY_TO_START ]
+          </span>
+          <h2 className="font-headline text-[36px] md:text-[46px] uppercase tracking-tighter mb-6 leading-none">
+            Request a Custom Machinery Quote
+          </h2>
+          <p className="font-mono text-xs text-light-gray/60 mb-10 leading-relaxed max-w-lg mx-auto">
+            Share your material specifications, production volume, and facility requirements.
+            Our engineering team will respond within 6 business hours.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <button
+              onClick={() => openEnquiry("General Machinery Enquiry")}
+              className="bg-primary hover:bg-primary-hover text-white font-mono text-xs uppercase tracking-widest px-10 py-5 border border-primary transition-all font-bold cursor-pointer"
+            >
+              [ INITIATE_ENQUIRY ]
+            </button>
+            <Link
+              href="/contact"
+              className="bg-transparent text-white border border-white/30 font-mono text-xs uppercase tracking-widest px-10 py-5 hover:bg-card hover:text-foreground transition-all text-center"
+            >
+              [ CONTACT_OPERATIONS ]
+            </Link>
+          </div>
+        </div>
+      </section>
+      </Reveal>
     </div>
   );
 }

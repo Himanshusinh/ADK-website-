@@ -5,14 +5,14 @@ import { newsEvents } from "@/lib/data";
 
 export default function NewsEventsPage() {
   return (
-    <div className="flex flex-col w-full bg-white">
+    <div className="flex flex-col w-full bg-surface">
       {/* Page Header */}
-      <section className="relative bg-surface border-b border-charcoal/10 py-16 px-6 md:px-20 tech-grid">
-        <div className="max-w-[1440px] mx-auto">
+      <section className="relative bg-surface border-b border-border py-16 tech-grid">
+        <div className="adk-container">
           <div className="font-mono text-primary text-[10px] uppercase tracking-[0.3em] mb-3">
             [ BROADCAST_SYSTEM ]
           </div>
-          <h1 className="font-headline text-[42px] md:text-[56px] text-charcoal uppercase tracking-tighter leading-none mb-6">
+          <h1 className="font-headline text-[42px] md:text-[56px] text-foreground uppercase tracking-tighter leading-none mb-6">
             NEWS & EVENTS
           </h1>
           <p className="font-mono text-xs md:text-sm text-tertiary max-w-xl leading-relaxed">
@@ -22,13 +22,28 @@ export default function NewsEventsPage() {
         </div>
       </section>
 
+      {/* Milestone Banner */}
+      <section className="py-12 bg-primary/5 border-b border-border">
+        <div className="adk-container text-center">
+          <span className="font-mono text-primary text-[10px] uppercase tracking-widest block mb-2">
+            [ MILESTONE_2026 ]
+          </span>
+          <p className="font-headline text-xl md:text-2xl text-foreground uppercase font-bold">
+            Celebrating 10 Years of Precision & Innovation
+          </p>
+          <p className="font-sans text-xs text-tertiary mt-2 max-w-lg mx-auto">
+            From a bold vision in 2015 to becoming a trusted engineering partner across India&apos;s fabrication industry.
+          </p>
+        </div>
+      </section>
+
       {/* Chronological List */}
-      <section className="py-20 px-6 md:px-20 max-w-[1000px] mx-auto w-full">
+      <section className="py-20 mx-auto w-full max-w-[1000px] px-[var(--adk-container-padding)]">
         <div className="space-y-12">
           {newsEvents.map((evt) => (
             <div
               key={evt.id}
-              className="bg-white border border-charcoal/10 p-6 md:p-8 flex flex-col md:flex-row gap-6 md:items-center justify-between hover:border-primary transition-colors group"
+              className="bg-card border border-border p-6 md:p-8 flex flex-col md:flex-row gap-6 md:items-center justify-between hover:border-primary transition-colors group"
             >
               <div className="flex items-start gap-4">
                 {/* Event type icon */}
@@ -44,7 +59,7 @@ export default function NewsEventsPage() {
                   <span className="font-mono text-primary text-[9px] uppercase tracking-wider block mb-1">
                     {evt.type} &nbsp;//&nbsp; {evt.date}
                   </span>
-                  <h3 className="font-headline text-2xl text-charcoal uppercase font-bold group-hover:text-primary transition-colors leading-snug">
+                  <h3 className="font-headline text-2xl text-foreground uppercase font-bold group-hover:text-primary transition-colors leading-snug">
                     {evt.title}
                   </h3>
                   {evt.location && (

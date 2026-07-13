@@ -7,11 +7,13 @@ export default function CataloguesPage() {
   const [downloading, setDownloading] = useState<string | null>(null);
 
   const catalogues = [
-    { name: "ADK Fiber Laser X Series Technical Catalog", size: "4.8 MB", id: "CAT_FL_X" },
-    { name: "ADK CNC Press Brake P-Series Spec Sheet", size: "3.2 MB", id: "CAT_PB_P" },
-    { name: "ADK Intelligent Panel Bender Center Overview", size: "5.5 MB", id: "CAT_IPB" },
-    { name: "ADK Submerged Arc Beam Assembly Line Layout", size: "7.1 MB", id: "CAT_PEB" },
-    { name: "ADK Handheld 3-in-1 Laser Welder Operator Manual", size: "2.9 MB", id: "CAT_LW" },
+    { name: "Industrial Pioneer Series — Exchange Table Fiber Laser", size: "4.8 MB", id: "CAT_FL_PIONEER" },
+    { name: "Futuristic Laser Series — Large Format (up to 24m)", size: "5.5 MB", id: "CAT_FL_FUTURISTIC" },
+    { name: "NADKpress CNC Press Brake Technical Data Sheet", size: "3.2 MB", id: "CAT_PB_NADK" },
+    { name: "ADK Panel Bender Series (PB1400P–PB2500P)", size: "4.1 MB", id: "CAT_PB_PANEL" },
+    { name: "Gantry CNC Plasma Cutting Machine Catalogue", size: "3.8 MB", id: "CAT_PL_GANTRY" },
+    { name: "4-in-1 Fiber Laser Welding Machine Overview", size: "2.9 MB", id: "CAT_LW_4IN1" },
+    { name: "PEB H-Beam Welding & SAW Gantry Line", size: "7.1 MB", id: "CAT_PEB" },
   ];
 
   const handleDownload = (id: string) => {
@@ -24,25 +26,25 @@ export default function CataloguesPage() {
   };
 
   return (
-    <div className="flex flex-col w-full bg-white animate-fade-in">
+    <div className="flex flex-col w-full bg-surface animate-fade-in">
       {/* Breadcrumb */}
-      <div className="w-full bg-surface-container py-3 px-6 md:px-20 border-b border-charcoal/5">
-        <div className="max-w-[1440px] mx-auto flex items-center gap-2 font-mono text-[10px] uppercase text-tertiary">
+      <div className="w-full bg-surface-container py-3 border-b border-border/50">
+        <div className="adk-container flex items-center gap-2 font-mono text-[10px] uppercase text-tertiary">
           <Link href="/resources" className="hover:text-primary transition-colors">
             Resources
           </Link>
           <span>/</span>
-          <span className="text-charcoal font-bold">Catalogues</span>
+          <span className="text-foreground font-bold">Catalogues</span>
         </div>
       </div>
 
       {/* Header */}
-      <section className="relative bg-surface border-b border-charcoal/10 py-16 px-6 md:px-20 tech-grid">
-        <div className="max-w-[1440px] mx-auto">
+      <section className="relative bg-surface border-b border-border py-16 tech-grid">
+        <div className="adk-container">
           <div className="font-mono text-primary text-[10px] uppercase tracking-[0.3em] mb-3">
             [ DOWNLOAD_DIRECTORY ]
           </div>
-          <h1 className="font-headline text-[38px] md:text-[50px] text-charcoal uppercase tracking-tighter leading-none mb-6">
+          <h1 className="font-headline text-[38px] md:text-[50px] text-foreground uppercase tracking-tighter leading-none mb-6">
             MACHINERY CATALOGUES & SCHEMATICS
           </h1>
           <p className="font-mono text-xs md:text-sm text-tertiary max-w-xl leading-relaxed">
@@ -52,8 +54,8 @@ export default function CataloguesPage() {
       </section>
 
       {/* Catalogues List */}
-      <section className="py-20 px-6 md:px-20 max-w-[1440px] mx-auto w-full">
-        <div className="border border-charcoal/15 divide-y divide-charcoal/15">
+      <section className="py-20 adk-container w-full">
+        <div className="border border-border divide-y divide-border">
           {catalogues.map((cat) => (
             <div
               key={cat.id}
@@ -64,7 +66,7 @@ export default function CataloguesPage() {
                   picture_as_pdf
                 </span>
                 <div>
-                  <h3 className="font-headline text-lg md:text-xl text-charcoal uppercase font-bold">
+                  <h3 className="font-headline text-lg md:text-xl text-foreground uppercase font-bold">
                     {cat.name}
                   </h3>
                   <span className="font-mono text-[9px] text-tertiary uppercase">
@@ -76,12 +78,23 @@ export default function CataloguesPage() {
               <button
                 onClick={() => handleDownload(cat.id)}
                 disabled={downloading !== null}
-                className="bg-charcoal text-white font-mono text-[10px] uppercase tracking-widest px-6 py-3 border border-charcoal hover:bg-primary hover:border-primary disabled:bg-tertiary transition-all text-center font-bold cursor-pointer shrink-0"
+                className="bg-charcoal text-white font-mono text-[10px] uppercase tracking-widest px-6 py-3 border border-foreground hover:bg-primary hover:border-primary disabled:bg-tertiary transition-all text-center font-bold cursor-pointer shrink-0"
               >
                 {downloading === cat.id ? "[ DOWNLOADING... ]" : "[ DOWNLOAD.PDF ]"}
               </button>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* Download Info */}
+      <section className="py-12 bg-surface border-t border-border">
+        <div className="adk-container">
+          <p className="font-sans text-sm text-tertiary leading-relaxed max-w-2xl">
+            All catalogues include dimensional schematics, weight metrics, power requirements,
+            and foundation layout drawings. For custom configurations not listed here,
+            contact our engineering team for a tailored specification document.
+          </p>
         </div>
       </section>
     </div>

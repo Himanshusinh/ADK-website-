@@ -1,27 +1,14 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
-import { categories } from "@/lib/data";
+import { categories, companyInfo, branches, contactDepartments } from "@/lib/data";
+import FooterNewsletterForm from "@/components/FooterNewsletterForm";
 
 export default function Footer() {
-  const [email, setEmail] = useState("");
-  const [subscribed, setSubscribed] = useState(false);
-
-  const handleSubscribe = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (email) {
-      setSubscribed(true);
-      setTimeout(() => {
-        setSubscribed(false);
-        setEmail("");
-      }, 3000);
-    }
-  };
-
   return (
-    <footer className="bg-charcoal text-white py-16 px-6 md:px-20 border-t border-primary/30 mt-auto">
-      <div className="max-w-[1440px] mx-auto">
+    <footer className="bg-charcoal text-white py-16 border-t border-primary/30 mt-auto">
+      <div className="adk-container">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-16">
           {/* Company Info */}
           <div className="lg:col-span-4 flex flex-col items-start">
@@ -31,8 +18,8 @@ export default function Footer() {
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuC02yPbv_g8Oda-vZHalFmvlIPpe-cnTtOEiw2Wz1kmkk3UmvwwT8dKlkMv6tJIE0OSZPqjhaPntcz9QJX0SSX4kyqtPWiP5tlHT8DeeGXHYCMJ23hP6O-Tqp8VUXZTvdNyLYfavY6EGrrgXnPhs_G81LDpphx769XflpGp2uh_kF377tW7zRSRsVJu65nL8JFesrWB_h7L3JVxLyttWL-wteQLGlNGbemoFLQ3-7vdbll1t5IMvV0vB2n4R8-RGCpZB7c"
             />
             <p className="font-mono text-[12px] text-light-gray/60 leading-relaxed mb-8 max-w-sm">
-              Premium industrial engineering solutions. Over 16 years of excellence in precision
-              machinery, automated fabrication systems, and global support structures.
+              {companyInfo.tagline}. Over {companyInfo.stats.yearsExperience} years of excellence in
+              fiber laser cutting, CNC plasma, press brakes, and fabrication machinery across India.
             </p>
             <div className="flex gap-4">
               <a
@@ -127,25 +114,39 @@ export default function Footer() {
                   location_on
                 </span>
                 <span>
-                  <strong>HQ & Factory:</strong> Plot No. 12, GIDC Industrial Estate,
+                  <strong>Corporate Office:</strong>
                   <br />
-                  Vatva, Ahmedabad, Gujarat, India - 382445
+                  {companyInfo.corporateAddress}
                 </span>
               </div>
-              <div className="flex items-center gap-3">
-                <span className="material-symbols-outlined text-primary text-[18px] shrink-0">
-                  support_agent
+              <div className="flex items-start gap-3">
+                <span className="material-symbols-outlined text-primary text-[18px] shrink-0 mt-0.5">
+                  factory
                 </span>
                 <span>
-                  <strong>Hotline:</strong> +91 63526 44186
+                  <strong>Works:</strong>
+                  <br />
+                  {companyInfo.worksAddress}
                 </span>
               </div>
-              <div className="flex items-center gap-3">
-                <span className="material-symbols-outlined text-primary text-[18px] shrink-0">
-                  mail
+              {contactDepartments.map((dept) => (
+                <div key={dept.label} className="flex items-start gap-3">
+                  <span className="material-symbols-outlined text-primary text-[18px] shrink-0 mt-0.5">
+                    {dept.label.includes("Service") ? "support_agent" : dept.label.includes("Spares") ? "inventory_2" : "call"}
+                  </span>
+                  <span>
+                    <strong>{dept.label}:</strong> {dept.phones.join(" / ")}
+                    <br />
+                    {dept.emails.join(" / ")}
+                  </span>
+                </div>
+              ))}
+              <div className="flex items-start gap-3 pt-2 border-t border-white/5">
+                <span className="material-symbols-outlined text-primary text-[18px] shrink-0 mt-0.5">
+                  hub
                 </span>
                 <span>
-                  <strong>Inquiries:</strong> inquiry1@adkeng.com
+                  <strong>Branches:</strong> {branches.map((b) => b.city).join(" | ")}
                 </span>
               </div>
             </div>
@@ -158,34 +159,14 @@ export default function Footer() {
               <p className="font-mono text-[11px] text-light-gray/50 mb-3">
                 Receive engineering alerts and catalog releases.
               </p>
-              <form onSubmit={handleSubscribe} className="flex">
-                <input
-                  type="email"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder={subscribed ? "SUBSCRIPTION_ACTIVE" : "ENTER_USER_EMAIL"}
-                  disabled={subscribed}
-                  className="bg-white/5 border border-white/10 px-4 py-3 font-mono text-xs w-full focus:outline-none focus:border-primary text-white disabled:opacity-80"
-                />
-                <button
-                  type="submit"
-                  className="bg-primary hover:bg-primary-hover px-5 text-xs text-white font-mono font-bold transition-colors cursor-pointer"
-                >
-                  {subscribed ? "OK" : "JOIN"}
-                </button>
-              </form>
+              <FooterNewsletterForm />
             </div>
           </div>
         </div>
 
-        {/* Bottom Coordinates & Copyright Bar */}
-        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="font-mono text-[10px] text-light-gray/40 text-center md:text-left">
-            COORD_DATA: 23.0225° N, 72.5714° E <br className="md:hidden" />
-            &nbsp;// STATUS: CALIBRATION_OPTIMAL // STABLE_SYS_LINK
-          </div>
-          <div className="font-mono text-[10px] text-light-gray/40 text-center md:text-right">
+        {/* Bottom Copyright Bar */}
+        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-center md:justify-end gap-4">
+          <div className="font-mono text-[10px] text-light-gray/40 text-center md:text-right" suppressHydrationWarning>
             © {new Date().getFullYear()} ADK Engineering & Solutions. All rights reserved.
             <br />
             Architected & Redesigned by Wildmind AI.

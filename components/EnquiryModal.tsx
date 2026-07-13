@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { useEnquiry } from "./EnquiryContext";
 import { categories, applications } from "@/lib/data";
+import { postForm } from "@/lib/submitForm";
 
 export default function EnquiryModal() {
   const { isOpen, targetItem, closeEnquiry } = useEnquiry();
@@ -13,6 +14,7 @@ export default function EnquiryModal() {
   const [interest, setInterest] = useState("");
   const [message, setMessage] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
   const [prevTargetItem, setPrevTargetItem] = useState(targetItem);
 
@@ -25,21 +27,33 @@ export default function EnquiryModal() {
 
   if (!isOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Simulate API call
-    console.log("Enquiry submitted:", { name, email, phone, company, interest, message });
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      setName("");
-      setEmail("");
-      setPhone("");
-      setCompany("");
-      setInterest("");
-      setMessage("");
-      closeEnquiry();
-    }, 2500);
+    setSubmitting(true);
+    try {
+      await postForm("/api/forms/enquiry", {
+        name,
+        email,
+        phone,
+        company,
+        interest,
+        message,
+        source: "global-modal",
+      });
+      setSubmitted(true);
+      setTimeout(() => {
+        setSubmitted(false);
+        setName("");
+        setEmail("");
+        setPhone("");
+        setCompany("");
+        setInterest("");
+        setMessage("");
+        closeEnquiry();
+      }, 2500);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -47,7 +61,7 @@ export default function EnquiryModal() {
       <div className="relative w-full max-w-lg bg-surface border border-primary/30 p-8 shadow-2xl flex flex-col max-h-[90vh] overflow-y-auto">
         <button
           onClick={closeEnquiry}
-          className="absolute top-4 right-4 text-charcoal/60 hover:text-primary transition-colors cursor-pointer"
+          className="absolute top-4 right-4 text-foreground/60 hover:text-primary transition-colors cursor-pointer"
         >
           <span className="material-symbols-outlined text-2xl">close</span>
         </button>
@@ -61,7 +75,7 @@ export default function EnquiryModal() {
             <span className="material-symbols-outlined text-6xl text-primary mb-6 animate-bounce">
               check_circle
             </span>
-            <h3 className="font-headline text-3xl text-charcoal uppercase mb-4">
+            <h3 className="font-headline text-3xl text-foreground uppercase mb-4">
               Transmission Complete
             </h3>
             <p className="font-mono text-xs text-tertiary max-w-xs">
@@ -71,7 +85,7 @@ export default function EnquiryModal() {
           </div>
         ) : (
           <>
-            <h3 className="font-headline text-3xl text-charcoal uppercase mb-6 tracking-tight">
+            <h3 className="font-headline text-3xl text-foreground uppercase mb-6 tracking-tight">
               Request Technical Quote
             </h3>
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -84,7 +98,7 @@ export default function EnquiryModal() {
                   required
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="w-full bg-white border border-charcoal/15 px-4 py-2 font-sans text-sm focus:outline-none focus:border-primary text-charcoal"
+                  className="w-full bg-card border border-border px-4 py-2 font-sans text-sm focus:outline-none focus:border-primary text-foreground"
                   placeholder="e.g. John Doe"
                 />
               </div>
@@ -99,7 +113,7 @@ export default function EnquiryModal() {
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full bg-white border border-charcoal/15 px-4 py-2 font-sans text-sm focus:outline-none focus:border-primary text-charcoal"
+                    className="w-full bg-card border border-border px-4 py-2 font-sans text-sm focus:outline-none focus:border-primary text-foreground"
                     placeholder="john@company.com"
                   />
                 </div>
@@ -112,7 +126,7 @@ export default function EnquiryModal() {
                     required
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
-                    className="w-full bg-white border border-charcoal/15 px-4 py-2 font-sans text-sm focus:outline-none focus:border-primary text-charcoal"
+                    className="w-full bg-card border border-border px-4 py-2 font-sans text-sm focus:outline-none focus:border-primary text-foreground"
                     placeholder="+91 99999 99999"
                   />
                 </div>
@@ -128,7 +142,7 @@ export default function EnquiryModal() {
                     required
                     value={company}
                     onChange={(e) => setCompany(e.target.value)}
-                    className="w-full bg-white border border-charcoal/15 px-4 py-2 font-sans text-sm focus:outline-none focus:border-primary text-charcoal"
+                    className="w-full bg-card border border-border px-4 py-2 font-sans text-sm focus:outline-none focus:border-primary text-foreground"
                     placeholder="Precision Engineering Ltd"
                   />
                 </div>
@@ -139,7 +153,7 @@ export default function EnquiryModal() {
                   <select
                     value={interest}
                     onChange={(e) => setInterest(e.target.value)}
-                    className="w-full bg-white border border-charcoal/15 px-4 py-2 font-sans text-sm focus:outline-none focus:border-primary text-charcoal h-[38px]"
+                    className="w-full bg-card border border-border px-4 py-2 font-sans text-sm focus:outline-none focus:border-primary text-foreground h-[38px]"
                   >
                     <option value="">-- SELECT CLASSIFICATION --</option>
                     <optgroup label="MACHINERY CATEGORIES">
@@ -168,16 +182,17 @@ export default function EnquiryModal() {
                   rows={3}
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
-                  className="w-full bg-white border border-charcoal/15 px-4 py-2 font-sans text-sm focus:outline-none focus:border-primary text-charcoal resize-none"
+                  className="w-full bg-card border border-border px-4 py-2 font-sans text-sm focus:outline-none focus:border-primary text-foreground resize-none"
                   placeholder="Describe your raw material, thickness, bed size requirements, etc."
                 />
               </div>
 
               <button
                 type="submit"
-                className="w-full bg-primary hover:bg-primary-hover text-white font-mono text-xs uppercase tracking-widest py-4 border border-primary transition-all font-bold cursor-pointer"
+                disabled={submitting}
+                className="w-full bg-primary hover:bg-primary-hover text-white font-mono text-xs uppercase tracking-widest py-4 border border-primary transition-all font-bold cursor-pointer disabled:opacity-60"
               >
-                [ TRANSMIT_SPEC_REQUEST ]
+                {submitting ? "[ TRANSMITTING... ]" : "[ TRANSMIT_SPEC_REQUEST ]"}
               </button>
             </form>
           </>

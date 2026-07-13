@@ -29,14 +29,14 @@ export default function ResourcesHubPage() {
   ];
 
   return (
-    <div className="flex flex-col w-full bg-white">
+    <div className="flex flex-col w-full bg-surface">
       {/* Page Header */}
-      <section className="relative bg-surface border-b border-charcoal/10 py-16 px-6 md:px-20 tech-grid">
-        <div className="max-w-[1440px] mx-auto">
+      <section className="relative bg-surface border-b border-border py-16 tech-grid">
+        <div className="adk-container">
           <div className="font-mono text-primary text-[10px] uppercase tracking-[0.3em] mb-3">
             [ LIBRARY_ROOT ]
           </div>
-          <h1 className="font-headline text-[42px] md:text-[56px] text-charcoal uppercase tracking-tighter leading-none mb-6">
+          <h1 className="font-headline text-[42px] md:text-[56px] text-foreground uppercase tracking-tighter leading-none mb-6">
             TECHNICAL RESOURCE CENTER
           </h1>
           <p className="font-mono text-xs md:text-sm text-tertiary max-w-xl leading-relaxed">
@@ -46,18 +46,18 @@ export default function ResourcesHubPage() {
       </section>
 
       {/* Resource Sections */}
-      <section className="py-20 px-6 md:px-20 max-w-[1440px] mx-auto w-full">
+      <section className="py-20 adk-container w-full">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {resourceCategories.map((rc) => (
             <div
               key={rc.title}
-              className="bg-white border border-charcoal/10 p-6 flex flex-col justify-between hover:border-primary shadow-sm hover:shadow-lg transition-all duration-300 group"
+              className="bg-card border border-border p-6 flex flex-col justify-between hover:border-primary shadow-sm hover:shadow-lg transition-all duration-300 group"
             >
               <div>
-                <span className="material-symbols-outlined text-[48px] text-charcoal/70 group-hover:text-primary transition-colors mb-6">
+                <span className="material-symbols-outlined text-[48px] text-foreground/70 group-hover:text-primary transition-colors mb-6">
                   {rc.icon}
                 </span>
-                <h3 className="font-headline text-2xl text-charcoal uppercase font-bold mb-3 group-hover:text-primary transition-colors">
+                <h3 className="font-headline text-2xl text-foreground uppercase font-bold mb-3 group-hover:text-primary transition-colors">
                   {rc.title}
                 </h3>
                 <p className="font-sans text-xs text-tertiary leading-relaxed mb-8">
@@ -67,12 +67,33 @@ export default function ResourcesHubPage() {
 
               <Link
                 href={rc.path}
-                className="w-full bg-charcoal text-white font-mono text-[10px] uppercase tracking-widest py-3 border border-charcoal hover:bg-primary hover:border-primary transition-all text-center block font-bold"
+                className="w-full bg-charcoal text-white font-mono text-[10px] uppercase tracking-widest py-3 border border-foreground hover:bg-primary hover:border-primary transition-all text-center block font-bold"
               >
                 [ {rc.btnText} ]
               </Link>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* Support CTA */}
+      <section className="py-16 bg-charcoal text-white text-center border-t border-primary/30">
+        <div className="adk-container">
+        <div className="max-w-2xl mx-auto">
+          <h2 className="font-headline text-3xl uppercase tracking-tighter mb-4">
+            Need Technical Assistance?
+          </h2>
+          <p className="font-mono text-xs text-light-gray/60 mb-8 leading-relaxed">
+            Our engineering team can help with machine selection, parameter tuning guides,
+            and installation planning documentation.
+          </p>
+          <Link
+            href="/contact"
+            className="inline-block bg-primary hover:bg-primary-hover text-white font-mono text-xs uppercase tracking-widest px-10 py-5 border border-primary transition-all font-bold"
+          >
+            [ CONTACT_ENGINEERING ]
+          </Link>
+        </div>
         </div>
       </section>
     </div>

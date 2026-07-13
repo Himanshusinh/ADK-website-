@@ -1,7 +1,10 @@
 import React from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 import { blogPosts } from "@/lib/data";
+import BlogHeroImage from "./BlogHeroImage";
+import BlogContent from "@/components/BlogContent";
 
 interface BlogPostPageProps {
   params: Promise<{ slug: string }>;
@@ -13,6 +16,17 @@ export async function generateStaticParams() {
   }));
 }
 
+export async function generateMetadata(props: BlogPostPageProps): Promise<Metadata> {
+  const { slug } = await props.params;
+  const post = blogPosts.find((p) => p.slug === slug);
+  if (!post) return {};
+  return {
+    title: post.title,
+    description: post.summary,
+    keywords: [post.category ?? "Technical Blog", "ADK Engineering", post.author],
+  };
+}
+
 export default async function BlogPostPage(props: BlogPostPageProps) {
   const { slug } = await props.params;
   const post = blogPosts.find((p) => p.slug === slug);
@@ -21,36 +35,10 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
     notFound();
   }
 
-  // Format paragraphs/subheadings in blog post content
-  const formattedContent = post.content.split("\n\n").map((para, idx) => {
-    if (para.startsWith("### ")) {
-      return (
-        <h3 key={idx} className="font-headline text-2xl text-charcoal uppercase font-bold mt-8 mb-4 border-b border-charcoal/10 pb-2">
-          {para.replace("### ", "")}
-        </h3>
-      );
-    }
-    if (para.startsWith("- ")) {
-      return (
-        <ul key={idx} className="space-y-2 list-inside list-disc pl-2 font-sans text-sm text-tertiary">
-          {para.split("\n").map((li, i) => (
-            <li key={i}>{li.replace("- ", "")}</li>
-          ))}
-        </ul>
-      );
-    }
-    return (
-      <p key={idx} className="font-sans text-sm text-tertiary leading-relaxed mb-4">
-        {para}
-      </p>
-    );
-  });
-
   return (
-    <div className="flex flex-col w-full bg-white animate-fade-in">
-      {/* Breadcrumb */}
-      <div className="w-full bg-surface-container py-3 px-6 md:px-20 border-b border-charcoal/5">
-        <div className="max-w-[1440px] mx-auto flex items-center gap-2 font-mono text-[10px] uppercase text-tertiary">
+    <div className="flex flex-col w-full bg-surface animate-fade-in">
+      <div className="w-full bg-surface-container py-3 border-b border-border/50">
+        <div className="adk-container flex items-center gap-2 font-mono text-[10px] uppercase text-tertiary">
           <Link href="/resources" className="hover:text-primary transition-colors">
             Resources
           </Link>
@@ -59,20 +47,20 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
             Blog
           </Link>
           <span>/</span>
-          <span className="text-charcoal font-bold">{post.title}</span>
+          <span className="text-foreground font-bold">{post.title}</span>
         </div>
       </div>
 
-      {/* Article Detail */}
-      <article className="py-20 px-6 md:px-20 max-w-[800px] mx-auto w-full">
-        {/* Post Metadata */}
+      <article className="py-20 mx-auto w-full max-w-[800px] px-[var(--adk-container-padding)]">
+        <BlogHeroImage src={post.heroImage} title={post.title} category={post.category} />
+
         <div className="border-l-4 border-primary pl-6 mb-8">
           <div className="flex items-center gap-4 font-mono text-[10px] text-tertiary uppercase mb-3">
             <span>{post.date}</span>
             <span>{"//"}</span>
             <span>{post.readTime}</span>
           </div>
-          <h1 className="font-headline text-3xl md:text-5xl text-charcoal uppercase font-bold tracking-tight mb-4">
+          <h1 className="font-headline text-3xl md:text-5xl text-foreground uppercase font-bold tracking-tight mb-4">
             {post.title}
           </h1>
           <span className="font-mono text-[9px] text-tertiary/75 uppercase block">
@@ -80,13 +68,11 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
           </span>
         </div>
 
-        {/* Content body */}
-        <div className="space-y-6 pt-6 border-t border-charcoal/10">
-          {formattedContent}
+        <div className="pt-6 border-t border-border">
+          <BlogContent content={post.content} />
         </div>
 
-        {/* Back Link */}
-        <div className="mt-12 pt-8 border-t border-charcoal/10 flex justify-between items-center">
+        <div className="mt-12 pt-8 border-t border-border flex justify-between items-center">
           <Link
             href="/resources/blog"
             className="font-mono text-xs uppercase text-primary hover:underline flex items-center gap-2 font-bold"

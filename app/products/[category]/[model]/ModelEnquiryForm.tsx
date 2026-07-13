@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { postForm } from "@/lib/submitForm";
 
 interface ModelEnquiryFormProps {
   modelName: string;
@@ -13,29 +14,43 @@ export default function ModelEnquiryForm({ modelName }: ModelEnquiryFormProps) {
   const [company, setCompany] = useState("");
   const [message, setMessage] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Model-specific enquiry submitted:", { modelName, name, email, phone, company, message });
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      setName("");
-      setEmail("");
-      setPhone("");
-      setCompany("");
-      setMessage("");
-    }, 3000);
+    setSubmitting(true);
+    try {
+      await postForm("/api/forms/enquiry", {
+        name,
+        email,
+        phone,
+        company,
+        interest: modelName,
+        message,
+        source: "product-model",
+      });
+      setSubmitted(true);
+      setTimeout(() => {
+        setSubmitted(false);
+        setName("");
+        setEmail("");
+        setPhone("");
+        setCompany("");
+        setMessage("");
+      }, 3000);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
     <div>
       {submitted ? (
-        <div className="flex flex-col items-center justify-center py-8 text-center bg-white border border-charcoal/10 p-4">
+        <div className="flex flex-col items-center justify-center py-8 text-center bg-card border border-border p-4">
           <span className="material-symbols-outlined text-5xl text-primary mb-4 animate-bounce">
             check_circle
           </span>
-          <h4 className="font-headline text-2xl text-charcoal uppercase mb-2">Transmission Success</h4>
+          <h4 className="font-headline text-2xl text-foreground uppercase mb-2">Transmission Success</h4>
           <p className="font-mono text-[10px] text-tertiary">
             REQUEST_TYPE: M-SPECIFIC // ID: RECEIVED <br />
             Our regional manager will email technical documents shortly.
@@ -51,7 +66,7 @@ export default function ModelEnquiryForm({ modelName }: ModelEnquiryFormProps) {
               type="text"
               readOnly
               value={modelName}
-              className="w-full bg-tech-blue border border-charcoal/10 px-4 py-2 font-mono text-xs text-charcoal outline-none select-none font-bold"
+              className="w-full bg-tech-blue border border-border px-4 py-2 font-mono text-xs text-foreground outline-none select-none font-bold"
             />
           </div>
 
@@ -65,7 +80,7 @@ export default function ModelEnquiryForm({ modelName }: ModelEnquiryFormProps) {
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="Your Name"
-              className="w-full bg-white border border-charcoal/15 px-4 py-2 font-sans text-xs focus:outline-none focus:border-primary text-charcoal"
+              className="w-full bg-card border border-border px-4 py-2 font-sans text-xs focus:outline-none focus:border-primary text-foreground"
             />
           </div>
 
@@ -80,7 +95,7 @@ export default function ModelEnquiryForm({ modelName }: ModelEnquiryFormProps) {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="email@company.com"
-                className="w-full bg-white border border-charcoal/15 px-4 py-2 font-sans text-xs focus:outline-none focus:border-primary text-charcoal"
+                className="w-full bg-card border border-border px-4 py-2 font-sans text-xs focus:outline-none focus:border-primary text-foreground"
               />
             </div>
             <div>
@@ -93,7 +108,7 @@ export default function ModelEnquiryForm({ modelName }: ModelEnquiryFormProps) {
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 placeholder="+91..."
-                className="w-full bg-white border border-charcoal/15 px-4 py-2 font-sans text-xs focus:outline-none focus:border-primary text-charcoal"
+                className="w-full bg-card border border-border px-4 py-2 font-sans text-xs focus:outline-none focus:border-primary text-foreground"
               />
             </div>
           </div>
@@ -108,7 +123,7 @@ export default function ModelEnquiryForm({ modelName }: ModelEnquiryFormProps) {
               value={company}
               onChange={(e) => setCompany(e.target.value)}
               placeholder="Company Ltd"
-              className="w-full bg-white border border-charcoal/15 px-4 py-2 font-sans text-xs focus:outline-none focus:border-primary text-charcoal"
+              className="w-full bg-card border border-border px-4 py-2 font-sans text-xs focus:outline-none focus:border-primary text-foreground"
             />
           </div>
 
@@ -121,15 +136,16 @@ export default function ModelEnquiryForm({ modelName }: ModelEnquiryFormProps) {
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               placeholder="Thickness range, power, custom material details..."
-              className="w-full bg-white border border-charcoal/15 px-4 py-2 font-sans text-xs focus:outline-none focus:border-primary text-charcoal resize-none"
+              className="w-full bg-card border border-border px-4 py-2 font-sans text-xs focus:outline-none focus:border-primary text-foreground resize-none"
             />
           </div>
 
           <button
             type="submit"
-            className="w-full bg-primary hover:bg-primary-hover text-white font-mono text-xs uppercase tracking-widest py-3 border border-primary transition-all font-bold cursor-pointer"
+            disabled={submitting}
+            className="w-full bg-primary hover:bg-primary-hover text-white font-mono text-xs uppercase tracking-widest py-3 border border-primary transition-all font-bold cursor-pointer disabled:opacity-60"
           >
-            [ GET_MACHINERY_QUOTE ]
+            {submitting ? "[ TRANSMITTING... ]" : "[ GET_MACHINERY_QUOTE ]"}
           </button>
         </form>
       )}
