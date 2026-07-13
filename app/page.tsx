@@ -19,9 +19,6 @@ export default function Home() {
         </div>
         <div className="relative z-10 adk-container w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="border-l-4 border-primary pl-6 md:pl-9">
-            <div className="font-mono text-primary text-xs md:text-sm uppercase tracking-[0.3em] mb-5">
-              [ SCHEMATIC_REF: ADK_V3 ]
-            </div>
             <h1 className="font-headline text-[48px] leading-[1.12] md:text-[68px] text-foreground uppercase mb-8 tracking-tighter">
               Crafting <br />
               Precision <br />

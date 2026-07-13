@@ -1,7 +1,10 @@
 "use client";
 
+import Image from "next/image";
 import React, { useEffect, useRef } from "react";
 import { QUICK_CHIPS } from "@/lib/chatbot";
+
+const CHATBOT_AVATAR = "/images/chatbot-icon.png";
 
 export interface ChatMessage {
   id: string;
@@ -27,29 +30,43 @@ function formatBotText(text: string): React.ReactNode {
   const lines = text.split("\n");
 
   return (
-    <div className="space-y-1.5">
+    <div className="space-y-1">
       {lines.map((line, lineIndex) => {
         const trimmed = line.trim();
-        if (!trimmed) {
-          return <div key={lineIndex} className="h-2" aria-hidden="true" />;
-        }
+        if (!trimmed) return null;
 
         if (trimmed.startsWith("•")) {
           return (
-            <p key={lineIndex} className="text-[13px] leading-[1.55] text-foreground/88 pl-0.5">
+            <p key={lineIndex} className="text-[13px] leading-relaxed text-foreground/90">
               {formatInline(trimmed)}
             </p>
           );
         }
 
         return (
-          <p key={lineIndex} className="text-[13px] leading-[1.55] text-foreground/90">
+          <p key={lineIndex} className="text-[13px] leading-relaxed text-foreground/90">
             {formatInline(line)}
           </p>
         );
       })}
     </div>
   );
+}
+
+/** Split bot copy into stacked bubbles like a conversational UI */
+function splitBotBubbles(text: string): string[] {
+  const trimmed = text.trim();
+  if (!trimmed) return [];
+
+  if (trimmed.startsWith("Hello!")) {
+    const blocks = trimmed.split(/\n\n+/);
+    if (blocks.length >= 2) {
+      return [blocks[0], blocks.slice(1).join("\n\n")];
+    }
+  }
+
+  const paragraphs = trimmed.split(/\n\n+/).filter(Boolean);
+  return paragraphs.length > 0 ? paragraphs : [trimmed];
 }
 
 interface ChatbotPanelProps {
@@ -62,6 +79,20 @@ interface ChatbotPanelProps {
   onInputChange: (value: string) => void;
   onSend: () => void;
   onQuickChip: (chip: { label: string; message?: string; action?: "enquiry" }) => void;
+}
+
+function BotAvatar() {
+  return (
+    <Image
+      src={CHATBOT_AVATAR}
+      alt=""
+      width={32}
+      height={32}
+      unoptimized
+      className="w-8 h-8 shrink-0 rounded-full object-cover ring-1 ring-border/40"
+      aria-hidden="true"
+    />
+  );
 }
 
 export default function ChatbotPanel({
@@ -106,10 +137,12 @@ export default function ChatbotPanel({
     "https://wa.me/916352644186?text=" +
     encodeURIComponent("Hello ADK Engineering! I would like to speak with your team.");
 
+  const lastBotMessageId = [...messages].reverse().find((m) => m.role === "bot")?.id;
+
   return (
     <>
       <div
-        className="fixed inset-0 z-55 bg-black/25 backdrop-blur-[1px] md:hidden"
+        className="fixed inset-0 z-55 bg-black/10"
         onClick={onClose}
         aria-hidden="true"
       />
@@ -117,135 +150,158 @@ export default function ChatbotPanel({
       <div
         role="dialog"
         aria-label="ADK Assistant chat"
-        className="fixed bottom-32 right-4 sm:right-6 z-60 flex flex-col w-[min(100vw-2rem,380px)] h-[min(72vh,540px)] bg-card border border-primary/20 shadow-[0_12px_48px_rgba(0,0,0,0.14)] chatbot-panel-enter overflow-hidden"
+        onClick={(e) => e.stopPropagation()}
+        className="fixed bottom-32 right-4 sm:right-6 z-60 flex flex-col w-[min(100vw-2rem,400px)] h-[min(72vh,560px)] bg-card rounded-lg border border-border/50 shadow-[0_16px_48px_rgba(0,0,0,0.12)] chatbot-panel-enter overflow-hidden"
       >
-        {/* Header */}
-        <div className="flex items-center justify-between gap-3 px-4 py-3 border-b border-border/40 shrink-0 bg-card">
-          <div className="min-w-0">
-            <div className="font-mono text-primary text-[9px] tracking-[0.2em] uppercase">
-              [ ADK_ASSISTANT ]
-            </div>
-            <div className="flex items-center gap-2 mt-1">
-              <p className="font-sans text-[13px] font-medium text-foreground leading-none">
-                Engineering Support
-              </p>
-              <span className="inline-flex items-center gap-1 font-mono text-[8px] uppercase tracking-wider text-tertiary">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" aria-hidden="true" />
-                Online
-              </span>
-            </div>
+        {/* Header — avatar + title + status */}
+        <header className="chatbot-header flex items-center gap-3 px-4 py-3.5 shrink-0">
+          <BotAvatar />
+          <div className="flex-1 min-w-0">
+            <p className="font-sans text-[15px] font-semibold text-white leading-tight truncate">
+              ADK Assistant
+            </p>
+            <p className="flex items-center gap-1.5 mt-0.5 font-sans text-[11px] text-white/80">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0" aria-hidden="true" />
+              Online now
+            </p>
           </div>
           <button
             type="button"
             onClick={onClose}
-            className="shrink-0 w-7 h-7 flex items-center justify-center text-foreground/40 hover:text-primary hover:bg-primary/5 transition-all duration-200 cursor-pointer chatbot-icon-btn"
+            className="shrink-0 w-8 h-8 flex items-center justify-center rounded-full text-white/70 hover:text-white hover:bg-white/10 transition-colors duration-200 cursor-pointer"
             aria-label="Close chat"
           >
-            <span className="material-symbols-outlined text-[18px]">close</span>
+            <span className="material-symbols-outlined text-[20px]">close</span>
           </button>
-        </div>
+        </header>
 
         {/* Message thread */}
-        <div className="chatbot-thread flex-1 overflow-y-auto px-3 py-4 space-y-4 min-h-0">
-          {messages.map((msg) => (
-            <div
-              key={msg.id}
-              className={`flex flex-col gap-1 ${msg.role === "user" ? "items-end" : "items-start"} chatbot-message`}
-            >
-              <span
-                className={`font-mono text-[8px] uppercase tracking-[0.16em] text-tertiary/80 px-0.5 ${
-                  msg.role === "user" ? "text-right" : "text-left"
-                }`}
-              >
-                {msg.role === "user" ? "Operator" : "ADK"}
-              </span>
+        <div className="chatbot-thread flex-1 overflow-y-auto px-4 py-5 min-h-0">
+          <div className="flex flex-col gap-5">
+            {messages.map((msg, index) => {
+              const isLastBotWithChips =
+                showQuickChips && !isTyping && msg.role === "bot" && msg.id === lastBotMessageId;
 
-              {msg.role === "user" ? (
-                <div className="chatbot-bubble-user">
-                  <p className="font-sans text-[13px] leading-[1.5] text-foreground text-right">
-                    {msg.text}
-                  </p>
+              if (msg.role === "user") {
+                return (
+                  <div key={msg.id} className="flex justify-end chatbot-message">
+                    <div className="chatbot-bubble-user">
+                      <p className="font-sans text-[13px] leading-relaxed">{msg.text}</p>
+                    </div>
+                  </div>
+                );
+              }
+
+              const bubbles = splitBotBubbles(msg.text);
+              const showSenderLabel =
+                index === 0 || messages[index - 1]?.role !== "bot";
+
+              return (
+                <div key={msg.id} className="flex gap-2.5 items-start chatbot-message">
+                  {showSenderLabel ? (
+                    <BotAvatar />
+                  ) : (
+                    <div className="w-8 shrink-0" aria-hidden="true" />
+                  )}
+
+                  <div className="flex flex-col gap-2 min-w-0 flex-1 max-w-[calc(100%-2.5rem)]">
+                    {showSenderLabel && (
+                      <span className="font-sans text-[11px] text-tertiary pl-0.5">ADK Assistant</span>
+                    )}
+
+                    <div className="flex flex-col gap-2">
+                      {bubbles.map((bubble, bubbleIndex) => (
+                        <div key={bubbleIndex} className="chatbot-bubble-bot font-sans">
+                          {bubbleIndex === 0 && bubble === "Hello!" ? (
+                            <p className="text-[13px] leading-relaxed text-foreground/90">{bubble}</p>
+                          ) : (
+                            formatBotText(bubble)
+                          )}
+                        </div>
+                      ))}
+                    </div>
+
+                    {isLastBotWithChips && (
+                      <div className="flex flex-wrap gap-2 pt-1">
+                        {QUICK_CHIPS.map((chip) => (
+                          <button
+                            key={chip.id}
+                            type="button"
+                            onClick={() => onQuickChip(chip)}
+                            className="chatbot-chip-outline font-sans cursor-pointer"
+                          >
+                            {chip.label}
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                  </div>
                 </div>
-              ) : (
-                <div className="chatbot-bubble-bot font-sans">{formatBotText(msg.text)}</div>
-              )}
-            </div>
-          ))}
+              );
+            })}
 
-          {isTyping && (
-            <div className="flex flex-col items-start gap-1 chatbot-message">
-              <span className="font-mono text-[8px] uppercase tracking-[0.16em] text-tertiary/80 px-0.5">
-                ADK
-              </span>
-              <div className="chatbot-bubble-typing" aria-label="Assistant is typing">
-                <div className="flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary/40 animate-bounce [animation-delay:0ms]" />
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary/40 animate-bounce [animation-delay:140ms]" />
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary/40 animate-bounce [animation-delay:280ms]" />
+            {isTyping && (
+              <div className="flex gap-2.5 items-start chatbot-message">
+                <BotAvatar />
+                <div className="flex flex-col gap-2 min-w-0">
+                  <span className="font-sans text-[11px] text-tertiary pl-0.5">ADK Assistant</span>
+                  <div className="chatbot-bubble-bot" aria-label="Assistant is typing">
+                    <div className="flex items-center gap-1.5 py-0.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-tertiary/50 animate-bounce [animation-delay:0ms]" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-tertiary/50 animate-bounce [animation-delay:140ms]" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-tertiary/50 animate-bounce [animation-delay:280ms]" />
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          )}
+            )}
+          </div>
 
-          {showQuickChips && !isTyping && (
-            <div className="flex flex-wrap gap-2 pt-1 chatbot-message">
-              {QUICK_CHIPS.map((chip) => (
-                <button
-                  key={chip.id}
-                  type="button"
-                  onClick={() => onQuickChip(chip)}
-                  className="chatbot-chip-pill font-sans cursor-pointer"
-                >
-                  {chip.label}
-                </button>
-              ))}
-            </div>
-          )}
-
-          <div ref={messagesEndRef} />
+          <div ref={messagesEndRef} className="h-1" />
         </div>
 
-        {/* Input + footer */}
-        <div className="shrink-0 border-t border-border/40 bg-card pt-3 pb-2">
+        {/* Input footer */}
+        <footer className="shrink-0 border-t border-border/40 bg-card">
           <form
             onSubmit={(e) => {
               e.preventDefault();
               onSend();
             }}
+            className="flex items-center gap-2 px-4 py-3.5"
           >
-            <div className="chatbot-input-wrap">
-              <input
-                ref={inputRef}
-                type="text"
-                value={input}
-                onChange={(e) => onInputChange(e.target.value)}
-                placeholder="Ask about products, service, quotations..."
-                className="flex-1 min-w-0 bg-transparent text-[13px] text-foreground placeholder:text-tertiary/55 focus:outline-none py-2 font-sans"
-                aria-label="Chat message"
-              />
-              <button
-                type="submit"
-                disabled={!input.trim() || isTyping}
-                className="shrink-0 w-8 h-8 flex items-center justify-center rounded-sm bg-primary text-white disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer transition-all duration-200 hover:bg-primary-hover chatbot-send-btn"
-                aria-label="Send message"
-              >
-                <span className="material-symbols-outlined text-[18px]">arrow_upward</span>
-              </button>
-            </div>
+            <input
+              ref={inputRef}
+              type="text"
+              value={input}
+              onChange={(e) => onInputChange(e.target.value)}
+              placeholder="Reply to ADK Assistant..."
+              className="flex-1 min-w-0 bg-transparent text-[14px] text-foreground placeholder:text-tertiary/50 focus:outline-none font-sans"
+              aria-label="Chat message"
+            />
+            <button
+              type="submit"
+              disabled={!input.trim() || isTyping}
+              className="shrink-0 w-8 h-8 flex items-center justify-center text-primary disabled:opacity-25 disabled:cursor-not-allowed cursor-pointer transition-opacity duration-200 hover:opacity-80"
+              aria-label="Send message"
+            >
+              <span className="material-symbols-outlined text-[22px]">send</span>
+            </button>
           </form>
 
-          <div className="px-4 pt-2 pb-1 text-center">
-            <p className="font-sans text-[10px] text-tertiary/65">Need human assistance?</p>
+          <div className="flex items-center justify-between gap-3 px-4 pb-3">
+            <span className="font-mono text-[9px] tracking-[0.12em] text-tertiary/55 uppercase">
+              ADK Engineering
+            </span>
             <a
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block mt-0.5 font-sans text-[11px] text-tertiary/75 hover:text-primary transition-colors duration-200"
+              className="font-sans text-[11px] text-tertiary/70 hover:text-primary transition-colors duration-200 whitespace-nowrap"
             >
-              Talk on WhatsApp →
+              WhatsApp →
             </a>
           </div>
-        </div>
+        </footer>
       </div>
     </>
   );

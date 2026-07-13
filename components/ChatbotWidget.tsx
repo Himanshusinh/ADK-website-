@@ -12,7 +12,11 @@ function createId(): string {
   return `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
 }
 
-export default function ChatbotWidget() {
+export default function ChatbotWidget({
+  onOpenChange,
+}: {
+  onOpenChange?: (open: boolean) => void;
+}) {
   const { openEnquiry } = useEnquiry();
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
@@ -20,17 +24,25 @@ export default function ChatbotWidget() {
   const [isTyping, setIsTyping] = useState(false);
   const [hasInitialized, setHasInitialized] = useState(false);
 
+  const setOpen = useCallback(
+    (open: boolean) => {
+      setIsOpen(open);
+      onOpenChange?.(open);
+    },
+    [onOpenChange]
+  );
+
   const openChat = useCallback(() => {
-    setIsOpen(true);
+    setOpen(true);
     if (!hasInitialized) {
       setHasInitialized(true);
       setMessages([{ id: createId(), role: "bot", text: getWelcomeMessage() }]);
     }
-  }, [hasInitialized]);
+  }, [hasInitialized, setOpen]);
 
   const closeChat = useCallback(() => {
-    setIsOpen(false);
-  }, []);
+    setOpen(false);
+  }, [setOpen]);
 
   const sendUserMessage = useCallback(
     async (text: string) => {
@@ -53,7 +65,7 @@ export default function ChatbotWidget() {
   const handleQuickChip = useCallback(
     (chip: { label: string; message?: string; action?: "enquiry" }) => {
       if (chip.action === "enquiry") {
-        setIsOpen(false);
+        closeChat();
         openEnquiry();
         return;
       }
@@ -65,7 +77,7 @@ export default function ChatbotWidget() {
         void sendUserMessage(chip.message);
       }
     },
-    [hasInitialized, openEnquiry, sendUserMessage]
+    [hasInitialized, openEnquiry, sendUserMessage, closeChat]
   );
 
   const showQuickChips = messages.length <= 1;
