@@ -13,11 +13,11 @@ export default function Home() {
   return (
     <div className="flex flex-col w-full">
       {/* Technical Hero Section */}
-      <section className="relative w-full min-h-[650px] md:min-h-[750px] bg-surface tech-grid flex items-center overflow-hidden border-b border-border py-16">
+      <section className="relative w-full min-h-[650px] md:min-h-[720px] lg:min-h-[760px] bg-surface tech-grid flex items-center overflow-hidden border-b border-border py-16">
         <div className="absolute inset-0 opacity-30 pointer-events-none">
           <div className="adk-container h-full border-x border-on-surface/5"></div>
         </div>
-        <div className="relative z-10 adk-container w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="relative z-10 adk-container w-full grid grid-cols-1 lg:grid-cols-[minmax(0,47%)_minmax(0,53%)] gap-10 lg:gap-12 items-center">
           <div className="border-l-4 border-primary pl-6 md:pl-9">
             <h1 className="font-headline text-[48px] leading-[1.12] md:text-[68px] text-foreground uppercase mb-8 tracking-tighter">
               Crafting <br />
@@ -61,8 +61,8 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="relative flex items-center justify-center lg:justify-center">
-            <div className="relative w-full max-w-lg bg-transparent lg:-translate-x-6 lg:pl-4">
+          <div className="relative flex items-center justify-center w-full">
+            <div className="relative w-full max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl xl:max-w-[680px] mx-auto">
               <img
                 alt="High-detail machine schematic blueprint asset"
                 className="w-full h-auto relative z-10 mix-blend-multiply dark:mix-blend-normal"
