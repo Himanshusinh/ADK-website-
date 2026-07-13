@@ -1,55 +1,13 @@
 "use client";
 
-import React, { useState, Suspense } from "react";
+import React, { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { companyInfo, branches, contactDepartments } from "@/lib/data";
-import { postForm } from "@/lib/submitForm";
+import ContactEnquiryForm from "@/components/ContactEnquiryForm";
 
 function ContactFormContent() {
   const searchParams = useSearchParams();
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [company, setCompany] = useState("");
   const interestParam = searchParams.get("interest") || "";
-  const [interest, setInterest] = useState(interestParam);
-  const [prevInterestParam, setPrevInterestParam] = useState(interestParam);
-
-  if (interestParam !== prevInterestParam) {
-    setInterest(interestParam);
-    setPrevInterestParam(interestParam);
-  }
-
-  const [message, setMessage] = useState("");
-  const [submitted, setSubmitted] = useState(false);
-  const [submitting, setSubmitting] = useState(false);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitting(true);
-    try {
-      await postForm("/api/forms/contact", {
-        name,
-        email,
-        phone,
-        company,
-        interest,
-        message,
-      });
-      setSubmitted(true);
-      setTimeout(() => {
-        setSubmitted(false);
-        setName("");
-        setEmail("");
-        setPhone("");
-        setCompany("");
-        setInterest("");
-        setMessage("");
-      }, 3000);
-    } finally {
-      setSubmitting(false);
-    }
-  };
 
   const branchCities = branches;
 
@@ -167,112 +125,7 @@ function ContactFormContent() {
             <h3 className="font-headline text-2xl text-foreground uppercase mb-6 tracking-tight">
               Direct Enquiry Form
             </h3>
-
-            {submitted ? (
-              <div className="flex flex-col items-center justify-center py-8 text-center bg-card border border-border p-4">
-                <span className="material-symbols-outlined text-5xl text-primary mb-4 animate-bounce">
-                  check_circle
-                </span>
-                <h4 className="font-headline text-2xl text-foreground uppercase mb-2">Transmission Success</h4>
-                <p className="font-mono text-[10px] text-tertiary">
-                  REGIST_STATUS: ACTIVE // ID: RECEIVED <br />
-                  A coordinator will call you back within 6 business hours.
-                </p>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                  <label className="block font-mono text-[9px] uppercase text-tertiary mb-1">
-                    Your Name
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    placeholder="Enter Name"
-                    className="w-full bg-card border border-border px-4 py-2 font-sans text-xs focus:outline-none focus:border-primary text-foreground"
-                  />
-                </div>
-
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label className="block font-mono text-[9px] uppercase text-tertiary mb-1">
-                      Email
-                    </label>
-                    <input
-                      type="email"
-                      required
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      placeholder="email@company.com"
-                      className="w-full bg-card border border-border px-4 py-2 font-sans text-xs focus:outline-none focus:border-primary text-foreground"
-                    />
-                  </div>
-                  <div>
-                    <label className="block font-mono text-[9px] uppercase text-tertiary mb-1">
-                      Phone
-                    </label>
-                    <input
-                      type="tel"
-                      required
-                      value={phone}
-                      onChange={(e) => setPhone(e.target.value)}
-                      placeholder="+91..."
-                      className="w-full bg-card border border-border px-4 py-2 font-sans text-xs focus:outline-none focus:border-primary text-foreground"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block font-mono text-[9px] uppercase text-tertiary mb-1">
-                    Company
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    value={company}
-                    onChange={(e) => setCompany(e.target.value)}
-                    placeholder="Company Name"
-                    className="w-full bg-card border border-border px-4 py-2 font-sans text-xs focus:outline-none focus:border-primary text-foreground"
-                  />
-                </div>
-
-                <div>
-                  <label className="block font-mono text-[9px] uppercase text-tertiary mb-1">
-                    Interest Description
-                  </label>
-                  <input
-                    type="text"
-                    value={interest}
-                    onChange={(e) => setInterest(e.target.value)}
-                    placeholder="e.g. ADK 3015C Industrial Pioneer Series"
-                    className="w-full bg-card border border-border px-4 py-2 font-sans text-xs focus:outline-none focus:border-primary text-foreground"
-                  />
-                </div>
-
-                <div>
-                  <label className="block font-mono text-[9px] uppercase text-tertiary mb-1">
-                    Enquiry Details
-                  </label>
-                  <textarea
-                    rows={3}
-                    value={message}
-                    onChange={(e) => setMessage(e.target.value)}
-                    placeholder="Enter custom specifications or query requirements..."
-                    className="w-full bg-card border border-border px-4 py-2 font-sans text-xs focus:outline-none focus:border-primary text-foreground resize-none"
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  disabled={submitting}
-                  className="w-full bg-primary hover:bg-primary-hover text-white font-mono text-xs uppercase tracking-widest py-3 border border-primary transition-all font-bold cursor-pointer disabled:opacity-60"
-                >
-                  {submitting ? "[ TRANSMITTING... ]" : "[ INITIATE_TECHNICAL_REQUEST ]"}
-                </button>
-              </form>
-            )}
+            <ContactEnquiryForm key={interestParam} defaultInterest={interestParam} />
           </div>
         </div>
       </section>
@@ -303,11 +156,15 @@ function ContactFormContent() {
 
 export default function ContactPage() {
   return (
-    <Suspense fallback={
-      <div className="flex items-center justify-center min-h-[500px]">
-        <div className="font-mono text-xs uppercase text-primary animate-pulse">[ COMPILING_CONTACT_INTERFACE... ]</div>
-      </div>
-    }>
+    <Suspense
+      fallback={
+        <div className="flex items-center justify-center min-h-[500px]">
+          <div className="font-mono text-xs uppercase text-primary animate-pulse">
+            [ COMPILING_CONTACT_INTERFACE... ]
+          </div>
+        </div>
+      }
+    >
       <ContactFormContent />
     </Suspense>
   );

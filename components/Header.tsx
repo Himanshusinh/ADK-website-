@@ -21,6 +21,16 @@ const OPEN_DELAY = 80;
 const CLOSE_DELAY = 200;
 const FEATURED_INDUSTRY_COUNT = 8;
 
+function navDesktopLinkClass(active: boolean, withGap = false) {
+  return `group font-mono text-[10px] xl:text-[11px] uppercase tracking-widest transition-colors duration-200 inline-flex items-center border-b-2 pb-1 leading-none ${
+    withGap ? "gap-1.5 " : ""
+  }${
+    active
+      ? "border-primary text-foreground"
+      : "border-transparent text-foreground hover:border-primary"
+  }`;
+}
+
 function NavIndexLabel({ index, label, active }: { index: number; label: string; active: boolean }) {
   return (
     <span className="inline-flex items-center leading-none">
@@ -159,16 +169,16 @@ export default function Header() {
                   >
                     <Link
                       href={item.path}
-                      className={`group font-mono text-[10px] xl:text-[11px] uppercase tracking-widest transition-colors duration-200 inline-flex items-center gap-1.5 border-b-2 pb-1 leading-none ${
-                        active ? "border-primary text-foreground" : "border-transparent text-foreground"
-                      }`}
+                      className={navDesktopLinkClass(active, true)}
                       aria-expanded={isMegaOpen}
                       aria-haspopup="true"
                     >
                       <NavIndexLabel index={idx} label={item.label} active={active} />
                       <span
-                        className={`material-symbols-outlined text-[10px] text-foreground/35 leading-none shrink-0 transition-transform duration-200 ${
-                          isMegaOpen ? "rotate-180" : ""
+                        className={`material-symbols-outlined text-[10px] leading-none shrink-0 transition-all duration-200 ${
+                          isMegaOpen
+                            ? "rotate-180 text-primary"
+                            : "text-foreground/35 group-hover:text-primary"
                         }`}
                       >
                         expand_more
@@ -182,9 +192,7 @@ export default function Header() {
                 <Link
                   key={item.path}
                   href={item.path}
-                  className={`group font-mono text-[10px] xl:text-[11px] uppercase tracking-widest transition-colors duration-200 inline-flex items-center border-b-2 pb-1 leading-none ${
-                    active ? "border-primary text-foreground" : "border-transparent text-foreground"
-                  }`}
+                  className={navDesktopLinkClass(active)}
                 >
                   <NavIndexLabel index={idx} label={item.label} active={active} />
                 </Link>
@@ -365,13 +373,15 @@ export default function Header() {
                 <div key={item.path}>
                   <button
                     onClick={() => toggleMobileAccordion(item.mega!)}
-                    className={`w-full flex items-center justify-between font-mono text-sm uppercase tracking-widest transition-colors duration-200 py-3 cursor-pointer ${
-                      itemActive ? "font-bold" : ""
+                    className={`group w-full flex items-center justify-between font-mono text-sm uppercase tracking-widest transition-colors duration-200 py-3 border-b-2 cursor-pointer ${
+                      itemActive
+                        ? "border-primary font-bold"
+                        : "border-transparent hover:border-primary"
                     }`}
                   >
                     <span>
                       <span className="text-foreground/35 dark:text-foreground tabular-nums">{formatNavIndex(idx)}</span>
-                      <span className={`ml-2 ${itemActive ? "text-primary" : "text-foreground"}`}>
+                      <span className={`ml-2 ${itemActive ? "text-primary" : "text-foreground group-hover:text-primary"}`}>
                         {item.label}
                       </span>
                     </span>
@@ -476,12 +486,14 @@ export default function Header() {
                 key={item.path}
                 href={item.path}
                 onClick={closeMobileMenu}
-                className={`font-mono text-sm uppercase tracking-widest transition-colors duration-200 py-3 block ${
-                  itemActive ? "font-bold" : ""
+                className={`group font-mono text-sm uppercase tracking-widest transition-colors duration-200 py-3 block border-b-2 ${
+                  itemActive
+                    ? "border-primary font-bold"
+                    : "border-transparent hover:border-primary"
                 }`}
               >
                 <span className="text-foreground/35 dark:text-foreground tabular-nums">{formatNavIndex(idx)}</span>
-                <span className={`ml-2 ${itemActive ? "text-primary" : "text-foreground"}`}>
+                <span className={`ml-2 ${itemActive ? "text-primary" : "text-foreground group-hover:text-primary"}`}>
                   {item.label}
                 </span>
               </Link>

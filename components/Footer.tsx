@@ -168,8 +168,6 @@ export default function Footer() {
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-center md:justify-end gap-4">
           <div className="font-mono text-[10px] text-light-gray/40 text-center md:text-right" suppressHydrationWarning>
             © {new Date().getFullYear()} ADK Engineering & Solutions. All rights reserved.
-            <br />
-            Architected & Redesigned by Wildmind AI.
           </div>
         </div>
       </div>
