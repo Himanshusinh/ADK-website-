@@ -139,23 +139,24 @@ function ContactFormContent() {
             </div>
           </div>
 
-          {/* Interactive Map Embed Placeholder */}
+          {/* Google Maps — corporate office location */}
           <div>
             <h2 className="font-headline text-2xl uppercase mb-6 text-foreground flex items-center gap-2">
               <span className="material-symbols-outlined text-primary text-[22px]">map</span>
-              Satellite Gantry Tracking
+              Location Map
             </h2>
-            <div className="w-full h-80 bg-tech-blue border border-border flex flex-col items-center justify-center p-6 relative">
-              <div className="absolute inset-0 opacity-15 bg-card pointer-events-none" style={{ backgroundImage: "linear-gradient(rgba(27,28,28,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(27,28,28,0.1) 1px, transparent 1px)", backgroundSize: "30px 30px" }}></div>
-              <span className="material-symbols-outlined text-5xl text-primary mb-3">
-                satellite_alt
-              </span>
-              <span className="font-mono text-[10px] text-foreground font-bold uppercase tracking-widest text-center">
-                GOOGLE_MAPS_STABLE_FEED
-              </span>
-              <span className="font-mono text-[9px] text-tertiary/75 uppercase text-center mt-2">
-                COORD: 23.0225° N, 72.5714° E // PRECISION_CALIBRATED
-              </span>
+            <div className="w-full aspect-[4/3] min-h-[320px] border border-border overflow-hidden bg-card">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3670.6535736714864!2d72.51097991122774!3d23.07315887905137!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e9d9e82fc63a3%3A0xb4bf21d5446a4d9f!2sADK%20Engineering%20%26%20Solutions!5e0!3m2!1sen!2sin!4v1783942317606!5m2!1sen!2sin"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="strict-origin-when-cross-origin"
+                title="ADK Engineering & Solutions — Google Maps"
+                className="w-full h-full min-h-[320px]"
+              />
             </div>
           </div>
         </div>
