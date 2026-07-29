@@ -4,6 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { useEnquiry } from "@/components/EnquiryContext";
 import { categories, applications, companyInfo, whyChooseAdk, clientMarqueeRowA, clientMarqueeRowB } from "@/lib/data";
+import { BLUEPRINT_SCHEMATIC_URL } from "@/lib/media";
 import Reveal from "@/components/Reveal";
 import ClientLogoMarquee from "@/components/ClientLogoMarquee";
 
@@ -66,7 +67,7 @@ export default function Home() {
               <img
                 alt="High-detail machine schematic blueprint asset"
                 className="w-full h-auto relative z-10 mix-blend-multiply dark:mix-blend-normal"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOzIemnEm6V7GR2bo2GIhMBDg-NJl725eBjH6It2PL5Sjo3WhVXoleVnbj2RcKOtirLuRswUqVRNvXpHSz2a0kKCw-CTpTVqGVLS7GCKiWDHyrcsm_fQB46p0q66NNXsvVYrOjLtLu818Swx4zkFGA9-Fn2yq50Rx7pQADrf3UTTpD-48Xwfjm7Zxli8zgv18UZ5_YoHFaIvX_LtmhrsF5NXHgkt5MrIIZGMyZ0t623K4ca27FPmHufTV1KZmThJQB2H5pD3sq7CBy5-E"
+                src={BLUEPRINT_SCHEMATIC_URL}
               />
 
               {/* Schematic Callouts */}

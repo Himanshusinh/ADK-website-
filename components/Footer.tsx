@@ -3,6 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { categories, companyInfo, branches, contactDepartments } from "@/lib/data";
+import { ADK_LOGO_URL } from "@/lib/media";
 import FooterNewsletterForm from "@/components/FooterNewsletterForm";
 
 export default function Footer() {
@@ -15,7 +16,7 @@ export default function Footer() {
             <img
               alt="ADK Engineering Logo"
               className="h-9 w-auto mb-6 brightness-0 invert object-contain"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuC02yPbv_g8Oda-vZHalFmvlIPpe-cnTtOEiw2Wz1kmkk3UmvwwT8dKlkMv6tJIE0OSZPqjhaPntcz9QJX0SSX4kyqtPWiP5tlHT8DeeGXHYCMJ23hP6O-Tqp8VUXZTvdNyLYfavY6EGrrgXnPhs_G81LDpphx769XflpGp2uh_kF377tW7zRSRsVJu65nL8JFesrWB_h7L3JVxLyttWL-wteQLGlNGbemoFLQ3-7vdbll1t5IMvV0vB2n4R8-RGCpZB7c"
+              src={ADK_LOGO_URL}
             />
             <p className="font-mono text-[12px] text-light-gray/60 leading-relaxed mb-8 max-w-sm">
               {companyInfo.tagline}. Over {companyInfo.stats.yearsExperience} years of excellence in

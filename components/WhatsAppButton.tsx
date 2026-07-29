@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { WHATSAPP_LOGO_URL } from "@/lib/media";
 
 export default function WhatsAppButton() {
   const phoneNumber = "916352644186";
@@ -19,7 +20,7 @@ export default function WhatsAppButton() {
       aria-label="Chat with ADK on WhatsApp"
     >
       <Image
-        src="/images/wp_logo.jpg"
+        src={WHATSAPP_LOGO_URL}
         alt="WhatsApp"
         width={56}
         height={56}

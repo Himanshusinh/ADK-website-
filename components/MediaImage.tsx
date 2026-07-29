@@ -11,6 +11,7 @@ interface MediaImageProps {
   aspectRatio?: "video" | "square" | "portrait" | "wide";
   sublabel?: string;
   className?: string;
+  objectFit?: "cover" | "contain";
 }
 
 export default function MediaImage({
@@ -21,6 +22,7 @@ export default function MediaImage({
   aspectRatio = "video",
   sublabel,
   className = "",
+  objectFit = "cover",
 }: MediaImageProps) {
   const [failed, setFailed] = useState(!src);
 
@@ -44,11 +46,11 @@ export default function MediaImage({
   };
 
   return (
-    <div className={`relative w-full ${aspectClasses[aspectRatio]} overflow-hidden ${className}`}>
+    <div className={`relative w-full ${aspectClasses[aspectRatio]} overflow-hidden ${className} ${objectFit === "contain" ? "bg-card border border-border" : ""}`}>
       <img
         alt={alt}
         src={src}
-        className="w-full h-full object-cover"
+        className={`w-full h-full ${objectFit === "contain" ? "object-contain" : "object-cover"}`}
         onError={() => setFailed(true)}
       />
     </div>

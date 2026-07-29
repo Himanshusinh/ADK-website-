@@ -3,8 +3,9 @@
 import Image from "next/image";
 import React, { useEffect, useRef } from "react";
 import { QUICK_CHIPS } from "@/lib/chatbot";
+import { CHATBOT_ICON_URL } from "@/lib/media";
 
-const CHATBOT_AVATAR = "/images/chatbot-icon.png";
+const CHATBOT_AVATAR = CHATBOT_ICON_URL;
 
 export interface ChatMessage {
   id: string;
