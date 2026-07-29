@@ -38,14 +38,14 @@ function formatBotText(text: string): React.ReactNode {
 
         if (trimmed.startsWith("•")) {
           return (
-            <p key={lineIndex} className="text-[13px] leading-relaxed text-foreground/90">
+            <p key={lineIndex} className="font-body text-small leading-relaxed text-foreground/90">
               {formatInline(trimmed)}
             </p>
           );
         }
 
         return (
-          <p key={lineIndex} className="text-[13px] leading-relaxed text-foreground/90">
+          <p key={lineIndex} className="font-body text-small leading-relaxed text-foreground/90">
             {formatInline(line)}
           </p>
         );
@@ -158,10 +158,10 @@ export default function ChatbotPanel({
         <header className="chatbot-header flex items-center gap-3 px-4 py-3.5 shrink-0">
           <BotAvatar />
           <div className="flex-1 min-w-0">
-            <p className="font-sans text-[15px] font-semibold text-white leading-tight truncate">
+            <p className="font-ui text-button text-white leading-tight truncate">
               ADK Assistant
             </p>
-            <p className="flex items-center gap-1.5 mt-0.5 font-sans text-[11px] text-white/80">
+            <p className="flex items-center gap-1.5 mt-0.5 font-ui text-label text-white/80">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0" aria-hidden="true" />
               Online now
             </p>
@@ -187,7 +187,7 @@ export default function ChatbotPanel({
                 return (
                   <div key={msg.id} className="flex justify-end chatbot-message">
                     <div className="chatbot-bubble-user">
-                      <p className="font-sans text-[13px] leading-relaxed">{msg.text}</p>
+                      <p className="font-body text-small leading-relaxed">{msg.text}</p>
                     </div>
                   </div>
                 );
@@ -207,14 +207,14 @@ export default function ChatbotPanel({
 
                   <div className="flex flex-col gap-2 min-w-0 flex-1 max-w-[calc(100%-2.5rem)]">
                     {showSenderLabel && (
-                      <span className="font-sans text-[11px] text-tertiary pl-0.5">ADK Assistant</span>
+                      <span className="font-ui text-label text-tertiary pl-0.5">ADK Assistant</span>
                     )}
 
                     <div className="flex flex-col gap-2">
                       {bubbles.map((bubble, bubbleIndex) => (
-                        <div key={bubbleIndex} className="chatbot-bubble-bot font-sans">
+                        <div key={bubbleIndex} className="chatbot-bubble-bot font-body">
                           {bubbleIndex === 0 && bubble === "Hello!" ? (
-                            <p className="text-[13px] leading-relaxed text-foreground/90">{bubble}</p>
+                            <p className="font-body text-small leading-relaxed text-foreground/90">{bubble}</p>
                           ) : (
                             formatBotText(bubble)
                           )}
@@ -229,7 +229,7 @@ export default function ChatbotPanel({
                             key={chip.id}
                             type="button"
                             onClick={() => onQuickChip(chip)}
-                            className="chatbot-chip-outline font-sans cursor-pointer"
+                            className="chatbot-chip-outline font-ui text-button cursor-pointer"
                           >
                             {chip.label}
                           </button>
@@ -245,7 +245,7 @@ export default function ChatbotPanel({
               <div className="flex gap-2.5 items-start chatbot-message">
                 <BotAvatar />
                 <div className="flex flex-col gap-2 min-w-0">
-                  <span className="font-sans text-[11px] text-tertiary pl-0.5">ADK Assistant</span>
+                  <span className="font-body text-label text-tertiary pl-0.5">ADK Assistant</span>
                   <div className="chatbot-bubble-bot" aria-label="Assistant is typing">
                     <div className="flex items-center gap-1.5 py-0.5">
                       <span className="w-1.5 h-1.5 rounded-full bg-tertiary/50 animate-bounce [animation-delay:0ms]" />
@@ -276,7 +276,7 @@ export default function ChatbotPanel({
               value={input}
               onChange={(e) => onInputChange(e.target.value)}
               placeholder="Reply to ADK Assistant..."
-              className="flex-1 min-w-0 bg-transparent text-[14px] text-foreground placeholder:text-tertiary/50 focus:outline-none font-sans"
+              className="flex-1 min-w-0 bg-transparent text-small text-foreground placeholder:text-tertiary/50 focus:outline-none font-body"
               aria-label="Chat message"
             />
             <button
@@ -290,14 +290,14 @@ export default function ChatbotPanel({
           </form>
 
           <div className="flex items-center justify-between gap-3 px-4 pb-3">
-            <span className="font-mono text-[9px] tracking-[0.12em] text-tertiary/55 uppercase">
+            <span className="font-ui text-label tracking-ui text-tertiary/55 uppercase">
               ADK Engineering
             </span>
             <a
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-sans text-[11px] text-tertiary/70 hover:text-primary transition-colors duration-200 whitespace-nowrap"
+              className="font-body text-label text-tertiary/70 hover:text-primary transition-colors duration-200 whitespace-nowrap"
             >
               WhatsApp →
             </a>

@@ -30,7 +30,7 @@ export default function BlogContent({ content }: BlogContentProps) {
           return (
             <h2
               key={idx}
-              className="font-headline text-xl md:text-2xl font-semibold text-foreground tracking-tight mt-10 mb-4 first:mt-0"
+              className="font-display text-card-title font-semibold text-foreground tracking-display mt-10 mb-4 first:mt-0"
             >
               {block.replace("### ", "")}
             </h2>
@@ -41,7 +41,7 @@ export default function BlogContent({ content }: BlogContentProps) {
           return (
             <ul
               key={idx}
-              className="space-y-2 pl-5 list-disc marker:text-primary/60 font-sans text-sm md:text-base text-tertiary leading-relaxed"
+              className="space-y-2 pl-5 list-disc marker:text-primary/60 font-body text-body text-tertiary leading-relaxed"
             >
               {block.split("\n").map((line, lineIdx) => (
                 <li key={lineIdx}>{formatInline(line.replace(/^- /, ""))}</li>
@@ -51,7 +51,7 @@ export default function BlogContent({ content }: BlogContentProps) {
         }
 
         return (
-          <p key={idx} className="font-sans text-sm md:text-base text-tertiary leading-relaxed">
+          <p key={idx} className="font-body text-body text-tertiary leading-relaxed">
             {formatInline(block)}
           </p>
         );

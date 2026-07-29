@@ -18,7 +18,7 @@ export default function Footer() {
               className="h-9 w-auto mb-6 brightness-0 invert object-contain"
               src={ADK_LOGO_URL}
             />
-            <p className="font-mono text-[12px] text-light-gray/60 leading-relaxed mb-8 max-w-sm">
+            <p className="font-body text-small text-light-gray/60 leading-relaxed mb-8 max-w-sm">
               {companyInfo.tagline}. Over {companyInfo.stats.yearsExperience} years of excellence in
               fiber laser cutting, CNC plasma, press brakes, and fabrication machinery across India.
             </p>
@@ -46,10 +46,10 @@ export default function Footer() {
 
           {/* Capabilities / Products */}
           <div className="lg:col-span-2">
-            <h4 className="font-mono text-xs uppercase tracking-[0.2em] mb-6 text-primary font-bold">
+            <h4 className="font-ui text-label tracking-ui mb-6 text-primary font-semibold uppercase">
               Capabilities
             </h4>
-            <ul className="space-y-3 font-mono text-[11px] text-light-gray/80">
+            <ul className="space-y-3 font-ui text-label font-medium tracking-ui text-light-gray/80 uppercase">
               {categories.slice(0, 5).map((c) => (
                 <li key={c.slug}>
                   <Link href={`/products/${c.slug}`} className="hover:text-primary transition-colors">
@@ -62,10 +62,10 @@ export default function Footer() {
 
           {/* Navigation Quick Links */}
           <div className="lg:col-span-2">
-            <h4 className="font-mono text-xs uppercase tracking-[0.2em] mb-6 text-primary font-bold">
+            <h4 className="font-ui text-label tracking-ui mb-6 text-primary font-semibold uppercase">
               Site Nodes
             </h4>
-            <ul className="space-y-3 font-mono text-[11px] text-light-gray/80">
+            <ul className="space-y-3 font-ui text-label font-medium tracking-ui text-light-gray/80 uppercase">
               <li>
                 <Link href="/about" className="hover:text-primary transition-colors">
                   About Us
@@ -106,16 +106,16 @@ export default function Footer() {
 
           {/* Operations Center */}
           <div className="lg:col-span-4">
-            <h4 className="font-mono text-xs uppercase tracking-[0.2em] mb-6 text-primary font-bold">
+            <h4 className="font-ui text-label tracking-ui mb-6 text-primary font-semibold uppercase">
               Operations Center
             </h4>
-            <div className="space-y-4 font-mono text-[11px] text-light-gray/80">
+            <div className="space-y-4 font-ui text-label font-medium tracking-ui text-light-gray/80">
               <div className="flex items-start gap-3">
                 <span className="material-symbols-outlined text-primary text-[18px] shrink-0 mt-0.5">
                   location_on
                 </span>
                 <span>
-                  <strong>Corporate Office:</strong>
+                  <span className="text-white font-semibold">Corporate Office:</span>
                   <br />
                   {companyInfo.corporateAddress}
                 </span>
@@ -125,7 +125,7 @@ export default function Footer() {
                   factory
                 </span>
                 <span>
-                  <strong>Works:</strong>
+                  <span className="text-white font-semibold">Works:</span>
                   <br />
                   {companyInfo.worksAddress}
                 </span>
@@ -136,7 +136,7 @@ export default function Footer() {
                     {dept.label.includes("Service") ? "support_agent" : dept.label.includes("Spares") ? "inventory_2" : "call"}
                   </span>
                   <span>
-                    <strong>{dept.label}:</strong> {dept.phones.join(" / ")}
+                    <span className="text-white font-semibold">{dept.label}:</span> {dept.phones.join(" / ")}
                     <br />
                     {dept.emails.join(" / ")}
                   </span>
@@ -147,17 +147,17 @@ export default function Footer() {
                   hub
                 </span>
                 <span>
-                  <strong>Branches:</strong> {branches.map((b) => b.city).join(" | ")}
+                  <span className="text-white font-semibold">Branches:</span> {branches.map((b) => b.city).join(" | ")}
                 </span>
               </div>
             </div>
 
             {/* Newsletter Bulletins */}
             <div className="mt-8 border-t border-white/5 pt-6">
-              <h5 className="font-mono text-[10px] uppercase tracking-widest text-primary mb-3 font-bold">
-                SYSTEM_UPDATES
+              <h5 className="font-ui text-label tracking-ui text-primary mb-3 font-semibold uppercase">
+                System Updates
               </h5>
-              <p className="font-mono text-[11px] text-light-gray/50 mb-3">
+              <p className="font-body text-small font-normal text-light-gray/60 mb-3 normal-case">
                 Receive engineering alerts and catalog releases.
               </p>
               <FooterNewsletterForm />
@@ -167,7 +167,7 @@ export default function Footer() {
 
         {/* Bottom Copyright Bar */}
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-center md:justify-end gap-4">
-          <div className="font-mono text-[10px] text-light-gray/40 text-center md:text-right" suppressHydrationWarning>
+          <div className="font-body text-small font-normal tracking-ui text-light-gray/50 text-center md:text-right normal-case" suppressHydrationWarning>
             © {new Date().getFullYear()} ADK Engineering & Solutions. All rights reserved.
           </div>
         </div>

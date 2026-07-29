@@ -43,13 +43,10 @@ export default function CareerPage() {
       {/* Page Header */}
       <section className="relative bg-surface border-b border-border py-16 tech-grid">
         <div className="adk-container">
-          <div className="font-mono text-primary text-[10px] uppercase tracking-[0.3em] mb-3">
-            [ TALENT_NODE ]
-          </div>
-          <h1 className="font-headline text-[42px] md:text-[56px] text-foreground uppercase tracking-tighter leading-none mb-6">
+          <h1 className="font-display text-heading text-foreground uppercase tracking-display leading-none mb-6">
             CAREERS AT ADK
           </h1>
-          <p className="font-mono text-xs md:text-sm text-tertiary max-w-xl leading-relaxed">
+          <p className="font-ui text-label text-tertiary max-w-xl leading-relaxed">
             SYSTEM_VACANCIES: Join our team at {companyInfo.worksAddress.split(",")[0]}.
             Send applications to {careerApplicationEmail}. Online submission is being finalized —
             email applications are accepted at any time.
@@ -60,13 +57,10 @@ export default function CareerPage() {
       {/* Culture Summary */}
       <section className="py-20 adk-container w-full grid grid-cols-1 lg:grid-cols-2 gap-16 border-b border-border">
         <div>
-          <span className="font-mono text-primary text-xs uppercase tracking-widest block mb-4">
-            [ 01_CULTURE ]
-          </span>
-          <h2 className="font-headline text-3xl md:text-4xl text-foreground uppercase mb-6 font-bold">
+          <h2 className="font-display text-subheading text-foreground uppercase mb-6 font-bold">
             Engineering a High-Performance Future
           </h2>
-          <div className="space-y-4 text-sm text-tertiary font-sans leading-relaxed">
+          <div className="space-y-4 font-body text-small text-tertiary leading-relaxed">
             <p>
               At ADK, we believe in hands-on mechatronics and rigorous structural testing. Our team includes
               laser physicists, control software architects, mechatronics designers, and field installation experts.
@@ -78,8 +72,8 @@ export default function CareerPage() {
           </div>
         </div>
         <div className="bg-tech-blue border border-border p-8 flex flex-col justify-center border-l-4 border-primary">
-          <h3 className="font-headline text-xl text-foreground uppercase mb-3 font-bold">What We Offer</h3>
-          <ul className="space-y-2 font-mono text-xs text-tertiary list-inside list-disc">
+          <h3 className="font-display text-card-title text-foreground uppercase mb-3 font-bold">What We Offer</h3>
+          <ul className="space-y-2 font-ui text-label text-tertiary list-inside list-disc">
             <li>State-of-the-art gantry assembly laboratories</li>
             <li>Direct mentorship from senior controls software architects</li>
             <li>Comprehensive medical coverage and housing allowances</li>
@@ -92,7 +86,7 @@ export default function CareerPage() {
       <section className="py-20 adk-container w-full grid grid-cols-1 lg:grid-cols-12 gap-16">
         {/* Jobs List */}
         <div className="lg:col-span-7 space-y-10">
-          <h2 className="font-headline text-3xl uppercase mb-8 text-foreground border-b border-border pb-4">
+          <h2 className="font-display text-subheading uppercase mb-8 text-foreground border-b border-border pb-4">
             Open Positions
           </h2>
 
@@ -101,30 +95,30 @@ export default function CareerPage() {
               <div key={job.id} className="border border-border p-6 hover:border-primary transition-colors bg-surface">
                 <div className="flex justify-between items-start gap-4">
                   <div>
-                    <h3 className="font-headline text-2xl text-foreground uppercase font-bold">
+                    <h3 className="font-display text-subheading text-foreground uppercase font-bold">
                       {job.title}
                     </h3>
-                    <div className="font-mono text-[9px] text-tertiary uppercase mt-1">
+                    <div className="font-ui text-label text-tertiary uppercase mt-1">
                       DEPT: {job.department} &nbsp;//&nbsp; EXP: {job.experience}
                     </div>
                   </div>
                   <button
                     onClick={() => setSelectedJob(job.title)}
-                    className="bg-primary hover:bg-primary-hover text-white font-mono text-[10px] uppercase px-4 py-2 border border-primary transition-all font-bold cursor-pointer"
+                    className="bg-primary hover:bg-primary-hover text-white font-ui text-label uppercase px-4 py-2 border border-primary transition-all font-bold cursor-pointer"
                   >
                     [ APPLY ]
                   </button>
                 </div>
-                <p className="font-sans text-xs text-tertiary leading-relaxed mt-4">
+                <p className="font-body text-small text-tertiary leading-relaxed mt-4">
                   {job.description}
                 </p>
 
                 {/* Requirements */}
                 <div className="mt-4 border-t border-border/50 pt-4">
-                  <span className="font-mono text-[9px] uppercase text-foreground/40 tracking-wider font-bold block mb-2">
+                  <span className="font-ui text-label uppercase text-foreground/40 tracking-wider font-bold block mb-2">
                     JOB_REQUIREMENTS:
                   </span>
-                  <ul className="space-y-1.5 font-sans text-xs text-tertiary list-inside list-disc">
+                  <ul className="space-y-1.5 font-body text-small text-tertiary list-inside list-disc">
                     {job.requirements.map((req, i) => (
                       <li key={i}>{req}</li>
                     ))}
@@ -138,7 +132,7 @@ export default function CareerPage() {
         {/* Application Form */}
         <div className="lg:col-span-5">
           <div className="bg-surface border border-primary/20 p-6 sticky top-28">
-            <h3 className="font-headline text-2xl text-foreground uppercase mb-6 tracking-tight">
+            <h3 className="font-display text-subheading text-foreground uppercase mb-6 tracking-display">
               Submit Application
             </h3>
 
@@ -147,8 +141,8 @@ export default function CareerPage() {
                 <span className="material-symbols-outlined text-5xl text-primary mb-4 animate-bounce">
                   check_circle
                 </span>
-                <h4 className="font-headline text-2xl text-foreground uppercase mb-2">Upload Successful</h4>
-                <p className="font-mono text-[10px] text-tertiary">
+                <h4 className="font-display text-subheading text-foreground uppercase mb-2">Upload Successful</h4>
+                <p className="font-ui text-label text-tertiary">
                   REGISTRATION: OK // CV: VERIFIED <br />
                   Our talent acquisition team will review your CV.
                 </p>
@@ -156,14 +150,14 @@ export default function CareerPage() {
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <label className="block font-mono text-[9px] uppercase text-tertiary mb-1">
+                  <label className="block font-ui text-label uppercase text-tertiary mb-1">
                     Select Position
                   </label>
                   <select
                     required
                     value={selectedJob}
                     onChange={(e) => setSelectedJob(e.target.value)}
-                    className="w-full bg-card border border-border px-4 py-2 font-sans text-xs focus:outline-none focus:border-primary text-foreground h-[38px]"
+                    className="w-full bg-card border border-border px-4 py-2 font-body text-small focus:outline-none focus:border-primary text-foreground h-[38px]"
                   >
                     <option value="">-- SELECT POSITION --</option>
                     {careerPositions.map((job) => (
@@ -175,7 +169,7 @@ export default function CareerPage() {
                 </div>
 
                 <div>
-                  <label className="block font-mono text-[9px] uppercase text-tertiary mb-1">
+                  <label className="block font-ui text-label uppercase text-tertiary mb-1">
                     Full Name
                   </label>
                   <input
@@ -184,13 +178,13 @@ export default function CareerPage() {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder="Your Name"
-                    className="w-full bg-card border border-border px-4 py-2 font-sans text-xs focus:outline-none focus:border-primary text-foreground"
+                    className="w-full bg-card border border-border px-4 py-2 font-body text-small focus:outline-none focus:border-primary text-foreground"
                   />
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block font-mono text-[9px] uppercase text-tertiary mb-1">
+                    <label className="block font-ui text-label uppercase text-tertiary mb-1">
                       Email
                     </label>
                     <input
@@ -199,11 +193,11 @@ export default function CareerPage() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="email@domain.com"
-                      className="w-full bg-card border border-border px-4 py-2 font-sans text-xs focus:outline-none focus:border-primary text-foreground"
+                      className="w-full bg-card border border-border px-4 py-2 font-body text-small focus:outline-none focus:border-primary text-foreground"
                     />
                   </div>
                   <div>
-                    <label className="block font-mono text-[9px] uppercase text-tertiary mb-1">
+                    <label className="block font-ui text-label uppercase text-tertiary mb-1">
                       Phone
                     </label>
                     <input
@@ -212,13 +206,13 @@ export default function CareerPage() {
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
                       placeholder="+91..."
-                      className="w-full bg-card border border-border px-4 py-2 font-sans text-xs focus:outline-none focus:border-primary text-foreground"
+                      className="w-full bg-card border border-border px-4 py-2 font-body text-small focus:outline-none focus:border-primary text-foreground"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block font-mono text-[9px] uppercase text-tertiary mb-1">
+                  <label className="block font-ui text-label uppercase text-tertiary mb-1">
                     Upload CV (PDF format)
                   </label>
                   <input
@@ -230,14 +224,14 @@ export default function CareerPage() {
                         setResume(e.target.files[0]);
                       }
                     }}
-                    className="w-full bg-card border border-border px-4 py-2 font-mono text-xs focus:outline-none text-foreground"
+                    className="w-full bg-card border border-border px-4 py-2 font-ui text-label focus:outline-none text-foreground"
                   />
                 </div>
 
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="w-full bg-primary hover:bg-primary-hover text-white font-mono text-xs uppercase tracking-widest py-3 border border-primary transition-all font-bold cursor-pointer disabled:opacity-60"
+                  className="w-full bg-primary hover:bg-primary-hover text-white font-ui text-label tracking-ui py-3 border border-primary transition-all font-bold cursor-pointer disabled:opacity-60"
                 >
                   {submitting ? "[ TRANSMITTING... ]" : "[ UPLOAD_CV_APPLICATION ]"}
                 </button>

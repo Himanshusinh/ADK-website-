@@ -29,7 +29,7 @@ export default function CataloguesPage() {
     <div className="flex flex-col w-full bg-surface animate-fade-in">
       {/* Breadcrumb */}
       <div className="w-full bg-surface-container py-3 border-b border-border/50">
-        <div className="adk-container flex items-center gap-2 font-mono text-[10px] uppercase text-tertiary">
+        <div className="adk-container flex items-center gap-2 font-ui text-label uppercase text-tertiary">
           <Link href="/resources" className="hover:text-primary transition-colors">
             Resources
           </Link>
@@ -41,13 +41,10 @@ export default function CataloguesPage() {
       {/* Header */}
       <section className="relative bg-surface border-b border-border py-16 tech-grid">
         <div className="adk-container">
-          <div className="font-mono text-primary text-[10px] uppercase tracking-[0.3em] mb-3">
-            [ DOWNLOAD_DIRECTORY ]
-          </div>
-          <h1 className="font-headline text-[38px] md:text-[50px] text-foreground uppercase tracking-tighter leading-none mb-6">
+          <h1 className="font-display text-heading text-foreground uppercase tracking-display leading-none mb-6">
             MACHINERY CATALOGUES & SCHEMATICS
           </h1>
-          <p className="font-mono text-xs md:text-sm text-tertiary max-w-xl leading-relaxed">
+          <p className="font-ui text-label text-tertiary max-w-xl leading-relaxed">
             SYSTEM_FILES: Certified technical schematics, dimension vectors, and machine weight metrics files.
           </p>
         </div>
@@ -66,10 +63,10 @@ export default function CataloguesPage() {
                   picture_as_pdf
                 </span>
                 <div>
-                  <h3 className="font-headline text-lg md:text-xl text-foreground uppercase font-bold">
+                  <h3 className="font-display text-card-title text-foreground uppercase font-bold">
                     {cat.name}
                   </h3>
-                  <span className="font-mono text-[9px] text-tertiary uppercase">
+                  <span className="font-ui text-label text-tertiary uppercase">
                     FILE_SIZE: {cat.size} &nbsp;//&nbsp; REF: {cat.id}.PDF
                   </span>
                 </div>
@@ -78,7 +75,7 @@ export default function CataloguesPage() {
               <button
                 onClick={() => handleDownload(cat.id)}
                 disabled={downloading !== null}
-                className="bg-charcoal text-white font-mono text-[10px] uppercase tracking-widest px-6 py-3 border border-foreground hover:bg-primary hover:border-primary disabled:bg-tertiary transition-all text-center font-bold cursor-pointer shrink-0"
+                className="bg-charcoal text-white font-ui text-label tracking-ui px-6 py-3 border border-foreground hover:bg-primary hover:border-primary disabled:bg-tertiary transition-all text-center font-bold cursor-pointer shrink-0"
               >
                 {downloading === cat.id ? "[ DOWNLOADING... ]" : "[ DOWNLOAD.PDF ]"}
               </button>
@@ -90,7 +87,7 @@ export default function CataloguesPage() {
       {/* Download Info */}
       <section className="py-12 bg-surface border-t border-border">
         <div className="adk-container">
-          <p className="font-sans text-sm text-tertiary leading-relaxed max-w-2xl">
+          <p className="font-body text-small text-tertiary leading-relaxed max-w-2xl">
             All catalogues include dimensional schematics, weight metrics, power requirements,
             and foundation layout drawings. For custom configurations not listed here,
             contact our engineering team for a tailored specification document.

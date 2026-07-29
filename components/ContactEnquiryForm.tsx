@@ -77,8 +77,8 @@ export default function ContactEnquiryForm({ defaultInterest = "" }: ContactEnqu
         <span className="material-symbols-outlined text-5xl text-primary mb-4 animate-bounce">
           check_circle
         </span>
-        <h4 className="font-headline text-2xl text-foreground uppercase mb-2">Transmission Success</h4>
-        <p className="font-mono text-[10px] text-tertiary">
+        <h4 className="font-display text-subheading text-foreground uppercase mb-2">Transmission Success</h4>
+        <p className="font-ui text-label text-tertiary">
           REGIST_STATUS: ACTIVE // ID: RECEIVED <br />
           A coordinator will call you back within 6 business hours.
         </p>
@@ -89,7 +89,7 @@ export default function ContactEnquiryForm({ defaultInterest = "" }: ContactEnqu
   return (
     <form onSubmit={handleSubmit} className="space-y-4" suppressHydrationWarning>
       <div>
-        <label className="block font-mono text-[9px] uppercase text-tertiary mb-1">Your Name</label>
+        <label className="block font-ui text-label uppercase text-tertiary mb-1">Your Name</label>
         <input
           type="text"
           required
@@ -97,13 +97,13 @@ export default function ContactEnquiryForm({ defaultInterest = "" }: ContactEnqu
           onChange={(e) => setName(e.target.value)}
           placeholder="Enter Name"
           autoComplete="name"
-          className="w-full bg-card border border-border px-4 py-2 font-sans text-xs focus:outline-none focus:border-primary text-foreground"
+          className="w-full bg-card border border-border px-4 py-2 font-body text-small focus:outline-none focus:border-primary text-foreground"
         />
       </div>
 
       <div className="grid grid-cols-2 gap-4">
         <div>
-          <label className="block font-mono text-[9px] uppercase text-tertiary mb-1">Email</label>
+          <label className="block font-ui text-label uppercase text-tertiary mb-1">Email</label>
           <input
             type="email"
             required
@@ -111,11 +111,11 @@ export default function ContactEnquiryForm({ defaultInterest = "" }: ContactEnqu
             onChange={(e) => setEmail(e.target.value)}
             placeholder="email@company.com"
             autoComplete="email"
-            className="w-full bg-card border border-border px-4 py-2 font-sans text-xs focus:outline-none focus:border-primary text-foreground"
+            className="w-full bg-card border border-border px-4 py-2 font-body text-small focus:outline-none focus:border-primary text-foreground"
           />
         </div>
         <div>
-          <label className="block font-mono text-[9px] uppercase text-tertiary mb-1">Phone</label>
+          <label className="block font-ui text-label uppercase text-tertiary mb-1">Phone</label>
           <input
             type="tel"
             required
@@ -123,13 +123,13 @@ export default function ContactEnquiryForm({ defaultInterest = "" }: ContactEnqu
             onChange={(e) => setPhone(e.target.value)}
             placeholder="+91..."
             autoComplete="tel"
-            className="w-full bg-card border border-border px-4 py-2 font-sans text-xs focus:outline-none focus:border-primary text-foreground"
+            className="w-full bg-card border border-border px-4 py-2 font-body text-small focus:outline-none focus:border-primary text-foreground"
           />
         </div>
       </div>
 
       <div>
-        <label className="block font-mono text-[9px] uppercase text-tertiary mb-1">Company</label>
+        <label className="block font-ui text-label uppercase text-tertiary mb-1">Company</label>
         <input
           type="text"
           required
@@ -137,12 +137,12 @@ export default function ContactEnquiryForm({ defaultInterest = "" }: ContactEnqu
           onChange={(e) => setCompany(e.target.value)}
           placeholder="Company Name"
           autoComplete="organization"
-          className="w-full bg-card border border-border px-4 py-2 font-sans text-xs focus:outline-none focus:border-primary text-foreground"
+          className="w-full bg-card border border-border px-4 py-2 font-body text-small focus:outline-none focus:border-primary text-foreground"
         />
       </div>
 
       <div>
-        <label className="block font-mono text-[9px] uppercase text-tertiary mb-1">
+        <label className="block font-ui text-label uppercase text-tertiary mb-1">
           Interest Description
         </label>
         <input
@@ -150,25 +150,25 @@ export default function ContactEnquiryForm({ defaultInterest = "" }: ContactEnqu
           value={interest}
           onChange={(e) => setInterest(e.target.value)}
           placeholder="e.g. ADK 3015C Industrial Pioneer Series"
-          className="w-full bg-card border border-border px-4 py-2 font-sans text-xs focus:outline-none focus:border-primary text-foreground"
+          className="w-full bg-card border border-border px-4 py-2 font-body text-small focus:outline-none focus:border-primary text-foreground"
         />
       </div>
 
       <div>
-        <label className="block font-mono text-[9px] uppercase text-tertiary mb-1">Enquiry Details</label>
+        <label className="block font-ui text-label uppercase text-tertiary mb-1">Enquiry Details</label>
         <textarea
           rows={3}
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           placeholder="Enter custom specifications or query requirements..."
-          className="w-full bg-card border border-border px-4 py-2 font-sans text-xs focus:outline-none focus:border-primary text-foreground resize-none"
+          className="w-full bg-card border border-border px-4 py-2 font-body text-small focus:outline-none focus:border-primary text-foreground resize-none"
         />
       </div>
 
       <button
         type="submit"
         disabled={submitting}
-        className="w-full bg-primary hover:bg-primary-hover text-white font-mono text-xs uppercase tracking-widest py-3 border border-primary transition-all font-bold cursor-pointer disabled:opacity-60"
+        className="w-full bg-primary hover:bg-primary-hover text-white font-ui text-label tracking-ui py-3 border border-primary transition-all font-bold cursor-pointer disabled:opacity-60"
       >
         {submitting ? "[ TRANSMITTING... ]" : "[ INITIATE_TECHNICAL_REQUEST ]"}
       </button>

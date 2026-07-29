@@ -16,13 +16,10 @@ function ContactFormContent() {
       {/* Page Header */}
       <section className="relative bg-surface border-b border-border py-16 tech-grid">
         <div className="adk-container">
-          <div className="font-mono text-primary text-[10px] uppercase tracking-[0.3em] mb-3">
-            [ CONTACT_NODES ]
-          </div>
-          <h1 className="font-headline text-[42px] md:text-[56px] text-foreground uppercase tracking-tighter leading-none mb-6">
+          <h1 className="font-display text-heading text-foreground uppercase tracking-display leading-none mb-6">
             CONTACT OPERATIONS
           </h1>
-          <p className="font-mono text-xs md:text-sm text-tertiary max-w-xl leading-relaxed">
+          <p className="font-ui text-label text-tertiary max-w-xl leading-relaxed">
             Reach our Ahmedabad corporate office and Santej works, or contact department-wise
             for inquiries, service, and spares across 8 branch locations.
           </p>
@@ -34,11 +31,11 @@ function ContactFormContent() {
         {/* Addresses & Map */}
         <div className="lg:col-span-7 space-y-10">
           <div>
-            <h2 className="font-headline text-2xl uppercase mb-6 text-foreground flex items-center gap-2">
+            <h2 className="font-display text-subheading uppercase mb-6 text-foreground flex items-center gap-2">
               <span className="material-symbols-outlined text-primary text-[22px]">location_on</span>
               Corporate Office & Works
             </h2>
-            <div className="bg-surface border border-border p-6 font-mono text-xs text-tertiary space-y-4">
+            <div className="bg-surface border border-border p-6 font-ui text-label text-tertiary space-y-4">
               <p>
                 <strong>{companyInfo.name}</strong>
                 <br />
@@ -56,17 +53,17 @@ function ContactFormContent() {
 
           {/* Department Contacts */}
           <div>
-            <h2 className="font-headline text-2xl uppercase mb-6 text-foreground flex items-center gap-2">
+            <h2 className="font-display text-subheading uppercase mb-6 text-foreground flex items-center gap-2">
               <span className="material-symbols-outlined text-primary text-[22px]">support_agent</span>
               Department Contacts
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
               {contactDepartments.map((dept) => (
                 <div key={dept.label} className="border border-border p-6 hover:border-primary transition-colors bg-card">
-                  <h3 className="font-headline text-lg text-foreground uppercase font-bold border-b border-primary/20 pb-2 mb-3">
+                  <h3 className="font-display text-card-title text-foreground uppercase font-bold border-b border-primary/20 pb-2 mb-3">
                     {dept.label}
                   </h3>
-                  <div className="font-mono text-[10px] text-tertiary space-y-2">
+                  <div className="font-ui text-label text-tertiary space-y-2">
                     <p>{dept.phones.join(" / ")}</p>
                     <p className="border-t border-border/50 pt-2">
                       {dept.emails.join(" / ")}
@@ -79,17 +76,17 @@ function ContactFormContent() {
 
           {/* Branch Operations */}
           <div>
-            <h2 className="font-headline text-2xl uppercase mb-6 text-foreground flex items-center gap-2">
+            <h2 className="font-display text-subheading uppercase mb-6 text-foreground flex items-center gap-2">
               <span className="material-symbols-outlined text-primary text-[22px]">hub</span>
               Branch Locations
             </h2>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
               {branchCities.map((b) => (
                 <div key={b.city} className="border border-border p-4 hover:border-primary transition-colors bg-card text-center">
-                  <h3 className="font-headline text-lg text-foreground uppercase font-bold">
+                  <h3 className="font-display text-card-title text-foreground uppercase font-bold">
                     {b.city}
                   </h3>
-                  <span className="font-mono text-[9px] text-tertiary uppercase mt-1 block">
+                  <span className="font-ui text-label text-tertiary uppercase mt-1 block">
                     ADK Branch Office
                   </span>
                 </div>
@@ -99,7 +96,7 @@ function ContactFormContent() {
 
           {/* Google Maps — corporate office location */}
           <div>
-            <h2 className="font-headline text-2xl uppercase mb-6 text-foreground flex items-center gap-2">
+            <h2 className="font-display text-subheading uppercase mb-6 text-foreground flex items-center gap-2">
               <span className="material-symbols-outlined text-primary text-[22px]">map</span>
               Location Map
             </h2>
@@ -122,7 +119,7 @@ function ContactFormContent() {
         {/* Contact Form */}
         <div className="lg:col-span-5">
           <div className="bg-surface border border-primary/20 p-6 sticky top-28">
-            <h3 className="font-headline text-2xl text-foreground uppercase mb-6 tracking-tight">
+            <h3 className="font-display text-subheading text-foreground uppercase mb-6 tracking-display">
               Direct Enquiry Form
             </h3>
             <ContactEnquiryForm key={interestParam} defaultInterest={interestParam} />
@@ -135,18 +132,18 @@ function ContactFormContent() {
         <div className="adk-container grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="text-center p-6">
             <span className="material-symbols-outlined text-3xl text-primary mb-3 block">support_agent</span>
-            <h3 className="font-headline text-lg text-foreground uppercase font-bold mb-2">Technical Assistance</h3>
-            <p className="font-sans text-xs text-tertiary">Remote diagnostics and on-site engineer deployment within 24 hours.</p>
+            <h3 className="font-display text-card-title text-foreground uppercase font-bold mb-2">Technical Assistance</h3>
+            <p className="font-body text-small text-tertiary">Remote diagnostics and on-site engineer deployment within 24 hours.</p>
           </div>
           <div className="text-center p-6">
             <span className="material-symbols-outlined text-3xl text-primary mb-3 block">inventory_2</span>
-            <h3 className="font-headline text-lg text-foreground uppercase font-bold mb-2">Spare Parts</h3>
-            <p className="font-sans text-xs text-tertiary">Common consumables stocked at regional hubs for immediate dispatch.</p>
+            <h3 className="font-display text-card-title text-foreground uppercase font-bold mb-2">Spare Parts</h3>
+            <p className="font-body text-small text-tertiary">Common consumables stocked at regional hubs for immediate dispatch.</p>
           </div>
           <div className="text-center p-6">
             <span className="material-symbols-outlined text-3xl text-primary mb-3 block">handshake</span>
-            <h3 className="font-headline text-lg text-foreground uppercase font-bold mb-2">Customer Care</h3>
-            <p className="font-sans text-xs text-tertiary">Dedicated account managers for installation, training, and annual calibration.</p>
+            <h3 className="font-display text-card-title text-foreground uppercase font-bold mb-2">Customer Care</h3>
+            <p className="font-body text-small text-tertiary">Dedicated account managers for installation, training, and annual calibration.</p>
           </div>
         </div>
       </section>
@@ -159,8 +156,8 @@ export default function ContactPage() {
     <Suspense
       fallback={
         <div className="flex items-center justify-center min-h-[500px]">
-          <div className="font-mono text-xs uppercase text-primary animate-pulse">
-            [ COMPILING_CONTACT_INTERFACE... ]
+          <div className="font-body text-small text-primary animate-pulse">
+            Loading contact form...
           </div>
         </div>
       }

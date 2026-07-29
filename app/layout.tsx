@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Bebas_Neue, IBM_Plex_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -25,14 +25,22 @@ const themeInitScript = `
 })();
 `;
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const fontDisplay = Bebas_Neue({
+  weight: "400",
   subsets: ["latin"],
+  variable: "--adk-font-display",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const fontUi = IBM_Plex_Mono({
+  weight: ["400", "500", "600", "700"],
   subsets: ["latin"],
+  variable: "--adk-font-ui",
+});
+
+const fontBody = Inter({
+  weight: ["400", "500", "600"],
+  subsets: ["latin"],
+  variable: "--adk-font-body",
 });
 
 export const metadata: Metadata = {
@@ -135,7 +143,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${fontDisplay.variable} ${fontUi.variable} ${fontBody.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <head>
@@ -143,12 +151,8 @@ export default function RootLayout({
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=block"
         />
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
-        />
       </head>
-      <body className="min-h-full flex flex-col bg-surface text-foreground">
+      <body className="font-body min-h-full flex flex-col bg-surface text-foreground">
         <Script id="adk-theme-init" strategy="beforeInteractive">
           {themeInitScript}
         </Script>

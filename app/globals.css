@@ -26,6 +26,27 @@
   --adk-logo-nav-gap: clamp(32px, 3.5vw, 48px);
   --adk-nav-cta-gap: clamp(40px, 4vw, 56px);
   --adk-header-main-height: 64px;
+
+  /* Typography scale */
+  --text-hero: clamp(3rem, 5.5vw, 4.75rem);
+  --text-heading: clamp(2rem, 3.5vw, 3rem);
+  --text-subheading: clamp(1.5rem, 2vw, 2rem);
+  --text-card-title: clamp(1.125rem, 1.35vw, 1.5rem);
+  --text-nav: clamp(0.75rem, 1vw, 0.8125rem);
+  --text-button: clamp(0.8125rem, 1vw, 0.875rem);
+  --text-label: clamp(0.6875rem, 0.8vw, 0.75rem);
+  --text-body: clamp(0.9375rem, 1vw, 1rem);
+  --text-small: 0.8125rem;
+  --text-stat: clamp(2rem, 4vw, 3.25rem);
+
+  --tracking-display: 0.04em;
+  --tracking-ui: 0.12em;
+  --tracking-label: 0.15em;
+
+  --leading-hero: 0.98;
+  --leading-heading: 1;
+  --leading-body: 1.7;
+  --leading-ui: 1.2;
 }
 
 .adk-container {
@@ -81,15 +102,125 @@
   --color-foreground: var(--adk-foreground);
   --color-border: var(--adk-border);
 
-  --font-sans: "Inter", system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", monospace;
-  --font-headline: "Barlow Condensed", sans-serif;
+  --font-display: var(--adk-font-display), sans-serif;
+  --font-ui: var(--adk-font-ui), monospace;
+  --font-body: var(--adk-font-body), system-ui, sans-serif;
 }
 
 body {
   background-color: var(--adk-surface);
   color: var(--adk-foreground);
-  font-family: var(--font-sans);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+}
+
+/* Typography utilities */
+.text-hero {
+  font-family: var(--font-display);
+  font-size: var(--text-hero);
+  line-height: var(--leading-hero);
+  letter-spacing: var(--tracking-display);
+  text-transform: uppercase;
+}
+
+.text-heading {
+  font-family: var(--font-display);
+  font-size: var(--text-heading);
+  line-height: var(--leading-heading);
+  letter-spacing: var(--tracking-display);
+  text-transform: uppercase;
+}
+
+.text-subheading {
+  font-family: var(--font-display);
+  font-size: var(--text-subheading);
+  line-height: var(--leading-heading);
+  letter-spacing: var(--tracking-display);
+  text-transform: uppercase;
+}
+
+.text-card-title {
+  font-family: var(--font-display);
+  font-size: var(--text-card-title);
+  line-height: var(--leading-heading);
+  letter-spacing: var(--tracking-display);
+  text-transform: uppercase;
+}
+
+.text-ui-strong {
+  font-family: var(--font-ui);
+  font-size: var(--text-button);
+  font-weight: 600;
+  line-height: var(--leading-ui);
+  letter-spacing: var(--tracking-ui);
+  text-transform: uppercase;
+}
+
+.text-nav {
+  font-family: var(--font-ui);
+  font-size: var(--text-nav);
+  font-weight: 500;
+  line-height: var(--leading-ui);
+  letter-spacing: var(--tracking-ui);
+  text-transform: uppercase;
+}
+
+.text-button {
+  font-family: var(--font-ui);
+  font-size: var(--text-button);
+  font-weight: 500;
+  line-height: var(--leading-ui);
+  letter-spacing: var(--tracking-ui);
+  text-transform: uppercase;
+}
+
+.text-label {
+  font-family: var(--font-ui);
+  font-size: var(--text-label);
+  font-weight: 500;
+  line-height: var(--leading-ui);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+
+.text-body {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  font-weight: 400;
+  line-height: var(--leading-body);
+}
+
+.text-small {
+  font-family: var(--font-body);
+  font-size: var(--text-small);
+  font-weight: 400;
+  line-height: var(--leading-body);
+}
+
+.text-stat {
+  font-family: var(--font-display);
+  font-size: var(--text-stat);
+  line-height: var(--leading-heading);
+  letter-spacing: var(--tracking-display);
+  text-transform: uppercase;
+}
+
+.text-ui {
+  font-family: var(--font-ui);
+  line-height: var(--leading-ui);
+}
+
+.tracking-display {
+  letter-spacing: var(--tracking-display);
+}
+
+.tracking-ui {
+  letter-spacing: var(--tracking-ui);
+}
+
+.tracking-label {
+  letter-spacing: var(--tracking-label);
 }
 
 .tech-grid {
@@ -200,6 +331,11 @@ body {
   transform: translateY(-1px);
 }
 
+.adk-nav-underline {
+  height: 2px;
+  margin-top: 4px;
+}
+
 .chatbot-header {
   background: #9d0518;
 }
@@ -244,9 +380,12 @@ body {
 
 .chatbot-chip-outline {
   padding: 8px 16px;
-  font-size: 13px;
-  line-height: 1.2;
+  font-family: var(--font-ui);
+  font-size: var(--text-button);
+  line-height: var(--leading-ui);
   font-weight: 500;
+  letter-spacing: var(--tracking-ui);
+  text-transform: uppercase;
   color: #9d0518;
   background: transparent;
   border: 1.5px solid color-mix(in srgb, #9d0518 70%, transparent);
