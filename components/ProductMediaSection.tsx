@@ -19,10 +19,7 @@ export default function ProductMediaSection({ model, categorySlug }: ProductMedi
   return (
     <section className="py-16 adk-container w-full border-b border-border">
       <div className="mb-10">
-        <span className="font-mono text-primary text-[10px] uppercase tracking-[0.25em] block mb-2">
-          [ MEDIA_GALLERY ]
-        </span>
-        <h2 className="font-headline text-2xl uppercase text-foreground border-b border-border pb-3">
+        <h2 className="font-display text-subheading uppercase text-foreground border-b border-border pb-3">
           Product Photography
         </h2>
       </div>
@@ -54,10 +51,7 @@ export default function ProductMediaSection({ model, categorySlug }: ProductMedi
       </div>
 
       <div>
-        <span className="font-mono text-primary text-[10px] uppercase tracking-[0.25em] block mb-2">
-          [ DEMO_VIDEO ]
-        </span>
-        <h2 className="font-headline text-2xl uppercase text-foreground border-b border-border pb-3 mb-8">
+        <h2 className="font-display text-subheading uppercase text-foreground border-b border-border pb-3 mb-8">
           Operational Demonstration
         </h2>
         {model.videoUrl ? (

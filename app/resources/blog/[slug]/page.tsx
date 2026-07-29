@@ -38,7 +38,7 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
   return (
     <div className="flex flex-col w-full bg-surface animate-fade-in">
       <div className="w-full bg-surface-container py-3 border-b border-border/50">
-        <div className="adk-container flex items-center gap-2 font-mono text-[10px] uppercase text-tertiary">
+        <div className="adk-container flex items-center gap-2 font-ui text-label uppercase text-tertiary">
           <Link href="/resources" className="hover:text-primary transition-colors">
             Resources
           </Link>
@@ -55,15 +55,15 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
         <BlogHeroImage src={post.heroImage} title={post.title} category={post.category} />
 
         <div className="border-l-4 border-primary pl-6 mb-8">
-          <div className="flex items-center gap-4 font-mono text-[10px] text-tertiary uppercase mb-3">
+          <div className="flex items-center gap-4 font-ui text-label text-tertiary uppercase mb-3">
             <span>{post.date}</span>
             <span>{"//"}</span>
             <span>{post.readTime}</span>
           </div>
-          <h1 className="font-headline text-3xl md:text-5xl text-foreground uppercase font-bold tracking-tight mb-4">
+          <h1 className="font-display text-heading text-foreground uppercase tracking-display mb-4">
             {post.title}
           </h1>
-          <span className="font-mono text-[9px] text-tertiary/75 uppercase block">
+          <span className="font-ui text-label text-tertiary/75 uppercase block">
             AUTHOR_CREDIT: {post.author}
           </span>
         </div>
@@ -75,7 +75,7 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
         <div className="mt-12 pt-8 border-t border-border flex justify-between items-center">
           <Link
             href="/resources/blog"
-            className="font-mono text-xs uppercase text-primary hover:underline flex items-center gap-2 font-bold"
+            className="font-ui text-label text-primary hover:underline flex items-center gap-2 font-bold"
           >
             <span className="material-symbols-outlined text-[16px]">arrow_back</span>
             BACK_TO_BLOG

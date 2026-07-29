@@ -32,15 +32,15 @@ export default function MediaPlaceholder({
       <span className="material-symbols-outlined text-4xl text-foreground/25 group-hover:text-primary/40 transition-colors mb-2">
         {icon}
       </span>
-      <span className="font-mono text-[9px] uppercase tracking-widest text-foreground/50 text-center px-4">
+      <span className="font-ui text-label tracking-ui text-foreground/50 text-center px-4">
         {label}
       </span>
       {sublabel && (
-        <span className="font-mono text-[8px] uppercase tracking-wider text-tertiary/60 text-center px-4 mt-1">
+        <span className="font-ui text-label uppercase tracking-wider text-tertiary/60 text-center px-4 mt-1">
           {sublabel}
         </span>
       )}
-      <div className="absolute top-2 left-2 font-mono text-[7px] text-foreground/30 uppercase">
+      <div className="absolute top-2 left-2 font-ui text-label text-foreground/30 uppercase">
         PLACEHOLDER
       </div>
     </div>

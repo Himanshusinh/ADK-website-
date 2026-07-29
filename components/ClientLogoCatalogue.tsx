@@ -23,7 +23,7 @@ export default function ClientLogoCatalogue({ clients, className = "" }: ClientL
             loading="lazy"
             decoding="async"
           />
-          <span className="mt-4 font-mono text-[9px] uppercase tracking-wider text-tertiary text-center leading-tight line-clamp-2 opacity-0 transition-opacity group-hover:opacity-100">
+          <span className="mt-4 font-ui text-label uppercase tracking-wider text-tertiary text-center leading-tight line-clamp-2 opacity-0 transition-opacity group-hover:opacity-100">
             {client.name}
           </span>
         </div>

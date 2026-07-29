@@ -10,13 +10,10 @@ export default function ApplicationsHubPage() {
       {/* Page Header */}
       <section className="relative bg-surface border-b border-border py-16 tech-grid">
         <div className="adk-container">
-          <div className="font-mono text-primary text-[10px] uppercase tracking-[0.3em] mb-3">
-            [ SYSTEM_INTEGRATION_PROTOCOLS ]
-          </div>
-          <h1 className="font-headline text-[42px] md:text-[56px] text-foreground uppercase tracking-tighter leading-none mb-6">
+          <h1 className="font-display text-heading text-foreground uppercase tracking-display leading-none mb-6">
             INDUSTRIES SERVED
           </h1>
-          <p className="font-mono text-xs md:text-sm text-tertiary max-w-xl leading-relaxed">
+          <p className="font-ui text-label text-tertiary max-w-xl leading-relaxed">
             SYSTEM_INTEGRATION: Highly customized machine solutions, calibration settings, and cutting
             parameters optimized for specific industrial applications.
           </p>
@@ -36,15 +33,15 @@ export default function ApplicationsHubPage() {
                 <span className="material-symbols-outlined text-4xl text-foreground/70 group-hover:text-primary transition-colors mb-4">
                   {app.icon}
                 </span>
-                <h3 className="font-headline text-lg text-foreground uppercase font-bold tracking-tight group-hover:text-primary transition-colors">
+                <h3 className="font-display text-card-title text-foreground uppercase font-bold tracking-display group-hover:text-primary transition-colors">
                   {app.name}
                 </h3>
-                <p className="font-mono text-[9px] text-tertiary mt-2 line-clamp-2 leading-relaxed">
+                <p className="font-ui text-label text-tertiary mt-2 line-clamp-2 leading-relaxed">
                   {app.tagline}
                 </p>
               </div>
               
-              <div className="font-mono text-[9px] text-primary mt-4 group-hover:translate-x-1 transition-transform flex items-center gap-1 font-bold">
+              <div className="font-ui text-label text-primary mt-4 group-hover:translate-x-1 transition-transform flex items-center gap-1 font-bold">
                 SYSTEM_DETAILS <span className="material-symbols-outlined text-[10px]">arrow_forward</span>
               </div>
             </Link>

@@ -50,8 +50,8 @@ export default function IndustryEnquiryForm({ industryName }: IndustryEnquiryFor
           <span className="material-symbols-outlined text-5xl text-primary mb-4 animate-bounce">
             check_circle
           </span>
-          <h4 className="font-headline text-2xl text-foreground uppercase mb-2">Transmission Success</h4>
-          <p className="font-mono text-[10px] text-tertiary">
+          <h4 className="font-display text-subheading text-foreground uppercase mb-2">Transmission Success</h4>
+          <p className="font-ui text-label text-tertiary">
             REQUEST_TYPE: IND-CONSULT // SECTOR: RECEIVED <br />
             Our application engineer will reach out to schedule a technical call.
           </p>
@@ -59,19 +59,19 @@ export default function IndustryEnquiryForm({ industryName }: IndustryEnquiryFor
       ) : (
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block font-mono text-[9px] uppercase text-tertiary mb-1">
+            <label className="block font-ui text-label uppercase text-tertiary mb-1">
               Manufacturing Sector
             </label>
             <input
               type="text"
               readOnly
               value={`${industryName} Sector`}
-              className="w-full bg-tech-blue border border-border px-4 py-2 font-mono text-xs text-foreground outline-none select-none font-bold"
+              className="w-full bg-tech-blue border border-border px-4 py-2 font-ui text-label text-foreground outline-none select-none font-bold"
             />
           </div>
 
           <div>
-            <label className="block font-mono text-[9px] uppercase text-tertiary mb-1">
+            <label className="block font-ui text-label uppercase text-tertiary mb-1">
               Full Name
             </label>
             <input
@@ -80,13 +80,13 @@ export default function IndustryEnquiryForm({ industryName }: IndustryEnquiryFor
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="Your Name"
-              className="w-full bg-card border border-border px-4 py-2 font-sans text-xs focus:outline-none focus:border-primary text-foreground"
+              className="w-full bg-card border border-border px-4 py-2 font-body text-small focus:outline-none focus:border-primary text-foreground"
             />
           </div>
 
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block font-mono text-[9px] uppercase text-tertiary mb-1">
+              <label className="block font-ui text-label uppercase text-tertiary mb-1">
                 Email
               </label>
               <input
@@ -95,11 +95,11 @@ export default function IndustryEnquiryForm({ industryName }: IndustryEnquiryFor
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="email@company.com"
-                className="w-full bg-card border border-border px-4 py-2 font-sans text-xs focus:outline-none focus:border-primary text-foreground"
+                className="w-full bg-card border border-border px-4 py-2 font-body text-small focus:outline-none focus:border-primary text-foreground"
               />
             </div>
             <div>
-              <label className="block font-mono text-[9px] uppercase text-tertiary mb-1">
+              <label className="block font-ui text-label uppercase text-tertiary mb-1">
                 Phone
               </label>
               <input
@@ -108,13 +108,13 @@ export default function IndustryEnquiryForm({ industryName }: IndustryEnquiryFor
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 placeholder="+91..."
-                className="w-full bg-card border border-border px-4 py-2 font-sans text-xs focus:outline-none focus:border-primary text-foreground"
+                className="w-full bg-card border border-border px-4 py-2 font-body text-small focus:outline-none focus:border-primary text-foreground"
               />
             </div>
           </div>
 
           <div>
-            <label className="block font-mono text-[9px] uppercase text-tertiary mb-1">
+            <label className="block font-ui text-label uppercase text-tertiary mb-1">
               Company Name
             </label>
             <input
@@ -123,12 +123,12 @@ export default function IndustryEnquiryForm({ industryName }: IndustryEnquiryFor
               value={company}
               onChange={(e) => setCompany(e.target.value)}
               placeholder="Company Ltd"
-              className="w-full bg-card border border-border px-4 py-2 font-sans text-xs focus:outline-none focus:border-primary text-foreground"
+              className="w-full bg-card border border-border px-4 py-2 font-body text-small focus:outline-none focus:border-primary text-foreground"
             />
           </div>
 
           <div>
-            <label className="block font-mono text-[9px] uppercase text-tertiary mb-1">
+            <label className="block font-ui text-label uppercase text-tertiary mb-1">
               Describe Manufacturing Bottlenecks / Requirements
             </label>
             <textarea
@@ -136,14 +136,14 @@ export default function IndustryEnquiryForm({ industryName }: IndustryEnquiryFor
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               placeholder="Describe what components you bend/cut, thickness requirements, daily target numbers..."
-              className="w-full bg-card border border-border px-4 py-2 font-sans text-xs focus:outline-none focus:border-primary text-foreground resize-none"
+              className="w-full bg-card border border-border px-4 py-2 font-body text-small focus:outline-none focus:border-primary text-foreground resize-none"
             />
           </div>
 
           <button
             type="submit"
             disabled={submitting}
-            className="w-full bg-primary hover:bg-primary-hover text-white font-mono text-xs uppercase tracking-widest py-3 border border-primary transition-all font-bold cursor-pointer disabled:opacity-60"
+            className="w-full bg-primary hover:bg-primary-hover text-white font-ui text-label tracking-ui py-3 border border-primary transition-all font-bold cursor-pointer disabled:opacity-60"
           >
             {submitting ? "[ TRANSMITTING... ]" : "[ SCHEDULE_CONSULTATION ]"}
           </button>

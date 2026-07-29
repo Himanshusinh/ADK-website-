@@ -66,31 +66,28 @@ export default function EnquiryModal() {
           <span className="material-symbols-outlined text-2xl">close</span>
         </button>
 
-        <div className="font-mono text-primary text-[10px] tracking-[0.2em] mb-2">
-          [ SERVICE_REQUEST_PROTOCOL ]
-        </div>
 
         {submitted ? (
           <div className="flex flex-col items-center justify-center py-12 text-center">
             <span className="material-symbols-outlined text-6xl text-primary mb-6 animate-bounce">
               check_circle
             </span>
-            <h3 className="font-headline text-3xl text-foreground uppercase mb-4">
+            <h3 className="font-display text-subheading text-foreground uppercase mb-4">
               Transmission Complete
             </h3>
-            <p className="font-mono text-xs text-tertiary max-w-xs">
+            <p className="font-ui text-label text-tertiary max-w-xs">
               ENQUIRY_STATUS: RECEIVED. <br />
               Our engineering team will contact you within 12 business hours.
             </p>
           </div>
         ) : (
           <>
-            <h3 className="font-headline text-3xl text-foreground uppercase mb-6 tracking-tight">
+            <h3 className="font-display text-subheading text-foreground uppercase mb-6 tracking-display">
               Request Technical Quote
             </h3>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label className="block font-mono text-[10px] uppercase text-tertiary mb-1">
+                <label className="block font-ui text-label uppercase text-tertiary mb-1">
                   Full Name
                 </label>
                 <input
@@ -98,14 +95,14 @@ export default function EnquiryModal() {
                   required
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="w-full bg-card border border-border px-4 py-2 font-sans text-sm focus:outline-none focus:border-primary text-foreground"
+                  className="w-full bg-card border border-border px-4 py-2 font-body text-small focus:outline-none focus:border-primary text-foreground"
                   placeholder="e.g. John Doe"
                 />
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block font-mono text-[10px] uppercase text-tertiary mb-1">
+                  <label className="block font-ui text-label uppercase text-tertiary mb-1">
                     Email Address
                   </label>
                   <input
@@ -113,12 +110,12 @@ export default function EnquiryModal() {
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full bg-card border border-border px-4 py-2 font-sans text-sm focus:outline-none focus:border-primary text-foreground"
+                    className="w-full bg-card border border-border px-4 py-2 font-body text-small focus:outline-none focus:border-primary text-foreground"
                     placeholder="john@company.com"
                   />
                 </div>
                 <div>
-                  <label className="block font-mono text-[10px] uppercase text-tertiary mb-1">
+                  <label className="block font-ui text-label uppercase text-tertiary mb-1">
                     Phone Number
                   </label>
                   <input
@@ -126,7 +123,7 @@ export default function EnquiryModal() {
                     required
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
-                    className="w-full bg-card border border-border px-4 py-2 font-sans text-sm focus:outline-none focus:border-primary text-foreground"
+                    className="w-full bg-card border border-border px-4 py-2 font-body text-small focus:outline-none focus:border-primary text-foreground"
                     placeholder="+91 99999 99999"
                   />
                 </div>
@@ -134,7 +131,7 @@ export default function EnquiryModal() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block font-mono text-[10px] uppercase text-tertiary mb-1">
+                  <label className="block font-ui text-label uppercase text-tertiary mb-1">
                     Company Name
                   </label>
                   <input
@@ -142,18 +139,18 @@ export default function EnquiryModal() {
                     required
                     value={company}
                     onChange={(e) => setCompany(e.target.value)}
-                    className="w-full bg-card border border-border px-4 py-2 font-sans text-sm focus:outline-none focus:border-primary text-foreground"
+                    className="w-full bg-card border border-border px-4 py-2 font-body text-small focus:outline-none focus:border-primary text-foreground"
                     placeholder="Precision Engineering Ltd"
                   />
                 </div>
                 <div>
-                  <label className="block font-mono text-[10px] uppercase text-tertiary mb-1">
+                  <label className="block font-ui text-label uppercase text-tertiary mb-1">
                     Area of Interest
                   </label>
                   <select
                     value={interest}
                     onChange={(e) => setInterest(e.target.value)}
-                    className="w-full bg-card border border-border px-4 py-2 font-sans text-sm focus:outline-none focus:border-primary text-foreground h-[38px]"
+                    className="w-full bg-card border border-border px-4 py-2 font-body text-small focus:outline-none focus:border-primary text-foreground h-[38px]"
                   >
                     <option value="">-- SELECT CLASSIFICATION --</option>
                     <optgroup label="MACHINERY CATEGORIES">
@@ -175,14 +172,14 @@ export default function EnquiryModal() {
               </div>
 
               <div>
-                <label className="block font-mono text-[10px] uppercase text-tertiary mb-1">
+                <label className="block font-ui text-label uppercase text-tertiary mb-1">
                   Technical Specifications / Requirements
                 </label>
                 <textarea
                   rows={3}
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
-                  className="w-full bg-card border border-border px-4 py-2 font-sans text-sm focus:outline-none focus:border-primary text-foreground resize-none"
+                  className="w-full bg-card border border-border px-4 py-2 font-body text-small focus:outline-none focus:border-primary text-foreground resize-none"
                   placeholder="Describe your raw material, thickness, bed size requirements, etc."
                 />
               </div>
@@ -190,7 +187,7 @@ export default function EnquiryModal() {
               <button
                 type="submit"
                 disabled={submitting}
-                className="w-full bg-primary hover:bg-primary-hover text-white font-mono text-xs uppercase tracking-widest py-4 border border-primary transition-all font-bold cursor-pointer disabled:opacity-60"
+                className="w-full bg-primary hover:bg-primary-hover text-white font-ui text-label tracking-ui py-4 border border-primary transition-all font-bold cursor-pointer disabled:opacity-60"
               >
                 {submitting ? "[ TRANSMITTING... ]" : "[ TRANSMIT_SPEC_REQUEST ]"}
               </button>

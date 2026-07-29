@@ -19,13 +19,13 @@ export default function Home() {
         </div>
         <div className="relative z-10 adk-container w-full grid grid-cols-1 lg:grid-cols-[minmax(0,47%)_minmax(0,53%)] gap-10 lg:gap-12 items-center">
           <div className="border-l-4 border-primary pl-6 md:pl-9">
-            <h1 className="font-headline text-[48px] leading-[1.12] md:text-[68px] text-foreground uppercase mb-8 tracking-tighter">
+            <h1 className="font-display text-hero text-foreground uppercase mb-8 tracking-display">
               Crafting <br />
               Precision <br />
               Shaping Tomorrow.
             </h1>
             <ul
-              className="font-mono text-xs md:text-sm text-tertiary space-y-2.5 max-w-md border-t border-border pt-7 mb-10"
+              className="font-ui text-label text-tertiary space-y-2.5 max-w-md border-t border-border pt-7 mb-10"
               role="list"
             >
               <li className="flex gap-2">
@@ -48,13 +48,13 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row gap-5">
               <button
                 onClick={() => openEnquiry("General Catalogue Inquiry")}
-                className="bg-charcoal text-white border border-charcoal font-mono text-[13px] uppercase font-bold px-9 py-3.5 hover:bg-primary hover:border-primary transition-colors duration-200 tracking-[0.18em] cursor-pointer"
+                className="bg-charcoal text-white border border-charcoal font-ui text-button uppercase font-bold px-9 py-3.5 hover:bg-primary hover:border-primary transition-colors duration-200 tracking-ui cursor-pointer"
               >
                 INITIATE_CATALOGUE
               </button>
               <Link
                 href="/resources"
-                className="bg-transparent text-tertiary border border-border font-mono text-[13px] uppercase px-9 py-3.5 hover:text-foreground hover:border-foreground/40 transition-colors duration-200 tracking-[0.18em] text-center"
+                className="bg-transparent text-tertiary border border-border font-ui text-button uppercase px-9 py-3.5 hover:text-foreground hover:border-foreground/40 transition-colors duration-200 tracking-ui text-center"
               >
                 VIEW_SPECS.PDF
               </Link>
@@ -72,12 +72,12 @@ export default function Home() {
               {/* Schematic Callouts */}
               <div className="absolute top-[25%] right-0 flex items-center gap-2 z-20">
                 <div className="w-16 h-px bg-primary/90"></div>
-                <div className="bg-card border border-primary/80 p-2.5 font-mono text-[9px] uppercase tracking-[0.2em]">
+                <div className="bg-card border border-primary/80 p-2.5 font-ui text-label tracking-ui">
                   Precision 0.01mm
                 </div>
               </div>
               <div className="absolute top-[40%] left-0 flex items-center gap-2 z-20">
-                <div className="bg-card border border-primary/80 p-2.5 font-mono text-[9px] uppercase tracking-[0.2em]">
+                <div className="bg-card border border-primary/80 p-2.5 font-ui text-label tracking-ui">
                   Fiber Laser Source
                 </div>
                 <div className="w-16 h-px bg-primary/90"></div>
@@ -88,7 +88,7 @@ export default function Home() {
                   aria-hidden="true"
                 />
                 <div className="w-px h-12 md:h-14 bg-primary/90" />
-                <div className="bg-card border border-primary/80 p-2.5 font-mono text-[9px] uppercase tracking-[0.2em] whitespace-nowrap">
+                <div className="bg-card border border-primary/80 p-2.5 font-ui text-label tracking-ui whitespace-nowrap">
                   CNC_CONTROL_UNIT
                 </div>
               </div>
@@ -103,14 +103,11 @@ export default function Home() {
         <div className="adk-container w-full">
           <div className="mb-12 border-b border-border pb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div className="max-w-2xl">
-              <span className="font-mono text-primary text-xs uppercase tracking-widest block mb-3">
-                [ 01_CATEGORIES ]
-              </span>
-              <h2 className="font-headline text-[38px] md:text-[52px] text-foreground uppercase tracking-tighter leading-none">
+              <h2 className="font-display text-heading text-foreground uppercase tracking-display leading-none">
                 Machine Classification
               </h2>
             </div>
-            <div className="font-mono text-[11px] text-tertiary uppercase max-w-[280px] leading-relaxed border-l border-primary pl-5">
+            <div className="font-ui text-label text-tertiary uppercase max-w-[280px] leading-relaxed border-l border-primary pl-5">
               Standardized industrial machinery categories for precision manufacturing environments.
             </div>
           </div>
@@ -123,18 +120,18 @@ export default function Home() {
                 className="p-10 border-r border-b border-border group hover:bg-tech-blue transition-all duration-300 flex flex-col justify-between min-h-[280px]"
               >
                 <div>
-                  <div className="font-mono text-[10px] text-primary mb-6">SR_0{idx + 1}</div>
+                  <div className="font-ui text-label text-primary mb-6">SR_0{idx + 1}</div>
                   <span className="material-symbols-outlined text-[48px] text-foreground mb-6 group-hover:text-primary transition-colors">
                     {c.icon}
                   </span>
-                  <h3 className="font-headline text-2xl text-foreground uppercase mb-3 group-hover:text-primary transition-colors">
+                  <h3 className="font-display text-subheading text-foreground uppercase mb-3 group-hover:text-primary transition-colors">
                     {c.name}
                   </h3>
-                  <p className="font-sans text-[13px] text-tertiary leading-relaxed">
+                  <p className="font-body text-small text-tertiary leading-relaxed">
                     {c.tagline}
                   </p>
                 </div>
-                <div className="font-mono text-[10px] text-primary group-hover:translate-x-1 transition-transform mt-4 flex items-center gap-1">
+                <div className="font-ui text-label text-primary group-hover:translate-x-1 transition-transform mt-4 flex items-center gap-1">
                   ACCESS_CATALOGUE <span className="material-symbols-outlined text-[12px]">arrow_forward</span>
                 </div>
               </Link>
@@ -150,34 +147,34 @@ export default function Home() {
         <div className="adk-container w-full">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <div className="text-center md:border-r border-border last:border-0 px-4">
-              <div className="font-mono text-[10px] uppercase text-tertiary mb-3 tracking-widest">
+              <div className="font-ui text-label uppercase text-tertiary mb-3 tracking-ui">
                 Happy_Customers
               </div>
-              <div className="font-headline text-4xl md:text-5xl lg:text-6xl text-foreground font-bold">
+              <div className="font-display text-stat text-foreground font-bold">
                 {companyInfo.stats.customers}
               </div>
             </div>
             <div className="text-center md:border-r border-border last:border-0 px-4">
-              <div className="font-mono text-[10px] uppercase text-tertiary mb-3 tracking-widest">
+              <div className="font-ui text-label uppercase text-tertiary mb-3 tracking-ui">
                 Operating_Exp
               </div>
-              <div className="font-headline text-4xl md:text-5xl lg:text-6xl text-foreground font-bold">
-                {companyInfo.stats.yearsExperience} <span className="text-xl md:text-2xl font-mono align-middle font-normal">YRS</span>
+              <div className="font-display text-stat text-foreground font-bold">
+                {companyInfo.stats.yearsExperience} <span className="font-ui text-button align-middle font-normal">YRS</span>
               </div>
             </div>
             <div className="text-center md:border-r border-border last:border-0 px-4">
-              <div className="font-mono text-[10px] uppercase text-tertiary mb-3 tracking-widest">
+              <div className="font-ui text-label uppercase text-tertiary mb-3 tracking-ui">
                 Installations
               </div>
-              <div className="font-headline text-4xl md:text-5xl lg:text-6xl text-foreground font-bold">
+              <div className="font-display text-stat text-foreground font-bold">
                 {companyInfo.stats.installations}
               </div>
             </div>
             <div className="text-center px-4">
-              <div className="font-mono text-[10px] uppercase text-tertiary mb-3 tracking-widest">
+              <div className="font-ui text-label uppercase text-tertiary mb-3 tracking-ui">
                 Branch_Offices
               </div>
-              <div className="font-headline text-4xl md:text-5xl lg:text-6xl text-foreground font-bold">
+              <div className="font-display text-stat text-foreground font-bold">
                 08
               </div>
             </div>
@@ -192,16 +189,13 @@ export default function Home() {
         <div className="adk-container w-full">
           <div className="flex flex-col md:flex-row justify-between items-end mb-12 border-b border-border pb-6">
             <div>
-              <span className="font-mono text-primary text-xs uppercase tracking-widest block mb-3">
-                [ 02_EQUIPMENT ]
-              </span>
-              <h2 className="font-headline text-[38px] md:text-[52px] text-foreground uppercase tracking-tighter">
+              <h2 className="font-display text-heading text-foreground uppercase tracking-display">
                 Advanced Machinery
               </h2>
             </div>
             <Link
               href="/products"
-              className="font-mono text-xs uppercase text-primary hover:underline mb-2 tracking-widest flex items-center gap-2 font-bold"
+              className="font-ui text-label text-primary hover:underline mb-2 tracking-ui flex items-center gap-2 font-bold"
             >
               VIEW_COMPLETE_INVENTORY{" "}
               <span className="material-symbols-outlined text-[14px]">arrow_forward</span>
@@ -217,7 +211,7 @@ export default function Home() {
                   key={model.slug}
                   className="bg-card p-6 border border-border hover:border-primary transition-all duration-300 flex flex-col h-full shadow-sm hover:shadow-xl group"
                 >
-                  <div className="font-mono text-[9px] text-tertiary mb-4 uppercase tracking-tighter flex justify-between">
+                  <div className="font-ui text-label text-tertiary mb-4 uppercase tracking-display flex justify-between">
                     <span>SPEC_ID: {model.id}</span>
                     <span className="text-primary font-bold">{model.status}</span>
                   </div>
@@ -228,13 +222,13 @@ export default function Home() {
                       src={model.image}
                     />
                   </div>
-                  <h3 className="font-headline text-2xl text-foreground uppercase mb-4 tracking-tight group-hover:text-primary transition-colors">
+                  <h3 className="font-display text-subheading text-foreground uppercase mb-4 tracking-display group-hover:text-primary transition-colors">
                     {model.name}
                   </h3>
 
                   {/* Tech Specs block */}
                   <div className="bg-surface-container p-4 mb-6 border-l-4 border-primary">
-                    <div className="grid grid-cols-2 gap-y-3 font-mono text-[11px]">
+                    <div className="grid grid-cols-2 gap-y-3 font-ui text-label">
                       {Object.entries(model.specsSummary).map(([key, val]) => (
                         <React.Fragment key={key}>
                           <div className="text-tertiary uppercase">{key}:</div>
@@ -247,13 +241,13 @@ export default function Home() {
                   <div className="mt-auto space-y-2">
                     <Link
                       href={`/products/${category.slug}/${model.slug}`}
-                      className="w-full border border-foreground py-3 font-mono text-[11px] uppercase hover:bg-charcoal hover:text-white transition-all tracking-widest flex items-center justify-center gap-2 text-center"
+                      className="w-full border border-foreground py-3 font-ui text-label uppercase hover:bg-charcoal hover:text-white transition-all tracking-ui flex items-center justify-center gap-2 text-center"
                     >
                       [ SYSTEM_SCHEMATICS ]
                     </Link>
                     <button
                       onClick={() => openEnquiry(`Quote Request: ${model.name}`)}
-                      className="w-full bg-primary hover:bg-primary-hover text-white py-3 font-mono text-[11px] uppercase transition-all tracking-widest flex items-center justify-center gap-2 cursor-pointer font-bold"
+                      className="w-full bg-primary hover:bg-primary-hover text-white py-3 font-ui text-label uppercase transition-all tracking-ui flex items-center justify-center gap-2 cursor-pointer font-bold"
                     >
                       [ INQUIRE_FOR_PRICING ]
                     </button>
@@ -272,14 +266,11 @@ export default function Home() {
         <div className="adk-container w-full">
           <div className="mb-12 border-b border-border pb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div>
-              <span className="font-mono text-primary text-xs uppercase tracking-widest block mb-3">
-                [ 03_ADVANTAGES ]
-              </span>
-              <h2 className="font-headline text-[38px] md:text-[52px] text-foreground uppercase tracking-tighter">
+              <h2 className="font-display text-heading text-foreground uppercase tracking-display">
                 Why Choose ADK
               </h2>
             </div>
-            <p className="font-mono text-[11px] text-tertiary uppercase max-w-[280px] leading-relaxed border-l border-primary pl-5">
+            <p className="font-ui text-label text-tertiary uppercase max-w-[280px] leading-relaxed border-l border-primary pl-5">
               Your machine is your capital — we keep it running with precision service and proven engineering.
             </p>
           </div>
@@ -293,13 +284,13 @@ export default function Home() {
                 <span className="material-symbols-outlined text-3xl text-foreground group-hover:text-primary transition-colors mb-4 block">
                   {item.icon}
                 </span>
-                <h3 className="font-headline text-lg text-foreground uppercase font-bold mb-2 group-hover:text-primary transition-colors">
+                <h3 className="font-display text-card-title text-foreground uppercase font-bold mb-2 group-hover:text-primary transition-colors">
                   {item.title}
                 </h3>
-                <p className="font-sans text-xs text-tertiary leading-relaxed">
+                <p className="font-body text-small text-tertiary leading-relaxed">
                   {item.description}
                 </p>
-                <span className="font-mono text-[9px] text-primary/50 mt-3 block">
+                <span className="font-ui text-label text-primary/50 mt-3 block">
                   ADV_0{idx + 1}
                 </span>
               </div>
@@ -315,16 +306,13 @@ export default function Home() {
         <div className="adk-container w-full">
           <div className="mb-12 border-b border-border pb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div>
-              <span className="font-mono text-primary text-xs uppercase tracking-widest block mb-3">
-                [ 03_SYSTEM_INTEGRATION ]
-              </span>
-              <h2 className="font-headline text-[38px] md:text-[52px] text-foreground uppercase tracking-tighter">
+              <h2 className="font-display text-heading text-foreground uppercase tracking-display">
                 Industries Served
               </h2>
             </div>
             <Link
               href="/applications"
-              className="font-mono text-xs uppercase text-primary hover:underline mb-2 tracking-widest flex items-center gap-2 font-bold"
+              className="font-ui text-label text-primary hover:underline mb-2 tracking-ui flex items-center gap-2 font-bold"
             >
               EXPLORE_ALL_SECTORS{" "}
               <span className="material-symbols-outlined text-[14px]">arrow_forward</span>
@@ -341,7 +329,7 @@ export default function Home() {
                 <span className="material-symbols-outlined text-4xl text-foreground/75 group-hover:text-primary transition-colors mb-4">
                   {app.icon}
                 </span>
-                <h4 className="font-headline text-lg text-foreground uppercase tracking-tight font-bold group-hover:text-primary transition-colors">
+                <h4 className="font-display text-card-title text-foreground uppercase tracking-display font-bold group-hover:text-primary transition-colors">
                   {app.name}
                 </h4>
               </Link>
@@ -356,13 +344,10 @@ export default function Home() {
       <section className="py-20 bg-surface">
         <div className="adk-container w-full">
           <div className="mb-12 border-b border-border pb-6 text-center max-w-xl mx-auto">
-            <span className="font-mono text-primary text-xs uppercase tracking-widest block mb-3">
-              [ 04_TRUSTED_BY ]
-            </span>
-            <h2 className="font-headline text-[38px] md:text-[52px] text-foreground uppercase tracking-tighter">
+            <h2 className="font-display text-heading text-foreground uppercase tracking-display">
               Trusted by Industry Leaders
             </h2>
-            <p className="font-sans text-sm text-tertiary mt-4">
+            <p className="font-body text-small text-tertiary mt-4">
               {companyInfo.stats.customers} installations including ISRO, Bajaj Steel, and leading fabrication companies.
             </p>
           </div>
@@ -371,7 +356,7 @@ export default function Home() {
           <div className="text-center mt-8">
             <Link
               href="/clients"
-              className="font-mono text-xs uppercase text-primary hover:underline tracking-widest font-bold"
+              className="font-ui text-label text-primary hover:underline tracking-ui font-bold"
             >
               VIEW_ALL_CLIENTS →
             </Link>
@@ -384,26 +369,23 @@ export default function Home() {
       <Reveal delay={100}>
       <section className="py-20 bg-charcoal text-white border-t border-primary/30">
         <div className="adk-container w-full text-center">
-          <span className="font-mono text-primary text-[10px] uppercase tracking-[0.2em] mb-4 block">
-            [ READY_TO_START ]
-          </span>
-          <h2 className="font-headline text-[36px] md:text-[46px] uppercase tracking-tighter mb-6 leading-none">
+          <h2 className="font-display text-heading uppercase tracking-display mb-6 leading-none">
             Request a Custom Machinery Quote
           </h2>
-          <p className="font-mono text-xs text-light-gray/60 mb-10 leading-relaxed max-w-lg mx-auto">
+          <p className="font-ui text-label text-light-gray/60 mb-10 leading-relaxed max-w-lg mx-auto">
             Share your material specifications, production volume, and facility requirements.
             Our engineering team will respond within 6 business hours.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
               onClick={() => openEnquiry("General Machinery Enquiry")}
-              className="bg-primary hover:bg-primary-hover text-white font-mono text-xs uppercase tracking-widest px-10 py-5 border border-primary transition-all font-bold cursor-pointer"
+              className="bg-primary hover:bg-primary-hover text-white font-ui text-label tracking-ui px-10 py-5 border border-primary transition-all font-bold cursor-pointer"
             >
               [ INITIATE_ENQUIRY ]
             </button>
             <Link
               href="/contact"
-              className="bg-transparent text-white border border-white/30 font-mono text-xs uppercase tracking-widest px-10 py-5 hover:bg-card hover:text-foreground transition-all text-center"
+              className="bg-transparent text-white border border-white/30 font-ui text-label tracking-ui px-10 py-5 hover:bg-card hover:text-foreground transition-all text-center"
             >
               [ CONTACT_OPERATIONS ]
             </Link>

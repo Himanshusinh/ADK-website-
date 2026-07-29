@@ -53,15 +53,15 @@ export default function VideoCard({ video, className = "" }: VideoCardProps) {
                 sublabel={`Duration: ${video.duration} — video pending from client`}
               />
             )}
-            <span className="absolute bottom-2 right-2 font-mono text-[9px] bg-black/60 text-white px-2 py-0.5 border border-white/5">
+            <span className="absolute bottom-2 right-2 font-ui text-label bg-black/60 text-white px-2 py-0.5 border border-white/5">
               {video.duration}
             </span>
           </div>
-          <h3 className="font-headline text-md text-foreground uppercase font-bold group-hover:text-primary transition-colors leading-snug">
+          <h3 className="font-display text-card-title text-foreground uppercase font-bold group-hover:text-primary transition-colors leading-snug">
             {video.title}
           </h3>
         </div>
-        <span className="font-mono text-[9px] text-tertiary uppercase mt-4 block border-t border-border/50 pt-3">
+        <span className="font-ui text-label text-tertiary uppercase mt-4 block border-t border-border/50 pt-3">
           STREAM_PROTOCOL: ADK_DEMO // {video.id}
         </span>
       </div>
@@ -77,7 +77,7 @@ export default function VideoCard({ video, className = "" }: VideoCardProps) {
             <button
               type="button"
               onClick={() => setIsOpen(false)}
-              className="absolute -top-10 right-0 text-white font-mono text-xs uppercase hover:text-primary cursor-pointer"
+              className="absolute -top-10 right-0 text-white font-ui text-label hover:text-primary cursor-pointer"
             >
               [ CLOSE ]
             </button>

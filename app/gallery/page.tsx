@@ -34,13 +34,10 @@ export default function GalleryPage() {
     <div className="flex flex-col w-full bg-surface">
       <section className="relative bg-surface border-b border-border py-16 tech-grid">
         <div className="adk-container">
-          <div className="font-mono text-primary text-[10px] uppercase tracking-[0.3em] mb-3">
-            [ MEDIA_ARCHIVE ]
-          </div>
-          <h1 className="font-headline text-[42px] md:text-[56px] text-foreground uppercase tracking-tighter leading-none mb-6">
+          <h1 className="font-display text-heading text-foreground uppercase tracking-display leading-none mb-6">
             GALLERY & DEMONSTRATIONS
           </h1>
-          <p className="font-mono text-xs md:text-sm text-tertiary max-w-xl leading-relaxed">
+          <p className="font-ui text-label text-tertiary max-w-xl leading-relaxed">
             SYSTEM_ARCHIVE: Machinery catalog images, real installation footprints at customer sites,
             factory infrastructure, and machine calibration videos.
           </p>
@@ -53,7 +50,7 @@ export default function GalleryPage() {
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className={`font-mono text-xs uppercase tracking-widest py-5 border-b-2 transition-all cursor-pointer ${
+              className={`font-ui text-label tracking-ui py-5 border-b-2 transition-all cursor-pointer ${
                 activeTab === tab
                   ? "text-primary border-primary font-bold"
                   : "text-foreground/60 border-transparent hover:text-primary"
@@ -84,11 +81,11 @@ export default function GalleryPage() {
                       placeholderLabel={m.name}
                     />
                   </div>
-                  <h3 className="font-headline text-lg text-foreground uppercase font-bold group-hover:text-primary transition-colors">
+                  <h3 className="font-display text-card-title text-foreground uppercase font-bold group-hover:text-primary transition-colors">
                     {m.name}
                   </h3>
                 </div>
-                <span className="font-mono text-[9px] text-tertiary uppercase mt-4 block">
+                <span className="font-ui text-label text-tertiary uppercase mt-4 block">
                   CATEGORY: {m.category} {"//"} ID: {m.id}
                 </span>
               </div>
@@ -113,15 +110,15 @@ export default function GalleryPage() {
                       aspectRatio="video"
                       sublabel={`${inst.client} — ${inst.city}`}
                     />
-                    <div className="absolute bottom-2 right-2 bg-charcoal/80 text-white font-mono text-[8px] px-2 py-0.5 border border-white/10 uppercase">
+                    <div className="absolute bottom-2 right-2 bg-charcoal/80 text-white font-ui text-label px-2 py-0.5 border border-white/10 uppercase">
                       verified_fit
                     </div>
                   </div>
-                  <h3 className="font-headline text-lg text-foreground uppercase font-bold group-hover:text-primary transition-colors">
+                  <h3 className="font-display text-card-title text-foreground uppercase font-bold group-hover:text-primary transition-colors">
                     {inst.title}
                   </h3>
                 </div>
-                <div className="font-mono text-[9px] text-tertiary uppercase mt-4 flex justify-between border-t border-border/50 pt-3">
+                <div className="font-ui text-label text-tertiary uppercase mt-4 flex justify-between border-t border-border/50 pt-3">
                   <span>CLIENT: {inst.client}</span>
                   <span>LOCATION: {inst.city}</span>
                 </div>
@@ -146,7 +143,7 @@ export default function GalleryPage() {
                   sublabel={photo.sublabel}
                   className="mb-4"
                 />
-                <h3 className="font-headline text-lg text-foreground uppercase font-bold group-hover:text-primary transition-colors">
+                <h3 className="font-display text-card-title text-foreground uppercase font-bold group-hover:text-primary transition-colors">
                   {photo.title}
                 </h3>
               </div>

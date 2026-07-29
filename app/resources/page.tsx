@@ -33,13 +33,10 @@ export default function ResourcesHubPage() {
       {/* Page Header */}
       <section className="relative bg-surface border-b border-border py-16 tech-grid">
         <div className="adk-container">
-          <div className="font-mono text-primary text-[10px] uppercase tracking-[0.3em] mb-3">
-            [ LIBRARY_ROOT ]
-          </div>
-          <h1 className="font-headline text-[42px] md:text-[56px] text-foreground uppercase tracking-tighter leading-none mb-6">
+          <h1 className="font-display text-heading text-foreground uppercase tracking-display leading-none mb-6">
             TECHNICAL RESOURCE CENTER
           </h1>
-          <p className="font-mono text-xs md:text-sm text-tertiary max-w-xl leading-relaxed">
+          <p className="font-ui text-label text-tertiary max-w-xl leading-relaxed">
             SYSTEM_NODES: Technical journals, standard specifications directories, and FAQ files.
           </p>
         </div>
@@ -57,17 +54,17 @@ export default function ResourcesHubPage() {
                 <span className="material-symbols-outlined text-[48px] text-foreground/70 group-hover:text-primary transition-colors mb-6">
                   {rc.icon}
                 </span>
-                <h3 className="font-headline text-2xl text-foreground uppercase font-bold mb-3 group-hover:text-primary transition-colors">
+                <h3 className="font-display text-subheading text-foreground uppercase font-bold mb-3 group-hover:text-primary transition-colors">
                   {rc.title}
                 </h3>
-                <p className="font-sans text-xs text-tertiary leading-relaxed mb-8">
+                <p className="font-body text-small text-tertiary leading-relaxed mb-8">
                   {rc.desc}
                 </p>
               </div>
 
               <Link
                 href={rc.path}
-                className="w-full bg-charcoal text-white font-mono text-[10px] uppercase tracking-widest py-3 border border-foreground hover:bg-primary hover:border-primary transition-all text-center block font-bold"
+                className="w-full bg-charcoal text-white font-ui text-label tracking-ui py-3 border border-foreground hover:bg-primary hover:border-primary transition-all text-center block font-bold"
               >
                 [ {rc.btnText} ]
               </Link>
@@ -80,16 +77,16 @@ export default function ResourcesHubPage() {
       <section className="py-16 bg-charcoal text-white text-center border-t border-primary/30">
         <div className="adk-container">
         <div className="max-w-2xl mx-auto">
-          <h2 className="font-headline text-3xl uppercase tracking-tighter mb-4">
+          <h2 className="font-display text-subheading uppercase tracking-display mb-4">
             Need Technical Assistance?
           </h2>
-          <p className="font-mono text-xs text-light-gray/60 mb-8 leading-relaxed">
+          <p className="font-ui text-label text-light-gray/60 mb-8 leading-relaxed">
             Our engineering team can help with machine selection, parameter tuning guides,
             and installation planning documentation.
           </p>
           <Link
             href="/contact"
-            className="inline-block bg-primary hover:bg-primary-hover text-white font-mono text-xs uppercase tracking-widest px-10 py-5 border border-primary transition-all font-bold"
+            className="inline-block bg-primary hover:bg-primary-hover text-white font-ui text-label tracking-ui px-10 py-5 border border-primary transition-all font-bold"
           >
             [ CONTACT_ENGINEERING ]
           </Link>

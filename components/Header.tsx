@@ -7,6 +7,7 @@ import { useEnquiry } from "./EnquiryContext";
 import { categories, applications } from "@/lib/data";
 import {
   type MegaMenuId,
+  type NavItem,
   primaryNav,
   productCompactLinks,
   solutionsCompactLinks,
@@ -21,14 +22,29 @@ const OPEN_DELAY = 80;
 const CLOSE_DELAY = 200;
 const FEATURED_INDUSTRY_COUNT = 8;
 
-function navDesktopLinkClass(active: boolean, withGap = false) {
-  return `group font-mono text-[10px] xl:text-[11px] uppercase tracking-widest transition-colors duration-200 inline-flex items-center border-b-2 pb-1 leading-none ${
-    withGap ? "gap-1.5 " : ""
-  }${
-    active
-      ? "border-primary text-foreground"
-      : "border-transparent text-foreground hover:border-primary"
-  }`;
+function NavChevron({ open, visible = true }: { open?: boolean; visible?: boolean }) {
+  if (!visible) return null;
+
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 12 12"
+      className={`size-2.5 shrink-0 self-center transition-all duration-200 ${
+        open
+          ? "rotate-180 text-primary"
+          : "text-foreground/35 group-hover:text-primary"
+      }`}
+      fill="none"
+    >
+      <path
+        d="M2.5 4.5 6 8 9.5 4.5"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
 }
 
 function NavIndexLabel({ index, label, active }: { index: number; label: string; active: boolean }) {
@@ -37,6 +53,50 @@ function NavIndexLabel({ index, label, active }: { index: number; label: string;
       <span className="text-foreground/35 dark:text-foreground tabular-nums">{formatNavIndex(index)}</span>
       <span className={`ml-2 ${active ? "text-primary" : "text-foreground group-hover:text-primary"}`}>{label}</span>
     </span>
+  );
+}
+
+function DesktopNavItem({
+  index,
+  item,
+  active,
+  isMegaOpen,
+  onMegaEnter,
+  onMegaFocus,
+}: {
+  index: number;
+  item: NavItem;
+  active: boolean;
+  isMegaOpen: boolean;
+  onMegaEnter: (mega: MegaMenuId) => void;
+  onMegaFocus: (mega: MegaMenuId) => void;
+}) {
+  const hasMega = !!item.mega;
+
+  return (
+    <div
+      className="relative inline-flex flex-col items-stretch shrink-0"
+      onMouseEnter={hasMega ? () => onMegaEnter(item.mega!) : undefined}
+      onFocusCapture={hasMega ? () => onMegaFocus(item.mega!) : undefined}
+    >
+      <Link
+        href={item.path}
+        className="group inline-flex flex-col items-stretch font-ui text-nav tracking-ui text-foreground transition-colors duration-200 leading-none"
+        aria-expanded={hasMega ? isMegaOpen : undefined}
+        aria-haspopup={hasMega ? "true" : undefined}
+      >
+        <span className="inline-flex items-center gap-1.5 h-5 leading-none">
+          <NavIndexLabel index={index} label={item.label} active={active} />
+          <NavChevron open={isMegaOpen} visible={hasMega} />
+        </span>
+        <span
+          className={`adk-nav-underline w-full transition-colors duration-200 ${
+            active ? "bg-primary" : "bg-transparent group-hover:bg-primary"
+          }`}
+          aria-hidden="true"
+        />
+      </Link>
+    </div>
   );
 }
 
@@ -61,7 +121,7 @@ function CompactNavLinks({
               {link.icon}
             </span>
           )}
-          <span className="font-headline text-xs text-foreground uppercase font-bold group-hover:text-primary transition-colors">
+          <span className="font-ui text-button font-semibold tracking-ui text-foreground uppercase group-hover:text-primary transition-colors">
             {link.label}
           </span>
         </Link>
@@ -128,11 +188,11 @@ export default function Header() {
       <div className="w-full bg-surface-container py-1.5 border-b border-border/50">
         <div className="adk-container flex items-center justify-between">
           <div className="flex items-center gap-4 md:gap-6">
-            <div className="flex items-center gap-2 font-mono text-[11px] text-foreground">
+            <div className="flex items-center gap-2 font-ui text-label text-foreground">
               <span className="material-symbols-outlined text-[14px] leading-none">call</span>
               <span>+91 63526 44186</span>
             </div>
-            <div className="hidden sm:flex items-center gap-2 font-mono text-[11px] text-foreground">
+            <div className="hidden sm:flex items-center gap-2 font-ui text-label text-foreground">
               <span className="material-symbols-outlined text-[14px] leading-none">mail</span>
               <span>inquiry1@adkeng.com</span>
             </div>
@@ -155,47 +215,19 @@ export default function Header() {
           {/* Desktop Nav */}
           <div className="hidden min-[1200px]:flex flex-1 justify-center items-center [gap:var(--adk-nav-gap)] relative">
             {primaryNav.map((item, idx) => {
-              const hasMega = !!item.mega;
               const isMegaOpen = activeMega === item.mega;
               const active = isNavItemActive(pathname, item) || isMegaOpen;
 
-              if (hasMega) {
-                return (
-                  <div
-                    key={item.path}
-                    className="relative"
-                    onMouseEnter={() => handleMegaEnter(item.mega!)}
-                    onFocus={() => handleMegaFocus(item.mega!)}
-                  >
-                    <Link
-                      href={item.path}
-                      className={navDesktopLinkClass(active, true)}
-                      aria-expanded={isMegaOpen}
-                      aria-haspopup="true"
-                    >
-                      <NavIndexLabel index={idx} label={item.label} active={active} />
-                      <span
-                        className={`material-symbols-outlined text-[10px] leading-none shrink-0 transition-all duration-200 ${
-                          isMegaOpen
-                            ? "rotate-180 text-primary"
-                            : "text-foreground/35 group-hover:text-primary"
-                        }`}
-                      >
-                        expand_more
-                      </span>
-                    </Link>
-                  </div>
-                );
-              }
-
               return (
-                <Link
+                <DesktopNavItem
                   key={item.path}
-                  href={item.path}
-                  className={navDesktopLinkClass(active)}
-                >
-                  <NavIndexLabel index={idx} label={item.label} active={active} />
-                </Link>
+                  index={idx}
+                  item={item}
+                  active={active}
+                  isMegaOpen={isMegaOpen}
+                  onMegaEnter={handleMegaEnter}
+                  onMegaFocus={handleMegaFocus}
+                />
               );
             })}
           </div>
@@ -204,7 +236,7 @@ export default function Header() {
           <div className="flex items-center gap-3 shrink-0 ml-auto min-[1200px]:ml-[var(--adk-nav-cta-gap)]">
             <button
               onClick={() => openEnquiry()}
-              className="bg-primary text-white font-mono text-[10px] xl:text-[11px] font-bold uppercase tracking-widest px-4 xl:px-5 py-2 border border-primary hover:bg-transparent hover:text-primary transition-all duration-200 whitespace-nowrap cursor-pointer"
+              className="bg-primary text-white font-ui text-button font-medium tracking-ui px-4 xl:px-5 py-2 border border-primary hover:bg-transparent hover:text-primary transition-all duration-200 whitespace-nowrap cursor-pointer"
             >
               [ GET_QUOTE ]
             </button>
@@ -232,13 +264,13 @@ export default function Header() {
               {activeMega === "products" && (
                 <div>
                   <div className="flex items-center justify-between mb-6 border-b border-border pb-4">
-                    <span className="font-mono text-[10px] uppercase tracking-widest text-primary font-bold">
-                      [ PRODUCT_CATEGORIES // 8 FAMILIES ]
+                    <span className="font-ui text-button font-bold tracking-ui text-primary uppercase">
+                      Product Categories
                     </span>
                     <Link
                       href="/products"
                       onClick={closeMega}
-                      className="font-mono text-[10px] uppercase text-primary hover:underline tracking-widest flex items-center gap-1"
+                      className="font-ui text-label font-medium uppercase text-primary hover:underline tracking-ui flex items-center gap-1"
                     >
                       View All Products
                       <span className="material-symbols-outlined text-[14px]">arrow_forward</span>
@@ -259,14 +291,14 @@ export default function Header() {
                         onClick={closeMega}
                         className="p-4 border border-border hover:border-primary hover:bg-tech-blue/30 transition-all group flex items-start gap-3"
                       >
-                        <span className="material-symbols-outlined text-2xl text-foreground group-hover:text-primary transition-colors shrink-0">
+                        <span className="material-symbols-outlined text-xl text-foreground group-hover:text-primary transition-colors shrink-0">
                           {cat.icon}
                         </span>
                         <div>
-                          <h4 className="font-headline text-sm text-foreground uppercase font-bold group-hover:text-primary transition-colors">
+                          <h4 className="text-ui-strong text-foreground group-hover:text-primary transition-colors">
                             {cat.name}
                           </h4>
-                          <p className="font-mono text-[9px] text-tertiary mt-1 leading-relaxed line-clamp-2">
+                          <p className="font-body text-small font-normal text-tertiary/90 mt-1.5 leading-relaxed line-clamp-2 normal-case">
                             {cat.tagline}
                           </p>
                         </div>
@@ -279,13 +311,13 @@ export default function Header() {
               {activeMega === "solutions" && (
                 <div>
                   <div className="flex items-center justify-between mb-6 border-b border-border pb-4">
-                    <span className="font-mono text-[10px] uppercase tracking-widest text-primary font-bold">
-                      [ INDUSTRIES_SERVED // 19 SECTORS ]
+                    <span className="font-ui text-label tracking-ui text-primary font-semibold uppercase">
+                      Industries Served
                     </span>
                     <Link
                       href="/applications"
                       onClick={closeMega}
-                      className="font-mono text-[10px] uppercase text-primary hover:underline tracking-widest flex items-center gap-1"
+                      className="font-ui text-label font-medium uppercase text-primary hover:underline tracking-ui flex items-center gap-1"
                     >
                       View All Applications
                       <span className="material-symbols-outlined text-[14px]">arrow_forward</span>
@@ -306,7 +338,7 @@ export default function Header() {
                           <span className="material-symbols-outlined text-base text-foreground/70 group-hover:text-primary transition-colors shrink-0">
                             {app.icon}
                           </span>
-                          <span className="font-headline text-[10px] text-foreground uppercase font-bold group-hover:text-primary transition-colors">
+                          <span className="text-ui-strong text-foreground group-hover:text-primary transition-colors">
                             {app.name}
                           </span>
                         </Link>
@@ -326,7 +358,7 @@ export default function Header() {
                         <span className="material-symbols-outlined text-lg text-foreground/70 group-hover:text-primary transition-colors shrink-0">
                           {app.icon}
                         </span>
-                        <span className="font-headline text-xs text-foreground uppercase font-bold group-hover:text-primary transition-colors">
+                        <span className="text-ui-strong text-foreground group-hover:text-primary transition-colors">
                           {app.name}
                         </span>
                       </Link>
@@ -337,18 +369,18 @@ export default function Header() {
 
               {activeMega === "more" && (
                 <div>
-                  <span className="font-mono text-[10px] uppercase tracking-widest text-primary font-bold block mb-6 border-b border-border pb-4">
-                    [ MORE // CORPORATE & RESOURCES ]
+                  <span className="font-ui text-label tracking-ui text-primary font-semibold uppercase block mb-6 border-b border-border pb-4">
+                    Corporate & Resources
                   </span>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div>
-                      <span className="font-mono text-[9px] uppercase tracking-widest text-tertiary block mb-3">
+                      <span className="font-ui text-label tracking-ui text-tertiary block mb-3">
                         Corporate
                       </span>
                       <CompactNavLinks links={companyCorporateLinks} onNavigate={closeMega} />
                     </div>
                     <div>
-                      <span className="font-mono text-[9px] uppercase tracking-widest text-tertiary block mb-3">
+                      <span className="font-ui text-label tracking-ui text-tertiary block mb-3">
                         Resources
                       </span>
                       <CompactNavLinks links={companyResourceLinks} onNavigate={closeMega} />
@@ -373,7 +405,7 @@ export default function Header() {
                 <div key={item.path}>
                   <button
                     onClick={() => toggleMobileAccordion(item.mega!)}
-                    className={`group w-full flex items-center justify-between font-mono text-sm uppercase tracking-widest transition-colors duration-200 py-3 border-b-2 cursor-pointer ${
+                    className={`group w-full flex items-center justify-between font-ui text-button tracking-ui transition-colors duration-200 py-3 border-b-2 cursor-pointer ${
                       itemActive
                         ? "border-primary font-bold"
                         : "border-transparent hover:border-primary"
@@ -400,7 +432,7 @@ export default function Header() {
                           <Link
                             href="/products"
                             onClick={closeMobileMenu}
-                            className="font-mono text-xs uppercase text-primary py-1 block"
+                            className="font-ui text-label text-primary py-1 block"
                           >
                             View All Products
                           </Link>
@@ -409,7 +441,7 @@ export default function Header() {
                               key={cat.slug}
                               href={`/products/${cat.slug}`}
                               onClick={closeMobileMenu}
-                              className="font-mono text-xs uppercase text-tertiary hover:text-primary py-1 flex items-center gap-2"
+                              className="font-ui text-label text-tertiary hover:text-primary py-1 flex items-center gap-2"
                             >
                               <span className="material-symbols-outlined text-[14px]">{cat.icon}</span>
                               {cat.name}
@@ -424,7 +456,7 @@ export default function Header() {
                               key={`${link.path}-${link.label}`}
                               href={link.path}
                               onClick={closeMobileMenu}
-                              className="font-mono text-xs uppercase text-tertiary hover:text-primary py-1 flex items-center gap-2"
+                              className="font-ui text-label text-tertiary hover:text-primary py-1 flex items-center gap-2"
                             >
                               {link.icon && (
                                 <span className="material-symbols-outlined text-[14px]">{link.icon}</span>
@@ -437,7 +469,7 @@ export default function Header() {
                               key={app.slug}
                               href={`/applications/${app.slug}`}
                               onClick={closeMobileMenu}
-                              className="font-mono text-xs uppercase text-tertiary hover:text-primary py-1 flex items-center gap-2 pl-2"
+                              className="font-ui text-label text-tertiary hover:text-primary py-1 flex items-center gap-2 pl-2"
                             >
                               <span className="material-symbols-outlined text-[14px]">{app.icon}</span>
                               {app.name}
@@ -452,7 +484,7 @@ export default function Header() {
                               key={link.path}
                               href={link.path}
                               onClick={closeMobileMenu}
-                              className="font-mono text-xs uppercase text-tertiary hover:text-primary py-1 flex items-center gap-2"
+                              className="font-ui text-label text-tertiary hover:text-primary py-1 flex items-center gap-2"
                             >
                               {link.icon && (
                                 <span className="material-symbols-outlined text-[14px]">{link.icon}</span>
@@ -465,7 +497,7 @@ export default function Header() {
                               key={link.path}
                               href={link.path}
                               onClick={closeMobileMenu}
-                              className="font-mono text-xs uppercase text-tertiary hover:text-primary py-1 flex items-center gap-2"
+                              className="font-ui text-label text-tertiary hover:text-primary py-1 flex items-center gap-2"
                             >
                               {link.icon && (
                                 <span className="material-symbols-outlined text-[14px]">{link.icon}</span>
@@ -486,7 +518,7 @@ export default function Header() {
                 key={item.path}
                 href={item.path}
                 onClick={closeMobileMenu}
-                className={`group font-mono text-sm uppercase tracking-widest transition-colors duration-200 py-3 block border-b-2 ${
+                className={`group font-ui text-button tracking-ui transition-colors duration-200 py-3 block border-b-2 ${
                   itemActive
                     ? "border-primary font-bold"
                     : "border-transparent hover:border-primary"
