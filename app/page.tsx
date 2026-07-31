@@ -50,7 +50,7 @@ export default function Home() {
   return (
     <div className="flex flex-col w-full">
       {/* Technical Hero Section */}
-      <section className="relative w-full min-h-[650px] md:min-h-[720px] lg:min-h-[760px] bg-surface tech-grid flex items-center overflow-hidden border-b border-border py-16">
+      <section className="relative w-full min-h-[500px] md:min-h-[580px] lg:min-h-[620px] bg-surface tech-grid flex items-center overflow-hidden border-b border-border pt-8 pb-16 lg:pt-10 lg:pb-20">
         <div className="absolute inset-0 opacity-30 pointer-events-none">
           <div className="adk-container h-full border-x border-on-surface/5"></div>
         </div>
@@ -103,21 +103,12 @@ export default function Home() {
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
           >
-            {/* Big Active Image Frame */}
-            <div
-              className="relative w-full aspect-[4/3] bg-tech-blue/40 border border-border/80 overflow-hidden flex items-center justify-center p-12 transition-all duration-300 shadow-sm hover:shadow-md group"
-              style={{ backgroundImage: "radial-gradient(var(--adk-border) 1px, transparent 1px)", backgroundSize: "16px 16px" }}
-            >
-              {/* Technical Viewfinder Corner Brackets */}
-              <div className="absolute top-3 left-3 w-3.5 h-3.5 border-t border-l border-primary/60 pointer-events-none"></div>
-              <div className="absolute top-3 right-3 w-3.5 h-3.5 border-t border-r border-primary/60 pointer-events-none"></div>
-              <div className="absolute bottom-3 left-3 w-3.5 h-3.5 border-b border-l border-primary/60 pointer-events-none"></div>
-              <div className="absolute bottom-3 right-3 w-3.5 h-3.5 border-b border-r border-primary/60 pointer-events-none"></div>
-
+            {/* Big Active Image Area (Transparent background) */}
+            <div className="relative w-full aspect-[4/3] flex items-center justify-center p-4 group">
               {heroSlides.map((slide, idx) => (
                 <div
                   key={slide.title}
-                  className={`absolute inset-0 p-12 flex items-center justify-center transition-all duration-700 ease-in-out ${idx === activeSlide
+                  className={`absolute inset-0 flex items-center justify-center transition-all duration-700 ease-in-out ${idx === activeSlide
                       ? "opacity-100 translate-x-0 scale-100 z-10"
                       : "opacity-0 translate-x-8 scale-95 z-0 pointer-events-none"
                     }`}
@@ -125,16 +116,8 @@ export default function Home() {
                   <img
                     src={slide.src}
                     alt={slide.title}
-                    className="object-contain max-h-full max-w-full transition-transform duration-500 group-hover:scale-105"
+                    className="object-contain max-h-full max-w-full transition-transform duration-500 group-hover:scale-105 mix-blend-multiply dark:mix-blend-normal"
                   />
-
-                  {/* Overlay Metadata */}
-                  <div className="absolute top-6 left-6 font-ui text-[9px] text-primary/70 tracking-wider font-bold">
-                    [ SYSTEM_NODE: {slide.tag} ]
-                  </div>
-                  <div className="absolute top-6 right-6 font-ui text-[9px] text-foreground/40 font-bold">
-                    SYS_STATUS: ACTIVE
-                  </div>
                 </div>
               ))}
 
@@ -144,7 +127,7 @@ export default function Home() {
                   e.stopPropagation();
                   setActiveSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length);
                 }}
-                className="absolute left-4 top-1/2 -translate-y-1/2 z-30 w-8 h-8 rounded-full bg-surface/90 hover:bg-primary hover:text-white border border-border flex items-center justify-center transition-all opacity-0 group-hover:opacity-100 cursor-pointer shadow-sm"
+                className="absolute left-2 top-1/2 -translate-y-1/2 z-30 w-8 h-8 rounded-full bg-surface/90 hover:bg-primary hover:text-white border border-border flex items-center justify-center transition-all opacity-0 group-hover:opacity-100 cursor-pointer shadow-sm"
                 aria-label="Previous image"
               >
                 <span className="material-symbols-outlined text-[18px] leading-none">chevron_left</span>
@@ -154,32 +137,32 @@ export default function Home() {
                   e.stopPropagation();
                   setActiveSlide((prev) => (prev + 1) % heroSlides.length);
                 }}
-                className="absolute right-4 top-1/2 -translate-y-1/2 z-30 w-8 h-8 rounded-full bg-surface/90 hover:bg-primary hover:text-white border border-border flex items-center justify-center transition-all opacity-0 group-hover:opacity-100 cursor-pointer shadow-sm"
+                className="absolute right-2 top-1/2 -translate-y-1/2 z-30 w-8 h-8 rounded-full bg-surface/90 hover:bg-primary hover:text-white border border-border flex items-center justify-center transition-all opacity-0 group-hover:opacity-100 cursor-pointer shadow-sm"
                 aria-label="Next image"
               >
                 <span className="material-symbols-outlined text-[18px] leading-none">chevron_right</span>
               </button>
+            </div>
 
-              {/* Tech details on active slide (Frosted Glass Panel) */}
-              <div className="absolute bottom-0 inset-x-0 bg-surface/90 backdrop-blur-md border-t border-border/60 p-5 z-20 flex flex-col justify-end">
-                <div className="flex items-center justify-between gap-4">
-                  <Link
-                    href={heroSlides[activeSlide].link}
-                    className="font-display text-[15px] font-bold tracking-wider text-foreground hover:text-primary transition-colors flex items-center gap-1.5 group/link uppercase"
-                  >
-                    {heroSlides[activeSlide].title}
-                    <span className="material-symbols-outlined text-[15px] group-hover/link:translate-x-1 transition-transform">
-                      arrow_forward
-                    </span>
-                  </Link>
-                  <span className="font-ui text-[9px] text-primary font-bold tracking-wider bg-primary/10 px-2.5 py-0.5 border border-primary/20 whitespace-nowrap">
-                    {heroSlides[activeSlide].tag}
+            {/* Slide details (positioned cleanly below the image) */}
+            <div className="border-t border-border pt-4">
+              <div className="flex items-center justify-between gap-4">
+                <Link
+                  href={heroSlides[activeSlide].link}
+                  className="font-display text-[16px] font-bold tracking-wider text-foreground hover:text-primary transition-colors flex items-center gap-1.5 group/link uppercase"
+                >
+                  {heroSlides[activeSlide].title}
+                  <span className="material-symbols-outlined text-[15px] group-hover/link:translate-x-1 transition-transform">
+                    arrow_forward
                   </span>
-                </div>
-                <p className="font-body text-small text-tertiary mt-2 max-w-md leading-relaxed">
-                  {heroSlides[activeSlide].desc}
-                </p>
+                </Link>
+                <span className="font-ui text-[9px] text-primary font-bold tracking-wider bg-primary/10 px-2.5 py-0.5 border border-primary/20 whitespace-nowrap">
+                  {heroSlides[activeSlide].tag}
+                </span>
               </div>
+              <p className="font-body text-small text-tertiary mt-2 leading-relaxed">
+                {heroSlides[activeSlide].desc}
+              </p>
             </div>
 
             {/* Selector Mini-Cards */}
