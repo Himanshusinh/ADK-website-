@@ -53,13 +53,14 @@ const CLOUDINARY_MAPPINGS: Record<string, string> = {
 // Helper to resolve the correct path (Cloudinary if uploaded, fallback to local /images/)
 export function resolveImagePath(localRelPath: string): string {
   if (localRelPath in CLOUDINARY_MAPPINGS) {
-    return `${CLOUDINARY_BASE_URL}/${CLOUDINARY_MAPPINGS[localRelPath]}`;
+    return encodeURI(`${CLOUDINARY_BASE_URL}/${CLOUDINARY_MAPPINGS[localRelPath]}`);
   }
   return `/images/${localRelPath}`;
 }
 
+
 // Standalone centralized asset URLs (to prevent duplicate definitions)
-export const ADK_LOGO_URL = `${CLOUDINARY_BASE_URL}/AC-QMS/Product details/ADK-Cloud/ADK LOGO-01.png`;
+export const ADK_LOGO_URL = encodeURI(`${CLOUDINARY_BASE_URL}/AC-QMS/Product details/ADK-Cloud/ADK LOGO-01.png`);
 export const BLUEPRINT_SCHEMATIC_URL = "https://lh3.googleusercontent.com/aida-public/AB6AXuCOzIemnEm6V7GR2bo2GIhMBDg-NJl725eBjH6It2PL5Sjo3WhVXoleVnbj2RcKOtirLuRswUqVRNvXpHSz2a0kKCw-CTpTVqGVLS7GCKiWDHyrcsm_fQB46p0q66NNXsvVYrOjLtLu818Swx4zkFGA9-Fn2yq50Rx7pQADrf3UTTpD-48Xwfjm7Zxli8zgv18UZ5_YoHFaIvX_LtmhrsF5NXHgkt5MrIIZGMyZ0t623K4ca27FPmHufTV1KZmThJQB2H5pD3sq7CBy5-E";
 export const CHATBOT_ICON_URL = "/images/chatbot-icon.png";
 export const WHATSAPP_LOGO_URL = "/images/wp_logo.jpg";
