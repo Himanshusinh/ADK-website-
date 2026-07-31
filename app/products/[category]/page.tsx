@@ -35,16 +35,27 @@ export default async function CategoryPage(props: CategoryPageProps) {
     notFound();
   }
 
+  const siblingCategories = categories.filter((c) => c.slug !== category.slug);
+
   return (
     <div className="flex flex-col w-full bg-surface">
       {/* Breadcrumb & Navigation */}
       <div className="w-full bg-surface-container py-3 border-b border-border/50">
-        <div className="adk-container flex items-center gap-2 font-ui text-label uppercase text-tertiary">
-          <Link href="/products" className="hover:text-primary transition-colors">
-            Catalogue
+        <div className="adk-container flex items-center justify-between gap-4 font-ui text-label uppercase text-tertiary">
+          <div className="flex items-center gap-2 min-w-0">
+            <Link href="/products" className="hover:text-primary transition-colors shrink-0">
+              Catalogue
+            </Link>
+            <span>/</span>
+            <span className="text-foreground font-bold truncate">{category.name}</span>
+          </div>
+          <Link
+            href="/products"
+            className="hover:text-primary transition-colors shrink-0 flex items-center gap-1"
+          >
+            <span className="material-symbols-outlined text-[14px]">arrow_back</span>
+            Back to catalogue
           </Link>
-          <span>/</span>
-          <span className="text-foreground font-bold">{category.name}</span>
         </div>
       </div>
 
@@ -60,6 +71,26 @@ export default async function CategoryPage(props: CategoryPageProps) {
         </div>
       </section>
 
+      {/* Sibling categories */}
+      {siblingCategories.length > 0 && (
+        <div className="w-full border-b border-border/50 bg-surface">
+          <div className="adk-container py-4 flex flex-col sm:flex-row sm:items-center gap-3 font-ui text-label uppercase">
+            <span className="text-foreground/40 tracking-wider shrink-0">OTHER_CATEGORIES:</span>
+            <div className="flex flex-wrap gap-x-4 gap-y-2">
+              {siblingCategories.map((c) => (
+                <Link
+                  key={c.slug}
+                  href={`/products/${c.slug}`}
+                  className="text-tertiary hover:text-primary border-b border-transparent hover:border-primary transition-colors"
+                >
+                  {c.name}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Models List */}
       <section className="py-20 adk-container w-full">
         <h2 className="font-display text-subheading uppercase mb-4 border-b border-border pb-4 text-foreground">
@@ -71,70 +102,79 @@ export default async function CategoryPage(props: CategoryPageProps) {
         </p>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {category.models.map((model) => (
-            <div
-              key={model.slug}
-              className="bg-card border border-border p-6 md:p-8 flex flex-col justify-between shadow-sm hover:border-primary transition-colors group"
-            >
-              <div>
-                <div className="flex justify-between items-center mb-6">
-                  <span className="font-ui text-label text-tertiary uppercase">
-                    SPEC_ID: {model.id}
-                  </span>
-                  <span className="font-ui text-label font-bold text-primary bg-primary/5 px-2 py-1 border border-primary/20">
-                    {model.status}
-                  </span>
-                </div>
+          {category.models.map((model) => {
+            const modelHref = `/products/${category.slug}/${model.slug}`;
 
-                <div className="h-64 bg-tech-blue flex items-center justify-center p-6 mb-6 overflow-hidden">
-                  <OptionalImage
-                    src={model.image}
-                    fallback={getProductImageFallback(category.slug)}
-                    alt={model.name}
-                    className="object-contain h-full w-full mix-blend-multiply dark:mix-blend-normal group-hover:scale-105 transition-transform duration-500"
-                    placeholderLabel={model.name}
-                  />
-                </div>
+            return (
+              <div
+                key={model.slug}
+                className="bg-card border border-border p-6 md:p-8 flex flex-col justify-between shadow-sm hover:border-primary transition-colors group"
+              >
+                <div>
+                  <div className="flex justify-between items-center mb-6">
+                    <span className="font-ui text-label text-tertiary uppercase">
+                      SPEC_ID: {model.id}
+                    </span>
+                    <span className="font-ui text-label font-bold text-primary bg-primary/5 px-2 py-1 border border-primary/20">
+                      {model.status}
+                    </span>
+                  </div>
 
-                <h3 className="font-display text-subheading text-foreground uppercase mb-3 font-bold group-hover:text-primary transition-colors">
-                  {model.name}
-                </h3>
-                <p className="font-body text-small text-tertiary leading-relaxed mb-6">
-                  {model.tagline}
-                </p>
+                  <Link
+                    href={modelHref}
+                    className="h-64 bg-tech-blue flex items-center justify-center p-6 mb-6 overflow-hidden"
+                  >
+                    <OptionalImage
+                      src={model.image}
+                      fallback={getProductImageFallback(category.slug)}
+                      alt={model.name}
+                      className="object-contain h-full w-full mix-blend-multiply dark:mix-blend-normal group-hover:scale-105 transition-transform duration-500"
+                      placeholderLabel={model.name}
+                    />
+                  </Link>
 
-                {/* Tech Specs block */}
-                <div className="bg-surface-container p-4 mb-6 border-l-4 border-primary">
-                  <span className="font-ui text-label uppercase text-foreground/40 tracking-wider block mb-3 font-bold">
-                    SPECIFICATION_OVERVIEW:
-                  </span>
-                  <div className="grid grid-cols-2 gap-y-3 font-ui text-label">
-                    {Object.entries(model.specsSummary).map(([key, val]) => (
-                      <React.Fragment key={key}>
-                        <div className="text-tertiary uppercase">{key}:</div>
-                        <div className="text-foreground font-bold text-right">{val}</div>
-                      </React.Fragment>
-                    ))}
+                  <Link href={modelHref}>
+                    <h3 className="font-display text-subheading text-foreground uppercase mb-3 font-bold group-hover:text-primary transition-colors">
+                      {model.name}
+                    </h3>
+                  </Link>
+                  <p className="font-body text-small text-tertiary leading-relaxed mb-6">
+                    {model.tagline}
+                  </p>
+
+                  {/* Tech Specs block */}
+                  <div className="bg-surface-container p-4 mb-6 border-l-4 border-primary">
+                    <span className="font-ui text-label uppercase text-foreground/40 tracking-wider block mb-3 font-bold">
+                      SPECIFICATION_OVERVIEW:
+                    </span>
+                    <div className="grid grid-cols-2 gap-y-3 font-ui text-label">
+                      {Object.entries(model.specsSummary).map(([key, val]) => (
+                        <React.Fragment key={key}>
+                          <div className="text-tertiary uppercase">{key}:</div>
+                          <div className="text-foreground font-bold text-right">{val}</div>
+                        </React.Fragment>
+                      ))}
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <div className="grid grid-cols-2 gap-4 mt-6">
-                <Link
-                  href={`/products/${category.slug}/${model.slug}`}
-                  className="border border-foreground py-3 font-ui text-label uppercase hover:bg-charcoal hover:text-white transition-all tracking-ui text-center font-bold"
-                >
-                  [ DATA_SHEET ]
-                </Link>
-                <Link
-                  href={`/contact?interest=${model.name}`}
-                  className="bg-primary hover:bg-primary-hover text-white py-3 font-ui text-label uppercase transition-all tracking-ui text-center font-bold"
-                >
-                  [ GET_QUOTE ]
-                </Link>
+                <div className="grid grid-cols-2 gap-4 mt-6">
+                  <Link
+                    href={modelHref}
+                    className="border border-foreground py-3 font-ui text-label uppercase hover:bg-charcoal hover:text-white transition-all tracking-ui text-center font-bold"
+                  >
+                    [ VIEW_SPECS ]
+                  </Link>
+                  <Link
+                    href={`/contact?interest=${model.name}`}
+                    className="bg-primary hover:bg-primary-hover text-white py-3 font-ui text-label uppercase transition-all tracking-ui text-center font-bold"
+                  >
+                    [ GET_QUOTE ]
+                  </Link>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </section>
 

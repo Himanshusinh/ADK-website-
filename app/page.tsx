@@ -317,18 +317,11 @@ export default function Home() {
                 .filter((c): c is (typeof categories)[number] => Boolean(c))
                 .map((category) => {
                   const model = category.models[0];
-                  // Dual-position frames the full fiber laser machine more clearly than padded pioneer heroes
-                  const fiberAlt =
-                    category.slug === "fiber-laser-cutting"
-                      ? category.models.find((m) => m.slug === "dual-position-exchange-table")
-                          ?.image
-                      : undefined;
-
                   return {
                     slug: category.slug,
                     name: category.name,
                     description: category.description || category.tagline,
-                    image: fiberAlt || model?.image || "",
+                    image: model?.image || "",
                     href: `/products/${category.slug}`,
                   };
                 })}
