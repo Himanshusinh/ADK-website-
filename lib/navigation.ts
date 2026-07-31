@@ -9,7 +9,7 @@ export interface NavChildLink {
 
 export interface NavItem {
   label: string;
-  path: string;
+  path: string; 
   mega?: MegaMenuId;
   children?: NavChildLink[];
   activePaths?: string[];

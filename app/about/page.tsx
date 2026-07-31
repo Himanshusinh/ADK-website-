@@ -1,17 +1,49 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { teamPhotos, factoryPhotos, companyInfo, timelineEvents } from "@/lib/data";
 import { useEnquiry } from "@/components/EnquiryContext";
 import Reveal from "@/components/Reveal";
+import { teamPhotoPath } from "@/lib/media";
 import MediaImage from "@/components/MediaImage";
 
 export default function AboutPage() {
   const { openEnquiry } = useEnquiry();
 
-  const groupPhoto = teamPhotos.find((p) => p.type === "group");
   const leadershipPhotos = teamPhotos.filter((p) => p.type === "portrait");
   const heroFactory = factoryPhotos[0];
+
+  const teamSlides = [
+    {
+      src: teamPhotoPath("img1.jpg"),
+      title: "ADK Workshop Group",
+      sublabel: "Factory works team",
+    },
+    {
+      src: teamPhotoPath("img2.jpg"),
+      title: "ADK Core Engineering Group",
+      sublabel: "Precision development unit",
+    },
+  ];
+
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+
+  useEffect(() => {
+    if (isHovered) return;
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % teamSlides.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, [isHovered, teamSlides.length]);
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % teamSlides.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + teamSlides.length) % teamSlides.length);
+  };
 
   const coreCapabilities = [
     { title: "Pre-Sale Consultation", desc: "Personalized consultations to understand your requirements and recommend tailored sheet metal solutions that drive success and efficiency." },
@@ -70,9 +102,8 @@ export default function AboutPage() {
       </section>
       </Reveal>
 
-      {/* Group Photo */}
-      {groupPhoto && (
-        <Reveal delay={100}>
+      {/* Group Photos Slider */}
+      <Reveal delay={100}>
         <section className="py-12 bg-surface border-y border-border">
           <div className="adk-container">
             <MediaImage
@@ -85,8 +116,7 @@ export default function AboutPage() {
             />
           </div>
         </section>
-        </Reveal>
-      )}
+      </Reveal>
 
       {/* Leadership / Team */}
       <Reveal delay={100}>
@@ -139,20 +169,21 @@ export default function AboutPage() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {factoryPhotos.slice(1).map((photo) => (
-            <MediaImage
-              key={photo.id}
-              src={photo.image}
-              alt={photo.title}
-              label={photo.title}
-              icon="factory"
-              aspectRatio="video"
-              sublabel={photo.sublabel}
-            />
-          ))}
-        </div>
-      </section>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {factoryPhotos.slice(1).map((photo) => (
+              <MediaImage
+                key={photo.id}
+                src={photo.image}
+                alt={photo.title}
+                label={photo.title}
+                icon="factory"
+                aspectRatio="portrait"
+                objectFit="contain"
+                sublabel={photo.sublabel}
+              />
+            ))}
+          </div>
+        </section>
       </Reveal>
 
       {/* Core Capabilities */}

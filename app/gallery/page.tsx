@@ -151,14 +151,14 @@ export default function GalleryPage() {
           </div>
         )}
 
-        {activeTab === "videos" && (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {videoItems.map((vid) => (
-              <VideoCard key={vid.id} video={vid} />
-            ))}
-          </div>
-        )}
-      </section>
+          {activeTab === "videos" && (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {videoItems.map((vid) => (
+                <VideoCard key={vid.id} video={vid} />
+              ))}
+            </div>
+          )}
+        </section>
       </Reveal>
     </div>
   );

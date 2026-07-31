@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEnquiry } from "./EnquiryContext";
 import { categories, applications } from "@/lib/data";
+import { ADK_LOGO_URL } from "@/lib/media";
 import {
   type MegaMenuId,
   type NavItem,
@@ -208,7 +209,7 @@ export default function Header() {
             <img
               alt="ADK Engineering & Solutions"
               className="h-9 md:h-10 w-auto object-contain"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuC02yPbv_g8Oda-vZHalFmvlIPpe-cnTtOEiw2Wz1kmkk3UmvwwT8dKlkMv6tJIE0OSZPqjhaPntcz9QJX0SSX4kyqtPWiP5tlHT8DeeGXHYCMJ23hP6O-Tqp8VUXZTvdNyLYfavY6EGrrgXnPhs_G81LDpphx769XflpGp2uh_kF377tW7zRSRsVJu65nL8JFesrWB_h7L3JVxLyttWL-wteQLGlNGbemoFLQ3-7vdbll1t5IMvV0vB2n4R8-RGCpZB7c"
+              src={ADK_LOGO_URL}
             />
           </Link>
 

@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { ADK_LOGO_URL } from "@/lib/media";
 import EnquiryModal from "@/components/EnquiryModal";
 import { EnquiryProvider } from "@/components/EnquiryContext";
 import FloatingContactStack from "@/components/FloatingContactStack";
@@ -65,6 +66,11 @@ export const metadata: Metadata = {
       "Fiber laser cutting, CNC plasma, press brakes & PEB machinery. 750+ installations across India.",
   },
   robots: { index: true, follow: true },
+  icons: {
+    icon: ADK_LOGO_URL,
+    shortcut: ADK_LOGO_URL,
+    apple: ADK_LOGO_URL,
+  },
 };
 
 const jsonLd = {

@@ -3,10 +3,11 @@
 import Image from "next/image";
 import React, { useCallback, useState } from "react";
 import { useEnquiry } from "@/components/EnquiryContext";
+import { CHATBOT_ICON_URL } from "@/lib/media";
 import ChatbotPanel, { type ChatMessage } from "@/components/ChatbotPanel";
 import { getBotReply, getWelcomeMessage, TYPING_DELAY_MS } from "@/lib/chatbot";
 
-const CHATBOT_ICON_SRC = "/images/chatbot-icon.png";
+const CHATBOT_ICON_SRC = CHATBOT_ICON_URL;
 
 function createId(): string {
   return `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;

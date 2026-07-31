@@ -137,18 +137,18 @@ import {
   installationPhotoPath,
   blogHeroPath,
   videoThumbnailPath,
+  FALLBACK_IMG_LASER,
+  FALLBACK_IMG_PRESS,
+  FALLBACK_IMG_PEB,
 } from "./media";
 
 export type { ClientLogo } from "./clientLogos";
 export { clientLogos, clientMarqueeRowA, clientMarqueeRowB } from "./clientLogos";
 
-// Shared prototype image URLs (fallback until client photos uploaded)
-const IMG_LASER =
-  "https://lh3.googleusercontent.com/aida-public/AB6AXuDjVmy45Wdcg-47h-bK5z5RU9W0abt_yHTY3yiXMp3-6swNoq60WtALnMUTABQVTq71U7fJzCIdxrCl7G7EJxTIkSihb7FtFu2ZUlTQaRM_OLB5wPd8aL5NDPjyc8uKdcaPSzn7bkZ3H2-lGKVqMd50i8LuoUee1PXUb1AO3JfIjcSojclqCiqgnGyHxYFIsRv1V2vdwZDMyZjrSwSTusS2rVdlqfPSpiH5fT21CWvKgJculpd9Doy2uA";
-const IMG_PRESS =
-  "https://lh3.googleusercontent.com/aida-public/AB6AXuB38iSnXjArEblknQSMqDim07fHM_dRbPA_IDg3F56CTqo_1-gIStXEPrBP8mfv2nMRyrvToNrmVE9lTbu-F9TV49IRWZr1W-4reIbGbN0NMWVBqT1d-El2A6SSRNFWgvX3p6cR2CGDx51KBQtsS_f7NeTVovS13SsaZdXLmw97rd2Zde1Vjnq3a30Jp35TVcSPD9Dcsso8cU90_aGh1X7qEfWUv2ot0IREjCb4_7U0FPboB8T80cCH_A";
-const IMG_PEB =
-  "https://lh3.googleusercontent.com/aida-public/AB6AXuAZQwmqr4e-fG8zkgbDfquMEOPCWLRUoP6ClGgI1WQgJlW0SHTY0227I52qRvFC6RWwpJ6xoOz829YKuUfp0PFKd__FOb3YIBzGLpansmaotqKkNCTWbqizLvncH6YikTAeNHHllRY7IHKG28WeX-O0_CphL7Sol08GlbuL_Q_aHiUz2kIpbubDQudMACXCo2NoUJo1R3XhjcGzPkGcRvGSnRz-8u8R3uTcT-UvO77WsywB2CGNWb84Oy1K7DeJrG-SvFo";
+// References to centralized Cloudinary image assets
+const IMG_LASER = FALLBACK_IMG_LASER;
+const IMG_PRESS = FALLBACK_IMG_PRESS;
+const IMG_PEB = FALLBACK_IMG_PEB;
 
 // -------------------------------------------------------------
 // COMPANY & SITE FACTS
