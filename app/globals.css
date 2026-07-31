@@ -27,25 +27,30 @@
   --adk-nav-cta-gap: clamp(40px, 4vw, 56px);
   --adk-header-main-height: 64px;
 
+  /* Font family aliases (all map to Inter) */
+  --adk-font-display: var(--adk-font-inter);
+  --adk-font-ui: var(--adk-font-inter);
+  --adk-font-body: var(--adk-font-inter);
+
   /* Typography scale */
-  --text-hero: clamp(3rem, 5.5vw, 4.75rem);
-  --text-heading: clamp(2rem, 3.5vw, 3rem);
-  --text-subheading: clamp(1.5rem, 2vw, 2rem);
-  --text-card-title: clamp(1.125rem, 1.35vw, 1.5rem);
-  --text-nav: clamp(0.75rem, 1vw, 0.8125rem);
-  --text-button: clamp(0.8125rem, 1vw, 0.875rem);
-  --text-label: clamp(0.6875rem, 0.8vw, 0.75rem);
-  --text-body: clamp(0.9375rem, 1vw, 1rem);
-  --text-small: 0.8125rem;
-  --text-stat: clamp(2rem, 4vw, 3.25rem);
+  --text-hero: clamp(2.5rem, 4.8vw, 4rem);
+  --text-heading: clamp(1.75rem, 3vw, 2.5rem);
+  --text-subheading: clamp(1.25rem, 1.8vw, 1.75rem);
+  --text-card-title: clamp(1rem, 1.2vw, 1.25rem);
+  --text-nav: clamp(0.6875rem, 0.9vw, 0.75rem);
+  --text-button: clamp(0.75rem, 0.9vw, 0.8125rem);
+  --text-label: clamp(0.625rem, 0.75vw, 0.6875rem);
+  --text-body: clamp(0.875rem, 0.9vw, 0.9375rem);
+  --text-small: 0.75rem;
+  --text-stat: clamp(1.75rem, 3.5vw, 2.75rem);
 
-  --tracking-display: 0.04em;
-  --tracking-ui: 0.12em;
-  --tracking-label: 0.15em;
+  --tracking-display: -0.02em;
+  --tracking-ui: 0.02em;
+  --tracking-label: 0.04em;
 
-  --leading-hero: 0.98;
-  --leading-heading: 1;
-  --leading-body: 1.7;
+  --leading-hero: 1.05;
+  --leading-heading: 1.15;
+  --leading-body: 1.6;
   --leading-ui: 1.2;
 }
 
@@ -102,9 +107,9 @@
   --color-foreground: var(--adk-foreground);
   --color-border: var(--adk-border);
 
-  --font-display: var(--adk-font-display), sans-serif;
-  --font-ui: var(--adk-font-ui), monospace;
-  --font-body: var(--adk-font-body), system-ui, sans-serif;
+  --font-display: var(--adk-font-inter), system-ui, sans-serif;
+  --font-ui: var(--adk-font-inter), system-ui, sans-serif;
+  --font-body: var(--adk-font-inter), system-ui, sans-serif;
 }
 
 body {
@@ -119,6 +124,7 @@ body {
 .text-hero {
   font-family: var(--font-display);
   font-size: var(--text-hero);
+  font-weight: 700;
   line-height: var(--leading-hero);
   letter-spacing: var(--tracking-display);
   text-transform: uppercase;
@@ -127,6 +133,7 @@ body {
 .text-heading {
   font-family: var(--font-display);
   font-size: var(--text-heading);
+  font-weight: 700;
   line-height: var(--leading-heading);
   letter-spacing: var(--tracking-display);
   text-transform: uppercase;
@@ -135,6 +142,7 @@ body {
 .text-subheading {
   font-family: var(--font-display);
   font-size: var(--text-subheading);
+  font-weight: 600;
   line-height: var(--leading-heading);
   letter-spacing: var(--tracking-display);
   text-transform: uppercase;
@@ -143,6 +151,7 @@ body {
 .text-card-title {
   font-family: var(--font-display);
   font-size: var(--text-card-title);
+  font-weight: 600;
   line-height: var(--leading-heading);
   letter-spacing: var(--tracking-display);
   text-transform: uppercase;
@@ -201,6 +210,7 @@ body {
 .text-stat {
   font-family: var(--font-display);
   font-size: var(--text-stat);
+  font-weight: 700;
   line-height: var(--leading-heading);
   letter-spacing: var(--tracking-display);
   text-transform: uppercase;

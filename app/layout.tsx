@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import { Bebas_Neue, IBM_Plex_Mono, Inter } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -24,22 +24,9 @@ const themeInitScript = `
 })();
 `;
 
-const fontDisplay = Bebas_Neue({
-  weight: "400",
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--adk-font-display",
-});
-
-const fontUi = IBM_Plex_Mono({
-  weight: ["400", "500", "600", "700"],
-  subsets: ["latin"],
-  variable: "--adk-font-ui",
-});
-
-const fontBody = Inter({
-  weight: ["400", "500", "600"],
-  subsets: ["latin"],
-  variable: "--adk-font-body",
+  variable: "--adk-font-inter",
 });
 
 export const metadata: Metadata = {
@@ -137,7 +124,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${fontDisplay.variable} ${fontUi.variable} ${fontBody.variable} h-full antialiased`}
+      className={`${inter.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <head>
