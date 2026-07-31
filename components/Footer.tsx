@@ -15,8 +15,8 @@ export default function Footer() {
           <div className="lg:col-span-4 flex flex-col items-start">
             <img
               alt="ADK Engineering Logo"
-              className="h-9 w-auto mb-6 brightness-0 invert object-contain"
-              src={ADK_LOGO_URL}
+              className="h-9 w-auto mb-6 object-contain"
+              src="/lightlogo.png"
             />
             <p className="font-body text-small text-light-gray/60 leading-relaxed mb-8 max-w-sm">
               {companyInfo.tagline}. Over {companyInfo.stats.yearsExperience} years of excellence in

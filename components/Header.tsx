@@ -208,8 +208,13 @@ export default function Header() {
           <Link href="/" className="flex items-center shrink-0 mr-[var(--adk-logo-nav-gap)]">
             <img
               alt="ADK Engineering & Solutions"
-              className="h-9 md:h-10 w-auto object-contain"
-              src={ADK_LOGO_URL}
+              className="h-9 md:h-10 w-auto object-contain dark:hidden"
+              src="/darklogo.png"
+            />
+            <img
+              alt="ADK Engineering & Solutions"
+              className="h-9 md:h-10 w-auto object-contain hidden dark:block"
+              src="/lightlogo.png"
             />
           </Link>
 
