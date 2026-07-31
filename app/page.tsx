@@ -7,6 +7,7 @@ import { categories, applications, companyInfo, whyChooseAdk, clientMarqueeRowA,
 import { BLUEPRINT_SCHEMATIC_URL, resolveImagePath } from "@/lib/media";
 import Reveal from "@/components/Reveal";
 import ClientLogoMarquee from "@/components/ClientLogoMarquee";
+import MachineryBentoGrid from "@/components/MachineryBentoGrid";
 
 export default function Home() {
   const { openEnquiry } = useEnquiry();
@@ -318,60 +319,37 @@ export default function Home() {
               </Link>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {categories.slice(0, 3).map((category) => {
-                const model = category.models[0];
-                if (!model) return null;
-                return (
-                  <div
-                    key={model.slug}
-                    className="bg-card p-6 border border-border hover:border-primary transition-all duration-300 flex flex-col h-full shadow-sm hover:shadow-xl group"
-                  >
-                    <div className="font-ui text-label text-tertiary mb-4 uppercase tracking-display flex justify-between">
-                      <span>SPEC_ID: {model.id}</span>
-                      <span className="text-primary font-bold">{model.status}</span>
-                    </div>
-                    <div className="h-56 mb-6 bg-tech-blue flex items-center justify-center p-6 overflow-hidden">
-                      <img
-                        className="object-contain h-full w-full mix-blend-multiply dark:mix-blend-normal transition-transform duration-500 group-hover:scale-105"
-                        alt={model.name}
-                        src={model.image}
-                      />
-                    </div>
-                    <h3 className="font-display text-subheading text-foreground uppercase mb-4 tracking-display group-hover:text-primary transition-colors">
-                      {model.name}
-                    </h3>
+            <MachineryBentoGrid
+              items={(
+                [
+                  "fiber-laser-cutting",
+                  "cnc-plasma-cutting",
+                  "cnc-press-brake",
+                  "fiber-laser-welding",
+                  "panel-bender",
+                  "peb-machinery",
+                ] as const
+              )
+                .map((slug) => categories.find((c) => c.slug === slug))
+                .filter((c): c is (typeof categories)[number] => Boolean(c))
+                .map((category) => {
+                  const model = category.models[0];
+                  // Dual-position frames the full fiber laser machine more clearly than padded pioneer heroes
+                  const fiberAlt =
+                    category.slug === "fiber-laser-cutting"
+                      ? category.models.find((m) => m.slug === "dual-position-exchange-table")
+                          ?.image
+                      : undefined;
 
-                    {/* Tech Specs block */}
-                    <div className="bg-surface-container p-4 mb-6 border-l-4 border-primary">
-                      <div className="grid grid-cols-2 gap-y-3 font-ui text-label">
-                        {Object.entries(model.specsSummary).map(([key, val]) => (
-                          <React.Fragment key={key}>
-                            <div className="text-tertiary uppercase">{key}:</div>
-                            <div className="text-foreground font-bold text-right">{val}</div>
-                          </React.Fragment>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div className="mt-auto space-y-2">
-                      <Link
-                        href={`/products/${category.slug}/${model.slug}`}
-                        className="w-full border border-foreground py-3 font-ui text-label uppercase hover:bg-charcoal hover:text-white transition-all tracking-ui flex items-center justify-center gap-2 text-center"
-                      >
-                        [ SYSTEM_SCHEMATICS ]
-                      </Link>
-                      <button
-                        onClick={() => openEnquiry(`Quote Request: ${model.name}`)}
-                        className="w-full bg-primary hover:bg-primary-hover text-white py-3 font-ui text-label uppercase transition-all tracking-ui flex items-center justify-center gap-2 cursor-pointer font-bold"
-                      >
-                        [ INQUIRE_FOR_PRICING ]
-                      </button>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
+                  return {
+                    slug: category.slug,
+                    name: category.name,
+                    description: category.description || category.tagline,
+                    image: fiberAlt || model?.image || "",
+                    href: `/products/${category.slug}`,
+                  };
+                })}
+            />
           </div>
         </section>
       </Reveal>

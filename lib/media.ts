@@ -58,6 +58,33 @@ export function resolveImagePath(localRelPath: string): string {
   return `/images/${localRelPath}`;
 }
 
+/** Hard-crop a Cloudinary URL to a fill frame (keeps local /images paths unchanged). */
+export function withCloudinaryFill(
+  src: string,
+  width: number,
+  height: number,
+  gravity: "auto" | "center" | "face" = "auto",
+): string {
+  if (!src.includes("res.cloudinary.com/") || !src.includes("/upload/")) {
+    return src;
+  }
+  return src.replace(
+    /\/upload\/(?:f_auto,q_auto\/)?/,
+    `/upload/c_fill,g_${gravity},w_${width},h_${height},f_auto,q_auto/`,
+  );
+}
+
+/** Trim empty studio padding from a Cloudinary image (no subject crop). */
+export function withCloudinaryTrim(src: string, colorTolerance = 20): string {
+  if (!src.includes("res.cloudinary.com/") || !src.includes("/upload/")) {
+    return src;
+  }
+  return src.replace(
+    /\/upload\/(?:f_auto,q_auto\/)?/,
+    `/upload/e_trim:${colorTolerance}/f_auto,q_auto/`,
+  );
+}
+
 
 // Standalone centralized asset URLs (to prevent duplicate definitions)
 export const ADK_LOGO_URL = encodeURI(`${CLOUDINARY_BASE_URL}/AC-QMS/Product details/ADK-Cloud/ADK LOGO-01.png`);
