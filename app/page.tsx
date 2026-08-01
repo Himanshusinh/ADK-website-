@@ -4,10 +4,11 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useEnquiry } from "@/components/EnquiryContext";
 import { categories, applications, companyInfo, whyChooseAdk, clientMarqueeRowA, clientMarqueeRowB } from "@/lib/data";
-import { BLUEPRINT_SCHEMATIC_URL, resolveImagePath } from "@/lib/media";
+import { BLUEPRINT_SCHEMATIC_URL, resolveImagePath, productHeroPath } from "@/lib/media";
 import Reveal from "@/components/Reveal";
 import ClientLogoMarquee from "@/components/ClientLogoMarquee";
 import MachineryBentoGrid from "@/components/MachineryBentoGrid";
+import HomeHeroSchematic, { type HomeHeroSlide } from "@/components/HomeHeroSchematic";
 
 export default function Home() {
   const { openEnquiry } = useEnquiry();
@@ -15,27 +16,42 @@ export default function Home() {
   const [activeSlide, setActiveSlide] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
 
-  const heroSlides = [
+  const heroSlides: HomeHeroSlide[] = [
     {
       title: "Fiber Laser Cutting",
-      src: resolveImagePath("products/fiber-laser-cutting/industrial-pioneer-exchange-table/hero.jpg"),
+      src: resolveImagePath("home/hero-fiber-laser.jpg"),
       desc: "Ultra-high precision cutting systems up to 60kW with exchange table.",
       link: "/products/fiber-laser-cutting",
       tag: "FL_SERIES_60KW",
+      callouts: [
+        { label: "FIBER LASER SOURCE", side: "left" },
+        { label: "CNC_CONTROL_UNIT", side: "bottom" },
+        { label: "PRECISION 0.01MM", side: "right" },
+      ],
     },
     {
       title: "CNC Plasma Cutting",
-      src: resolveImagePath("products/cnc-plasma-cutting/gantry-plasma-cutting/hero.jpg"),
+      src: resolveImagePath("home/hero-plasma.jpg"),
       desc: "Heavy-duty gantry plasma systems engineered for structural steel fabrication.",
       link: "/products/cnc-plasma-cutting",
       tag: "PLASMA_GANTRY",
+      callouts: [
+        { label: "GANTRY STRUCTURE", side: "left" },
+        { label: "HYPERTHERM SOURCE", side: "bottom" },
+        { label: "THICK PLATE READY", side: "right" },
+      ],
     },
     {
       title: "CNC Press Brake",
-      src: resolveImagePath("products/cnc-press-brake/nadkpress-cnc-press-brake/hero.jpg"),
+      src: resolveImagePath("home/hero-press-brake.jpg"),
       desc: "NADKpress precision bending technology for complex sheet metal operations.",
       link: "/products/cnc-press-brake",
       tag: "PRESS_BRAKE_CNC",
+      callouts: [
+        { label: "SERVO MAIN DRIVE", side: "left" },
+        { label: "MULTI-AXIS BACKGAUGE", side: "bottom" },
+        { label: "DSP LASER GUARD", side: "right" },
+      ],
     },
   ];
 
@@ -99,100 +115,18 @@ export default function Home() {
           </div>
 
           <div
-            className="w-full relative flex flex-col gap-6"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
           >
-            {/* Big Active Image Area (Transparent background) */}
-            <div className="relative w-full aspect-[4/3] flex items-center justify-center p-4 group">
-              {heroSlides.map((slide, idx) => (
-                <div
-                  key={slide.title}
-                  className={`absolute inset-0 flex items-center justify-center transition-all duration-700 ease-in-out ${idx === activeSlide
-                      ? "opacity-100 translate-x-0 scale-100 z-10"
-                      : "opacity-0 translate-x-8 scale-95 z-0 pointer-events-none"
-                    }`}
-                >
-                  <img
-                    src={slide.src}
-                    alt={slide.title}
-                    className="object-contain max-h-full max-w-full transition-transform duration-500 group-hover:scale-105 mix-blend-multiply dark:mix-blend-normal"
-                  />
-                </div>
-              ))}
-
-              {/* Navigation Arrows */}
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setActiveSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length);
-                }}
-                className="absolute left-2 top-1/2 -translate-y-1/2 z-30 w-8 h-8 rounded-full bg-surface/90 hover:bg-primary hover:text-white border border-border flex items-center justify-center transition-all opacity-0 group-hover:opacity-100 cursor-pointer shadow-sm"
-                aria-label="Previous image"
-              >
-                <span className="material-symbols-outlined text-[18px] leading-none">chevron_left</span>
-              </button>
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setActiveSlide((prev) => (prev + 1) % heroSlides.length);
-                }}
-                className="absolute right-2 top-1/2 -translate-y-1/2 z-30 w-8 h-8 rounded-full bg-surface/90 hover:bg-primary hover:text-white border border-border flex items-center justify-center transition-all opacity-0 group-hover:opacity-100 cursor-pointer shadow-sm"
-                aria-label="Next image"
-              >
-                <span className="material-symbols-outlined text-[18px] leading-none">chevron_right</span>
-              </button>
-            </div>
-
-            {/* Slide details (positioned cleanly below the image) */}
-            <div className="border-t border-border pt-4">
-              <div className="flex items-center justify-between gap-4">
-                <Link
-                  href={heroSlides[activeSlide].link}
-                  className="font-display text-[16px] font-bold tracking-wider text-foreground hover:text-primary transition-colors flex items-center gap-1.5 group/link uppercase"
-                >
-                  {heroSlides[activeSlide].title}
-                  <span className="material-symbols-outlined text-[15px] group-hover/link:translate-x-1 transition-transform">
-                    arrow_forward
-                  </span>
-                </Link>
-                <span className="font-ui text-[9px] text-primary font-bold tracking-wider bg-primary/10 px-2.5 py-0.5 border border-primary/20 whitespace-nowrap">
-                  {heroSlides[activeSlide].tag}
-                </span>
-              </div>
-              <p className="font-body text-small text-tertiary mt-2 leading-relaxed">
-                {heroSlides[activeSlide].desc}
-              </p>
-            </div>
-
-            {/* Selector Mini-Cards */}
-            <div className="grid grid-cols-3 gap-4">
-              {heroSlides.map((slide, idx) => {
-                const isActive = idx === activeSlide;
-                return (
-                  <button
-                    key={slide.title}
-                    onClick={() => setActiveSlide(idx)}
-                    className={`text-left p-4 border transition-all duration-300 flex flex-col justify-between cursor-pointer relative group/btn ${isActive
-                        ? "bg-card border-primary shadow-sm"
-                        : "bg-surface border-border hover:border-foreground/30"
-                      }`}
-                  >
-                    <div className="flex justify-between items-center w-full">
-                      <span className={`font-ui text-[10px] font-bold ${isActive ? "text-primary" : "text-tertiary"}`}>
-                        0{idx + 1}
-                      </span>
-                      {isActive && (
-                        <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-                      )}
-                    </div>
-                    <span className="font-display text-[12px] uppercase tracking-wider text-foreground font-bold mt-2.5 block group-hover/btn:text-primary transition-colors">
-                      {slide.title.replace(" Cutting", "").replace(" CNC ", " ")}
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
+            <HomeHeroSchematic
+              slides={heroSlides}
+              activeSlide={activeSlide}
+              onPrev={() =>
+                setActiveSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length)
+              }
+              onNext={() => setActiveSlide((prev) => (prev + 1) % heroSlides.length)}
+              onSelect={setActiveSlide}
+            />
           </div>
         </div>
       </section>
@@ -285,17 +219,15 @@ export default function Home() {
 
       {/* Featured Machinery Showcases */}
       <Reveal delay={100}>
-        <section className="py-20 bg-card">
+        <section className="py-20 bg-surface border-y border-border">
           <div className="adk-container w-full">
-            <div className="flex flex-col md:flex-row justify-between items-end mb-12 border-b border-border pb-6">
-              <div>
-                <h2 className="font-display text-heading text-foreground uppercase tracking-display">
-                  Advanced Machinery
-                </h2>
-              </div>
+            <div className="mb-10 flex flex-col gap-3 border-b border-border pb-5 md:flex-row md:items-end md:justify-between">
+              <h2 className="font-display text-heading text-foreground uppercase tracking-display leading-none">
+                Advanced Machinery
+              </h2>
               <Link
                 href="/products"
-                className="font-ui text-label text-primary hover:underline mb-2 tracking-ui flex items-center gap-2 font-bold"
+                className="font-ui text-label text-primary hover:text-primary-hover tracking-ui flex items-center gap-2 transition-colors shrink-0"
               >
                 VIEW_COMPLETE_INVENTORY{" "}
                 <span className="material-symbols-outlined text-[14px]">arrow_forward</span>
@@ -313,18 +245,21 @@ export default function Home() {
                   "peb-machinery",
                 ] as const
               )
-                .map((slug) => categories.find((c) => c.slug === slug))
-                .filter((c): c is (typeof categories)[number] => Boolean(c))
-                .map((category) => {
+                .map((slug) => {
+                  const category = categories.find((c) => c.slug === slug);
+                  if (!category) return null;
                   const model = category.models[0];
                   return {
                     slug: category.slug,
                     name: category.name,
-                    description: category.description || category.tagline,
-                    image: model?.image || "",
+                    description: category.tagline,
+                    image: model
+                      ? productHeroPath(category.slug, model.slug)
+                      : "",
                     href: `/products/${category.slug}`,
                   };
-                })}
+                })
+                .filter((item): item is NonNullable<typeof item> => Boolean(item))}
             />
           </div>
         </section>
