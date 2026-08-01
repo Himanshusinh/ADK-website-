@@ -29,10 +29,10 @@ export default function MachineryBentoGrid({ items }: MachineryBentoGridProps) {
         <Link
           key={item.slug}
           href={item.href}
-          className={`group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-surface-container transition-shadow duration-300 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${SPAN_CLASSES[index] ?? "min-h-[240px]"}`}
+          className={`group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-white dark:bg-card transition-all duration-300 hover:border-primary hover:shadow-md hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${SPAN_CLASSES[index] ?? "min-h-[240px]"}`}
         >
-          <div className="relative z-10 shrink-0 px-5 pt-5 md:px-6 md:pt-6 transition-opacity duration-300 md:group-hover:opacity-0 md:group-focus-visible:opacity-0">
-            <h3 className="font-display text-card-title text-foreground tracking-display">
+          <div className="relative z-10 shrink-0 px-5 pt-5 md:px-6 md:pt-6">
+            <h3 className="font-display text-card-title text-foreground tracking-display group-hover:text-primary transition-colors">
               {item.name}
             </h3>
             {item.label ? (
@@ -42,36 +42,19 @@ export default function MachineryBentoGrid({ items }: MachineryBentoGridProps) {
             ) : null}
           </div>
 
-          {/* Full machine — object-contain never crops */}
-          <div className="relative mx-3 mb-3 mt-4 min-h-0 flex-1 overflow-hidden rounded-xl bg-white md:mx-4 md:mb-4">
+          <div className="relative mx-3 mb-3 mt-4 min-h-0 flex-1 overflow-hidden rounded-xl border border-border/60 bg-white dark:bg-tech-blue md:mx-4 md:mb-4">
             <img
               src={item.image}
               alt=""
-              className="absolute inset-0 h-full w-full object-contain object-center p-2 md:p-3"
+              className="absolute inset-0 h-full w-full object-contain object-center p-2 md:p-3 mix-blend-multiply dark:mix-blend-normal"
             />
           </div>
 
-          <div className="relative z-10 px-5 pb-5 md:px-6 md:pb-6 lg:hidden">
+          <div className="relative z-10 px-5 pb-5 md:px-6 md:pb-6">
             <p className="font-body text-small text-tertiary line-clamp-3">
               {item.description}
             </p>
             <span className="mt-3 inline-flex items-center gap-2 font-ui text-label text-primary tracking-ui uppercase">
-              Learn More
-              <span aria-hidden="true">→</span>
-            </span>
-          </div>
-
-          <div
-            className="pointer-events-none absolute inset-0 z-20 hidden lg:flex flex-col justify-end rounded-2xl bg-black/80 p-6 opacity-0 translate-y-2 transition-all duration-300 ease-out group-hover:opacity-100 group-hover:translate-y-0 group-focus-visible:opacity-100 group-focus-visible:translate-y-0"
-            aria-hidden="true"
-          >
-            <h3 className="font-display text-card-title text-white tracking-display">
-              {item.name}
-            </h3>
-            <p className="mt-3 font-body text-small text-white/85 line-clamp-4 max-w-prose">
-              {item.description}
-            </p>
-            <span className="mt-5 inline-flex items-center gap-2 font-ui text-label text-white tracking-ui uppercase">
               Learn More
               <span aria-hidden="true">→</span>
             </span>

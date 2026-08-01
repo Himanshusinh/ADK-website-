@@ -66,10 +66,10 @@ export default function BlogHubPage() {
                       {post.category}
                     </span>
                   )}
-                  <h3 className="font-display text-subheading text-foreground uppercase font-bold group-hover:text-primary transition-colors mb-4">
+                  <h3 className="font-display text-subheading text-foreground uppercase font-semibold group-hover:text-primary transition-colors mb-4">
                     {post.title}
                   </h3>
-                  <p className="font-body text-small text-tertiary leading-relaxed mb-6">
+                  <p className="font-body font-normal text-small text-tertiary leading-relaxed mb-6">
                     {post.summary}
                   </p>
                 </div>

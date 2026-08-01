@@ -260,6 +260,15 @@ export function blogHeroPath(slug: string): string {
   return resolveImagePath(`blog/${slug}.jpg`);
 }
 
+/** Industry application page heroes — `public/images/applications/{slug}/hero.jpg` */
+export function applicationHeroPath(slug: string): string {
+  return resolveImagePath(`applications/${slug}/hero.jpg`);
+}
+
+export function getApplicationHeroFallback(): string {
+  return FALLBACK_IMG_LASER;
+}
+
 export function videoThumbnailPath(id: string): string {
   return resolveImagePath(`videos/thumbnails/${id}.jpg`);
 }

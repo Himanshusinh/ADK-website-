@@ -3,6 +3,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { applications, categories } from "@/lib/data";
+import { getApplicationHeroFallback } from "@/lib/media";
+import OptionalImage from "@/components/OptionalImage";
 import IndustryEnquiryForm from "./IndustryEnquiryForm";
 
 interface IndustryPageProps {
@@ -56,20 +58,54 @@ export default async function IndustryPage(props: IndustryPageProps) {
         </div>
       </div>
 
-      {/* Hero Header */}
-      <section className="relative bg-surface border-b border-border py-16 tech-grid">
-        <div className="adk-container flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-          <div>
-            <h1 className="font-display text-heading text-foreground uppercase tracking-display leading-none mb-4">
-              {app.name} Manufacturing
+      {/* Hero Header — 21:9 cinematic band (clamped for mobile / ultrawide) */}
+      <section className="relative w-full overflow-hidden border-b border-border h-[clamp(300px,42.857vw,560px)]">
+        <div className="absolute inset-0">
+          <OptionalImage
+            src={app.heroImage}
+            fallback={getApplicationHeroFallback()}
+            alt=""
+            className="absolute inset-0 h-full w-full object-cover object-center"
+            placeholderLabel={app.name}
+            containerClassName="absolute inset-0 h-full w-full"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/35 via-black/15 to-transparent" />
+        </div>
+        <div className="relative adk-container flex h-full items-center py-10 md:py-12">
+          <div className="max-w-2xl min-w-0">
+            <div className="mb-3 flex items-center gap-3">
+              <div
+                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-white/25 bg-white/10 backdrop-blur-sm"
+                aria-hidden
+              >
+                <span className="material-symbols-outlined text-[22px] text-primary leading-none">
+                  {app.icon}
+                </span>
+              </div>
+              <p className="font-ui text-label uppercase tracking-[0.14em] text-primary">
+                Sector application
+              </p>
+            </div>
+            <h1 className="font-display text-heading text-white uppercase tracking-display leading-[1.05] mb-4">
+              {app.name}
             </h1>
-            <p className="font-body text-small text-tertiary max-w-xl leading-relaxed">
+            <p className="font-body text-small md:text-body text-white/80 max-w-xl leading-relaxed mb-6">
               {app.tagline}
             </p>
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-2 font-ui text-label uppercase tracking-wider text-white/55">
+              <span>{recommendedModels.length} calibrated systems</span>
+              <span className="hidden sm:inline text-white/25" aria-hidden>
+                /
+              </span>
+              <Link
+                href="#recommended-machinery"
+                className="text-white/80 hover:text-primary transition-colors inline-flex items-center gap-1"
+              >
+                View machinery
+                <span className="material-symbols-outlined text-[14px]">arrow_downward</span>
+              </Link>
+            </div>
           </div>
-          <span className="material-symbols-outlined text-[64px] text-primary bg-card border border-border p-4 shadow-sm">
-            {app.icon}
-          </span>
         </div>
       </section>
 
@@ -131,7 +167,7 @@ export default async function IndustryPage(props: IndustryPageProps) {
 
       {/* Recommended Machines */}
       {recommendedModels.length > 0 && (
-        <section className="py-20 adk-container w-full">
+        <section id="recommended-machinery" className="py-20 adk-container w-full scroll-mt-28">
           <h2 className="font-display text-subheading uppercase mb-10 text-foreground text-center">
             Recommended Machinery Configurations
           </h2>

@@ -55,20 +55,20 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
         <BlogHeroImage src={post.heroImage} title={post.title} category={post.category} />
 
         <div className="border-l-4 border-primary pl-6 mb-8">
-          <div className="flex items-center gap-4 font-ui text-label text-tertiary uppercase mb-3">
+          <div className="flex items-center gap-4 font-ui text-label text-tertiary uppercase mb-3 font-normal">
             <span>{post.date}</span>
             <span>{"//"}</span>
             <span>{post.readTime}</span>
           </div>
-          <h1 className="font-display text-heading text-foreground uppercase tracking-display mb-4">
+          <h1 className="font-display text-heading text-foreground uppercase tracking-display mb-4 font-semibold">
             {post.title}
           </h1>
-          <span className="font-ui text-label text-tertiary/75 uppercase block">
+          <span className="font-ui text-label text-tertiary/75 uppercase block font-normal">
             AUTHOR_CREDIT: {post.author}
           </span>
         </div>
 
-        <div className="pt-6 border-t border-border">
+        <div className="pt-6 border-t border-border normal-case">
           <BlogContent content={post.content} />
         </div>
 

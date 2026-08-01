@@ -207,6 +207,25 @@ body {
   line-height: var(--leading-body);
 }
 
+/* Long-form blog body — never inherit industrial uppercase utilities */
+.blog-article-body,
+.blog-article-body p,
+.blog-article-body li {
+  text-transform: none;
+  letter-spacing: normal;
+  font-weight: 400;
+}
+
+.blog-article-body h2 {
+  text-transform: none;
+  letter-spacing: -0.01em;
+  font-weight: 600;
+}
+
+.blog-article-body strong {
+  font-weight: 500;
+}
+
 .text-stat {
   font-family: var(--font-display);
   font-size: var(--text-stat);
