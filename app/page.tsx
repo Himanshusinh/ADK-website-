@@ -26,9 +26,9 @@ export default function Home() {
       link: "/products/fiber-laser-cutting",
       tag: "FL Series 60kW",
       callouts: [
-        { label: "CNC_CONTROL_UNIT", x: 22, y: 42, align: "left", length: 88 },
-        { label: "LASER CUTTING HEAD", x: 54, y: 30, align: "top", length: 56 },
-        { label: "PRECISION 0.01MM", x: 78, y: 54, align: "right", length: 96 },
+        { label: "CNC_CONTROL_UNIT", x: 30, y: 48, align: "left", length: 88 },
+        { label: "LASER CUTTING HEAD", x: 51, y: 46, align: "top", length: 44 },
+        { label: "PRECISION 0.01MM", x: 62, y: 56, align: "right", length: 96 },
       ],
     },
     {
@@ -38,9 +38,9 @@ export default function Home() {
       link: "/products/cnc-plasma-cutting",
       tag: "Plasma Gantry",
       callouts: [
-        { label: "GANTRY STRUCTURE", x: 34, y: 30, align: "left", length: 100 },
-        { label: "PLASMA TORCH", x: 50, y: 34, align: "top", length: 64 },
-        { label: "THICK PLATE READY", x: 72, y: 56, align: "right", length: 88 },
+        { label: "GANTRY STRUCTURE", x: 40, y: 38, align: "left", length: 100 },
+        { label: "PLASMA TORCH", x: 50, y: 46, align: "top", length: 64 },
+        { label: "THICK PLATE READY", x: 66, y: 54, align: "right", length: 88 },
       ],
     },
     {
@@ -50,9 +50,9 @@ export default function Home() {
       link: "/products/cnc-press-brake",
       tag: "Press Brake CNC",
       callouts: [
-        { label: "SERVO MAIN DRIVE", x: 32, y: 22, align: "top", length: 52 },
-        { label: "MULTI-AXIS BACKGAUGE", x: 50, y: 62, align: "bottom", length: 72 },
-        { label: "DSP LASER GUARD", x: 24, y: 48, align: "left", length: 92 },
+        { label: "SERVO MAIN DRIVE", x: 34, y: 28, align: "top", length: 52 },
+        { label: "MULTI-AXIS BACKGAUGE", x: 52, y: 60, align: "bottom", length: 72 },
+        { label: "DSP LASER GUARD", x: 32, y: 46, align: "left", length: 92 },
       ],
     },
   ];

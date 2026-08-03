@@ -111,15 +111,15 @@ export default async function ModelPage(props: ModelPageProps) {
           <div className="flex flex-col sm:flex-row gap-3 pt-2">
             <a
               href="#enquiry"
-              className="bg-primary hover:bg-primary-hover text-white font-ui text-label px-9 py-3.5 min-w-[9.5rem] transition-colors tracking-ui text-center font-bold uppercase"
+              className="inline-flex items-center justify-center bg-primary hover:bg-primary-hover text-white font-ui text-label px-9 py-3.5 transition-colors tracking-ui font-bold uppercase"
             >
               Get Quote
             </a>
             <Link
               href={brochureHref}
-              className="border border-foreground text-foreground font-ui text-label px-9 py-3.5 hover:bg-charcoal hover:text-white transition-colors tracking-ui flex items-center justify-center gap-2 font-bold uppercase"
+              className="inline-flex items-center justify-center gap-2 border border-foreground text-foreground font-ui text-label px-9 py-3.5 hover:bg-charcoal hover:text-white transition-colors tracking-ui font-bold uppercase"
             >
-              <span className="material-symbols-outlined text-[16px]">download</span>
+              <span className="material-symbols-outlined text-[16px] leading-none">download</span>
               Download Catalogue
             </Link>
           </div>
