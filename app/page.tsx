@@ -4,11 +4,12 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useEnquiry } from "@/components/EnquiryContext";
 import { categories, applications, companyInfo, whyChooseAdk, clientMarqueeRowA, clientMarqueeRowB } from "@/lib/data";
-import { BLUEPRINT_SCHEMATIC_URL, resolveImagePath, productHeroPath } from "@/lib/media";
+import { BLUEPRINT_SCHEMATIC_URL, resolveImagePath, productHeroPath, withCloudinaryBackgroundRemoval } from "@/lib/media";
 import Reveal from "@/components/Reveal";
 import ClientLogoMarquee from "@/components/ClientLogoMarquee";
 import MachineryBentoGrid from "@/components/MachineryBentoGrid";
 import HomeHeroSchematic, { type HomeHeroSlide } from "@/components/HomeHeroSchematic";
+import DecadeVideo from "@/components/DecadeVideo";
 
 export default function Home() {
   const { openEnquiry } = useEnquiry();
@@ -19,41 +20,48 @@ export default function Home() {
   const heroSlides: HomeHeroSlide[] = [
     {
       title: "Fiber Laser Cutting",
+      // Fiber asset rejects bg-removal transforms (400); already a dark cutout PNG
       src: resolveImagePath("home/hero-fiber-laser.jpg"),
       desc: "Ultra-high precision cutting systems up to 60kW with exchange table.",
       link: "/products/fiber-laser-cutting",
-      tag: "FL_SERIES_60KW",
+      tag: "FL Series 60kW",
       callouts: [
-        { label: "FIBER LASER SOURCE", side: "left" },
-        { label: "CNC_CONTROL_UNIT", side: "bottom" },
-        { label: "PRECISION 0.01MM", side: "right" },
+        { label: "CNC_CONTROL_UNIT", x: 22, y: 42, align: "left", length: 88 },
+        { label: "LASER CUTTING HEAD", x: 54, y: 30, align: "top", length: 56 },
+        { label: "PRECISION 0.01MM", x: 78, y: 54, align: "right", length: 96 },
       ],
     },
     {
       title: "CNC Plasma Cutting",
-      src: resolveImagePath("home/hero-plasma.jpg"),
+      src: withCloudinaryBackgroundRemoval(resolveImagePath("home/hero-plasma.jpg")),
       desc: "Heavy-duty gantry plasma systems engineered for structural steel fabrication.",
       link: "/products/cnc-plasma-cutting",
-      tag: "PLASMA_GANTRY",
+      tag: "Plasma Gantry",
       callouts: [
-        { label: "GANTRY STRUCTURE", side: "left" },
-        { label: "HYPERTHERM SOURCE", side: "bottom" },
-        { label: "THICK PLATE READY", side: "right" },
+        { label: "GANTRY STRUCTURE", x: 34, y: 30, align: "left", length: 100 },
+        { label: "PLASMA TORCH", x: 50, y: 34, align: "top", length: 64 },
+        { label: "THICK PLATE READY", x: 72, y: 56, align: "right", length: 88 },
       ],
     },
     {
       title: "CNC Press Brake",
-      src: resolveImagePath("home/hero-press-brake.jpg"),
+      src: withCloudinaryBackgroundRemoval(resolveImagePath("home/hero-press-brake.jpg")),
       desc: "NADKpress precision bending technology for complex sheet metal operations.",
       link: "/products/cnc-press-brake",
-      tag: "PRESS_BRAKE_CNC",
+      tag: "Press Brake CNC",
       callouts: [
-        { label: "SERVO MAIN DRIVE", side: "left" },
-        { label: "MULTI-AXIS BACKGAUGE", side: "bottom" },
-        { label: "DSP LASER GUARD", side: "right" },
+        { label: "SERVO MAIN DRIVE", x: 32, y: 22, align: "top", length: 52 },
+        { label: "MULTI-AXIS BACKGAUGE", x: 50, y: 62, align: "bottom", length: 72 },
+        { label: "DSP LASER GUARD", x: 24, y: 48, align: "left", length: 92 },
       ],
     },
   ];
+
+  const homeMachineImage: Record<string, string> = {
+    "fiber-laser-cutting": resolveImagePath("home/hero-fiber-laser.jpg"),
+    "cnc-plasma-cutting": resolveImagePath("home/hero-plasma.jpg"),
+    "cnc-press-brake": resolveImagePath("home/hero-press-brake.jpg"),
+  };
 
   useEffect(() => {
     if (isHovered) return;
@@ -103,13 +111,13 @@ export default function Home() {
                 onClick={() => openEnquiry("General Catalogue Inquiry")}
                 className="bg-charcoal text-white border border-charcoal font-ui text-button uppercase font-bold px-9 py-3.5 hover:bg-primary hover:border-primary transition-colors duration-200 tracking-ui cursor-pointer"
               >
-                INITIATE_CATALOGUE
+                Request Catalogue
               </button>
               <Link
                 href="/resources"
                 className="bg-transparent text-tertiary border border-border font-ui text-button uppercase px-9 py-3.5 hover:text-foreground hover:border-foreground/40 transition-colors duration-200 tracking-ui text-center"
               >
-                VIEW_SPECS.PDF
+                View Specs
               </Link>
             </div>
           </div>
@@ -166,7 +174,7 @@ export default function Home() {
                     </p>
                   </div>
                   <div className="font-ui text-label text-primary group-hover:translate-x-1 transition-transform mt-4 flex items-center gap-1">
-                    ACCESS_CATALOGUE <span className="material-symbols-outlined text-[12px]">arrow_forward</span>
+                    Access Catalogue <span className="material-symbols-outlined text-[12px]">arrow_forward</span>
                   </div>
                 </Link>
               ))}
@@ -229,7 +237,7 @@ export default function Home() {
                 href="/products"
                 className="font-ui text-label text-primary hover:text-primary-hover tracking-ui flex items-center gap-2 transition-colors shrink-0"
               >
-                VIEW_COMPLETE_INVENTORY{" "}
+                View Full Inventory{" "}
                 <span className="material-symbols-outlined text-[14px]">arrow_forward</span>
               </Link>
             </div>
@@ -237,9 +245,9 @@ export default function Home() {
             <MachineryBentoGrid
               items={(
                 [
-                  "fiber-laser-cutting",
-                  "cnc-plasma-cutting",
                   "cnc-press-brake",
+                  "cnc-plasma-cutting",
+                  "fiber-laser-cutting",
                   "fiber-laser-welding",
                   "panel-bender",
                   "peb-machinery",
@@ -253,9 +261,9 @@ export default function Home() {
                     slug: category.slug,
                     name: category.name,
                     description: category.tagline,
-                    image: model
-                      ? productHeroPath(category.slug, model.slug)
-                      : "",
+                    image:
+                      homeMachineImage[category.slug] ??
+                      (model ? productHeroPath(category.slug, model.slug) : ""),
                     href: `/products/${category.slug}`,
                   };
                 })
@@ -319,7 +327,7 @@ export default function Home() {
                 href="/applications"
                 className="font-ui text-label text-primary hover:underline mb-2 tracking-ui flex items-center gap-2 font-bold"
               >
-                EXPLORE_ALL_SECTORS{" "}
+                Explore All Sectors{" "}
                 <span className="material-symbols-outlined text-[14px]">arrow_forward</span>
               </Link>
             </div>
@@ -363,9 +371,26 @@ export default function Home() {
                 href="/clients"
                 className="font-ui text-label text-primary hover:underline tracking-ui font-bold"
               >
-                VIEW_ALL_CLIENTS →
+                View All Clients →
               </Link>
             </div>
+          </div>
+        </section>
+      </Reveal>
+
+      {/* 10 Years of ADK */}
+      <Reveal delay={100}>
+        <section className="py-20 bg-surface border-y border-border">
+          <div className="adk-container w-full">
+            <div className="mb-10 flex flex-col gap-3 border-b border-border pb-5 md:flex-row md:items-end md:justify-between">
+              <h2 className="font-display text-heading text-foreground uppercase tracking-display leading-none">
+                10 Years of ADK
+              </h2>
+              <p className="font-ui text-label text-tertiary uppercase max-w-sm leading-relaxed md:text-right">
+                A decade of precision machinery, service, and trust.
+              </p>
+            </div>
+            <DecadeVideo />
           </div>
         </section>
       </Reveal>
@@ -386,13 +411,13 @@ export default function Home() {
                 onClick={() => openEnquiry("General Machinery Enquiry")}
                 className="bg-primary hover:bg-primary-hover text-white font-ui text-label tracking-ui px-10 py-5 border border-primary transition-all font-bold cursor-pointer"
               >
-                [ INITIATE_ENQUIRY ]
+                Start Enquiry
               </button>
               <Link
                 href="/contact"
                 className="bg-transparent text-white border border-white/30 font-ui text-label tracking-ui px-10 py-5 hover:bg-card hover:text-foreground transition-all text-center"
               >
-                [ CONTACT_OPERATIONS ]
+                Contact Operations
               </Link>
             </div>
           </div>

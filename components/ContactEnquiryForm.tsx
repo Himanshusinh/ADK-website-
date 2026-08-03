@@ -79,7 +79,7 @@ export default function ContactEnquiryForm({ defaultInterest = "" }: ContactEnqu
         </span>
         <h4 className="font-display text-subheading text-foreground uppercase mb-2">Transmission Success</h4>
         <p className="font-ui text-label text-tertiary">
-          REGIST_STATUS: ACTIVE // ID: RECEIVED <br />
+          Thank you. Your request has been received. <br />
           A coordinator will call you back within 6 business hours.
         </p>
       </div>
@@ -170,7 +170,7 @@ export default function ContactEnquiryForm({ defaultInterest = "" }: ContactEnqu
         disabled={submitting}
         className="w-full bg-primary hover:bg-primary-hover text-white font-ui text-label tracking-ui py-3 border border-primary transition-all font-bold cursor-pointer disabled:opacity-60"
       >
-        {submitting ? "[ TRANSMITTING... ]" : "[ INITIATE_TECHNICAL_REQUEST ]"}
+        {submitting ? "Sending…" : "Submit Technical Request"}
       </button>
     </form>
   );

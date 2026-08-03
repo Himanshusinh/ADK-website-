@@ -244,7 +244,7 @@ export default function Header() {
               onClick={() => openEnquiry()}
               className="bg-primary text-white font-ui text-button font-medium tracking-ui px-4 xl:px-5 py-2 border border-primary hover:bg-transparent hover:text-primary transition-all duration-200 whitespace-nowrap cursor-pointer"
             >
-              [ GET_QUOTE ]
+              Get Quote
             </button>
             <ThemeToggle className="hidden min-[1200px]:flex" />
             <button

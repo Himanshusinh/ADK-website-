@@ -13,7 +13,7 @@ export default function NewsEventsPage() {
             NEWS & EVENTS
           </h1>
           <p className="font-ui text-label text-tertiary max-w-xl leading-relaxed">
-            SYSTEM_BROADCAST: Official announcements regarding upcoming machinery trade fairs, new product launches,
+            Official announcements on machinery trade fairs, new product launches,
             and company operational updates.
           </p>
         </div>

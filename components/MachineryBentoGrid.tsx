@@ -30,32 +30,26 @@ export default function MachineryBentoGrid({ items }: MachineryBentoGridProps) {
           href={item.href}
           className={`group relative overflow-hidden rounded-[18px] border border-border bg-white dark:bg-card shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-surface ${SPAN_CLASSES[index] ?? "min-h-[240px]"}`}
         >
-          {/* Product hero */}
-          <div className="absolute inset-0 flex items-end justify-center px-5 pb-5 pt-14 md:px-6 md:pb-6 md:pt-16">
+          {/* Product hero — large, centered, no drop shadow */}
+          <div className="absolute inset-0 flex items-center justify-center px-3 pb-3 pt-12 md:px-4 md:pb-4 md:pt-14">
             <img
               src={item.image}
               alt=""
-              className="max-h-full max-w-full w-full object-contain object-bottom mix-blend-multiply dark:mix-blend-normal drop-shadow-sm transition-transform duration-300 ease-out group-hover:scale-[1.02]"
+              className="max-h-full max-w-full w-full scale-[1.08] object-contain object-center mix-blend-normal transition-transform duration-300 ease-out group-hover:scale-[1.12]"
             />
           </div>
 
-          {/* Soft vignette — theme aware */}
-          <div
-            className="pointer-events-none absolute inset-0 bg-gradient-to-t from-white/80 via-transparent to-white/50 dark:from-card/90 dark:to-card/40"
-            aria-hidden
-          />
-
-          {/* Default title */}
-          <div className="absolute inset-x-0 top-0 z-10 p-5 md:p-6 transition-opacity duration-300 lg:group-hover:opacity-0">
-            <h3 className="font-display text-[clamp(1.15rem,1.5vw,1.5rem)] font-bold text-foreground tracking-tight">
+          {/* Default title — minimal */}
+          <div className="absolute inset-x-0 top-0 z-10 p-4 md:p-5 transition-opacity duration-300 lg:group-hover:opacity-0">
+            <h3 className="font-display text-base md:text-lg font-medium text-foreground tracking-normal">
               {item.name}
             </h3>
           </div>
 
           {/* Hover / mobile: dark fade + white copy */}
-          <div className="absolute inset-0 z-20 flex flex-col justify-end bg-black/0 p-5 md:p-6 transition-colors duration-300 ease-out max-lg:bg-black/60 lg:group-hover:bg-black/70 lg:group-focus-visible:bg-black/70">
+          <div className="absolute inset-0 z-20 flex flex-col justify-end bg-black/0 p-4 md:p-5 transition-colors duration-300 ease-out max-lg:bg-black/60 lg:group-hover:bg-black/70 lg:group-focus-visible:bg-black/70">
             <div className="translate-y-0 opacity-100 transition-all duration-300 ease-out lg:translate-y-3 lg:opacity-0 lg:group-hover:translate-y-0 lg:group-hover:opacity-100 lg:group-focus-visible:translate-y-0 lg:group-focus-visible:opacity-100">
-              <h3 className="font-display text-[clamp(1.15rem,1.5vw,1.5rem)] font-bold text-white tracking-tight mb-2">
+              <h3 className="font-display text-base md:text-lg font-medium text-white tracking-normal mb-2">
                 {item.name}
               </h3>
               <p className="font-body text-[15px] font-normal leading-snug text-white/85 line-clamp-2 max-w-prose">

@@ -137,17 +137,11 @@ const CLOUDINARY_MAPPINGS: Record<string, string> = {
   // — Panel Bender —
   "products/panel-bender/adk-panel-bender-series/hero.jpg":
     "AC-QMS/Product details/Machine Photo/Panel bender/Panel Bender",
-  "products/panel-bender/adk-panel-bender-series/gallery-1.jpg":
-    "AC-QMS/Product details/Machine Photo/Panel bender/Panel Bender",
 
-  // — PEB —
+  // — PEB (hero only until dedicated PEB stills are mapped) —
   "products/peb-machinery/peb-h-beam-welding/hero.jpg":
     "AC-QMS/Product details/CNC Plasma Cutting Machine ( Photos )/Single Layer Forming Machine",
-  "products/peb-machinery/peb-h-beam-welding/gallery-1.jpg":
-    "AC-QMS/Product details/CNC Plasma Cutting Machine ( Photos )/Single Layer Forming Machine",
   "products/peb-machinery/peb-saw-gantry-welding/hero.jpg":
-    "AC-QMS/Product details/CNC Plasma Cutting Machine ( Photos )/Single Layer Forming Machine",
-  "products/peb-machinery/peb-saw-gantry-welding/gallery-1.jpg":
     "AC-QMS/Product details/CNC Plasma Cutting Machine ( Photos )/CNC Plasma Cutting Machine-Gantry Type",
 
   // — Shearing —
@@ -167,6 +161,12 @@ const CLOUDINARY_MAPPINGS: Record<string, string> = {
   // — Spares —
   "products/spares-consumables/spares-consumables-catalogue/hero.jpg":
     "AC-QMS/Product details/LASER WELDING CUTTING CLEANING MACHINE MINI TYPE ( Photos )/7538912108_60063117958_一体机.92",
+
+  // — Home hero / Advanced Machinery —
+  "home/hero-fiber-laser.jpg": "oluj9wq199kbatuppxkl",
+  "home/hero-plasma.jpg":
+    "AC-QMS/Product details/CNC Plasma Cutting Machine ( Photos )/CNC Plasma Cutting Machine-Gantry Type",
+  "home/hero-press-brake.jpg": "go8yh1honqzdocohpw5a",
 
   // — Team —
   "team/img1.jpg": "AC-QMS/Group Photos/img1",
@@ -212,10 +212,26 @@ export function withCloudinaryTrim(src: string, colorTolerance = 20): string {
   );
 }
 
+/** Strip near-white studio backdrop (Cloudinary e_bgremoval). Prefer this over
+ *  e_background_removal — AI removal is unavailable / 400 for some assets. */
+export function withCloudinaryBackgroundRemoval(src: string): string {
+  if (!src.includes("res.cloudinary.com/") || !src.includes("/upload/")) {
+    return src;
+  }
+  return src.replace(
+    /\/upload\/(?:f_auto,q_auto\/)?/,
+    `/upload/e_bgremoval/f_png/`,
+  );
+}
+
 // Standalone centralized asset URLs (to prevent duplicate definitions)
 export const ADK_LOGO_URL = encodeURI(
   `${CLOUDINARY_BASE_URL}/AC-QMS/Product details/ADK-Cloud/ADK LOGO-01`,
 );
+export const ADK_DECADE_VIDEO_URL =
+  "https://res.cloudinary.com/ng7roe1n/video/upload/v1785735863/ADK_10_years_Compressed_t83m6s.mp4";
+export const ADK_DECADE_VIDEO_POSTER =
+  "https://res.cloudinary.com/ng7roe1n/video/upload/so_0,f_auto,q_auto/ADK_10_years_Compressed_t83m6s.jpg";
 export const BLUEPRINT_SCHEMATIC_URL =
   "https://lh3.googleusercontent.com/aida-public/AB6AXuCOzIemnEm6V7GR2bo2GIhMBDg-NJl725eBjH6It2PL5Sjo3WhVXoleVnbj2RcKOtirLuRswUqVRNvXpHSz2a0kKCw-CTpTVqGVLS7GCKiWDHyrcsm_fQB46p0q66NNXsvVYrOjLtLu818Swx4zkFGA9-Fn2yq50Rx7pQADrf3UTTpD-48Xwfjm7Zxli8zgv18UZ5_YoHFaIvX_LtmhrsF5NXHgkt5MrIIZGMyZ0t623K4ca27FPmHufTV1KZmThJQB2H5pD3sq7CBy5-E";
 export const CHATBOT_ICON_URL = "/images/chatbot-icon.png";

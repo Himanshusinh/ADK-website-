@@ -31,7 +31,7 @@ export default function FAQPage() {
             FREQUENTLY ASKED QUESTIONS
           </h1>
           <p className="font-ui text-label text-tertiary max-w-xl leading-relaxed">
-            SYSTEM_SUPPORT: Standard operation replies regarding machine shipping timelines, on-site calibration
+            Answers on machine shipping timelines, on-site calibration, and common support questions.
             training, and service level agreements (SLAs).
           </p>
         </div>
@@ -79,7 +79,7 @@ export default function FAQPage() {
             href="/contact"
             className="inline-block bg-primary hover:bg-primary-hover text-white font-ui text-label tracking-ui px-10 py-5 border border-primary transition-all font-bold"
           >
-            [ CONTACT_SUPPORT ]
+            Contact Support
           </Link>
         </div>
         </div>

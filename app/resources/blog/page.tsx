@@ -24,7 +24,7 @@ export default function BlogHubPage() {
             TECHNICAL ARTICLES & JOURNALS
           </h1>
           <p className="font-ui text-label text-tertiary max-w-xl leading-relaxed">
-            SYSTEM_BULLETINS: Deep-dives on fiber laser gantry alignments, gas parameters, and active crowning bending loops.
+            Deep-dives on fiber laser gantry alignments, gas parameters, and active crowning bending loops.
           </p>
         </div>
       </section>
@@ -76,10 +76,10 @@ export default function BlogHubPage() {
 
                 <div className="border-t border-border/50 pt-4 flex justify-between items-center mt-6">
                   <span className="font-ui text-label text-tertiary/75 uppercase">
-                    WRITTEN_BY: {post.author}
+                    By {post.author}
                   </span>
                   <span className="font-ui text-label text-primary uppercase font-bold group-hover:translate-x-1 transition-transform flex items-center gap-1">
-                    READ_ARTICLE <span className="material-symbols-outlined text-[12px]">arrow_forward</span>
+                    Read article <span className="material-symbols-outlined text-[12px]">arrow_forward</span>
                   </span>
                 </div>
               </div>

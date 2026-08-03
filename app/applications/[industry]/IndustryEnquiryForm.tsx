@@ -50,10 +50,9 @@ export default function IndustryEnquiryForm({ industryName }: IndustryEnquiryFor
           <span className="material-symbols-outlined text-5xl text-primary mb-4 animate-bounce">
             check_circle
           </span>
-          <h4 className="font-display text-subheading text-foreground uppercase mb-2">Transmission Success</h4>
+          <h4 className="font-display text-subheading text-foreground uppercase mb-2">Request received</h4>
           <p className="font-ui text-label text-tertiary">
-            REQUEST_TYPE: IND-CONSULT // SECTOR: RECEIVED <br />
-            Our application engineer will reach out to schedule a technical call.
+            Thank you. Our application engineer will reach out to schedule a technical call.
           </p>
         </div>
       ) : (
@@ -145,7 +144,7 @@ export default function IndustryEnquiryForm({ industryName }: IndustryEnquiryFor
             disabled={submitting}
             className="w-full bg-primary hover:bg-primary-hover text-white font-ui text-label tracking-ui py-3 border border-primary transition-all font-bold cursor-pointer disabled:opacity-60"
           >
-            {submitting ? "[ TRANSMITTING... ]" : "[ SCHEDULE_CONSULTATION ]"}
+            {submitting ? "Sending…" : "Schedule Consultation"}
           </button>
         </form>
       )}

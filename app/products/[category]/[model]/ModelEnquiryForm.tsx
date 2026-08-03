@@ -50,10 +50,9 @@ export default function ModelEnquiryForm({ modelName }: ModelEnquiryFormProps) {
           <span className="material-symbols-outlined text-5xl text-primary mb-4 animate-bounce">
             check_circle
           </span>
-          <h4 className="font-display text-subheading text-foreground uppercase mb-2">Transmission Success</h4>
+          <h4 className="font-display text-subheading text-foreground uppercase mb-2">Request received</h4>
           <p className="font-ui text-label text-tertiary">
-            REQUEST_TYPE: M-SPECIFIC // ID: RECEIVED <br />
-            Our regional manager will email technical documents shortly.
+            Thank you. Our regional manager will email technical documents shortly.
           </p>
         </div>
       ) : (
@@ -145,7 +144,7 @@ export default function ModelEnquiryForm({ modelName }: ModelEnquiryFormProps) {
             disabled={submitting}
             className="w-full bg-primary hover:bg-primary-hover text-white font-ui text-label tracking-ui py-3 border border-primary transition-all font-bold cursor-pointer disabled:opacity-60"
           >
-            {submitting ? "[ TRANSMITTING... ]" : "[ GET_MACHINERY_QUOTE ]"}
+            {submitting ? "Sending…" : "Get Machinery Quote"}
           </button>
         </form>
       )}

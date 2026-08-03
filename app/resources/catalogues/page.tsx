@@ -42,10 +42,10 @@ export default function CataloguesPage() {
       <section className="relative bg-surface border-b border-border py-16 tech-grid">
         <div className="adk-container">
           <h1 className="font-display text-heading text-foreground uppercase tracking-display leading-none mb-6">
-            MACHINERY CATALOGUES & SCHEMATICS
+            Machinery Catalogues
           </h1>
-          <p className="font-ui text-label text-tertiary max-w-xl leading-relaxed">
-            SYSTEM_FILES: Certified technical schematics, dimension vectors, and machine weight metrics files.
+          <p className="font-body text-small text-tertiary max-w-xl leading-relaxed">
+            Technical schematics, dimension sheets, and machine documentation.
           </p>
         </div>
       </section>
@@ -67,7 +67,7 @@ export default function CataloguesPage() {
                     {cat.name}
                   </h3>
                   <span className="font-ui text-label text-tertiary uppercase">
-                    FILE_SIZE: {cat.size} &nbsp;//&nbsp; REF: {cat.id}.PDF
+                    Size: {cat.size} · Ref: {cat.id}
                   </span>
                 </div>
               </div>
@@ -77,7 +77,7 @@ export default function CataloguesPage() {
                 disabled={downloading !== null}
                 className="bg-charcoal text-white font-ui text-label tracking-ui px-6 py-3 border border-foreground hover:bg-primary hover:border-primary disabled:bg-tertiary transition-all text-center font-bold cursor-pointer shrink-0"
               >
-                {downloading === cat.id ? "[ DOWNLOADING... ]" : "[ DOWNLOAD.PDF ]"}
+                {downloading === cat.id ? "Downloading…" : "Download PDF"}
               </button>
             </div>
           ))}

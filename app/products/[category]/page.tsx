@@ -36,10 +36,10 @@ export default async function CategoryPage(props: CategoryPageProps) {
   }
 
   const siblingCategories = categories.filter((c) => c.slug !== category.slug);
+  const showCompare = category.models.length > 1;
 
   return (
     <div className="flex flex-col w-full bg-surface">
-      {/* Breadcrumb & Navigation */}
       <div className="w-full bg-surface-container py-3 border-b border-border/50">
         <div className="adk-container flex items-center justify-between gap-4 font-ui text-label uppercase text-tertiary">
           <div className="flex items-center gap-2 min-w-0">
@@ -59,7 +59,6 @@ export default async function CategoryPage(props: CategoryPageProps) {
         </div>
       </div>
 
-      {/* Hero Header */}
       <section className="relative bg-surface border-b border-border py-16 tech-grid">
         <div className="adk-container">
           <h1 className="font-display text-heading text-foreground uppercase tracking-display leading-none mb-6">
@@ -71,11 +70,10 @@ export default async function CategoryPage(props: CategoryPageProps) {
         </div>
       </section>
 
-      {/* Sibling categories */}
       {siblingCategories.length > 0 && (
         <div className="w-full border-b border-border/50 bg-surface">
           <div className="adk-container py-4 flex flex-col sm:flex-row sm:items-center gap-3 font-ui text-label uppercase">
-            <span className="text-foreground/40 tracking-wider shrink-0">OTHER_CATEGORIES:</span>
+            <span className="text-foreground/40 tracking-wider shrink-0">Other categories</span>
             <div className="flex flex-wrap gap-x-4 gap-y-2">
               {siblingCategories.map((c) => (
                 <Link
@@ -91,17 +89,16 @@ export default async function CategoryPage(props: CategoryPageProps) {
         </div>
       )}
 
-      {/* Models List */}
       <section className="py-20 adk-container w-full">
         <h2 className="font-display text-subheading uppercase mb-4 border-b border-border pb-4 text-foreground">
-          Available Machinery Configurations
+          Available Models
         </h2>
         <p className="font-body text-small text-tertiary mb-8 max-w-2xl leading-relaxed">
-          {category.tagline} Each model below includes full technical specifications,
-          downloadable data sheets, and direct enquiry options.
+          {category.tagline} Open a model for full specifications, materials, and a direct quote
+          enquiry.
         </p>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
           {category.models.map((model) => {
             const modelHref = `/products/${category.slug}/${model.slug}`;
 
@@ -112,9 +109,7 @@ export default async function CategoryPage(props: CategoryPageProps) {
               >
                 <div>
                   <div className="flex justify-between items-center mb-6">
-                    <span className="font-ui text-label text-tertiary uppercase">
-                      SPEC_ID: {model.id}
-                    </span>
+                    <span className="font-ui text-label text-tertiary uppercase">{model.id}</span>
                     <span className="font-ui text-label font-bold text-primary bg-primary/5 px-2 py-1 border border-primary/20">
                       {model.status}
                     </span>
@@ -122,7 +117,7 @@ export default async function CategoryPage(props: CategoryPageProps) {
 
                   <Link
                     href={modelHref}
-                    className="h-64 bg-tech-blue flex items-center justify-center p-6 mb-6 overflow-hidden"
+                    className="h-64 bg-white dark:bg-tech-blue border border-border flex items-center justify-center p-6 mb-6 overflow-hidden"
                   >
                     <OptionalImage
                       src={model.image}
@@ -142,15 +137,14 @@ export default async function CategoryPage(props: CategoryPageProps) {
                     {model.tagline}
                   </p>
 
-                  {/* Tech Specs block */}
                   <div className="bg-surface-container p-4 mb-6 border-l-4 border-primary">
                     <span className="font-ui text-label uppercase text-foreground/40 tracking-wider block mb-3 font-bold">
-                      SPECIFICATION_OVERVIEW:
+                      Spec overview
                     </span>
                     <div className="grid grid-cols-2 gap-y-3 font-ui text-label">
                       {Object.entries(model.specsSummary).map(([key, val]) => (
                         <React.Fragment key={key}>
-                          <div className="text-tertiary uppercase">{key}:</div>
+                          <div className="text-tertiary uppercase">{key}</div>
                           <div className="text-foreground font-bold text-right">{val}</div>
                         </React.Fragment>
                       ))}
@@ -158,18 +152,18 @@ export default async function CategoryPage(props: CategoryPageProps) {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4 mt-6">
+                <div className="grid grid-cols-2 gap-4 mt-2">
                   <Link
                     href={modelHref}
                     className="border border-foreground py-3 font-ui text-label uppercase hover:bg-charcoal hover:text-white transition-all tracking-ui text-center font-bold"
                   >
-                    [ VIEW_SPECS ]
+                    View specs
                   </Link>
                   <Link
-                    href={`/contact?interest=${model.name}`}
+                    href={`${modelHref}#enquiry`}
                     className="bg-primary hover:bg-primary-hover text-white py-3 font-ui text-label uppercase transition-all tracking-ui text-center font-bold"
                   >
-                    [ GET_QUOTE ]
+                    Get quote
                   </Link>
                 </div>
               </div>
@@ -178,45 +172,67 @@ export default async function CategoryPage(props: CategoryPageProps) {
         </div>
       </section>
 
-      {/* Category Comparison Highlights */}
-      <section className="py-16 adk-container w-full border-t border-border">
-        <h2 className="font-display text-subheading uppercase mb-8 text-foreground">
-          Category Comparison Highlights
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {category.models.map((model) => (
-            <div key={model.slug} className="bg-surface border border-border p-6 hover:border-primary transition-colors">
-              <h3 className="font-display text-card-title text-foreground uppercase font-bold mb-3">{model.name}</h3>
-              <div className="space-y-2 font-ui text-label">
-                {Object.entries(model.specsSummary).map(([key, val]) => (
-                  <div key={key} className="flex justify-between border-b border-border/50 pb-1">
-                    <span className="text-tertiary uppercase">{key}</span>
-                    <span className="text-foreground font-bold">{val}</span>
-                  </div>
+      {/* Lean compare — only when multiple models; distinct columns from specsSummary keys */}
+      {showCompare && (
+        <section className="py-16 adk-container w-full border-t border-border">
+          <h2 className="font-display text-subheading uppercase mb-3 text-foreground">
+            Compare at a glance
+          </h2>
+          <p className="font-body text-small text-tertiary mb-8 max-w-xl">
+            Quick side-by-side of headline specs. Open each model for the full parameter table.
+          </p>
+          <div className="overflow-x-auto border border-border">
+            <table className="w-full text-left border-collapse min-w-[560px]">
+              <thead>
+                <tr className="bg-surface-container font-ui text-label text-foreground uppercase border-b border-border">
+                  <th className="py-3 px-4">Model</th>
+                  {Object.keys(category.models[0].specsSummary).map((key) => (
+                    <th key={key} className="py-3 px-4">
+                      {key.replace(/_/g, " ")}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-border">
+                {category.models.map((model) => (
+                  <tr key={model.slug} className="font-body text-small hover:bg-tech-blue/20">
+                    <td className="py-3 px-4">
+                      <Link
+                        href={`/products/${category.slug}/${model.slug}`}
+                        className="font-display text-card-title text-foreground uppercase font-bold hover:text-primary transition-colors"
+                      >
+                        {model.name}
+                      </Link>
+                    </td>
+                    {Object.keys(category.models[0].specsSummary).map((key) => (
+                      <td key={key} className="py-3 px-4 font-ui text-label text-foreground">
+                        {model.specsSummary[key] ?? "—"}
+                      </td>
+                    ))}
+                  </tr>
                 ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      )}
 
-      {/* Enquiry CTA */}
       <section className="py-16 bg-charcoal text-white text-center">
         <div className="adk-container">
-        <div className="max-w-2xl mx-auto">
-          <h2 className="font-display text-subheading uppercase tracking-display mb-4">
-            Need a Custom {category.name} Configuration?
-          </h2>
-          <p className="font-ui text-label text-light-gray/60 mb-8 leading-relaxed">
-            Discuss bed dimensions, power levels, and automation options with our engineering team.
-          </p>
-          <Link
-            href={`/contact?interest=${encodeURIComponent(category.name)}`}
-            className="inline-block bg-primary hover:bg-primary-hover text-white font-ui text-label tracking-ui px-10 py-5 border border-primary transition-all font-bold"
-          >
-            [ REQUEST_CATEGORY_QUOTE ]
-          </Link>
-        </div>
+          <div className="max-w-2xl mx-auto">
+            <h2 className="font-display text-subheading uppercase tracking-display mb-4">
+              Need a Custom {category.name} Configuration?
+            </h2>
+            <p className="font-ui text-label text-light-gray/60 mb-8 leading-relaxed">
+              Discuss bed dimensions, power levels, and automation options with our engineering team.
+            </p>
+            <Link
+              href={`/contact?interest=${encodeURIComponent(category.name)}`}
+              className="inline-block bg-primary hover:bg-primary-hover text-white font-ui text-label tracking-ui px-10 py-5 border border-primary transition-all font-bold"
+            >
+              Request category quote
+            </Link>
+          </div>
         </div>
       </section>
     </div>

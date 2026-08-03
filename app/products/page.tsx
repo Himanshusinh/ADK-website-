@@ -6,23 +6,21 @@ import OptionalImage from "@/components/OptionalImage";
 export default function ProductsHubPage() {
   return (
     <div className="flex flex-col w-full bg-surface">
-      {/* Page Header */}
       <section className="relative bg-surface border-b border-border py-16 tech-grid">
         <div className="adk-container">
           <h1 className="font-display text-heading text-foreground uppercase tracking-display leading-none mb-6">
-            MACHINERY CATALOGUE
+            Machinery Catalogue
           </h1>
-          <p className="font-ui text-label text-tertiary max-w-xl leading-relaxed">
-            SYSTEM_INVENTORY: Industrial sheet metal fabrication systems, CNC cutting nodes, active
-            bending centers, and high-strength welding systems.
+          <p className="font-body text-small text-tertiary max-w-xl leading-relaxed">
+            Fiber laser cutting, CNC plasma, press brakes, welding, PEB lines, panel benders, and
+            genuine spares — browse by category and request a quote.
           </p>
         </div>
       </section>
 
-      {/* Categories Grid */}
       <section className="py-20 adk-container w-full">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {categories.map((c, idx) => {
+          {categories.map((c) => {
             const thumb = c.models[0]?.image ?? "";
             const fallback = getProductImageFallback(c.slug);
 
@@ -48,7 +46,9 @@ export default function ProductsHubPage() {
 
                   <div className="p-6">
                     <div className="flex justify-between items-center mb-4">
-                      <span className="font-ui text-label text-primary">NODE_0{idx + 1}</span>
+                      <span className="font-ui text-label text-tertiary uppercase">
+                        {c.models.length} model{c.models.length === 1 ? "" : "s"}
+                      </span>
                       <span className="material-symbols-outlined text-4xl text-foreground/70 group-hover:text-primary transition-colors">
                         {c.icon}
                       </span>
@@ -65,7 +65,7 @@ export default function ProductsHubPage() {
                 <div className="space-y-4 px-6 pb-6">
                   <div className="border-t border-border/50 pt-4">
                     <span className="font-ui text-label uppercase text-foreground/40 tracking-wider block mb-2">
-                      AVAILABLE_CONFIGURATIONS:
+                      Configurations
                     </span>
                     <ul className="space-y-1.5">
                       {c.models.map((m) => (
@@ -74,8 +74,8 @@ export default function ProductsHubPage() {
                             href={`/products/${c.slug}/${m.slug}`}
                             className="font-ui text-label text-tertiary hover:text-primary flex items-center justify-between gap-2"
                           >
-                            <span className="truncate">- {m.name}</span>
-                            <span className="font-ui text-label bg-tech-blue text-foreground px-1.5 py-0.5 rounded border border-border/50 font-bold shrink-0">
+                            <span className="truncate">{m.name}</span>
+                            <span className="font-ui text-label bg-tech-blue text-foreground px-1.5 py-0.5 border border-border/50 font-bold shrink-0">
                               {m.status}
                             </span>
                           </Link>
@@ -88,7 +88,7 @@ export default function ProductsHubPage() {
                     href={`/products/${c.slug}`}
                     className="w-full border border-foreground py-3 font-ui text-label uppercase hover:bg-charcoal hover:text-white transition-all tracking-ui flex items-center justify-center gap-1.5 text-center cursor-pointer font-bold"
                   >
-                    EXPLORE_CATEGORY{" "}
+                    Explore category{" "}
                     <span className="material-symbols-outlined text-[12px]">arrow_forward</span>
                   </Link>
                 </div>

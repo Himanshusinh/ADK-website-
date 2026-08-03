@@ -10,21 +10,21 @@ export default function ResourcesHubPage() {
       desc: "In-depth engineering reviews, laser calibration papers, and metal bending optimization guides.",
       icon: "menu_book",
       path: "/resources/blog",
-      btnText: "READ_ARTICLES",
+      btnText: "Read Articles",
     },
     {
       title: "Machinery Catalogues",
       desc: "Brochures, gantry dimension sheets, and mechanical footprint layout PDF files.",
       icon: "download_for_offline",
       path: "/resources/catalogues",
-      btnText: "DOWNLOAD_CATALOGUES",
+      btnText: "Download Catalogues",
     },
     {
       title: "FAQ & Support",
       desc: "Answers to common installation setups, lead times, power requisites, and post-sales SLA protocols.",
       icon: "quiz",
       path: "/resources/faq",
-      btnText: "RESOLVE_QUESTIONS",
+      btnText: "Browse FAQ",
     },
   ];
 
@@ -34,10 +34,10 @@ export default function ResourcesHubPage() {
       <section className="relative bg-surface border-b border-border py-16 tech-grid">
         <div className="adk-container">
           <h1 className="font-display text-heading text-foreground uppercase tracking-display leading-none mb-6">
-            TECHNICAL RESOURCE CENTER
+            Technical Resource Center
           </h1>
-          <p className="font-ui text-label text-tertiary max-w-xl leading-relaxed">
-            SYSTEM_NODES: Technical journals, standard specifications directories, and FAQ files.
+          <p className="font-body text-small text-tertiary max-w-xl leading-relaxed">
+            Technical journals, specification directories, and FAQ files for ADK machinery.
           </p>
         </div>
       </section>
@@ -88,7 +88,7 @@ export default function ResourcesHubPage() {
             href="/contact"
             className="inline-block bg-primary hover:bg-primary-hover text-white font-ui text-label tracking-ui px-10 py-5 border border-primary transition-all font-bold"
           >
-            [ CONTACT_ENGINEERING ]
+            Contact Engineering
           </Link>
         </div>
         </div>

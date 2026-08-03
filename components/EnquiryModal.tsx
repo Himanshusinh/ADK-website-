@@ -76,7 +76,7 @@ export default function EnquiryModal() {
               Transmission Complete
             </h3>
             <p className="font-ui text-label text-tertiary max-w-xs">
-              ENQUIRY_STATUS: RECEIVED. <br />
+          Your enquiry has been received. <br />
               Our engineering team will contact you within 12 business hours.
             </p>
           </div>
@@ -189,7 +189,7 @@ export default function EnquiryModal() {
                 disabled={submitting}
                 className="w-full bg-primary hover:bg-primary-hover text-white font-ui text-label tracking-ui py-4 border border-primary transition-all font-bold cursor-pointer disabled:opacity-60"
               >
-                {submitting ? "[ TRANSMITTING... ]" : "[ TRANSMIT_SPEC_REQUEST ]"}
+                {submitting ? "Sending…" : "Submit Request"}
               </button>
             </form>
           </>

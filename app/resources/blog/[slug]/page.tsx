@@ -64,7 +64,7 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
             {post.title}
           </h1>
           <span className="font-ui text-label text-tertiary/75 uppercase block font-normal">
-            AUTHOR_CREDIT: {post.author}
+            Author: {post.author}
           </span>
         </div>
 
@@ -78,7 +78,7 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
             className="font-ui text-label text-primary hover:underline flex items-center gap-2 font-bold"
           >
             <span className="material-symbols-outlined text-[16px]">arrow_back</span>
-            BACK_TO_BLOG
+            Back to blog
           </Link>
         </div>
       </article>

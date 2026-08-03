@@ -47,7 +47,7 @@ export default function CareerPage() {
             CAREERS AT ADK
           </h1>
           <p className="font-ui text-label text-tertiary max-w-xl leading-relaxed">
-            SYSTEM_VACANCIES: Join our team at {companyInfo.worksAddress.split(",")[0]}.
+            Join our team at {companyInfo.worksAddress.split(",")[0]}.
             Send applications to {careerApplicationEmail}. Online submission is being finalized —
             email applications are accepted at any time.
           </p>
@@ -106,7 +106,7 @@ export default function CareerPage() {
                     onClick={() => setSelectedJob(job.title)}
                     className="bg-primary hover:bg-primary-hover text-white font-ui text-label uppercase px-4 py-2 border border-primary transition-all font-bold cursor-pointer"
                   >
-                    [ APPLY ]
+                    Apply
                   </button>
                 </div>
                 <p className="font-body text-small text-tertiary leading-relaxed mt-4">
@@ -116,7 +116,7 @@ export default function CareerPage() {
                 {/* Requirements */}
                 <div className="mt-4 border-t border-border/50 pt-4">
                   <span className="font-ui text-label uppercase text-foreground/40 tracking-wider font-bold block mb-2">
-                    JOB_REQUIREMENTS:
+                    Requirements
                   </span>
                   <ul className="space-y-1.5 font-body text-small text-tertiary list-inside list-disc">
                     {job.requirements.map((req, i) => (
@@ -233,7 +233,7 @@ export default function CareerPage() {
                   disabled={submitting}
                   className="w-full bg-primary hover:bg-primary-hover text-white font-ui text-label tracking-ui py-3 border border-primary transition-all font-bold cursor-pointer disabled:opacity-60"
                 >
-                  {submitting ? "[ TRANSMITTING... ]" : "[ UPLOAD_CV_APPLICATION ]"}
+                  {submitting ? "Sending…" : "Submit Application"}
                 </button>
               </form>
             )}

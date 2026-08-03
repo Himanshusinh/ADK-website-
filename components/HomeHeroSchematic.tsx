@@ -4,8 +4,14 @@ import React from "react";
 
 export interface HeroCallout {
   label: string;
-  /** Approximate anchor on the product stage */
-  side: "left" | "right" | "bottom";
+  /** Anchor X on the product stage (0–100) */
+  x: number;
+  /** Anchor Y on the product stage (0–100) */
+  y: number;
+  /** Direction the label sits away from the machine */
+  align: "left" | "right" | "top" | "bottom";
+  /** Leader length in px (uneven by design) */
+  length: number;
 }
 
 export interface HomeHeroSlide {
@@ -25,38 +31,60 @@ interface HomeHeroSchematicProps {
   onSelect: (index: number) => void;
 }
 
+/* Theme-invariant premium chip */
+const labelClass =
+  "shrink-0 bg-white/90 backdrop-blur-[2px] border border-primary/50 px-2 py-0.5 font-ui text-[9px] uppercase tracking-[0.14em] text-primary whitespace-nowrap";
+
 function Callout({ callout }: { callout: HeroCallout }) {
-  if (callout.side === "left") {
+  const { label, x, y, align, length } = callout;
+
+  if (align === "left") {
     return (
-      <div className="pointer-events-none absolute left-3 top-[28%] z-20 hidden sm:flex items-center max-w-[42%]">
-        <span className="shrink-0 bg-white dark:bg-card border border-primary px-2 py-1 font-ui text-[9px] md:text-label uppercase tracking-wider text-primary whitespace-nowrap">
-          {callout.label}
-        </span>
-        <span className="h-px w-8 md:w-12 bg-primary shrink-0" aria-hidden />
+      <div
+        className="pointer-events-none absolute z-20 hidden sm:flex items-center"
+        style={{ left: `${x}%`, top: `${y}%`, transform: "translate(-100%, -50%)" }}
+      >
+        <span className={labelClass}>{label}</span>
+        <span className="h-px bg-primary/70 shrink-0" style={{ width: length }} aria-hidden />
         <span className="h-1.5 w-1.5 rounded-full bg-primary shrink-0" aria-hidden />
       </div>
     );
   }
 
-  if (callout.side === "right") {
+  if (align === "right") {
     return (
-      <div className="pointer-events-none absolute right-3 top-[34%] z-20 hidden sm:flex items-center max-w-[42%] flex-row-reverse">
-        <span className="shrink-0 bg-white dark:bg-card border border-primary px-2 py-1 font-ui text-[9px] md:text-label uppercase tracking-wider text-primary whitespace-nowrap">
-          {callout.label}
-        </span>
-        <span className="h-px w-8 md:w-12 bg-primary shrink-0" aria-hidden />
+      <div
+        className="pointer-events-none absolute z-20 hidden sm:flex items-center"
+        style={{ left: `${x}%`, top: `${y}%`, transform: "translate(0, -50%)" }}
+      >
+        <span className="h-1.5 w-1.5 rounded-full bg-primary shrink-0" aria-hidden />
+        <span className="h-px bg-primary/70 shrink-0" style={{ width: length }} aria-hidden />
+        <span className={labelClass}>{label}</span>
+      </div>
+    );
+  }
+
+  if (align === "top") {
+    return (
+      <div
+        className="pointer-events-none absolute z-20 hidden sm:flex flex-col items-center"
+        style={{ left: `${x}%`, top: `${y}%`, transform: "translate(-50%, -100%)" }}
+      >
+        <span className={labelClass}>{label}</span>
+        <span className="w-px bg-primary/70 shrink-0" style={{ height: length }} aria-hidden />
         <span className="h-1.5 w-1.5 rounded-full bg-primary shrink-0" aria-hidden />
       </div>
     );
   }
 
   return (
-    <div className="pointer-events-none absolute bottom-6 left-1/2 z-20 hidden sm:flex -translate-x-1/2 flex-col items-center">
-      <span className="h-6 w-px bg-primary" aria-hidden />
+    <div
+      className="pointer-events-none absolute z-20 hidden sm:flex flex-col items-center"
+      style={{ left: `${x}%`, top: `${y}%`, transform: "translate(-50%, 0)" }}
+    >
       <span className="h-1.5 w-1.5 rounded-full bg-primary shrink-0" aria-hidden />
-      <span className="mt-1 bg-white dark:bg-card border border-primary px-2 py-1 font-ui text-[9px] md:text-label uppercase tracking-wider text-primary whitespace-nowrap">
-        {callout.label}
-      </span>
+      <span className="w-px bg-primary/70 shrink-0" style={{ height: length }} aria-hidden />
+      <span className={labelClass}>{label}</span>
     </div>
   );
 }
@@ -72,26 +100,27 @@ export default function HomeHeroSchematic({
 
   return (
     <div className="w-full relative flex flex-col gap-4">
-      <div className="relative w-full aspect-[4/3] overflow-hidden border border-border bg-white dark:bg-tech-blue tech-grid group">
+      <div className="group relative w-full aspect-[4/3] overflow-visible bg-transparent">
         {slides.map((slide, idx) => (
           <div
             key={slide.title}
-            className={`absolute inset-0 flex items-center justify-center p-6 md:p-10 transition-all duration-700 ease-in-out ${
+            className={`absolute inset-0 z-0 transition-all duration-700 ease-in-out ${
               idx === activeSlide
-                ? "opacity-100 translate-x-0 scale-100 z-10"
-                : "opacity-0 translate-x-6 scale-95 z-0 pointer-events-none"
+                ? "opacity-100 translate-x-0 scale-100"
+                : "opacity-0 translate-x-6 scale-95 pointer-events-none"
             }`}
           >
-            <img
-              src={slide.src}
-              alt={slide.title}
-              className="object-contain max-h-full max-w-full mix-blend-multiply dark:mix-blend-normal"
-            />
+            <div className="absolute inset-0 flex items-center justify-center p-10 md:p-14 lg:p-16">
+              <img
+                src={slide.src}
+                alt={slide.title}
+                className="object-contain max-h-[78%] max-w-[72%] mix-blend-normal"
+              />
+            </div>
+            {slide.callouts.map((callout) => (
+              <Callout key={`${slide.title}-${callout.label}`} callout={callout} />
+            ))}
           </div>
-        ))}
-
-        {active.callouts.map((callout) => (
-          <Callout key={`${active.title}-${callout.label}`} callout={callout} />
         ))}
 
         <button
@@ -100,7 +129,7 @@ export default function HomeHeroSchematic({
             e.stopPropagation();
             onPrev();
           }}
-          className="absolute left-2 top-1/2 -translate-y-1/2 z-30 flex h-8 w-8 items-center justify-center border border-border bg-white/90 dark:bg-card/90 text-foreground opacity-0 transition-opacity group-hover:opacity-100 hover:border-primary hover:text-primary cursor-pointer"
+          className="absolute left-2 top-1/2 -translate-y-1/2 z-30 flex h-8 w-8 items-center justify-center border border-border bg-surface/80 backdrop-blur-sm text-foreground opacity-0 transition-opacity group-hover:opacity-100 hover:border-primary hover:text-primary cursor-pointer"
           aria-label="Previous image"
         >
           <span className="material-symbols-outlined text-[18px] leading-none">chevron_left</span>
@@ -111,7 +140,7 @@ export default function HomeHeroSchematic({
             e.stopPropagation();
             onNext();
           }}
-          className="absolute right-2 top-1/2 -translate-y-1/2 z-30 flex h-8 w-8 items-center justify-center border border-border bg-white/90 dark:bg-card/90 text-foreground opacity-0 transition-opacity group-hover:opacity-100 hover:border-primary hover:text-primary cursor-pointer"
+          className="absolute right-2 top-1/2 -translate-y-1/2 z-30 flex h-8 w-8 items-center justify-center border border-border bg-surface/80 backdrop-blur-sm text-foreground opacity-0 transition-opacity group-hover:opacity-100 hover:border-primary hover:text-primary cursor-pointer"
           aria-label="Next image"
         >
           <span className="material-symbols-outlined text-[18px] leading-none">chevron_right</span>

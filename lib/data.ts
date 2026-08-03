@@ -14,6 +14,12 @@ export interface ProductModel {
   image: string;
   images?: string[];
   videoUrl?: string;
+  /** Compatible / processable materials shown on PDP */
+  materials?: string[];
+  /** Direct brochure PDF URL when available; else catalogues hub */
+  brochureUrl?: string;
+  /** Optional industry slugs to highlight on PDP */
+  applications?: string[];
   status: 'IN_STOCK' | 'READY' | 'CUSTOM' | 'PRE-ORDER';
   specsSummary: {
     [key: string]: string;
@@ -550,6 +556,14 @@ const rawCategories: ProductCategory[] = [
           "2-chuck and 3-chuck configurations available",
           "Up to 12000W laser power option",
         ],
+        materials: [
+          "Round Pipe",
+          "Square Tube",
+          "Rectangular Tube",
+          "Channel / Angle / I-Beam",
+          "Mild Steel",
+          "Stainless Steel",
+        ],
         specifications: [
           { label: "Models", value: "GKS 6016T2 / GKS 9016T2 / GKS 6024T2 / GKS 6036T2 / GKS 6036T3" },
           { label: "Round Pipe Capacity", value: "10–160 mm (6016) / 20–250 mm (6024+)" },
@@ -931,12 +945,37 @@ const rawCategories: ProductCategory[] = [
   },
 ];
 
+/** Default materials by category — models may override via `materials`. */
+const CATEGORY_MATERIALS: Record<string, string[]> = {
+  "fiber-laser-cutting": [
+    "Mild Steel",
+    "Stainless Steel",
+    "Aluminium",
+    "Brass",
+    "Copper",
+  ],
+  "cnc-plasma-cutting": ["Mild Steel", "Stainless Steel", "Aluminium"],
+  "cnc-press-brake": ["Mild Steel", "Stainless Steel", "Aluminium", "Galvanized Sheet"],
+  "fiber-laser-welding": ["Stainless Steel", "Mild Steel", "Aluminium"],
+  "peb-machinery": ["Structural Steel", "H-Beam", "I-Beam", "Plate"],
+  "shearing-machine": ["Mild Steel", "Stainless Steel", "Aluminium"],
+  "panel-bender": ["Mild Steel", "Stainless Steel", "Aluminium", "Galvanized Sheet"],
+  "spares-consumables": [
+    "Cutting Heads",
+    "Nozzles",
+    "Laser Sources",
+    "Drives & Motors",
+    "Guides & Bellows",
+  ],
+};
+
 export const categories: ProductCategory[] = rawCategories.map((cat) => ({
   ...cat,
   models: cat.models.map((m) => ({
     ...m,
     image: productHeroPath(cat.slug, m.slug),
     images: m.images ?? productGalleryPaths(cat.slug, m.slug),
+    materials: m.materials ?? CATEGORY_MATERIALS[cat.slug],
   })),
 }));
 

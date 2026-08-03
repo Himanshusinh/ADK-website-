@@ -88,7 +88,7 @@ export default function AboutPage() {
           </div>
           <div className="bg-tech-blue border border-border p-8 relative flex items-center justify-center">
             <div className="absolute top-4 right-4 font-ui text-label text-foreground/40">
-              SEC_ID: ADK_FACILITY_BLUEPRINT
+              Facility overview
             </div>
             <MediaImage
               src={heroFactory?.image}
@@ -266,7 +266,7 @@ export default function AboutPage() {
                 onClick={() => openEnquiry("Engineering Discussion Requested")}
                 className="bg-primary hover:bg-primary-hover text-white font-ui text-label tracking-ui px-10 py-5 border border-primary transition-all font-bold cursor-pointer"
               >
-                [ DISCUSS_SPECIFICATION ]
+                Discuss Specification
               </button>
             </div>
           </div>

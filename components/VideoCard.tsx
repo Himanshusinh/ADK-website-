@@ -62,7 +62,7 @@ export default function VideoCard({ video, className = "" }: VideoCardProps) {
           </h3>
         </div>
         <span className="font-ui text-label text-tertiary uppercase mt-4 block border-t border-border/50 pt-3">
-          STREAM_PROTOCOL: ADK_DEMO // {video.id}
+          Demo video · {video.id}
         </span>
       </div>
 
@@ -79,7 +79,7 @@ export default function VideoCard({ video, className = "" }: VideoCardProps) {
               onClick={() => setIsOpen(false)}
               className="absolute -top-10 right-0 text-white font-ui text-label hover:text-primary cursor-pointer"
             >
-              [ CLOSE ]
+              Close
             </button>
             <div className="aspect-video w-full">
               <iframe

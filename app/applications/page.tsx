@@ -75,7 +75,7 @@ export default function ApplicationsHubPage() {
               </div>
 
               <div className="font-ui text-label text-primary mt-4 group-hover:translate-x-1 transition-transform flex items-center gap-1 font-bold">
-                SYSTEM_DETAILS <span className="material-symbols-outlined text-[10px]">arrow_forward</span>
+                View details <span className="material-symbols-outlined text-[10px]">arrow_forward</span>
               </div>
             </Link>
           ))}

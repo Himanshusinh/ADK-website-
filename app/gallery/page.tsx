@@ -38,7 +38,7 @@ export default function GalleryPage() {
             GALLERY & DEMONSTRATIONS
           </h1>
           <p className="font-ui text-label text-tertiary max-w-xl leading-relaxed">
-            SYSTEM_ARCHIVE: Machinery catalog images, real installation footprints at customer sites,
+            Machinery catalog images, real installation footprints at customer sites,
             factory infrastructure, and machine calibration videos.
           </p>
         </div>

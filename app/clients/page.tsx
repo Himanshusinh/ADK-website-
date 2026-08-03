@@ -41,7 +41,7 @@ export default function ClientsPage() {
 
               <div className="lg:col-span-4 bg-card border border-border p-6 space-y-6">
                 <span className="font-ui text-label uppercase text-foreground/40 tracking-wider font-bold block">
-                  KEY_METRICS:
+                  Key metrics
                 </span>
                 {cap.outcomes.map((m, idx) => (
                   <div key={idx} className="border-l-2 border-primary pl-4">
@@ -84,7 +84,7 @@ export default function ClientsPage() {
             href="/contact"
             className="inline-block bg-primary hover:bg-primary-hover text-white font-ui text-label tracking-ui px-10 py-5 border border-primary transition-all font-bold"
           >
-            [ START_A_PROJECT ]
+            Start a Project
           </Link>
         </div>
         </div>

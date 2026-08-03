@@ -179,7 +179,7 @@ export default async function IndustryPage(props: IndustryPageProps) {
               >
                 <div>
                   <div className="flex justify-between items-center mb-4">
-                    <span className="font-ui text-label text-tertiary">SPEC_ID: {model.id}</span>
+                    <span className="font-ui text-label text-tertiary">{model.id}</span>
                     <span className="font-ui text-label text-primary font-bold">{model.status}</span>
                   </div>
                   <h3 className="font-display text-card-title text-foreground uppercase font-bold group-hover:text-primary transition-colors">
@@ -194,13 +194,13 @@ export default async function IndustryPage(props: IndustryPageProps) {
                     href={`/products/${model.categorySlug}/${model.slug}`}
                     className="border border-foreground py-2.5 font-ui text-label uppercase hover:bg-charcoal hover:text-white transition-all tracking-ui text-center font-bold"
                   >
-                    [ SCHEMATICS ]
+                    View Specs
                   </Link>
                   <Link
                     href={`/contact?interest=Industry: ${app.name} - Model: ${model.name}`}
                     className="bg-primary hover:bg-primary-hover text-white py-2.5 font-ui text-label uppercase transition-all tracking-ui text-center font-bold"
                   >
-                    [ GET_QUOTE ]
+                    Get Quote
                   </Link>
                 </div>
               </div>
