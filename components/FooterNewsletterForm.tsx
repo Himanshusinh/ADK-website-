@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useEffect, useState } from "react";
@@ -23,11 +24,11 @@ export default function FooterNewsletterForm() {
 
   if (!mounted) {
     return (
-      <div className="flex" aria-hidden="true">
-        <div className="bg-white/5 border border-white/10 px-4 py-3 font-body text-small font-normal w-full text-light-gray/30 normal-case">
+      <div className="flex animate-pulse" aria-hidden="true">
+        <div className="bg-surface-container border border-border px-4 py-3 font-body text-small font-normal w-full text-on-surface-variant/40 normal-case">
           Enter your email
         </div>
-        <div className="bg-primary px-5 py-3 font-ui text-label text-white font-semibold tracking-ui uppercase">Join</div>
+        <div className="bg-primary px-5 py-3 font-ui text-label text-on-primary font-semibold tracking-ui uppercase">Join</div>
       </div>
     );
   }
@@ -42,11 +43,11 @@ export default function FooterNewsletterForm() {
         placeholder="Enter your email"
         disabled={subscribed}
         autoComplete="email"
-        className="bg-white/5 border border-white/10 px-4 py-3 font-body text-small w-full focus:outline-none focus:border-primary text-white disabled:opacity-80 normal-case"
+        className="bg-surface-container border border-border px-4 py-3 font-body text-small w-full focus:outline-none focus:border-primary text-on-surface disabled:opacity-80 normal-case placeholder-on-surface-variant/40"
       />
       <button
         type="submit"
-        className="bg-primary hover:bg-primary-hover px-5 font-ui text-label text-white font-semibold tracking-ui transition-colors cursor-pointer uppercase"
+        className="bg-primary hover:bg-primary-hover px-5 font-ui text-label text-on-primary font-semibold tracking-ui transition-colors cursor-pointer uppercase"
       >
         {subscribed ? "OK" : "Join"}
       </button>

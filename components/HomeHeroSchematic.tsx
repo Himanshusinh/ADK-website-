@@ -31,60 +31,24 @@ interface HomeHeroSchematicProps {
   onSelect: (index: number) => void;
 }
 
-/* Theme-invariant premium chip */
-const labelClass =
-  "shrink-0 bg-white/90 backdrop-blur-[2px] border border-primary/50 px-2 py-0.5 font-ui text-[9px] uppercase tracking-[0.14em] text-primary whitespace-nowrap";
-
-function Callout({ callout }: { callout: HeroCallout }) {
-  const { label, x, y, align, length } = callout;
-
-  if (align === "left") {
-    return (
-      <div
-        className="pointer-events-none absolute z-20 hidden sm:flex items-center"
-        style={{ left: `${x}%`, top: `${y}%`, transform: "translate(-100%, -50%)" }}
-      >
-        <span className={labelClass}>{label}</span>
-        <span className="h-px bg-primary/70 shrink-0" style={{ width: length }} aria-hidden />
-        <span className="h-1.5 w-1.5 rounded-full bg-primary shrink-0" aria-hidden />
-      </div>
-    );
-  }
-
-  if (align === "right") {
-    return (
-      <div
-        className="pointer-events-none absolute z-20 hidden sm:flex items-center"
-        style={{ left: `${x}%`, top: `${y}%`, transform: "translate(0, -50%)" }}
-      >
-        <span className="h-1.5 w-1.5 rounded-full bg-primary shrink-0" aria-hidden />
-        <span className="h-px bg-primary/70 shrink-0" style={{ width: length }} aria-hidden />
-        <span className={labelClass}>{label}</span>
-      </div>
-    );
-  }
-
-  if (align === "top") {
-    return (
-      <div
-        className="pointer-events-none absolute z-20 hidden sm:flex flex-col items-center"
-        style={{ left: `${x}%`, top: `${y}%`, transform: "translate(-50%, -100%)" }}
-      >
-        <span className={labelClass}>{label}</span>
-        <span className="w-px bg-primary/70 shrink-0" style={{ height: length }} aria-hidden />
-        <span className="h-1.5 w-1.5 rounded-full bg-primary shrink-0" aria-hidden />
-      </div>
-    );
-  }
+function Callout({ callout, color }: { callout: HeroCallout; color: "primary" | "secondary" }) {
+  const { label, x, y } = callout;
 
   return (
     <div
-      className="pointer-events-none absolute z-20 hidden sm:flex flex-col items-center"
-      style={{ left: `${x}%`, top: `${y}%`, transform: "translate(-50%, 0)" }}
+      className="pointer-events-none absolute z-20 hidden sm:flex items-center gap-3 bg-surface-container-highest/80 backdrop-blur-md rounded-2xl border border-surface-variant px-4 py-3 shadow-xl hover:scale-105 transition-transform cursor-default whitespace-nowrap"
+      style={{ left: `${x}%`, top: `${y}%`, transform: "translate(-50%, -50%)" }}
     >
-      <span className="h-1.5 w-1.5 rounded-full bg-primary shrink-0" aria-hidden />
-      <span className="w-px bg-primary/70 shrink-0" style={{ height: length }} aria-hidden />
-      <span className={labelClass}>{label}</span>
+      <div
+        className={`w-2 h-2 rounded-full animate-pulse ${
+          color === "primary"
+            ? "bg-primary shadow-[0_0_8px_rgba(255,179,177,0.8)]"
+            : "bg-secondary shadow-[0_0_8px_rgba(176,199,241,0.8)]"
+        }`}
+      />
+      <span className="font-technical-label text-[11px] uppercase tracking-widest text-on-surface">
+        {label}
+      </span>
     </div>
   );
 }
@@ -99,40 +63,50 @@ export default function HomeHeroSchematic({
   const active = slides[activeSlide];
 
   return (
-    <div className="w-full relative flex flex-col gap-4">
-      <div className="group relative w-full aspect-[4/3] overflow-visible bg-transparent">
+    <div className="w-full relative flex flex-col gap-6">
+      {/* Big Active Image Frame */}
+      <div className="group relative w-full aspect-[1.4] overflow-visible bg-transparent">
+        {/* Decorative floating background elements */}
+        <div className="absolute top-[10%] right-[5%] w-64 h-64 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div className="absolute bottom-[10%] left-[10%] w-48 h-48 bg-secondary/10 rounded-full blur-2xl pointer-events-none"></div>
+
         {slides.map((slide, idx) => (
           <div
             key={slide.title}
-            className={`absolute inset-0 z-0 transition-all duration-700 ease-in-out ${
+            className={`absolute inset-0 z-10 transition-all duration-700 ease-in-out ${
               idx === activeSlide
-                ? "opacity-100 translate-x-0 scale-100"
+                ? "opacity-100 translate-x-0 scale-100 pointer-events-auto"
                 : "opacity-0 translate-x-6 scale-95 pointer-events-none"
             }`}
           >
-            <div className="absolute inset-0 flex items-center justify-center p-10 md:p-14 lg:p-16">
+            <div className="absolute inset-0 flex items-center justify-center p-8">
               <img
                 src={slide.src}
                 alt={slide.title}
-                className="object-contain max-h-[78%] max-w-[72%] mix-blend-normal"
+                className="w-full h-full object-contain drop-shadow-2xl z-10 relative hover:scale-105 transition-transform duration-700 ease-out"
               />
             </div>
-            {slide.callouts.map((callout) => (
-              <Callout key={`${slide.title}-${callout.label}`} callout={callout} />
+            {slide.callouts.map((callout, cIdx) => (
+              <Callout
+                key={`${slide.title}-${callout.label}`}
+                callout={callout}
+                color={cIdx % 2 === 0 ? "primary" : "secondary"}
+              />
             ))}
           </div>
         ))}
 
+        {/* Navigation Arrows */}
         <button
           type="button"
           onClick={(e) => {
             e.stopPropagation();
             onPrev();
           }}
-          className="absolute left-2 top-1/2 -translate-y-1/2 z-30 flex h-8 w-8 items-center justify-center border border-border bg-surface/80 backdrop-blur-sm text-foreground opacity-0 transition-opacity group-hover:opacity-100 hover:border-primary hover:text-primary cursor-pointer"
+          className="absolute left-2 top-1/2 -translate-y-1/2 z-30 flex h-9 w-9 items-center justify-center rounded-full border border-surface-variant bg-surface-container-high/80 backdrop-blur-md text-on-surface opacity-0 transition-opacity group-hover:opacity-100 hover:bg-primary hover:text-on-primary cursor-pointer shadow-md"
           aria-label="Previous image"
         >
-          <span className="material-symbols-outlined text-[18px] leading-none">chevron_left</span>
+          <span className="material-symbols-outlined text-[20px] leading-none">chevron_left</span>
         </button>
         <button
           type="button"
@@ -140,32 +114,36 @@ export default function HomeHeroSchematic({
             e.stopPropagation();
             onNext();
           }}
-          className="absolute right-2 top-1/2 -translate-y-1/2 z-30 flex h-8 w-8 items-center justify-center border border-border bg-surface/80 backdrop-blur-sm text-foreground opacity-0 transition-opacity group-hover:opacity-100 hover:border-primary hover:text-primary cursor-pointer"
+          className="absolute right-2 top-1/2 -translate-y-1/2 z-30 flex h-9 w-9 items-center justify-center rounded-full border border-surface-variant bg-surface-container-high/80 backdrop-blur-md text-on-surface opacity-0 transition-opacity group-hover:opacity-100 hover:bg-primary hover:text-on-primary cursor-pointer shadow-md"
           aria-label="Next image"
         >
-          <span className="material-symbols-outlined text-[18px] leading-none">chevron_right</span>
+          <span className="material-symbols-outlined text-[20px] leading-none">chevron_right</span>
         </button>
       </div>
 
-      <div className="border-t border-border pt-3">
-        <div className="flex items-baseline justify-between gap-3">
+      {/* Slide details (positioned cleanly below the image) */}
+      <div className="border-t border-surface-variant pt-4">
+        <div className="flex items-center justify-between gap-3">
           <a
             href={active.link}
-            className="font-display text-card-title text-foreground hover:text-primary transition-colors uppercase tracking-display"
+            className="font-display text-card-title text-on-surface hover:text-primary transition-colors flex items-center gap-1.5 group/link uppercase tracking-display"
           >
             {active.title}
-            <span className="material-symbols-outlined ml-1 align-middle text-[16px]">arrow_forward</span>
+            <span className="material-symbols-outlined text-[15px] group-hover/link:translate-x-1 transition-transform">
+              arrow_forward
+            </span>
           </a>
-          <span className="font-ui text-label text-primary border border-primary/30 px-2 py-0.5 whitespace-nowrap">
+          <span className="font-technical-label text-[10px] text-primary font-bold tracking-widest bg-primary/10 px-2.5 py-0.5 border border-primary/20 whitespace-nowrap uppercase">
             {active.tag}
           </span>
         </div>
-        <p className="font-body font-normal text-small text-tertiary mt-2 leading-relaxed max-w-prose">
+        <p className="font-body-md text-small text-on-surface-variant mt-2 leading-relaxed">
           {active.desc}
         </p>
       </div>
 
-      <div className="grid grid-cols-3 gap-2.5">
+      {/* Selector Mini-Cards */}
+      <div className="grid grid-cols-3 gap-4">
         {slides.map((slide, idx) => {
           const isActive = idx === activeSlide;
           return (
@@ -173,20 +151,21 @@ export default function HomeHeroSchematic({
               key={slide.title}
               type="button"
               onClick={() => onSelect(idx)}
-              className={`text-left px-3 py-3 border transition-colors cursor-pointer bg-white dark:bg-card ${
+              className={`text-left p-4 border transition-all duration-300 flex flex-col justify-between cursor-pointer relative group/btn ${
                 isActive
-                  ? "border-primary"
-                  : "border-border hover:border-foreground/25"
+                  ? "bg-surface-container-high border-primary shadow-sm"
+                  : "bg-surface-container-low border-surface-variant hover:border-on-surface/30"
               }`}
             >
-              <span
-                className={`font-ui text-label block ${
-                  isActive ? "text-primary" : "text-tertiary"
-                }`}
-              >
-                0{idx + 1}
-              </span>
-              <span className="font-display text-[11px] uppercase tracking-wider text-foreground mt-1.5 block leading-snug">
+              <div className="flex justify-between items-center w-full">
+                <span className={`font-technical-label text-[10px] font-bold ${isActive ? "text-primary" : "text-on-surface-variant"}`}>
+                  0{idx + 1}
+                </span>
+                {isActive && (
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+                )}
+              </div>
+              <span className="font-display text-[12px] uppercase tracking-wider text-on-surface font-bold mt-2.5 block group-hover/btn:text-primary transition-colors leading-snug">
                 {slide.title.replace(" Cutting", "").replace("CNC ", "")}
               </span>
             </button>

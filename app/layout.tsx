@@ -8,7 +8,7 @@ import { ADK_LOGO_URL } from "@/lib/media";
 import EnquiryModal from "@/components/EnquiryModal";
 import { EnquiryProvider } from "@/components/EnquiryContext";
 import FloatingContactStack from "@/components/FloatingContactStack";
-import CustomCursor from "@/components/CustomCursor";
+
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { companyInfo } from "@/lib/data";
 
@@ -135,8 +135,17 @@ export default function RootLayout({
     >
       <head>
         <link
+          rel="preconnect"
+          href="https://fonts.googleapis.com"
+        />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@100..900&family=Geist:wght@100..900&family=JetBrains+Mono:wght@100..800&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap"
           rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=block"
         />
       </head>
       <body className="font-body min-h-full flex flex-col bg-surface text-foreground">
@@ -150,7 +159,15 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         <ThemeProvider>
-          <CustomCursor />
+          {/* Global Layout Grid Lines & Coordinate Labels */}
+          <div className="fixed inset-y-0 inset-x-0 z-0 pointer-events-none overflow-hidden">
+            <div className="adk-container h-full relative">
+              {/* Left Margin Line */}
+              <div className="absolute left-[var(--adk-container-padding)] top-0 bottom-0 w-px bg-border/25 dark:bg-border/10"></div>
+              {/* Right Margin Line */}
+              <div className="absolute right-[var(--adk-container-padding)] top-0 bottom-0 w-px bg-border/25 dark:bg-border/10"></div>
+            </div>
+          </div>
           <EnquiryProvider>
             <Header />
             <main className="flex-grow flex flex-col">{children}</main>

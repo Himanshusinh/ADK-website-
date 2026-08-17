@@ -10,12 +10,28 @@
   --adk-foreground: #1b1c1c;
   --adk-muted: #4b4d4d;
   --adk-surface-container: #efeded;
+  --adk-surface-container-low: #f5f3f3;
+  --adk-surface-container-lowest: #ffffff;
+  --adk-surface-container-high: #e5e2e2;
+  --adk-surface-container-highest: #dcd9d9;
+  --adk-surface-variant: #e5e2e2;
+  --adk-on-surface-variant: #4b4d4d;
   --adk-tech-blue: #e8f0f5;
   --adk-border: rgba(27, 28, 28, 0.1);
   --adk-charcoal: #1a1a1a;
   --adk-grid-major: rgba(27, 28, 28, 0.065);
   --adk-grid-minor: rgba(27, 28, 28, 0.035);
   --adk-hover-shadow: rgba(27, 28, 28, 0.08);
+  --adk-dot-color: rgba(27, 28, 28, 0.035);
+
+  --adk-primary: #9d0518;
+  --adk-primary-hover: #b72028;
+  --adk-secondary: #5f5e5e;
+  --adk-secondary-container: #eaeaea;
+  --adk-tertiary: #4b4d4d;
+  --adk-tertiary-container: #eaeaea;
+  --adk-light-gray: #4b4d4d;
+  --adk-on-primary: #ffffff;
 
   --background: var(--adk-surface);
   --foreground: var(--adk-foreground);
@@ -76,40 +92,81 @@
 .dark {
   color-scheme: dark;
 
-  --adk-surface: #0f1112;
-  --adk-card: #1a1d1f;
-  --adk-foreground: #ededed;
-  --adk-muted: #a8abab;
-  --adk-surface-container: #222628;
-  --adk-tech-blue: #1a2833;
-  --adk-border: rgba(237, 237, 237, 0.12);
-  --adk-charcoal: #1a1a1a;
-  --adk-grid-major: rgba(237, 237, 237, 0.08);
-  --adk-grid-minor: rgba(237, 237, 237, 0.045);
+  --adk-surface: #131313;
+  --adk-card: #201f1f;
+  --adk-foreground: #e5e2e1;
+  --adk-muted: #e4bebc;
+  --adk-surface-container: #201f1f;
+  --adk-surface-container-low: #1c1b1b;
+  --adk-surface-container-lowest: #0e0e0e;
+  --adk-surface-container-high: #2a2a2a;
+  --adk-surface-container-highest: #353534;
+  --adk-surface-variant: #353534;
+  --adk-on-surface-variant: #e4bebc;
+  --adk-tech-blue: #1c1b1b;
+  --adk-border: #353534;
+  --adk-charcoal: #0e0e0e;
+  --adk-grid-major: rgba(229, 226, 225, 0.08);
+  --adk-grid-minor: rgba(229, 226, 225, 0.045);
   --adk-hover-shadow: rgba(0, 0, 0, 0.35);
+  --adk-dot-color: rgba(229, 226, 225, 0.035);
+
+  --adk-primary: #ffb3b1;
+  --adk-primary-hover: #ff535b;
+  --adk-secondary: #b0c7f1;
+  --adk-secondary-container: #334a6d;
+  --adk-tertiary: #9ecfd1;
+  --adk-tertiary-container: #68999b;
+  --adk-light-gray: #e5e2e1;
+  --adk-on-primary: #131313;
 
   --background: var(--adk-surface);
   --foreground: var(--adk-foreground);
 }
 
 @theme {
-  --color-primary: #9d0518;
-  --color-primary-hover: #b72028;
-  --color-charcoal: var(--adk-charcoal);
-  --color-light-gray: #ededed;
-  --color-tech-blue: var(--adk-tech-blue);
+  --color-primary: var(--adk-primary);
+  --color-primary-hover: var(--adk-primary-hover);
+  --color-primary-container: var(--adk-primary-hover);
+  --color-on-primary: var(--adk-on-primary);
+  --color-secondary: var(--adk-secondary);
+  --color-secondary-container: var(--adk-secondary-container);
+  --color-tertiary: var(--adk-tertiary);
+  --color-tertiary-container: var(--adk-tertiary-container);
+
+  --color-surface-dim: var(--adk-surface);
+  --color-surface-bright: var(--adk-surface-container-high);
+
+  --color-surface-container-lowest: var(--adk-surface-container-lowest);
+  --color-surface-container-low: var(--adk-surface-container-low);
   --color-surface-container: var(--adk-surface-container);
-  --color-tertiary: var(--adk-muted);
-  --color-secondary: #5f5e5e;
+  --color-surface-container-high: var(--adk-surface-container-high);
+  --color-surface-container-highest: var(--adk-surface-container-highest);
+  --color-surface-variant: var(--adk-surface-variant);
+  --color-on-surface-variant: var(--adk-on-surface-variant);
+
+  --color-background: var(--adk-surface);
   --color-surface: var(--adk-surface);
   --color-on-surface: var(--adk-foreground);
-  --color-card: var(--adk-card);
-  --color-foreground: var(--adk-foreground);
   --color-border: var(--adk-border);
+  --color-charcoal: var(--adk-charcoal);
+  --color-light-gray: var(--adk-light-gray);
+  --color-tech-blue: var(--adk-tech-blue);
 
-  --font-display: var(--adk-font-inter), system-ui, sans-serif;
-  --font-ui: var(--adk-font-inter), system-ui, sans-serif;
-  --font-body: var(--adk-font-inter), system-ui, sans-serif;
+  --font-display-lg: "Hanken Grotesk", system-ui, sans-serif;
+  --font-display-lg-mobile: "Hanken Grotesk", system-ui, sans-serif;
+  --font-headline-lg: "Hanken Grotesk", system-ui, sans-serif;
+  --font-headline-lg-mobile: "Hanken Grotesk", system-ui, sans-serif;
+  --font-headline-md: "Hanken Grotesk", system-ui, sans-serif;
+  --font-technical-label: "JetBrains Mono", monospace;
+  --font-body-lg: "Geist", system-ui, sans-serif;
+  --font-body-md: "Geist", system-ui, sans-serif;
+  --font-button: "Geist", system-ui, sans-serif;
+  --font-button-text: "Geist", system-ui, sans-serif;
+
+  --font-display: "Hanken Grotesk", system-ui, sans-serif;
+  --font-ui: "Geist", system-ui, sans-serif;
+  --font-body: "Geist", system-ui, sans-serif;
 }
 
 body {
@@ -118,6 +175,8 @@ body {
   font-family: var(--font-body);
   font-size: var(--text-body);
   line-height: var(--leading-body);
+  background-image: radial-gradient(var(--adk-dot-color) 1.2px, transparent 1.2px);
+  background-size: 32px 32px;
 }
 
 /* Typography utilities */
@@ -280,8 +339,13 @@ body {
 
 /* Animations */
 @keyframes fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes fade-up {
@@ -289,6 +353,7 @@ body {
     opacity: 0;
     transform: translateY(16px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -300,6 +365,7 @@ body {
     opacity: 0;
     transform: translateY(-8px) scale(0.98);
   }
+
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
@@ -323,6 +389,7 @@ body {
     opacity: 0;
     transform: translateY(16px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -338,6 +405,7 @@ body {
     opacity: 0;
     transform: translateY(4px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -473,6 +541,7 @@ body {
   from {
     transform: translateX(0);
   }
+
   to {
     transform: translateX(-50%);
   }
@@ -482,6 +551,7 @@ body {
   from {
     transform: translateX(-50%);
   }
+
   to {
     transform: translateX(0);
   }
@@ -607,6 +677,7 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   .animate-fade-in,
   .animate-fade-up,
   .animate-scale-in {
