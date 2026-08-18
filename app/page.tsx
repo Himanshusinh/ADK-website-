@@ -308,23 +308,25 @@ export default function Home() {
         <div className="shell py-16 md:py-24">
           <div
             ref={listRef}
-            className="relative flex gap-7 overflow-x-auto border-b border-rule pb-4 md:gap-10"
+            className="relative flex gap-7 overflow-x-auto border-b border-rule md:gap-10"
           >
             {productCategories.map((cat, i) => (
               <button
                 key={cat.id}
                 type="button"
                 onClick={() => setActiveTab(i)}
-                className={`shrink-0 text-sm font-medium transition-colors duration-300 cursor-pointer ${i === activeTab ? "text-foreground font-bold" : "text-muted-foreground hover:text-foreground"
+                className={`relative pb-4 text-sm font-medium whitespace-nowrap transition-colors duration-500 cursor-pointer ${i === activeTab
+                    ? "text-foreground font-bold"
+                    : "text-muted-foreground hover:text-foreground"
                   }`}
               >
                 {cat.label}
+                <span
+                  className={`absolute inset-x-0 -bottom-px h-0.5 origin-left bg-accent transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${i === activeTab ? "scale-x-100" : "scale-x-0"
+                    }`}
+                />
               </button>
             ))}
-            <span
-              className="tab-indicator"
-              style={{ left: indicator.left, width: indicator.width }}
-            />
           </div>
 
           {category && (
@@ -356,7 +358,7 @@ export default function Home() {
                   href={`/products/${card.slug}`}
                   className="group relative block aspect-16/10 overflow-hidden bg-card border border-rule hover-lift"
                 >
-                  <p className="absolute top-0 left-0 z-10 px-6 pt-6 text-sm font-display font-semibold text-muted-foreground transition-colors duration-500 group-hover:text-accent">
+                  <p className="absolute top-0 left-0 z-10 px-6 pt-6 text-sm font-display font-bold text-neutral-900 transition-colors duration-500 group-hover:text-accent">
                     {card.model}
                     <span className="mt-2 block h-px w-8 origin-left scale-x-0 bg-accent transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-x-100" />
                   </p>
