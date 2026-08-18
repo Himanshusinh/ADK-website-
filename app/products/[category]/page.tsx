@@ -3,8 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { categories } from "@/lib/data";
-import { getProductImageFallback } from "@/lib/media";
-import OptionalImage from "@/components/OptionalImage";
+import CategoryQuoteSection from "./CategoryQuoteSection";
 
 interface CategoryPageProps {
   params: Promise<{ category: string }>;
@@ -21,11 +20,32 @@ export async function generateMetadata(props: CategoryPageProps): Promise<Metada
   const category = categories.find((c) => c.slug === categorySlug);
   if (!category) return {};
   return {
-    title: `${category.name} Machines`,
-    description: `${category.tagline} Browse ADK ${category.name.toLowerCase()} models with specifications, brochures, and enquiry options. ${category.models.length} configurations available.`,
-    keywords: [category.name, "ADK Engineering", "Ahmedabad", "India"],
+    title: `${category.name} | ADK Engineering`,
+    description: category.tagline,
   };
 }
+
+const redesignedImageMap: Record<string, string> = {
+  "fiber-laser-cutting": "/assets/adk/studio-fiber.jpg",
+  "cnc-plasma-cutting": "/assets/adk/studio-plasma.jpg",
+  "cnc-press-brake": "/assets/adk/studio-press.jpg",
+  "fiber-laser-welding": "/assets/adk/studio-welder.jpg",
+  "panel-bender": "/assets/adk/studio-panel.jpg",
+  "peb-machinery": "/assets/adk/studio-peb.jpg",
+  "shearing-machine": "/assets/adk/studio-shear.jpg",
+  "spares-consumables": "/redesigned/product-fiber-laser.jpg",
+};
+
+const seriesTagMap: Record<string, string> = {
+  "fiber-laser-cutting": "FL series",
+  "cnc-plasma-cutting": "PL series",
+  "cnc-press-brake": "NADKpress",
+  "fiber-laser-welding": "LW series",
+  "panel-bender": "PB series",
+  "peb-machinery": "PEB line",
+  "shearing-machine": "SH series",
+  "spares-consumables": "Spares",
+};
 
 export default async function CategoryPage(props: CategoryPageProps) {
   const { category: categorySlug } = await props.params;
@@ -35,206 +55,166 @@ export default async function CategoryPage(props: CategoryPageProps) {
     notFound();
   }
 
+  const seriesTag = seriesTagMap[category.slug] ?? "ADK series";
+  const heroImage = redesignedImageMap[category.slug] ?? "/assets/adk/studio-fiber.jpg";
   const siblingCategories = categories.filter((c) => c.slug !== category.slug);
-  const showCompare = category.models.length > 1;
 
   return (
-    <div className="flex flex-col w-full bg-surface">
-      <div className="w-full bg-surface-container py-3 border-b border-border/50">
-        <div className="adk-container flex items-center justify-between gap-4 font-ui text-label uppercase text-tertiary">
-          <div className="flex items-center gap-2 min-w-0">
-            <Link href="/products" className="hover:text-primary transition-colors shrink-0">
-              Catalogue
-            </Link>
-            <span>/</span>
-            <span className="text-foreground font-bold truncate">{category.name}</span>
+    <div className="flex flex-col w-full bg-background text-foreground">
+      {/* Product Category Hero — Exact ADK Redesigned Layout */}
+      <section className="border-b border-rule">
+        <div className="shell grid gap-10 py-10 md:grid-cols-2 md:items-start md:gap-16 md:py-16">
+          <div className="aspect-[4/3] bg-white border border-rule flex items-center justify-center p-6 md:p-8">
+            <img
+              src={heroImage}
+              alt={category.name}
+              width={1200}
+              height={900}
+              className="h-full w-full object-contain p-2"
+            />
           </div>
-          <Link
-            href="/products"
-            className="hover:text-primary transition-colors shrink-0 flex items-center gap-1"
-          >
-            <span className="material-symbols-outlined text-[14px]">arrow_back</span>
-            Back to catalogue
-          </Link>
-        </div>
-      </div>
 
-      <section className="relative bg-surface border-b border-border py-16 tech-grid">
-        <div className="adk-container">
-          <h1 className="font-display text-heading text-foreground uppercase tracking-display leading-none mb-6">
-            {category.name}
-          </h1>
-          <p className="font-body text-small text-tertiary max-w-xl leading-relaxed">
-            {category.description}
-          </p>
+          <div>
+            <nav className="eyebrow">
+              <Link href="/products" className="hover:text-accent">
+                Machines
+              </Link>{" "}
+              / {seriesTag}
+            </nav>
+            <h1 className="mt-4 font-display text-4xl leading-[1.03] md:text-6xl font-bold">
+              {category.name}
+            </h1>
+            <p className="mt-5 text-muted-foreground md:text-lg font-sans leading-relaxed">
+              {category.description}
+            </p>
+            <p className="mt-6 inline-block border border-foreground px-3 py-1.5 font-mono text-sm">
+              {category.models.length} Configurations Available
+            </p>
+          </div>
         </div>
       </section>
 
-      {siblingCategories.length > 0 && (
-        <div className="w-full border-b border-border/50 bg-surface">
-          <div className="adk-container py-4 flex flex-col sm:flex-row sm:items-center gap-3 font-ui text-label uppercase">
-            <span className="text-foreground/40 tracking-wider shrink-0">Other categories</span>
-            <div className="flex flex-wrap gap-x-4 gap-y-2">
-              {siblingCategories.map((c) => (
-                <Link
-                  key={c.slug}
-                  href={`/products/${c.slug}`}
-                  className="text-tertiary hover:text-primary border-b border-transparent hover:border-primary transition-colors"
-                >
-                  {c.name}
-                </Link>
+      {/* Models & Specifications Section */}
+      <section className="shell py-16 md:py-24 border-b border-rule">
+        <div className="grid gap-12 lg:grid-cols-2">
+          {/* Models Column */}
+          <div>
+            <h2 className="border-t border-foreground pt-4 font-display text-2xl font-bold">
+              Models
+            </h2>
+            <ul className="mt-5 divide-y divide-rule border-y border-rule">
+              {category.models.map((m) => (
+                <li key={m.slug} className="flex flex-col gap-2 py-4">
+                  <div className="flex flex-col gap-1 sm:flex-row sm:justify-between sm:gap-6">
+                    <Link
+                      href={`/products/${category.slug}/${m.slug}`}
+                      className="font-mono text-sm font-semibold hover:text-accent transition-colors block"
+                    >
+                      {m.name}
+                    </Link>
+                    <span className="text-sm text-muted-foreground sm:text-right font-sans">{m.tagline}</span>
+                  </div>
+
+                  {/* Specifications Chips */}
+                  {m.specsSummary && (
+                    <ul className="flex flex-wrap gap-1.5 mt-1">
+                      {Object.entries(m.specsSummary).slice(0, 4).map(([key, val]) => (
+                        <li
+                          key={key}
+                          className="border border-rule px-2 py-0.5 font-mono text-[0.6875rem] tracking-wide text-muted-foreground"
+                        >
+                          {val}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Key Specs Column */}
+          <div>
+            <h2 className="border-t border-foreground pt-4 font-display text-2xl font-bold">
+              Specifications
+            </h2>
+            <dl className="mt-5 divide-y divide-rule border-y border-rule">
+              {category.models[0] &&
+                Object.entries(category.models[0].specsSummary).map(([key, val]) => (
+                  <div key={key} className="flex justify-between gap-6 py-4 text-sm font-sans">
+                    <dt className="text-muted-foreground font-mono text-xs uppercase">{key.replace(/_/g, " ")}</dt>
+                    <dd className="text-right font-medium text-foreground">{val}</dd>
+                  </div>
+                ))}
+            </dl>
+            <p className="mt-6 text-sm text-muted-foreground font-sans">
+              Specifications vary by model. We will confirm exact figures against your part drawings.
+            </p>
+          </div>
+        </div>
+
+        {/* Series Compare Grid if multiple models */}
+        {category.models.length > 1 && (
+          <div className="mt-14">
+            <p className="eyebrow">Series at a glance</p>
+            <div className="mt-5 grid gap-px border border-rule bg-rule sm:grid-cols-2 lg:grid-cols-3">
+              {category.models.slice(0, 6).map((m) => (
+                <div key={m.slug} className="bg-card p-6">
+                  <p className="font-display text-xl font-bold">{m.name}</p>
+                  <dl className="mt-4 space-y-2 font-sans text-sm">
+                    {Object.entries(m.specsSummary).slice(0, 3).map(([k, v]) => (
+                      <div key={k} className="flex justify-between gap-3 text-sm">
+                        <dt className="text-muted-foreground font-mono text-xs uppercase">{k.replace(/_/g, " ")}</dt>
+                        <dd className="text-right font-medium text-foreground">{v}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                </div>
               ))}
             </div>
           </div>
-        </div>
-      )}
+        )}
 
-      <section className="py-20 adk-container w-full">
-        <h2 className="font-display text-subheading uppercase mb-4 border-b border-border pb-4 text-foreground">
-          Available Models
-        </h2>
-        <p className="font-body text-small text-tertiary mb-8 max-w-2xl leading-relaxed">
-          {category.tagline} Open a model for full specifications, materials, and a direct quote
-          enquiry.
-        </p>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-          {category.models.map((model) => {
-            const modelHref = `/products/${category.slug}/${model.slug}`;
-
-            return (
-              <div
-                key={model.slug}
-                className="bg-card border border-border p-6 md:p-8 flex flex-col justify-between shadow-sm hover:border-primary transition-colors group"
-              >
-                <div>
-                  <div className="flex justify-between items-center mb-6">
-                    <span className="font-ui text-label text-tertiary uppercase">{model.id}</span>
-                    <span className="font-ui text-label font-bold text-primary bg-primary/5 px-2 py-1 border border-primary/20">
-                      {model.status}
-                    </span>
-                  </div>
-
-                  <Link
-                    href={modelHref}
-                    className="h-64 bg-white dark:bg-tech-blue border border-border flex items-center justify-center p-6 mb-6 overflow-hidden"
-                  >
-                    <OptionalImage
-                      src={model.image}
-                      fallback={getProductImageFallback(category.slug)}
-                      alt={model.name}
-                      className="object-contain h-full w-full mix-blend-multiply dark:mix-blend-normal group-hover:scale-105 transition-transform duration-500"
-                      placeholderLabel={model.name}
-                    />
-                  </Link>
-
-                  <Link href={modelHref}>
-                    <h3 className="font-display text-subheading text-foreground uppercase mb-3 font-bold group-hover:text-primary transition-colors">
-                      {model.name}
-                    </h3>
-                  </Link>
-                  <p className="font-body text-small text-tertiary leading-relaxed mb-6">
-                    {model.tagline}
-                  </p>
-
-                  <div className="bg-surface-container p-4 mb-6 border-l-4 border-primary">
-                    <span className="font-ui text-label uppercase text-foreground/40 tracking-wider block mb-3 font-bold">
-                      Spec overview
-                    </span>
-                    <div className="grid grid-cols-2 gap-y-3 font-ui text-label">
-                      {Object.entries(model.specsSummary).map(([key, val]) => (
-                        <React.Fragment key={key}>
-                          <div className="text-tertiary uppercase">{key}</div>
-                          <div className="text-foreground font-bold text-right">{val}</div>
-                        </React.Fragment>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-2 gap-4 mt-2">
-                  <Link
-                    href={modelHref}
-                    className="border border-foreground py-3 font-ui text-label uppercase hover:bg-charcoal hover:text-white transition-all tracking-ui text-center font-bold"
-                  >
-                    View specs
-                  </Link>
-                  <Link
-                    href={`${modelHref}#enquiry`}
-                    className="bg-primary hover:bg-primary-hover text-white py-3 font-ui text-label uppercase transition-all tracking-ui text-center font-bold"
-                  >
-                    Get quote
-                  </Link>
-                </div>
-              </div>
-            );
-          })}
+        {/* Typically Bought By */}
+        <div className="mt-14">
+          <p className="eyebrow">Typically bought by</p>
+          <ul className="mt-3 flex flex-wrap gap-2 font-sans text-sm">
+            {[
+              "Sheet Metal Job Shops",
+              "Automotive Ancillaries",
+              "Heavy Structural Fabrication",
+              "Control Panel Manufacturers",
+              "Steel Furniture Works",
+              "PEB Contractors",
+            ].map((use) => (
+              <li key={use} className="border border-rule bg-card px-3 py-1.5 text-sm font-medium">
+                {use}
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
-      {/* Lean compare — only when multiple models; distinct columns from specsSummary keys */}
-      {showCompare && (
-        <section className="py-16 adk-container w-full border-t border-border">
-          <h2 className="font-display text-subheading uppercase mb-3 text-foreground">
-            Compare at a glance
-          </h2>
-          <p className="font-body text-small text-tertiary mb-8 max-w-xl">
-            Quick side-by-side of headline specs. Open each model for the full parameter table.
-          </p>
-          <div className="overflow-x-auto border border-border">
-            <table className="w-full text-left border-collapse min-w-[560px]">
-              <thead>
-                <tr className="bg-surface-container font-ui text-label text-foreground uppercase border-b border-border">
-                  <th className="py-3 px-4">Model</th>
-                  {Object.keys(category.models[0].specsSummary).map((key) => (
-                    <th key={key} className="py-3 px-4">
-                      {key.replace(/_/g, " ")}
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-border">
-                {category.models.map((model) => (
-                  <tr key={model.slug} className="font-body text-small hover:bg-tech-blue/20">
-                    <td className="py-3 px-4">
-                      <Link
-                        href={`/products/${category.slug}/${model.slug}`}
-                        className="font-display text-card-title text-foreground uppercase font-bold hover:text-primary transition-colors"
-                      >
-                        {model.name}
-                      </Link>
-                    </td>
-                    {Object.keys(category.models[0].specsSummary).map((key) => (
-                      <td key={key} className="py-3 px-4 font-ui text-label text-foreground">
-                        {model.specsSummary[key] ?? "—"}
-                      </td>
-                    ))}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+      {/* Quote Form & Side Panel Section */}
+      <CategoryQuoteSection categoryName={category.name} />
+
+      {/* Other Machine Families */}
+      {siblingCategories.length > 0 && (
+        <section className="shell py-16 md:py-24">
+          <p className="eyebrow">Other machines</p>
+          <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2">
+            {siblingCategories.map((c) => (
+              <Link
+                key={c.slug}
+                href={`/products/${c.slug}`}
+                className="font-display text-lg tracking-tight hover:text-accent font-bold"
+              >
+                {c.name}
+              </Link>
+            ))}
           </div>
         </section>
       )}
-
-      <section className="py-16 bg-charcoal text-white text-center">
-        <div className="adk-container">
-          <div className="max-w-2xl mx-auto">
-            <h2 className="font-display text-subheading uppercase tracking-display mb-4">
-              Need a Custom {category.name} Configuration?
-            </h2>
-            <p className="font-ui text-label text-light-gray/60 mb-8 leading-relaxed">
-              Discuss bed dimensions, power levels, and automation options with our engineering team.
-            </p>
-            <Link
-              href={`/contact?interest=${encodeURIComponent(category.name)}`}
-              className="inline-block bg-primary hover:bg-primary-hover text-white font-ui text-label tracking-ui px-10 py-5 border border-primary transition-all font-bold"
-            >
-              Request category quote
-            </Link>
-          </div>
-        </div>
-      </section>
     </div>
   );
 }

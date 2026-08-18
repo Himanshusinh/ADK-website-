@@ -1,428 +1,685 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef, useLayoutEffect } from "react";
 import Link from "next/link";
 import { useEnquiry } from "@/components/EnquiryContext";
-import { categories, applications, companyInfo, whyChooseAdk, clientMarqueeRowA, clientMarqueeRowB } from "@/lib/data";
-import { BLUEPRINT_SCHEMATIC_URL, resolveImagePath, productHeroPath, withCloudinaryBackgroundRemoval } from "@/lib/media";
 import Reveal from "@/components/Reveal";
 import ClientLogoMarquee from "@/components/ClientLogoMarquee";
-import MachineryBentoGrid from "@/components/MachineryBentoGrid";
-import HomeHeroSchematic, { type HomeHeroSlide } from "@/components/HomeHeroSchematic";
-import DecadeVideo from "@/components/DecadeVideo";
+import { clientMarqueeRowA, clientMarqueeRowB } from "@/lib/data";
+
+/* —————————————————————————————————————————————————————————————————————————— */
+/* Data Definitions matching adk-engineering-site                            */
+/* —————————————————————————————————————————————————————————————————————————— */
+
+const productCategories = [
+  {
+    id: "sheet-laser",
+    label: "Sheet laser",
+    slug: "fiber-laser-cutting",
+    title: "Fiber laser cutting",
+    blurb:
+      "Exchange-table, single-pallet and 24 m plate lasers to 60 kW. ±0.03 mm, 100 m/min, RAYCUS / IPG / MAX sources.",
+    lineup: "hero",
+  },
+  {
+    id: "plasma",
+    label: "Plasma",
+    slug: "cnc-plasma-cutting",
+    title: "CNC plasma cutting",
+    blurb:
+      "Gantry, table and portable systems with Hypertherm sources for thick plate and structural steel.",
+    lineup: "hero",
+  },
+  {
+    id: "press-brake",
+    label: "Press brake",
+    slug: "cnc-press-brake",
+    title: "CNC press brake",
+    blurb: "40 T to 800 T. Servo main drive, DSP laser guard, mechanical crowning, 4 to 9 axis.",
+    lineup: "hero",
+  },
+  {
+    id: "welding",
+    label: "Welding",
+    slug: "fiber-laser-welding",
+    title: "Fiber laser welding",
+    blurb: "4-in-1 handheld fiber welding: weld, clean, cut and wire feed from one source.",
+    lineup: "forming",
+  },
+  {
+    id: "panel-bender",
+    label: "Panel bender",
+    slug: "panel-bender",
+    title: "Panel benders",
+    blurb: "Universal die, 0.2 seconds per bend, no tooling changes. Panels to 2500 mm.",
+    lineup: "forming",
+  },
+  {
+    id: "peb",
+    label: "PEB line",
+    slug: "peb-machinery",
+    title: "PEB machinery",
+    blurb: "H-beam welding and SAW gantry systems for pre-engineered buildings.",
+    lineup: "forming",
+  },
+  {
+    id: "shearing",
+    label: "Shearing",
+    slug: "shearing",
+    title: "Hydraulic shears",
+    blurb: "Plate preparation and edge trimming before the laser or the brake.",
+    lineup: "shear",
+  },
+];
+
+const heroLineup = [
+  {
+    model: "Fiber laser cutting",
+    note: "1 kW – 60 kW",
+    slug: "fiber-laser-cutting",
+    image: "/assets/adk/studio-fiber.jpg",
+  },
+  {
+    model: "CNC plasma cutting",
+    note: "Gantry · Hypertherm",
+    slug: "cnc-plasma-cutting",
+    image: "/assets/adk/studio-plasma.jpg",
+  },
+  {
+    model: "CNC press brake",
+    note: "40 T – 800 T",
+    slug: "cnc-press-brake",
+    image: "/assets/adk/studio-press.jpg",
+  },
+];
+
+const formingLineup = [
+  {
+    model: "Fiber laser welding",
+    note: "4-in-1 weld / clean / cut",
+    slug: "fiber-laser-welding",
+    image: "/assets/adk/studio-welder.jpg",
+  },
+  {
+    model: "Panel bender",
+    note: "0.2 s per bend",
+    slug: "panel-bender",
+    image: "/assets/adk/studio-panel.jpg",
+  },
+  {
+    model: "PEB machinery",
+    note: "H-beam welding and SAW gantry",
+    slug: "peb-machinery",
+    image: "/assets/adk/studio-peb.jpg",
+  },
+];
+
+const shearCard = {
+  model: "Hydraulic shears",
+  note: "Plate preparation",
+  slug: "shearing",
+  image: "/assets/adk/studio-shear.jpg",
+};
+
+const customerCases = [
+  {
+    company: "ISRO",
+    mark: "ISRO",
+    city: "Government sector",
+    headline: "Launch-vehicle assembly floors running ADK lasers on ground-support parts",
+    image: "/assets/case-cutting-bay.jpg",
+  },
+  {
+    company: "Bajaj Steel Industries",
+    mark: "BAJAJ STEEL",
+    city: "Nagpur",
+    headline: "A steel major running ADK cutting and forming in production, not on a demo stand",
+    image: "/assets/case-factory-dusk.jpg",
+  },
+  {
+    company: "ADK 30 kW cell",
+    mark: "30 kW",
+    city: "India, 2023",
+    headline: "India’s first 30 kW fiber laser cutting machine, installed by ADK",
+    image: "/assets/case-heavy-plate.jpg",
+  },
+  {
+    company: "24 m table",
+    mark: "24000 mm",
+    city: "Santej works",
+    headline: "First order for a 3000 × 24000 mm table — plate that does not fit a standard bed",
+    image: "/assets/case-furniture-shop.jpg",
+  },
+];
+
+const capabilities = [
+  { id: "cnc", title: "CNC control unit", image: "/assets/tech-cnc.jpg" },
+  { id: "laser-head", title: "Laser cutting head", image: "/assets/tech-laser-head.jpg" },
+  { id: "precision", title: "Precision ±0.03 mm", image: "/assets/tech-precision.jpg" },
+  { id: "gantry", title: "Gantry structure", image: "/assets/tech-gantry.jpg" },
+  { id: "plasma-torch", title: "Plasma torch", image: "/assets/tech-plasma-torch.jpg" },
+  { id: "thick-plate", title: "Thick plate ready", image: "/assets/tech-thick-plate.jpg" },
+  { id: "servo", title: "Servo main drive", image: "/assets/tech-servo.jpg" },
+  { id: "backgauge", title: "Multi-axis backgauge", image: "/assets/tech-backgauge.jpg" },
+  { id: "dsp-guard", title: "DSP laser guard", image: "/assets/tech-dsp-guard.jpg" },
+];
+
+const whyChoose = [
+  {
+    title: "Experienced service team",
+    body: "Engineers with 16+ years in laser calibration, CNC controls and hydraulic press-brake tuning.",
+  },
+  {
+    title: "Always deliver more",
+    body: "On-site training and post-installation calibration included with every machine.",
+  },
+  {
+    title: "24/7 online support",
+    body: "Remote diagnostics at service@adkeng.com and +91 95100 41629.",
+  },
+  {
+    title: "On-time delivery",
+    body: "Lead times from order confirmation to ex-factory dispatch, stated up front.",
+  },
+  {
+    title: "PAN India presence",
+    body: "Eight offices: Ahmedabad, Pune, Nashik, Nagpur, Kolhapur, Indore, Kolkata, Bhopal.",
+  },
+  {
+    title: "After-sales as capital",
+    body: "Installation, training, spares and upgrades — your machine is your capital.",
+  },
+];
+
+const stats = [
+  { value: "750+", n: 750, suffix: "+", label: "Customers across India" },
+  { value: "550+", n: 550, suffix: "+", label: "Installations on the floor" },
+  { value: "16+", n: 16, suffix: "+", label: "Years of operating experience" },
+  { value: "8", n: 8, suffix: "", label: "Branch offices with service engineers" },
+];
+
+/* —————————————————————————————————————————————————————————————————————————— */
+/* Main Home Component                                                        */
+/* —————————————————————————————————————————————————————————————————————————— */
 
 export default function Home() {
   const { openEnquiry } = useEnquiry();
 
-  const [activeSlide, setActiveSlide] = useState(0);
-  const [isHovered, setIsHovered] = useState(false);
+  /* Product Showcase Tab state */
+  const [activeTab, setActiveTab] = useState(0);
+  const listRef = useRef<HTMLDivElement>(null);
+  const [indicator, setIndicator] = useState({ left: 0, width: 0 });
 
-  const heroSlides: HomeHeroSlide[] = [
-    {
-      title: "Fiber Laser Cutting",
-      // Fiber asset rejects bg-removal transforms (400); already a dark cutout PNG
-      src: resolveImagePath("home/hero-fiber-laser.jpg"),
-      desc: "Ultra-high precision cutting systems up to 60kW with exchange table.",
-      link: "/products/fiber-laser-cutting",
-      tag: "FL Series 60kW",
-      callouts: [
-        { label: "CNC_CONTROL_UNIT", x: 30, y: 48, align: "left", length: 88 },
-        { label: "LASER CUTTING HEAD", x: 51, y: 46, align: "top", length: 44 },
-        { label: "PRECISION 0.01MM", x: 62, y: 56, align: "right", length: 96 },
-      ],
-    },
-    {
-      title: "CNC Plasma Cutting",
-      src: withCloudinaryBackgroundRemoval(resolveImagePath("home/hero-plasma.jpg")),
-      desc: "Heavy-duty gantry plasma systems engineered for structural steel fabrication.",
-      link: "/products/cnc-plasma-cutting",
-      tag: "Plasma Gantry",
-      callouts: [
-        { label: "GANTRY STRUCTURE", x: 40, y: 38, align: "left", length: 100 },
-        { label: "PLASMA TORCH", x: 50, y: 46, align: "top", length: 64 },
-        { label: "THICK PLATE READY", x: 66, y: 54, align: "right", length: 88 },
-      ],
-    },
-    {
-      title: "CNC Press Brake",
-      src: withCloudinaryBackgroundRemoval(resolveImagePath("home/hero-press-brake.jpg")),
-      desc: "NADKpress precision bending technology for complex sheet metal operations.",
-      link: "/products/cnc-press-brake",
-      tag: "Press Brake CNC",
-      callouts: [
-        { label: "SERVO MAIN DRIVE", x: 34, y: 28, align: "top", length: 52 },
-        { label: "MULTI-AXIS BACKGAUGE", x: 52, y: 60, align: "bottom", length: 72 },
-        { label: "DSP LASER GUARD", x: 32, y: 46, align: "left", length: 92 },
-      ],
-    },
-  ];
+  const category = productCategories[activeTab];
+  const cards =
+    category?.lineup === "hero"
+      ? heroLineup
+      : category?.lineup === "forming"
+        ? formingLineup
+        : [shearCard];
 
-  const homeMachineImage: Record<string, string> = {
-    "fiber-laser-cutting": resolveImagePath("home/hero-fiber-laser.jpg"),
-    "cnc-plasma-cutting": resolveImagePath("home/hero-plasma.jpg"),
-    "cnc-press-brake": resolveImagePath("home/hero-press-brake.jpg"),
-  };
+  useLayoutEffect(() => {
+    const list = listRef.current;
+    if (!list) return;
+    const place = () => {
+      const btn = list.querySelectorAll("button")[activeTab] as HTMLButtonElement | undefined;
+      if (!btn) return;
+      setIndicator({ left: btn.offsetLeft, width: btn.offsetWidth });
+    };
+    place();
+    window.addEventListener("resize", place);
+    return () => window.removeEventListener("resize", place);
+  }, [activeTab]);
 
-  useEffect(() => {
-    if (isHovered) return;
-    const timer = setInterval(() => {
-      setActiveSlide((prev) => (prev + 1) % heroSlides.length);
-    }, 4000);
-    return () => clearInterval(timer);
-  }, [isHovered, heroSlides.length]);
+  /* Customer Cases Carousel state */
+  const [caseIndex, setCaseIndex] = useState(0);
+  const currentCase = customerCases[caseIndex];
+
+  /* Tech Capability Carousel state */
+  const [techIndex, setTechIndex] = useState(0);
+
+  /* Presence KPI active state */
+  const [hotKpi, setHotKpi] = useState(1);
 
   return (
-    <div className="flex flex-col w-full">
-      {/* Technical Hero Section */}
-      <section className="relative w-full min-h-[500px] md:min-h-[580px] lg:min-h-[620px] bg-surface tech-grid flex items-center overflow-hidden border-b border-border pt-8 pb-16 lg:pt-10 lg:pb-20">
-        <div className="absolute inset-0 opacity-30 pointer-events-none">
-          <div className="adk-container h-full border-x border-on-surface/5"></div>
-        </div>
-        <div className="relative z-10 adk-container w-full grid grid-cols-1 lg:grid-cols-[minmax(0,47%)_minmax(0,53%)] gap-10 lg:gap-12 items-center">
-          <div className="border-l-4 border-primary pl-6 md:pl-9">
-            <h1 className="font-display text-hero text-foreground uppercase mb-8 tracking-display">
-              Crafting <br />
-              Precision <br />
-              Shaping Tomorrow.
-            </h1>
-            <ul
-              className="font-ui text-label text-tertiary space-y-2.5 max-w-md border-t border-border pt-7 mb-10"
-              role="list"
+    <div className="flex flex-col w-full bg-background text-foreground">
+      {/* —————————————————————————————————————————————————————————————————— */}
+      {/* 1. HERO SECTION                                                    */}
+      {/* —————————————————————————————————————————————————————————————————— */}
+      <section className="relative isolate overflow-hidden bg-steel text-steel-foreground border-b border-rule">
+        <img
+          className="absolute inset-0 h-full w-full object-cover opacity-65"
+          src="/assets/hero-machine.jpg"
+          alt="ADK Machine Hero"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-steel via-steel/55 to-steel/15 md:bg-gradient-to-r md:from-steel md:via-steel/50 md:to-transparent" />
+        <div className="shell relative flex min-h-[82svh] flex-col justify-end py-16 md:min-h-[90svh] md:py-24 z-10">
+          <p className="eyebrow text-accent font-mono text-xs tracking-[0.18em]">
+            Ahmedabad · since 2015
+          </p>
+          <h1 className="mt-5 max-w-4xl font-display text-[2.6rem] leading-[0.98] md:text-7xl font-bold text-steel-foreground tracking-tight">
+            Crafting precision.
+            <br />
+            Shaping tomorrow.
+          </h1>
+          <p className="mt-6 max-w-xl text-base text-steel-muted md:text-lg font-sans leading-relaxed">
+            Fiber laser cutting to 60 kW, CNC plasma, NADKpress brakes, 4-in-1 welding, panel
+            benders and PEB lines. Built at Santej. Serviced from eight offices.
+          </p>
+          <ul className="mt-6 space-y-1 text-sm text-steel-muted font-sans">
+            <li className="flex items-center gap-2">
+              <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+              <span>Fiber laser cutting up to 60 kW</span>
+            </li>
+            <li className="flex items-center gap-2">
+              <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+              <span>CNC plasma systems · Hypertherm</span>
+            </li>
+            <li className="flex items-center gap-2">
+              <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+              <span>Press brakes and panel benders</span>
+            </li>
+            <li className="flex items-center gap-2">
+              <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+              <span>550+ installations across India</span>
+            </li>
+          </ul>
+          <div className="mt-9 flex flex-wrap gap-3">
+            <button
+              onClick={() => openEnquiry("General Machinery Inquiry")}
+              className="btn-sweep bg-accent px-7 py-4 font-display text-base font-bold tracking-tight text-accent-foreground shadow-[var(--shadow-lift)] cursor-pointer"
             >
-              <li className="flex gap-2">
-                <span className="text-primary shrink-0">▸</span>
-                <span>Fiber Laser Cutting up to 60kW</span>
-              </li>
-              <li className="flex gap-2">
-                <span className="text-primary shrink-0">▸</span>
-                <span>CNC Plasma Systems</span>
-              </li>
-              <li className="flex gap-2">
-                <span className="text-primary shrink-0">▸</span>
-                <span>Press Brakes &amp; Panel Benders</span>
-              </li>
-              <li className="flex gap-2">
-                <span className="text-primary shrink-0">▸</span>
-                <span>{companyInfo.stats.installations} Installations Across India</span>
-              </li>
-            </ul>
-            <div className="flex flex-col sm:flex-row gap-5">
-              <button
-                onClick={() => openEnquiry("General Catalogue Inquiry")}
-                className="bg-charcoal text-white border border-charcoal font-ui text-button uppercase font-bold px-9 py-3.5 hover:bg-primary hover:border-primary transition-colors duration-200 tracking-ui cursor-pointer"
-              >
-                Request Catalogue
-              </button>
-              <Link
-                href="/resources"
-                className="bg-transparent text-tertiary border border-border font-ui text-button uppercase px-9 py-3.5 hover:text-foreground hover:border-foreground/40 transition-colors duration-200 tracking-ui text-center"
-              >
-                View Specs
-              </Link>
-            </div>
-          </div>
-
-          <div
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-          >
-            <HomeHeroSchematic
-              slides={heroSlides}
-              activeSlide={activeSlide}
-              onPrev={() =>
-                setActiveSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length)
-              }
-              onNext={() => setActiveSlide((prev) => (prev + 1) % heroSlides.length)}
-              onSelect={setActiveSlide}
-            />
+              Request a quote
+            </button>
+            <Link
+              href="/products"
+              className="border border-white/30 px-7 py-4 font-display text-base font-bold tracking-tight text-steel-foreground transition-colors duration-300 hover:border-white hover:text-white text-center"
+            >
+              View specs
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* Grid Categories */}
-      <Reveal>
-        <section className="py-20 bg-card">
-          <div className="adk-container w-full">
-            <div className="mb-12 border-b border-border pb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
-              <div className="max-w-2xl">
-                <h2 className="font-display text-heading text-foreground uppercase tracking-display leading-none">
-                  Machine Classification
-                </h2>
-              </div>
-              <div className="font-ui text-label text-tertiary uppercase max-w-[280px] leading-relaxed border-l border-primary pl-5">
-                Standardized industrial machinery categories for precision manufacturing environments.
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border-t border-l border-border">
-              {categories.slice(0, 4).map((c, idx) => (
-                <Link
-                  key={c.slug}
-                  href={`/products/${c.slug}`}
-                  className="p-10 border-r border-b border-border group hover:bg-tech-blue transition-all duration-300 flex flex-col justify-between min-h-[280px]"
-                >
-                  <div>
-                    <div className="font-ui text-label text-primary mb-6">SR_0{idx + 1}</div>
-                    <span className="material-symbols-outlined text-[48px] text-foreground mb-6 group-hover:text-primary transition-colors">
-                      {c.icon}
-                    </span>
-                    <h3 className="font-display text-subheading text-foreground uppercase mb-3 group-hover:text-primary transition-colors">
-                      {c.name}
-                    </h3>
-                    <p className="font-body text-small text-tertiary leading-relaxed">
-                      {c.tagline}
-                    </p>
-                  </div>
-                  <div className="font-ui text-label text-primary group-hover:translate-x-1 transition-transform mt-4 flex items-center gap-1">
-                    Access Catalogue <span className="material-symbols-outlined text-[12px]">arrow_forward</span>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
-      </Reveal>
-
-      {/* Metrics Bar */}
-      <Reveal delay={100}>
-        <section className="py-16 bg-surface-container border-y border-border">
-          <div className="adk-container w-full">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-              <div className="text-center md:border-r border-border last:border-0 px-4">
-                <div className="font-ui text-label uppercase text-tertiary mb-3 tracking-ui">
-                  Happy_Customers
-                </div>
-                <div className="font-display text-stat text-foreground font-bold">
-                  {companyInfo.stats.customers}
-                </div>
-              </div>
-              <div className="text-center md:border-r border-border last:border-0 px-4">
-                <div className="font-ui text-label uppercase text-tertiary mb-3 tracking-ui">
-                  Operating_Exp
-                </div>
-                <div className="font-display text-stat text-foreground font-bold">
-                  {companyInfo.stats.yearsExperience} <span className="font-ui text-button align-middle font-normal">YRS</span>
-                </div>
-              </div>
-              <div className="text-center md:border-r border-border last:border-0 px-4">
-                <div className="font-ui text-label uppercase text-tertiary mb-3 tracking-ui">
-                  Installations
-                </div>
-                <div className="font-display text-stat text-foreground font-bold">
-                  {companyInfo.stats.installations}
-                </div>
-              </div>
-              <div className="text-center px-4">
-                <div className="font-ui text-label uppercase text-tertiary mb-3 tracking-ui">
-                  Branch_Offices
-                </div>
-                <div className="font-display text-stat text-foreground font-bold">
-                  08
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      </Reveal>
-
-      {/* Featured Machinery Showcases */}
-      <Reveal delay={100}>
-        <section className="py-20 bg-surface border-y border-border">
-          <div className="adk-container w-full">
-            <div className="mb-10 flex flex-col gap-3 border-b border-border pb-5 md:flex-row md:items-end md:justify-between">
-              <h2 className="font-display text-heading text-foreground uppercase tracking-display leading-none">
-                Advanced Machinery
-              </h2>
-              <Link
-                href="/products"
-                className="font-ui text-label text-primary hover:text-primary-hover tracking-ui flex items-center gap-2 transition-colors shrink-0"
+      {/* —————————————————————————————————————————————————————————————————— */}
+      {/* 2. PRODUCT SHOWCASE SECTION (Category Tabs & Studio Machine Cards) */}
+      {/* —————————————————————————————————————————————————————————————————— */}
+      <section className="border-b border-rule bg-background">
+        <div className="shell py-16 md:py-24">
+          <div
+            ref={listRef}
+            className="relative flex gap-7 overflow-x-auto border-b border-rule pb-4 md:gap-10"
+          >
+            {productCategories.map((cat, i) => (
+              <button
+                key={cat.id}
+                type="button"
+                onClick={() => setActiveTab(i)}
+                className={`shrink-0 text-sm font-medium transition-colors duration-300 cursor-pointer ${i === activeTab ? "text-foreground font-bold" : "text-muted-foreground hover:text-foreground"
+                  }`}
               >
-                View Full Inventory{" "}
-                <span className="material-symbols-outlined text-[14px]">arrow_forward</span>
-              </Link>
-            </div>
-
-            <MachineryBentoGrid
-              items={(
-                [
-                  "cnc-press-brake",
-                  "cnc-plasma-cutting",
-                  "fiber-laser-cutting",
-                  "fiber-laser-welding",
-                  "panel-bender",
-                  "peb-machinery",
-                ] as const
-              )
-                .map((slug) => {
-                  const category = categories.find((c) => c.slug === slug);
-                  if (!category) return null;
-                  const model = category.models[0];
-                  return {
-                    slug: category.slug,
-                    name: category.name,
-                    description: category.tagline,
-                    image:
-                      homeMachineImage[category.slug] ??
-                      (model ? productHeroPath(category.slug, model.slug) : ""),
-                    href: `/products/${category.slug}`,
-                  };
-                })
-                .filter((item): item is NonNullable<typeof item> => Boolean(item))}
+                {cat.label}
+              </button>
+            ))}
+            <span
+              className="tab-indicator"
+              style={{ left: indicator.left, width: indicator.width }}
             />
           </div>
-        </section>
-      </Reveal>
 
-      {/* Why Choose ADK */}
-      <Reveal delay={100}>
-        <section className="py-20 bg-surface border-y border-border">
-          <div className="adk-container w-full">
-            <div className="mb-12 border-b border-border pb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
-              <div>
-                <h2 className="font-display text-heading text-foreground uppercase tracking-display">
-                  Why Choose ADK
-                </h2>
-              </div>
-              <p className="font-ui text-label text-tertiary uppercase max-w-[280px] leading-relaxed border-l border-primary pl-5">
-                Your machine is your capital — we keep it running with precision service and proven engineering.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {whyChooseAdk.map((item, idx) => (
-                <div
-                  key={item.title}
-                  className="bg-card p-6 border border-border hover:border-primary hover-lift transition-all group"
-                >
-                  <span className="material-symbols-outlined text-3xl text-foreground group-hover:text-primary transition-colors mb-4 block">
-                    {item.icon}
-                  </span>
-                  <h3 className="font-display text-card-title text-foreground uppercase font-bold mb-2 group-hover:text-primary transition-colors">
-                    {item.title}
-                  </h3>
-                  <p className="font-body text-small text-tertiary leading-relaxed">
-                    {item.description}
+          {category && (
+            <Reveal key={`${category.id}-band`} className="mt-8">
+              <div className="flex flex-col gap-6 bg-steel px-8 py-8 text-steel-foreground md:flex-row md:items-end md:justify-between md:px-10 md:py-9">
+                <div className="max-w-2xl">
+                  <h2 className="font-display text-3xl leading-tight md:text-4xl font-bold">
+                    {category.title}
+                  </h2>
+                  <p className="mt-3 text-sm leading-relaxed text-steel-muted md:text-base font-sans">
+                    {category.blurb}
                   </p>
-                  <span className="font-ui text-label text-primary/50 mt-3 block">
-                    ADV_0{idx + 1}
-                  </span>
                 </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      </Reveal>
-
-      {/* Featured Applications Section */}
-      <Reveal delay={100}>
-        <section className="py-20 bg-card border-t border-border">
-          <div className="adk-container w-full">
-            <div className="mb-12 border-b border-border pb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
-              <div>
-                <h2 className="font-display text-heading text-foreground uppercase tracking-display">
-                  Industries Served
-                </h2>
-              </div>
-              <Link
-                href="/applications"
-                className="font-ui text-label text-primary hover:underline mb-2 tracking-ui flex items-center gap-2 font-bold"
-              >
-                Explore All Sectors{" "}
-                <span className="material-symbols-outlined text-[14px]">arrow_forward</span>
-              </Link>
-            </div>
-
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-              {applications.slice(0, 6).map((app) => (
                 <Link
-                  key={app.slug}
-                  href={`/applications/${app.slug}`}
-                  className="bg-card p-6 border border-border hover:border-primary hover:shadow-md transition-all duration-300 flex flex-col items-center text-center group"
+                  href={`/products/${category.slug}`}
+                  className="link-underline inline-flex shrink-0 items-center gap-2 text-sm font-semibold text-accent hover:text-white font-display"
                 >
-                  <span className="material-symbols-outlined text-4xl text-foreground/75 group-hover:text-primary transition-colors mb-4">
-                    {app.icon}
-                  </span>
-                  <h4 className="font-display text-card-title text-foreground uppercase tracking-display font-bold group-hover:text-primary transition-colors">
-                    {app.name}
-                  </h4>
+                  Learn more
+                  <span className="arrow">→</span>
                 </Link>
-              ))}
-            </div>
+              </div>
+            </Reveal>
+          )}
+
+          <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {cards.map((card, i) => (
+              <Reveal key={`${category.id}-${card.slug}-${i}`} delay={i * 80} className="h-full">
+                <Link
+                  href={`/products/${card.slug}`}
+                  className="group relative block aspect-16/10 overflow-hidden bg-card border border-rule hover-lift"
+                >
+                  <p className="absolute top-0 left-0 z-10 px-6 pt-6 text-sm font-display font-semibold text-muted-foreground transition-colors duration-500 group-hover:text-accent">
+                    {card.model}
+                    <span className="mt-2 block h-px w-8 origin-left scale-x-0 bg-accent transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-x-100" />
+                  </p>
+                  <div className="h-full w-full p-6 pt-14 pb-8 flex items-center justify-center bg-white border-b border-rule">
+                    <img
+                      src={card.image}
+                      alt={card.model}
+                      width={1600}
+                      height={900}
+                      className="h-full w-full object-contain transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
+                    />
+                  </div>
+                  <span className="absolute right-5 bottom-5 z-10 inline-flex items-center gap-2 text-sm font-semibold text-accent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                    Learn more
+                    <span className="arrow">→</span>
+                  </span>
+                </Link>
+              </Reveal>
+            ))}
           </div>
-        </section>
-      </Reveal>
+        </div>
+      </section>
 
-      {/* Trusted Customers */}
-      <Reveal delay={100}>
-        <section className="py-20 bg-surface">
-          <div className="adk-container w-full">
-            <div className="mb-12 border-b border-border pb-6 text-center max-w-xl mx-auto">
-              <h2 className="font-display text-heading text-foreground uppercase tracking-display">
-                Trusted by Industry Leaders
-              </h2>
-              <p className="font-body text-small text-tertiary mt-4">
-                {companyInfo.stats.customers} installations including ISRO, Bajaj Steel, and leading fabrication companies.
-              </p>
-            </div>
-
-            <ClientLogoMarquee rowA={clientMarqueeRowA} rowB={clientMarqueeRowB} />
-            <div className="text-center mt-8">
-              <Link
-                href="/clients"
-                className="font-ui text-label text-primary hover:underline tracking-ui font-bold"
-              >
-                View All Clients →
-              </Link>
-            </div>
+      {/* —————————————————————————————————————————————————————————————————— */}
+      {/* 3. OUTSTANDING CUSTOMER CASES CAROUSEL                             */}
+      {/* —————————————————————————————————————————————————————————————————— */}
+      <section className="overflow-hidden py-16 md:py-24 border-b border-rule bg-card">
+        <div className="shell">
+          <div className="mb-4 flex justify-center gap-3">
+            <button
+              type="button"
+              className="carousel-arrow cursor-pointer"
+              aria-label="Previous case"
+              onClick={() =>
+                setCaseIndex((prev) => (prev - 1 + customerCases.length) % customerCases.length)
+              }
+            >
+              <span className="material-symbols-outlined text-lg">chevron_left</span>
+            </button>
+            <button
+              type="button"
+              className="carousel-arrow cursor-pointer"
+              aria-label="Next case"
+              onClick={() => setCaseIndex((prev) => (prev + 1) % customerCases.length)}
+            >
+              <span className="material-symbols-outlined text-lg">chevron_right</span>
+            </button>
           </div>
-        </section>
-      </Reveal>
-
-      {/* 10 Years of ADK */}
-      <Reveal delay={100}>
-        <section className="py-20 bg-surface border-y border-border">
-          <div className="adk-container w-full">
-            <div className="mb-10 flex flex-col gap-3 border-b border-border pb-5 md:flex-row md:items-end md:justify-between">
-              <h2 className="font-display text-heading text-foreground uppercase tracking-display leading-none">
-                10 Years of ADK
-              </h2>
-              <p className="font-ui text-label text-tertiary uppercase max-w-sm leading-relaxed md:text-right">
-                A decade of precision machinery, service, and trust.
-              </p>
-            </div>
-            <DecadeVideo />
-          </div>
-        </section>
-      </Reveal>
-
-      {/* Enquiry CTA Strip */}
-      <Reveal delay={100}>
-        <section className="py-20 bg-charcoal text-white border-t border-primary/30">
-          <div className="adk-container w-full text-center">
-            <h2 className="font-display text-heading uppercase tracking-display mb-6 leading-none">
-              Request a Custom Machinery Quote
+          <Reveal className="text-center">
+            <h2 className="font-display text-3xl leading-tight md:text-5xl font-bold">
+              Outstanding customer cases
             </h2>
-            <p className="font-ui text-label text-light-gray/60 mb-10 leading-relaxed max-w-lg mx-auto">
-              Share your material specifications, production volume, and facility requirements.
-              Our engineering team will respond within 6 business hours.
+            <p className="mx-auto mt-4 max-w-2xl text-muted-foreground font-sans">
+              Machines that earn their keep after the first year — including work at ISRO and Bajaj Steel.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button
-                onClick={() => openEnquiry("General Machinery Enquiry")}
-                className="bg-primary hover:bg-primary-hover text-white font-ui text-label tracking-ui px-10 py-5 border border-primary transition-all font-bold cursor-pointer"
-              >
-                Start Enquiry
-              </button>
-              <Link
-                href="/contact"
-                className="bg-transparent text-white border border-white/30 font-ui text-label tracking-ui px-10 py-5 hover:bg-card hover:text-foreground transition-all text-center"
-              >
-                Contact Operations
-              </Link>
+          </Reveal>
+
+          {currentCase && (
+            <div className="mt-12 max-w-5xl mx-auto">
+              <article className="grid min-h-[22rem] overflow-hidden bg-background border border-rule md:grid-cols-2 md:min-h-[26rem] shadow-sm">
+                <div className="relative min-h-[14rem] overflow-hidden md:min-h-0 bg-steel">
+                  <img
+                    src={currentCase.image}
+                    alt={currentCase.company}
+                    width={1600}
+                    height={900}
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+                <div className="flex flex-col justify-center px-8 py-10 md:px-12">
+                  <p className="font-display text-sm tracking-[0.18em] text-accent font-bold">
+                    {currentCase.mark}
+                  </p>
+                  <h3 className="mt-6 font-display text-2xl leading-snug md:text-3xl font-bold">
+                    "{currentCase.headline}"
+                  </h3>
+                  <p className="mt-4 text-sm text-muted-foreground font-sans">{currentCase.city}</p>
+                  <Link
+                    href="/applications"
+                    className="link-underline mt-10 inline-flex items-center gap-2 text-sm font-semibold text-foreground hover:text-accent font-display"
+                  >
+                    Learn more
+                    <span className="arrow">→</span>
+                  </Link>
+                </div>
+              </article>
             </div>
+          )}
+        </div>
+      </section>
+
+      {/* —————————————————————————————————————————————————————————————————— */}
+      {/* 4. CORE TECHNOLOGIES CAROUSEL                                       */}
+      {/* —————————————————————————————————————————————————————————————————— */}
+      <section className="border-b border-rule py-16 md:py-24 bg-background">
+        <div className="shell">
+          <div className="mb-4 flex justify-center gap-3">
+            <button
+              type="button"
+              className="carousel-arrow cursor-pointer"
+              aria-label="Previous capability"
+              onClick={() =>
+                setTechIndex((prev) => (prev - 1 + capabilities.length) % capabilities.length)
+              }
+            >
+              <span className="material-symbols-outlined text-lg">chevron_left</span>
+            </button>
+            <button
+              type="button"
+              className="carousel-arrow cursor-pointer"
+              aria-label="Next capability"
+              onClick={() => setTechIndex((prev) => (prev + 1) % capabilities.length)}
+            >
+              <span className="material-symbols-outlined text-lg">chevron_right</span>
+            </button>
           </div>
-        </section>
-      </Reveal>
+          <Reveal className="text-center">
+            <h2 className="font-display text-3xl leading-tight md:text-5xl font-bold">Core technologies</h2>
+            <p className="mx-auto mt-4 max-w-2xl text-muted-foreground font-sans">
+              CNC control, laser heads, Hypertherm plasma, servo drives and DSP guards — the hardware
+              on ADK machines.
+            </p>
+          </Reveal>
+
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {[0, 1, 2].map((offset) => {
+              const cap = capabilities[(techIndex + offset) % capabilities.length];
+              return (
+                <figure key={cap.id} className="group relative aspect-[4/5] overflow-hidden border border-rule bg-steel">
+                  <img
+                    src={cap.image}
+                    alt={cap.title}
+                    width={1200}
+                    height={1500}
+                    className="h-full w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-steel via-steel/20 to-transparent" />
+                  <figcaption className="absolute inset-x-0 bottom-0 p-6 text-center font-display text-xl text-steel-foreground font-bold">
+                    {cap.title}
+                  </figcaption>
+                </figure>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* —————————————————————————————————————————————————————————————————— */}
+      {/* 5. PRESENCE SECTION (Service Network Across India)                 */}
+      {/* —————————————————————————————————————————————————————————————————— */}
+      <section className="relative isolate overflow-hidden bg-steel text-steel-foreground border-b border-rule">
+        <img
+          src="/assets/presence-india-night.jpg"
+          alt="ADK Presence India Night"
+          width={1920}
+          height={1080}
+          className="absolute inset-0 -z-10 h-full w-full object-cover opacity-80"
+        />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-steel/90 via-steel/55 to-steel/30" />
+
+        <div className="shell py-20 md:py-28">
+          <p className="eyebrow text-accent">Service network</p>
+          <h2 className="mt-4 max-w-xl font-display text-4xl leading-tight md:text-6xl font-bold">
+            ADK across India
+          </h2>
+          <p className="mt-5 max-w-lg text-steel-muted font-sans leading-relaxed">
+            Built in Santej. Serviced from eight offices — so a breakdown call is answered the same
+            day, not from a distant headquarters.
+          </p>
+
+          <div className="mt-14 grid gap-10 border-t border-white/10 pt-12 sm:grid-cols-2 lg:grid-cols-4">
+            {stats.map((s, i) => (
+              <button
+                key={s.label}
+                type="button"
+                className="text-left cursor-pointer"
+                onMouseEnter={() => setHotKpi(i)}
+                onFocus={() => setHotKpi(i)}
+              >
+                <p
+                  className={`kpi-rule inline-block font-display text-5xl leading-none text-steel-foreground md:text-6xl font-bold ${hotKpi === i ? "is-active" : ""
+                    }`}
+                >
+                  {s.value}
+                </p>
+                <p className="mt-4 max-w-[12rem] text-sm text-steel-muted font-sans">{s.label}</p>
+              </button>
+            ))}
+          </div>
+
+          <Link
+            href="/about"
+            className="link-underline mt-14 inline-flex items-center gap-2 text-sm font-semibold text-steel-foreground hover:text-accent font-display"
+          >
+            How we service machines
+            <span className="arrow">→</span>
+          </Link>
+        </div>
+      </section>
+
+      {/* —————————————————————————————————————————————————————————————————— */}
+      {/* 6. TRUSTED CLIENTS MARQUEE                                         */}
+      {/* —————————————————————————————————————————————————————————————————— */}
+      <section className="py-16 md:py-24 border-b border-rule bg-background">
+        <div className="shell mb-12 text-center max-w-2xl mx-auto">
+          <p className="eyebrow text-accent">CLIENTS</p>
+          <h2 className="mt-3 font-display text-3xl md:text-4xl font-bold uppercase tracking-tight">
+            Trusted by Industry Leaders
+          </h2>
+          <p className="mt-4 font-sans text-sm text-muted-foreground leading-relaxed">
+            750+ installations including ISRO, Bajaj Steel, and leading fabrication companies across India.
+          </p>
+        </div>
+
+        <ClientLogoMarquee rowA={clientMarqueeRowA} rowB={clientMarqueeRowB} />
+
+        <div className="text-center mt-10">
+          <Link
+            href="/clients"
+            className="link-underline font-mono text-xs uppercase tracking-widest font-bold text-accent"
+          >
+            View All Clients →
+          </Link>
+        </div>
+      </section>
+
+      {/* —————————————————————————————————————————————————————————————————— */}
+      {/* 7. WHY CHOOSE ADK SECTION                                          */}
+      {/* —————————————————————————————————————————————————————————————————— */}
+      <section className="border-b border-rule bg-background">
+        <div className="shell py-20 md:py-28">
+          <Reveal className="text-center">
+            <h2 className="font-display text-3xl leading-tight md:text-5xl font-bold">Why choose ADK</h2>
+            <p className="mx-auto mt-4 max-w-xl text-muted-foreground font-sans">
+              Your machine is your capital — we keep it running.
+            </p>
+          </Reveal>
+          <div className="mt-14 grid gap-px border border-rule bg-rule sm:grid-cols-2 lg:grid-cols-3">
+            {whyChoose.map((item, i) => (
+              <Reveal key={item.title} delay={(i % 3) * 80} className="bg-background p-8">
+                <h3 className="font-display text-xl font-bold">{item.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground font-sans">{item.body}</p>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* —————————————————————————————————————————————————————————————————— */}
+      {/* 8. IN-DEPTH PRODUCT KNOWLEDGE ACTION TILES                         */}
+      {/* —————————————————————————————————————————————————————————————————— */}
+      <section className="border-b border-rule panel">
+        <div className="shell py-20 md:py-28">
+          <Reveal className="text-center">
+            <h2 className="font-display text-3xl leading-tight md:text-5xl font-bold">
+              In-depth product knowledge
+            </h2>
+            <p className="mx-auto mt-4 max-w-xl text-muted-foreground font-sans">
+              Catalogues, an engineer, or a quote — without waiting for a sales call.
+            </p>
+          </Reveal>
+          <div className="mt-14 grid gap-6 sm:grid-cols-3">
+            <Link
+              href="/resources"
+              className="arrow-slide group flex h-full flex-col items-center gap-5 border border-rule bg-card px-8 py-16 text-center transition-colors duration-500 hover:border-foreground"
+            >
+              <span className="material-symbols-outlined text-3xl text-accent">description</span>
+              <span className="font-display text-xl font-bold tracking-tight">Download catalogue</span>
+              <span className="text-sm text-muted-foreground font-sans">Specifications in print</span>
+              <span className="arrow text-lg font-bold">→</span>
+            </Link>
+            <Link
+              href="/contact"
+              className="arrow-slide group flex h-full flex-col items-center gap-5 border border-rule bg-card px-8 py-16 text-center transition-colors duration-500 hover:border-foreground"
+            >
+              <span className="material-symbols-outlined text-3xl text-accent">headset_mic</span>
+              <span className="font-display text-xl font-bold tracking-tight">Talk to an engineer</span>
+              <span className="text-sm text-muted-foreground font-sans">Same-day response</span>
+              <span className="arrow text-lg font-bold">→</span>
+            </Link>
+            <button
+              onClick={() => openEnquiry("General Machinery Enquiry")}
+              className="arrow-slide group flex h-full flex-col items-center gap-5 border border-rule bg-card px-8 py-16 text-center transition-colors duration-500 hover:border-foreground cursor-pointer text-left w-full"
+            >
+              <span className="material-symbols-outlined text-3xl text-accent">currency_rupee</span>
+              <span className="font-display text-xl font-bold tracking-tight">Get a quote</span>
+              <span className="text-sm text-muted-foreground font-sans">Machine, price, delivery date</span>
+              <span className="arrow text-lg font-bold">→</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* —————————————————————————————————————————————————————————————————— */}
+      {/* 9. QUOTE CTA BANNER                                                 */}
+      {/* —————————————————————————————————————————————————————————————————— */}
+      <section className="border-y border-rule bg-steel text-steel-foreground">
+        <div className="shell grid gap-10 py-16 md:grid-cols-[1.4fr_auto] md:items-end md:py-24">
+          <div>
+            <h2 className="max-w-2xl font-display text-3xl leading-tight md:text-4xl font-bold">
+              Tell us what you cut. We will quote the right machine.
+            </h2>
+            <p className="mt-5 max-w-xl leading-relaxed text-steel-muted font-sans">
+              Send the material and thickness you work with and we will come back with a machine size, a price and a delivery date.
+            </p>
+          </div>
+          <button
+            onClick={() => openEnquiry("General Machinery Enquiry")}
+            className="btn-sweep inline-block bg-accent px-7 py-4 text-center font-display text-base font-bold tracking-tight text-accent-foreground cursor-pointer shadow-[var(--shadow-lift)]"
+          >
+            Request a quote
+          </button>
+        </div>
+      </section>
+
+      {/* —————————————————————————————————————————————————————————————————— */}
+      {/* 10. TAGLINE BANNER                                                 */}
+      {/* —————————————————————————————————————————————————————————————————— */}
+      <section className="py-16 md:py-20 border-b border-rule bg-background">
+        <p className="text-center font-display text-2xl font-bold tracking-tight">
+          Crafting precision, shaping tomorrow.
+        </p>
+      </section>
     </div>
   );
 }

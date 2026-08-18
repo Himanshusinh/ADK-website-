@@ -5,20 +5,32 @@
 :root {
   color-scheme: light;
 
-  --adk-surface: #fbf9f9;
-  --adk-card: #ffffff;
-  --adk-foreground: #1b1c1c;
-  --adk-muted: #4b4d4d;
-  --adk-surface-container: #efeded;
-  --adk-tech-blue: #e8f0f5;
-  --adk-border: rgba(27, 28, 28, 0.1);
+  /* Redesigned machine-tool theme variables */
+  --background: #f7f7f5;
+  --foreground: #1c1e21;
+  --card: #fcfcfb;
+  --muted: #eeecea;
+  --muted-foreground: #6b6e75;
+  --accent: #dc2626;
+  --accent-foreground: #ffffff;
+  --accent-deep: #b91c1c;
+  --steel: #1b1d21;
+  --steel-foreground: #f5f5f4;
+  --steel-muted: #9ca3af;
+  --rule: #e5e3df;
+  --rule-strong: #bcba08;
+  --panel: #f2f0ec;
+
+  --adk-surface: var(--background);
+  --adk-card: var(--card);
+  --adk-foreground: var(--foreground);
+  --adk-muted: var(--muted-foreground);
+  --adk-surface-container: var(--panel);
+  --adk-border: var(--rule);
   --adk-charcoal: #1a1a1a;
   --adk-grid-major: rgba(27, 28, 28, 0.065);
   --adk-grid-minor: rgba(27, 28, 28, 0.035);
-  --adk-hover-shadow: rgba(27, 28, 28, 0.08);
-
-  --background: var(--adk-surface);
-  --foreground: var(--adk-foreground);
+  --adk-hover-shadow: rgba(0, 0, 0, 0.12);
 
   --adk-container-max: min(1720px, calc(100vw - 96px));
   --adk-container-padding: clamp(32px, 4vw, 64px);
@@ -27,10 +39,17 @@
   --adk-nav-cta-gap: clamp(40px, 4vw, 56px);
   --adk-header-main-height: 64px;
 
-  /* Font family aliases (all map to Inter) */
-  --adk-font-display: var(--adk-font-inter);
-  --adk-font-ui: var(--adk-font-inter);
-  --adk-font-body: var(--adk-font-inter);
+  /* Font family aliases */
+  --font-archivo: "Archivo", system-ui, sans-serif;
+  --font-ibm-sans: "IBM Plex Sans", system-ui, sans-serif;
+  --font-ibm-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  --adk-font-display: var(--font-archivo);
+  --adk-font-ui: var(--font-ibm-sans);
+  --adk-font-body: var(--font-ibm-sans);
+
+  --ease-calm: cubic-bezier(0.16, 1, 0.3, 1);
+  --shadow-lift: 0 18px 50px -24px color-mix(in srgb, var(--accent) 45%, transparent);
 
   /* Typography scale */
   --text-hero: clamp(2.5rem, 4.8vw, 4rem);
@@ -90,6 +109,9 @@
 
   --background: var(--adk-surface);
   --foreground: var(--adk-foreground);
+
+  --rule: rgba(237, 237, 237, 0.15);
+  --panel: #16181a;
 }
 
 @theme {
@@ -107,17 +129,139 @@
   --color-foreground: var(--adk-foreground);
   --color-border: var(--adk-border);
 
-  --font-display: var(--adk-font-inter), system-ui, sans-serif;
-  --font-ui: var(--adk-font-inter), system-ui, sans-serif;
-  --font-body: var(--adk-font-inter), system-ui, sans-serif;
+  --color-steel: var(--steel);
+  --color-steel-foreground: var(--steel-foreground);
+  --color-steel-muted: var(--steel-muted);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent-deep: var(--accent-deep);
+  --color-rule: var(--rule);
+  --color-rule-strong: var(--rule-strong);
+  --color-panel: var(--panel);
+
+  --font-display: "Archivo", "Arial Narrow", system-ui, sans-serif;
+  --font-sans: "IBM Plex Sans", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --font-ui: "IBM Plex Sans", system-ui, sans-serif;
+  --font-body: "IBM Plex Sans", system-ui, sans-serif;
 }
 
 body {
-  background-color: var(--adk-surface);
-  color: var(--adk-foreground);
-  font-family: var(--font-body);
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
   font-size: var(--text-body);
   line-height: var(--leading-body);
+  font-synthesis-weight: none;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+/* Machine-tool design system utilities from adk-redesigned */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+.shell {
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+  max-width: 82rem;
+}
+
+@media (min-width: 768px) {
+  .shell {
+    padding-inline: 2rem;
+  }
+}
+
+.link-underline {
+  position: relative;
+}
+
+.link-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  height: 1px;
+  width: 100%;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.link-underline:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.hover-lift {
+  transition:
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 24px 60px -34px rgb(0 0 0 / 0.45);
+}
+
+.btn-sweep {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.btn-sweep::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--accent-deep);
+  transform: translateY(101%);
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-sweep:hover::before {
+  transform: translateY(0);
+}
+
+.panel {
+  background-color: var(--panel);
+}
+
+.accent-rule::before {
+  content: "";
+  display: block;
+  width: 2.5rem;
+  height: 2px;
+  background: var(--accent);
+  margin-bottom: 1.25rem;
+}
+
+.arrow-slide svg,
+.arrow-slide .arrow {
+  transition: transform 0.45s var(--ease-calm);
+}
+
+.arrow-slide:hover svg,
+.arrow-slide:hover .arrow {
+  transform: translateX(6px);
 }
 
 /* Typography utilities */

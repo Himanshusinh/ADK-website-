@@ -1,277 +1,393 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { teamPhotos, factoryPhotos, companyInfo, timelineEvents } from "@/lib/data";
+import React, { useState, useEffect, useCallback } from "react";
+import Link from "next/link";
 import { useEnquiry } from "@/components/EnquiryContext";
 import Reveal from "@/components/Reveal";
-import { teamPhotoPath } from "@/lib/media";
-import MediaImage from "@/components/MediaImage";
+import ClientLogoMarquee from "@/components/ClientLogoMarquee";
+import { clientMarqueeRowA, clientMarqueeRowB } from "@/lib/data";
+
+/* —————————————————————————————————————————————————————————————————————————— */
+/* Data Definitions matching adk-engineering-site                            */
+/* —————————————————————————————————————————————————————————————————————————— */
+
+const principles = [
+  {
+    eyebrow: "Mission",
+    title: "After-sales is how the company was founded.",
+    body: "Installation, training, spares and a same-day call — not a department bolted on after the crate is opened.",
+  },
+  {
+    eyebrow: "Vision",
+    title: "Machines that earn their keep after the first year.",
+    body: "Built at Santej, serviced from eight offices, specified around the parts you already cut.",
+  },
+  {
+    eyebrow: "Slogan",
+    title: "Crafting precision, shaping tomorrow.",
+    body: "Fiber laser, plasma, press brake, welding, panel and PEB lines — one works, one service number.",
+  },
+];
+
+const familyLineup = [
+  { model: "Fiber laser cutting", slug: "fiber-laser-cutting", image: "/assets/adk/studio-fiber.jpg" },
+  { model: "CNC plasma cutting", slug: "cnc-plasma-cutting", image: "/assets/adk/studio-plasma.jpg" },
+  { model: "CNC press brake", slug: "cnc-press-brake", image: "/assets/adk/studio-press.jpg" },
+  { model: "Fiber laser welding", slug: "fiber-laser-welding", image: "/assets/adk/studio-welder.jpg" },
+  { model: "Panel bender", slug: "panel-bender", image: "/assets/adk/studio-panel.jpg" },
+  { model: "PEB machinery", slug: "peb-machinery", image: "/assets/adk/studio-peb.jpg" },
+  { model: "Hydraulic shears", slug: "shearing-machine", image: "/assets/adk/studio-shear.jpg" },
+];
+
+const timeline = [
+  {
+    year: "2015",
+    title: "Founded in Ahmedabad",
+    body: "Started at Santej to build cutting and forming machinery with local engineering support.",
+  },
+  {
+    year: "2017",
+    title: "100 machines on the floor",
+    body: "Reached a hundred installations across Gujarat and Maharashtra.",
+  },
+  {
+    year: "2019",
+    title: "Press-brake and PEB lines",
+    body: "Expanded the catalogue to press brakes and pre-engineered building lines.",
+  },
+  {
+    year: "2021",
+    title: "Eight service branches",
+    body: "Established resident service teams in Pune, Nashik, Nagpur, Kolhapur, Indore, Kolkata and Bhopal.",
+  },
+  {
+    year: "2023",
+    title: "30 kW fiber laser cell",
+    body: "Installed India’s first 30 kW fiber laser cutting machine.",
+  },
+  {
+    year: "2025",
+    title: "24 m table laser and 550+ installations",
+    body: "Crossed 550 installations and delivered a 3000 × 24000 mm heavy-plate machine bed.",
+  },
+];
+
+const whyChoose = [
+  {
+    title: "Experienced service team",
+    body: "Engineers with 16+ years in laser calibration, CNC controls and hydraulic press-brake tuning.",
+  },
+  {
+    title: "Always deliver more",
+    body: "On-site training and post-installation calibration included with every machine.",
+  },
+  {
+    title: "24/7 online support",
+    body: "Remote diagnostics at service@adkeng.com and +91 95100 41629.",
+  },
+  {
+    title: "On-time delivery",
+    body: "Lead times from order confirmation to ex-factory dispatch, stated up front.",
+  },
+  {
+    title: "PAN India presence",
+    body: "Eight offices: Ahmedabad, Pune, Nashik, Nagpur, Kolhapur, Indore, Kolkata, Bhopal.",
+  },
+  {
+    title: "After-sales as capital",
+    body: "Installation, training, spares and upgrades — your machine is your capital.",
+  },
+];
+
+const branches = [
+  { city: "Ahmedabad", role: "Headquarters & Santej Works" },
+  { city: "Pune", role: "Maharashtra Service Branch" },
+  { city: "Nashik", role: "Service Office" },
+  { city: "Nagpur", role: "Vidarbha Service Branch" },
+  { city: "Kolhapur", role: "Service Office" },
+  { city: "Indore", role: "Madhya Pradesh Branch" },
+  { city: "Kolkata", role: "East India Branch" },
+  { city: "Bhopal", role: "Service Office" },
+];
+
+/* —───────────────────────────────────────────────────────────────────────── */
+/* Main About Page Component                                                 */
+/* —───────────────────────────────────────────────────────────────────────── */
 
 export default function AboutPage() {
   const { openEnquiry } = useEnquiry();
 
-  const leadershipPhotos = teamPhotos.filter((p) => p.type === "portrait");
-  const heroFactory = factoryPhotos[0];
-  const groupPhoto = teamPhotos.find((p) => p.type === "group") || teamPhotos[0];
+  /* Principles tab switcher */
+  const [principleIndex, setPrincipleIndex] = useState(0);
+  const activePrinciple = principles[principleIndex];
 
-  const teamSlides = [
-    {
-      src: teamPhotoPath("img1.jpg"),
-      title: "ADK Workshop Group",
-      sublabel: "Factory works team",
-    },
-    {
-      src: teamPhotoPath("img2.jpg"),
-      title: "ADK Core Engineering Group",
-      sublabel: "Precision development unit",
-    },
-  ];
-
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [isHovered, setIsHovered] = useState(false);
-
-  useEffect(() => {
-    if (isHovered) return;
-    const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % teamSlides.length);
-    }, 4000);
-    return () => clearInterval(timer);
-  }, [isHovered, teamSlides.length]);
-
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % teamSlides.length);
-  };
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + teamSlides.length) % teamSlides.length);
-  };
-
-  const coreCapabilities = [
-    { title: "Pre-Sale Consultation", desc: "Personalized consultations to understand your requirements and recommend tailored sheet metal solutions that drive success and efficiency." },
-    { title: "Installation & Training", desc: "Experienced engineers ensure seamless installation and setup. Comprehensive training programs equip your team for maximum productivity." },
-    { title: "Ongoing Maintenance", desc: "Routine inspections, repairs, and upgrades by skilled technicians to ensure consistent reliability and optimal performance." },
-    { title: "Spare Parts & Upgrades", desc: "Comprehensive inventory of spare parts for quick delivery. Upgrade packages keep your machinery aligned with the latest innovations." },
-  ];
+  /* Timeline rail switcher */
+  const [timelineIndex, setTimelineIndex] = useState(timeline.length - 1);
+  const activeTimeline = timeline[timelineIndex];
 
   return (
-    <div className="flex flex-col w-full bg-surface">
-      {/* Page Header */}
-      <section className="relative bg-surface border-b border-border py-16 tech-grid">
-        <div className="adk-container">
-          <h1 className="font-display text-heading text-foreground uppercase tracking-display leading-none mb-6">
-            WHO WE ARE & WHAT WE DO
+    <div className="flex flex-col w-full bg-background text-foreground">
+      {/* —————————————————————————————————————————————————————————————————— */}
+      {/* 1. HERO SECTION                                                    */}
+      {/* —————————————————————————————————————————————————————————————————— */}
+      <section className="relative isolate overflow-hidden bg-steel text-steel-foreground border-b border-rule">
+        <img
+          src="/assets/about-works-hero.jpg"
+          alt="ADK About Works Hero"
+          width={1920}
+          height={1080}
+          className="absolute inset-0 -z-10 h-full w-full object-cover opacity-70"
+        />
+        <div className="absolute inset-0 -z-10 bg-steel/60" />
+        <div className="shell flex min-h-[78svh] flex-col items-center justify-center py-24 text-center md:min-h-[88svh] md:py-32 z-10">
+          <p className="eyebrow text-accent font-mono text-xs tracking-[0.18em]">About</p>
+          <h1 className="mt-5 max-w-4xl font-display text-4xl leading-[1.05] md:text-6xl font-bold">
+            Who we are and what we do.
           </h1>
-          <p className="font-ui text-label text-tertiary max-w-xl leading-relaxed">
-            {companyInfo.tagline} — Over {companyInfo.stats.yearsExperience} years delivering
-            fiber laser, CNC plasma, press brake, and PEB machinery across India.
+          <p className="mt-6 max-w-2xl text-base text-steel-muted md:text-lg font-sans leading-relaxed">
+            Founded in 2015 in Ahmedabad. ADK designs, builds and services fiber laser, CNC plasma,
+            press brake, welding, PEB and panel-bending machines from Santej. 550+ installations,
+            including government work at ISRO.
+          </p>
+          <div className="mt-14 grid w-full max-w-3xl gap-10 border-t border-white/15 pt-10 sm:grid-cols-3">
+            <div>
+              <p className="font-display text-4xl leading-none md:text-5xl font-bold">750+</p>
+              <p className="mt-3 text-sm text-steel-muted font-sans">Customers across India</p>
+            </div>
+            <div>
+              <p className="font-display text-4xl leading-none md:text-5xl font-bold">550+</p>
+              <p className="mt-3 text-sm text-steel-muted font-sans">Installations on the floor</p>
+            </div>
+            <div>
+              <p className="font-display text-4xl leading-none md:text-5xl font-bold">8</p>
+              <p className="mt-3 text-sm text-steel-muted font-sans">Branch offices with service engineers</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* —————————————————————————————————————————————————————————————————— */}
+      {/* 2. PRINCIPLE RAIL (Mission / Vision / Slogan)                      */}
+      {/* —————————————————————————————————————————————————————————————————— */}
+      <section className="py-16 md:py-24 border-b border-rule bg-background">
+        <div className="shell max-w-2xl mx-auto text-center">
+          <div className="flex items-center justify-center gap-6 border-b border-rule pb-4">
+            {principles.map((p, i) => (
+              <button
+                key={p.eyebrow}
+                type="button"
+                onClick={() => setPrincipleIndex(i)}
+                className={`relative pb-2 font-mono text-xs uppercase tracking-[0.16em] transition-colors cursor-pointer ${i === principleIndex ? "text-foreground font-bold" : "text-muted-foreground hover:text-foreground"
+                  }`}
+              >
+                {p.eyebrow}
+                {i === principleIndex && (
+                  <span className="absolute inset-x-0 -bottom-[17px] mx-auto h-0.5 w-8 bg-accent" />
+                )}
+              </button>
+            ))}
+          </div>
+          {activePrinciple && (
+            <Reveal key={activePrinciple.eyebrow} className="mt-10">
+              <h2 className="font-display text-3xl leading-tight md:text-4xl font-bold">
+                {activePrinciple.title}
+              </h2>
+              <p className="mx-auto mt-4 max-w-xl text-muted-foreground font-sans md:text-lg leading-relaxed">
+                {activePrinciple.body}
+              </p>
+            </Reveal>
+          )}
+        </div>
+      </section>
+
+      {/* —————————————————————————————————————————————————————————————————— */}
+      {/* 3. SANTEJ WORKS VIDEO SECTION                                      */}
+      {/* —————————————————————————————————————————————————————————————————— */}
+      <section className="border-b border-rule bg-steel text-steel-foreground">
+        <div className="shell grid items-center gap-12 py-16 md:grid-cols-2 md:py-24">
+          <div>
+            <p className="eyebrow text-accent">Santej works</p>
+            <h2 className="mt-4 font-display text-3xl md:text-5xl font-bold leading-tight">
+              A decade on the floor.
+            </h2>
+            <p className="mt-5 max-w-lg text-steel-muted font-sans leading-relaxed">
+              Gantry assembly, optical calibration, hydraulic test bays and an R&amp;D controls
+              bench at 2100/2, Santej-Khatraj Road, Santej. Every machine is run before it is crated.
+            </p>
+          </div>
+          <div>
+            <div className="relative aspect-video w-full overflow-hidden bg-steel border border-white/20">
+              <img
+                src="/assets/workshop.jpg"
+                alt="ADK Workshop Santej"
+                className="h-full w-full object-cover"
+              />
+              <div className="absolute inset-0 flex items-center justify-center bg-steel/40">
+                <span className="material-symbols-outlined text-6xl text-white">play_circle</span>
+              </div>
+            </div>
+            <p className="mt-3 text-sm text-steel-muted font-sans">10 years · 2015–2025.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* —————————————————————————————————————————————————————————————————— */}
+      {/* 4. MACHINE FAMILIES WE BUILD                                       */}
+      {/* —————————————————————————————————————————————————————————————————— */}
+      <section className="py-16 md:py-24 border-b border-rule bg-background">
+        <div className="shell">
+          <Reveal className="text-center">
+            <p className="eyebrow text-accent">Machines</p>
+            <h2 className="mt-3 font-display text-3xl md:text-5xl font-bold">The families we build.</h2>
+            <p className="mx-auto mt-4 max-w-xl text-muted-foreground font-sans">
+              The same catalogue as the floor: fiber laser, plasma, press brake, welding, panel, PEB and shear.
+            </p>
+          </Reveal>
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {familyLineup.map((item, i) => (
+              <Reveal key={item.slug} delay={(i % 3) * 80} className="h-full">
+                <Link
+                  href={`/products/${item.slug}`}
+                  className="arrow-slide group hover-lift flex flex-col panel h-full border border-rule transition-all"
+                >
+                  <div className="aspect-[4/3] overflow-hidden p-6 bg-white flex items-center justify-center border-b border-rule">
+                    <img
+                      src={item.image}
+                      alt={item.model}
+                      loading="lazy"
+                      width={1200}
+                      height={900}
+                      className="h-full w-full object-contain transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
+                    />
+                  </div>
+                  <div className="flex flex-1 flex-col px-6 pt-6 pb-7">
+                    <p className="eyebrow">ADK series</p>
+                    <h3 className="mt-2.5 font-display text-xl leading-tight transition-colors duration-500 group-hover:text-accent font-bold">
+                      {item.model}
+                    </h3>
+                    <span className="mt-auto inline-flex items-center gap-2 pt-5 text-sm font-semibold text-foreground group-hover:text-accent">
+                      Learn more
+                      <span className="arrow">→</span>
+                    </span>
+                  </div>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* —————————————————————————————————————————————————————————————————— */}
+      {/* 5. MILESTONE RAIL (Company Timeline)                               */}
+      {/* —————————————————————————————————————————————————————————————————— */}
+      <section className="border-b border-rule panel py-16 md:py-24">
+        <div className="shell max-w-3xl mx-auto text-center">
+          <p className="eyebrow text-accent">Journey</p>
+          <div className="mt-8 flex items-center justify-center gap-6 overflow-x-auto pb-4">
+            {timeline.map((entry, i) => (
+              <button
+                key={entry.year}
+                type="button"
+                onClick={() => setTimelineIndex(i)}
+                className={`font-display text-2xl md:text-4xl transition-colors cursor-pointer ${i === timelineIndex
+                    ? "text-foreground font-bold underline decoration-accent underline-offset-8"
+                    : "text-muted-foreground hover:text-foreground"
+                  }`}
+              >
+                {entry.year}
+              </button>
+            ))}
+          </div>
+          {activeTimeline && (
+            <Reveal key={activeTimeline.year} className="mt-10">
+              <p className="font-mono text-sm text-muted-foreground">{activeTimeline.year}</p>
+              <h3 className="mt-2 font-display text-3xl md:text-4xl font-bold">{activeTimeline.title}</h3>
+              <p className="mx-auto mt-4 max-w-xl text-muted-foreground md:text-lg font-sans leading-relaxed">
+                {activeTimeline.body}
+              </p>
+            </Reveal>
+          )}
+        </div>
+      </section>
+
+      {/* —————————————————————————————————————————————————————————————————— */}
+      {/* 6. YOUR MACHINE IS YOUR CAPITAL                                    */}
+      {/* —————————————————————————————————————————————————————————————————— */}
+      <section className="py-16 md:py-24 border-b border-rule bg-background">
+        <div className="shell">
+          <Reveal className="text-center">
+            <p className="eyebrow text-accent">Your machine is your capital</p>
+            <h2 className="mt-3 font-display text-3xl md:text-5xl font-bold">
+              Service that shows up after the crate is opened.
+            </h2>
+          </Reveal>
+          <div className="mt-10 grid gap-px border border-rule bg-rule sm:grid-cols-2 lg:grid-cols-3">
+            {whyChoose.map((c, i) => (
+              <Reveal key={c.title} delay={(i % 3) * 80} className="bg-card p-8">
+                <h3 className="font-display text-xl font-bold">{c.title}</h3>
+                <p className="mt-3 text-sm text-muted-foreground font-sans leading-relaxed">{c.body}</p>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* —————————————————————————————————————————————————————————————————— */}
+      {/* 7. CLIENTS SECTION                                                 */}
+      {/* —————————————————————————————————————————————————————————————————— */}
+      <section className="py-16 md:py-24 border-b border-rule bg-background">
+        <div className="shell text-center max-w-2xl mx-auto mb-12">
+          <p className="eyebrow text-accent">Clients</p>
+          <h2 className="mt-3 font-display text-3xl md:text-5xl font-bold">Shops that run ADK on the floor.</h2>
+          <p className="mt-4 text-muted-foreground font-sans">
+            From ISRO and Bajaj Steel to job-work houses across India — the machines stay after the first year.
+          </p>
+        </div>
+        <ClientLogoMarquee rowA={clientMarqueeRowA} rowB={clientMarqueeRowB} />
+      </section>
+
+      {/* —————————————————————————————————————————————————————————————————— */}
+      {/* 8. BRANCH NETWORK                                                  */}
+      {/* —————————————————————————————————————————————————————————————————— */}
+      <section className="border-b border-rule panel py-16 md:py-24">
+        <div className="shell">
+          <p className="eyebrow text-accent">Branch network</p>
+          <h2 className="mt-3 font-display text-3xl md:text-4xl font-bold">Eight offices. One number to start.</h2>
+          <div className="mt-10 grid gap-px border border-rule bg-rule sm:grid-cols-2 lg:grid-cols-4">
+            {branches.map((b) => (
+              <div key={b.city} className="bg-card p-6">
+                <p className="font-display text-2xl font-bold">{b.city}</p>
+                <p className="mt-1 text-sm text-muted-foreground font-sans">{b.role}</p>
+              </div>
+            ))}
+          </div>
+          <p className="mt-6 text-sm text-muted-foreground font-sans">
+            Works: 2100/2, Santej-Khatraj Road, Near Gayatri Farm, Santej 382722, Gujarat. Head office: A-503/504, Empire Business Hub, Nr. Shukan Mall, Science City Road, Sola, Ahmedabad 380060, Gujarat.
           </p>
         </div>
       </section>
 
-      {/* Intro Section */}
-      <Reveal>
-        <section className="py-20 adk-container w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      {/* —————————————————————————————————————————————————————————————————— */}
+      {/* 9. QUOTE CTA BANNER                                                 */}
+      {/* —————————————————————————————————————————————————————————————————— */}
+      <section className="border-y border-rule bg-steel text-steel-foreground">
+        <div className="shell grid gap-10 py-16 md:grid-cols-[1.4fr_auto] md:items-end md:py-24">
           <div>
-            <h2 className="font-display text-subheading text-foreground uppercase mb-6 tracking-display">
-              Pioneering Precision Metal Machinery
+            <h2 className="max-w-2xl font-display text-3xl leading-tight md:text-4xl font-bold">
+              Tell us what you cut. We will quote the right machine.
             </h2>
-            <div className="space-y-4 font-body text-small text-tertiary leading-relaxed">
-              <p>
-                {companyInfo.overview}
-              </p>
-              <p>
-                At ADK, our dedication to customer satisfaction extends far beyond the point of sale.
-                After-sales service is a philosophy rooted in everything we do — from installation and
-                training to ongoing maintenance, technical support, and spare parts availability.
-              </p>
-            </div>
-          </div>
-          <div className="bg-tech-blue border border-border p-8 relative flex items-center justify-center">
-            <div className="absolute top-4 right-4 font-ui text-label text-foreground/40">
-              Facility overview
-            </div>
-            <MediaImage
-              src={heroFactory?.image}
-              alt={heroFactory?.title ?? "ADK Factory & Infrastructure"}
-              label={heroFactory?.title ?? "ADK Factory & Infrastructure"}
-              icon="factory"
-              aspectRatio="wide"
-              sublabel={heroFactory?.sublabel}
-              className="max-h-[350px] border border-border/50"
-            />
-          </div>
-        </section>
-      </Reveal>
-
-      {/* Group Photos Slider */}
-      <Reveal delay={100}>
-        <section className="py-12 bg-surface border-y border-border">
-          <div className="adk-container">
-            <MediaImage
-              src={groupPhoto.image}
-              alt={groupPhoto.title}
-              label={groupPhoto.title}
-              icon="groups"
-              aspectRatio="wide"
-              sublabel={groupPhoto.sublabel}
-            />
-          </div>
-        </section>
-      </Reveal>
-
-      {/* Leadership / Team */}
-      <Reveal delay={100}>
-        <section className="py-20 bg-surface border-y border-border">
-          <div className="adk-container">
-            <div className="mb-12 border-b border-border pb-6">
-              <h2 className="font-display text-subheading text-foreground uppercase tracking-display">
-                Our Leadership Team
-              </h2>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-              {leadershipPhotos.map((member) => (
-                <div
-                  key={member.id}
-                  className="bg-card border border-border p-6 hover:border-primary hover-lift transition-all group text-center"
-                >
-                  <MediaImage
-                    src={member.image}
-                    alt={member.title}
-                    label={member.title}
-                    icon="person"
-                    aspectRatio="portrait"
-                    sublabel="Photo pending from client"
-                    className="mb-4"
-                  />
-                  <h3 className="font-display text-card-title text-foreground uppercase font-bold group-hover:text-primary transition-colors">
-                    {member.role}
-                  </h3>
-                  <span className="font-ui text-label text-tertiary uppercase mt-1 block">
-                    {member.department}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      </Reveal>
-
-      {/* Facility & Infrastructure */}
-      <Reveal delay={100}>
-        <section className="py-20 adk-container w-full">
-          <div className="mb-12 border-b border-border pb-6">
-            <h2 className="font-display text-subheading text-foreground uppercase tracking-display">
-              Factory & Facility
-            </h2>
-            <p className="font-body text-small text-tertiary mt-4 max-w-2xl leading-relaxed">
-              Our Santej works at {companyInfo.worksAddress} houses gantry assembly lines,
-              optical calibration labs, hydraulic press brake test bays, and R&D controls division.
+            <p className="mt-5 max-w-xl leading-relaxed text-steel-muted font-sans">
+              Send the material and thickness you work with and we will come back with a machine size, a price and a delivery date.
             </p>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {factoryPhotos.slice(1).map((photo) => (
-              <MediaImage
-                key={photo.id}
-                src={photo.image}
-                alt={photo.title}
-                label={photo.title}
-                icon="factory"
-                aspectRatio="portrait"
-                objectFit="contain"
-                sublabel={photo.sublabel}
-              />
-            ))}
-          </div>
-        </section>
-      </Reveal>
-
-      {/* Core Capabilities */}
-      <Reveal delay={100}>
-        <section className="py-20 bg-surface border-y border-border">
-          <div className="adk-container">
-            <div className="mb-12 border-b border-border pb-6">
-              <h2 className="font-display text-subheading text-foreground uppercase tracking-display">
-                Our Manufacturing Prowess
-              </h2>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {coreCapabilities.map((cap) => (
-                <div key={cap.title} className="bg-card p-6 border border-border flex flex-col justify-between">
-                  <div>
-                    <h3 className="font-display text-card-title text-foreground uppercase mb-3 font-bold border-b border-primary/20 pb-2">
-                      {cap.title}
-                    </h3>
-                    <p className="font-body text-small text-tertiary leading-relaxed">
-                      {cap.desc}
-                    </p>
-                  </div>
-                  <span className="material-symbols-outlined text-3xl text-foreground/10 self-end mt-4">
-                    developer_board
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      </Reveal>
-
-      {/* Timeline Section */}
-      <Reveal delay={100}>
-        <section className="py-20 adk-container w-full">
-          <div className="mb-16 text-center max-w-xl mx-auto">
-            <h2 className="font-display text-heading text-foreground uppercase tracking-display">
-              Our Journey & Milestones
-            </h2>
-          </div>
-
-          <div className="relative border-l border-primary/30 ml-4 md:ml-32 space-y-12">
-            {timelineEvents.map((evt) => (
-              <div key={evt.year} className="relative pl-8 md:pl-12">
-                <div className="absolute -left-[5px] top-1.5 w-2.5 h-2.5 bg-primary border border-primary rounded-full"></div>
-                <div className="hidden md:block absolute -left-36 top-0 w-28 text-right font-display text-subheading text-primary font-bold tracking-display">
-                  {evt.year}
-                </div>
-                <div>
-                  <span className="font-display text-card-title text-foreground uppercase font-bold md:hidden block mb-1 text-primary">
-                    {evt.year} - {evt.title}
-                  </span>
-                  <h3 className="font-display text-card-title text-foreground uppercase font-bold hidden md:block mb-2">
-                    {evt.title}
-                  </h3>
-                  <p className="font-ui text-label text-tertiary max-w-2xl leading-relaxed">
-                    {evt.desc}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-      </Reveal>
-
-      {/* CTA section */}
-      <Reveal delay={100}>
-        <section className="py-20 bg-charcoal text-white border-t border-primary/30 text-center">
-          <div className="adk-container">
-            <div className="max-w-2xl mx-auto">
-              <h2 className="font-display text-heading uppercase tracking-display mb-8 leading-none">
-                HAVE A PROJECT SPECIFICATION?
-              </h2>
-              <p className="font-ui text-label text-light-gray/60 mb-10 leading-relaxed max-w-md mx-auto">
-                Discuss customized bed dimensions, laser capacities, or complete line automation with our engineering leads.
-              </p>
-              <button
-                onClick={() => openEnquiry("Engineering Discussion Requested")}
-                className="bg-primary hover:bg-primary-hover text-white font-ui text-label tracking-ui px-10 py-5 border border-primary transition-all font-bold cursor-pointer"
-              >
-                Discuss Specification
-              </button>
-            </div>
-          </div>
-        </section>
-      </Reveal>
+          <button
+            onClick={() => openEnquiry("General Machinery Enquiry")}
+            className="btn-sweep inline-block bg-accent px-7 py-4 text-center font-display text-base font-bold tracking-tight text-accent-foreground cursor-pointer shadow-[var(--shadow-lift)]"
+          >
+            Request a quote
+          </button>
+        </div>
+      </section>
     </div>
   );
 }

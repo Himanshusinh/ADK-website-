@@ -23,46 +23,43 @@ interface MachineryBentoGridProps {
 
 export default function MachineryBentoGrid({ items }: MachineryBentoGridProps) {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 lg:grid-rows-2 gap-5 lg:h-[560px]">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 lg:grid-rows-2 gap-5 lg:h-[580px]">
       {items.map((item, index) => (
         <Link
           key={item.slug}
           href={item.href}
-          className={`group relative overflow-hidden rounded-[18px] border border-border bg-white dark:bg-card shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-surface ${SPAN_CLASSES[index] ?? "min-h-[240px]"}`}
+          className={`arrow-slide group hover-lift relative overflow-hidden panel border border-rule transition-all duration-300 ${SPAN_CLASSES[index] ?? "min-h-[240px]"}`}
         >
-          {/* Product hero — large, centered, no drop shadow */}
-          <div className="absolute inset-0 flex items-center justify-center px-3 pb-3 pt-12 md:px-4 md:pb-4 md:pt-14">
+          {/* Product hero */}
+          <div className="absolute inset-0 flex items-center justify-center p-6 pt-12 md:pt-14">
             <img
               src={item.image}
-              alt=""
-              className="max-h-full max-w-full w-full scale-[1.08] object-contain object-center mix-blend-normal transition-transform duration-300 ease-out group-hover:scale-[1.12]"
+              alt={item.name}
+              className="max-h-full max-w-full w-full object-contain object-center transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
             />
           </div>
 
-          {/* Default title — minimal */}
-          <div className="absolute inset-x-0 top-0 z-10 p-4 md:p-5 transition-opacity duration-300 lg:group-hover:opacity-0">
-            <h3 className="font-display text-base md:text-lg font-medium text-foreground tracking-normal">
+          {/* Minimal eyebrow & header overlay */}
+          <div className="absolute inset-x-0 top-0 z-10 p-5 bg-gradient-to-b from-background/90 via-background/50 to-transparent">
+            <p className="eyebrow text-accent">0{index + 1}</p>
+            <h3 className="font-display text-lg font-bold text-foreground transition-colors duration-300 group-hover:text-accent">
               {item.name}
             </h3>
           </div>
 
-          {/* Hover / mobile: dark fade + white copy */}
-          <div className="absolute inset-0 z-20 flex flex-col justify-end bg-black/0 p-4 md:p-5 transition-colors duration-300 ease-out max-lg:bg-black/60 lg:group-hover:bg-black/70 lg:group-focus-visible:bg-black/70">
-            <div className="translate-y-0 opacity-100 transition-all duration-300 ease-out lg:translate-y-3 lg:opacity-0 lg:group-hover:translate-y-0 lg:group-hover:opacity-100 lg:group-focus-visible:translate-y-0 lg:group-focus-visible:opacity-100">
-              <h3 className="font-display text-base md:text-lg font-medium text-white tracking-normal mb-2">
+          {/* Hover / focus slide overlay */}
+          <div className="absolute inset-0 z-20 flex flex-col justify-end bg-gradient-to-t from-steel via-steel/80 to-transparent p-6 text-steel-foreground opacity-0 transition-opacity duration-400 ease-out group-hover:opacity-100 focus-visible:opacity-100">
+            <div className="translate-y-2 transition-transform duration-400 ease-out group-hover:translate-y-0">
+              <p className="eyebrow text-accent mb-1">0{index + 1}</p>
+              <h3 className="font-display text-xl font-bold mb-2">
                 {item.name}
               </h3>
-              <p className="font-body text-[15px] font-normal leading-snug text-white/85 line-clamp-2 max-w-prose">
+              <p className="font-sans text-sm text-steel-muted line-clamp-2 leading-relaxed">
                 {item.description}
               </p>
-              <span className="mt-4 inline-flex items-center gap-2 font-ui text-[15px] font-medium text-white transition-colors duration-300 group-hover:text-primary">
-                Explore
-                <span
-                  aria-hidden="true"
-                  className="transition-transform duration-300 group-hover:translate-x-0.5"
-                >
-                  →
-                </span>
+              <span className="mt-4 inline-flex items-center gap-2 font-display text-sm font-bold text-accent">
+                Explore machine
+                <span className="arrow">→</span>
               </span>
             </div>
           </div>

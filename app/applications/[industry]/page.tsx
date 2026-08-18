@@ -3,8 +3,6 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { applications, categories } from "@/lib/data";
-import { getApplicationHeroFallback } from "@/lib/media";
-import OptionalImage from "@/components/OptionalImage";
 import IndustryEnquiryForm from "./IndustryEnquiryForm";
 
 interface IndustryPageProps {
@@ -22,9 +20,8 @@ export async function generateMetadata(props: IndustryPageProps): Promise<Metada
   const app = applications.find((a) => a.slug === industrySlug);
   if (!app) return {};
   return {
-    title: `${app.name} Manufacturing Solutions`,
-    description: `${app.tagline} ADK machinery solutions for ${app.name.toLowerCase()} — challenges, recommended machines, and sector consultation.`,
-    keywords: [app.name, "sheet metal", "ADK Engineering", "industrial machinery"],
+    title: `${app.name} Manufacturing Solutions | ADK Engineering`,
+    description: app.tagline,
   };
 }
 
@@ -36,7 +33,6 @@ export default async function IndustryPage(props: IndustryPageProps) {
     notFound();
   }
 
-  // Resolve recommended machinery models from codes/slugs with category info
   const recommendedModels = categories
     .flatMap((c) => c.models.map((m) => ({ ...m, categorySlug: c.slug })))
     .filter(
@@ -46,11 +42,11 @@ export default async function IndustryPage(props: IndustryPageProps) {
     );
 
   return (
-    <div className="flex flex-col w-full bg-surface animate-fade-in">
-      {/* Breadcrumb & Navigation */}
-      <div className="w-full bg-surface-container py-3 border-b border-border/50">
-        <div className="adk-container flex items-center gap-2 font-ui text-label uppercase text-tertiary">
-          <Link href="/applications" className="hover:text-primary transition-colors">
+    <div className="flex flex-col w-full bg-background text-foreground">
+      {/* Breadcrumb Header */}
+      <div className="w-full border-b border-rule bg-background py-3">
+        <div className="shell flex items-center gap-2 eyebrow text-[10px] text-muted-foreground">
+          <Link href="/applications" className="hover:text-accent">
             Applications
           </Link>
           <span>/</span>
@@ -58,107 +54,57 @@ export default async function IndustryPage(props: IndustryPageProps) {
         </div>
       </div>
 
-      {/* Hero Header — 21:9 cinematic band (clamped for mobile / ultrawide) */}
-      <section className="relative w-full overflow-hidden border-b border-border h-[clamp(300px,42.857vw,560px)]">
-        <div className="absolute inset-0">
-          <OptionalImage
-            src={app.heroImage}
-            fallback={getApplicationHeroFallback()}
-            alt=""
-            className="absolute inset-0 h-full w-full object-cover object-center"
-            placeholderLabel={app.name}
-            containerClassName="absolute inset-0 h-full w-full"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/35 via-black/15 to-transparent" />
-        </div>
-        <div className="relative adk-container flex h-full items-center py-10 md:py-12">
-          <div className="max-w-2xl min-w-0">
-            <div className="mb-3 flex items-center gap-3">
-              <div
-                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-white/25 bg-white/10 backdrop-blur-sm"
-                aria-hidden
-              >
-                <span className="material-symbols-outlined text-[22px] text-primary leading-none">
-                  {app.icon}
-                </span>
-              </div>
-              <p className="font-ui text-label uppercase tracking-[0.14em] text-primary">
-                Sector application
-              </p>
-            </div>
-            <h1 className="font-display text-heading text-white uppercase tracking-display leading-[1.05] mb-4">
-              {app.name}
-            </h1>
-            <p className="font-body text-small md:text-body text-white/80 max-w-xl leading-relaxed mb-6">
-              {app.tagline}
-            </p>
-            <div className="flex flex-wrap items-center gap-x-4 gap-y-2 font-ui text-label uppercase tracking-wider text-white/55">
-              <span>{recommendedModels.length} calibrated systems</span>
-              <span className="hidden sm:inline text-white/25" aria-hidden>
-                /
-              </span>
-              <Link
-                href="#recommended-machinery"
-                className="text-white/80 hover:text-primary transition-colors inline-flex items-center gap-1"
-              >
-                View machinery
-                <span className="material-symbols-outlined text-[14px]">arrow_downward</span>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Industry Overview */}
-      <section className="py-16 adk-container w-full border-b border-border">
-        <div className="max-w-3xl">
-          <h2 className="font-display text-subheading uppercase mb-4 text-foreground">
-            Industry Context
-          </h2>
-          <p className="font-body text-small text-tertiary leading-relaxed">
-            {app.description}
+      {/* Header — Exact ADK Redesigned Industry Header */}
+      <section className="border-b border-rule panel">
+        <div className="shell py-16 md:py-24">
+          <p className="eyebrow">Sector application</p>
+          <h1 className="mt-5 max-w-3xl font-display text-4xl leading-[1.05] md:text-6xl font-bold">
+            {app.name}
+          </h1>
+          <span className="mt-6 block h-0.5 w-10 bg-accent" />
+          <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg font-sans">
+            {app.tagline || app.description}
           </p>
         </div>
       </section>
 
       {/* Core Challenges & Solutions */}
-      <section className="py-20 adk-container w-full grid grid-cols-1 lg:grid-cols-12 gap-16 border-b border-border">
-        {/* Challenges & Solutions Columns */}
-        <div className="lg:col-span-7 space-y-10">
+      <section className="shell py-16 md:py-24 border-b border-rule grid grid-cols-1 lg:grid-cols-12 gap-14">
+        <div className="lg:col-span-7 space-y-12">
           <div>
-            <h2 className="font-display text-subheading uppercase mb-6 text-foreground flex items-center gap-2">
-              <span className="material-symbols-outlined text-primary text-[22px]">report_problem</span>
+            <h2 className="border-t border-foreground pt-4 font-display text-2xl font-bold mb-6">
               Sector Manufacturing Challenges
             </h2>
-            <ul className="space-y-4 font-body text-small text-tertiary list-inside list-decimal">
+            <ul className="space-y-4 font-sans text-sm text-muted-foreground divide-y divide-rule border-y border-rule">
               {app.challenges.map((challenge, idx) => (
-                <li key={idx} className="pl-2 border-l border-primary/30">
-                  {challenge}
+                <li key={idx} className="py-4 flex gap-4">
+                  <span className="font-mono text-xs font-bold text-accent">0{idx + 1}</span>
+                  <span className="text-foreground font-medium">{challenge}</span>
                 </li>
               ))}
             </ul>
           </div>
 
           <div>
-            <h2 className="font-display text-subheading uppercase mb-6 text-foreground flex items-center gap-2">
-              <span className="material-symbols-outlined text-primary text-[22px]">task_alt</span>
+            <h2 className="border-t border-foreground pt-4 font-display text-2xl font-bold mb-6">
               Calibrated Machinery Solutions
             </h2>
-            <ul className="space-y-4 font-body text-small text-tertiary list-inside list-disc">
+            <ul className="space-y-4 font-sans text-sm text-muted-foreground divide-y divide-rule border-y border-rule">
               {app.solutions.map((solution, idx) => (
-                <li key={idx} className="pl-2 border-l border-primary/30">
-                  {solution}
+                <li key={idx} className="py-4 flex gap-4">
+                  <span className="font-mono text-xs font-bold text-accent">✓</span>
+                  <span className="text-foreground font-medium">{solution}</span>
                 </li>
               ))}
             </ul>
           </div>
         </div>
 
-        {/* Dynamic Context Enquiry Form */}
         <div className="lg:col-span-5">
-          <div className="bg-surface border border-primary/20 p-6 sticky top-28">
-            <h3 className="font-display text-subheading text-foreground uppercase mb-6 tracking-display">
-              Request Sector Consultation
+          <div className="bg-panel border border-rule p-6 md:p-8 sticky top-24">
+            <p className="eyebrow mb-2">Sector Consultation</p>
+            <h3 className="font-display text-2xl font-bold mb-6 tracking-tight">
+              Request {app.name} Consultation
             </h3>
             <IndustryEnquiryForm industryName={app.name} />
           </div>
@@ -167,38 +113,39 @@ export default async function IndustryPage(props: IndustryPageProps) {
 
       {/* Recommended Machines */}
       {recommendedModels.length > 0 && (
-        <section id="recommended-machinery" className="py-20 adk-container w-full scroll-mt-28">
-          <h2 className="font-display text-subheading uppercase mb-10 text-foreground text-center">
-            Recommended Machinery Configurations
+        <section className="shell py-16 md:py-24 border-b border-rule">
+          <p className="eyebrow mb-2">Machine Configurations</p>
+          <h2 className="font-display text-3xl font-bold mb-10">
+            Recommended Machinery for {app.name}
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 justify-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {recommendedModels.map((model) => (
               <div
                 key={model.slug}
-                className="bg-card border border-border p-6 flex flex-col justify-between hover:border-primary transition-colors group"
+                className="arrow-slide group hover-lift bg-card border border-rule p-8 flex flex-col justify-between transition-all"
               >
                 <div>
-                  <div className="flex justify-between items-center mb-4">
-                    <span className="font-ui text-label text-tertiary">{model.id}</span>
-                    <span className="font-ui text-label text-primary font-bold">{model.status}</span>
+                  <div className="flex justify-between items-center mb-4 font-mono text-xs">
+                    <span className="text-muted-foreground">{model.id}</span>
+                    <span className="text-accent font-bold">{model.status}</span>
                   </div>
-                  <h3 className="font-display text-card-title text-foreground uppercase font-bold group-hover:text-primary transition-colors">
+                  <h3 className="font-display text-xl font-bold text-foreground group-hover:text-accent transition-colors">
                     {model.name}
                   </h3>
-                  <p className="font-body text-small text-tertiary leading-relaxed mt-2">
+                  <p className="font-sans text-sm text-muted-foreground leading-relaxed mt-2">
                     {model.tagline}
                   </p>
                 </div>
-                <div className="grid grid-cols-2 gap-4 mt-6 border-t border-border/50 pt-4">
+                <div className="grid grid-cols-2 gap-4 mt-6 border-t border-rule pt-4">
                   <Link
                     href={`/products/${model.categorySlug}/${model.slug}`}
-                    className="border border-foreground py-2.5 font-ui text-label uppercase hover:bg-charcoal hover:text-white transition-all tracking-ui text-center font-bold"
+                    className="border border-foreground py-3 font-display text-xs uppercase hover:bg-steel hover:text-steel-foreground transition-all text-center font-bold"
                   >
                     View Specs
                   </Link>
                   <Link
                     href={`/contact?interest=Industry: ${app.name} - Model: ${model.name}`}
-                    className="bg-primary hover:bg-primary-hover text-white py-2.5 font-ui text-label uppercase transition-all tracking-ui text-center font-bold"
+                    className="btn-sweep bg-accent text-accent-foreground py-3 font-display text-xs uppercase text-center font-bold"
                   >
                     Get Quote
                   </Link>
@@ -208,34 +155,6 @@ export default async function IndustryPage(props: IndustryPageProps) {
           </div>
         </section>
       )}
-
-      {/* Sample Use Case */}
-      <section className="py-16 adk-container w-full border-t border-border">
-        <div className="bg-surface border border-border p-8 md:p-10 border-l-4 border-primary">
-          <h2 className="font-display text-subheading uppercase mb-4 text-foreground">
-            Typical {app.name} Fabrication Workflow
-          </h2>
-          <p className="font-body text-small text-tertiary leading-relaxed mb-6">
-            A typical {app.name.toLowerCase()} manufacturing workflow begins with precision sheet profiling,
-            followed by controlled bending or welding operations. ADK machines are calibrated to handle
-            the specific material grades, thickness ranges, and tolerance requirements common in this sector.
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 font-ui text-label">
-            <div className="bg-card p-4 border border-border">
-              <span className="text-primary font-bold block mb-1">STEP_01</span>
-              <span className="text-tertiary">Material profiling & cutting</span>
-            </div>
-            <div className="bg-card p-4 border border-border">
-              <span className="text-primary font-bold block mb-1">STEP_02</span>
-              <span className="text-tertiary">Forming, bending, or welding</span>
-            </div>
-            <div className="bg-card p-4 border border-border">
-              <span className="text-primary font-bold block mb-1">STEP_03</span>
-              <span className="text-tertiary">Quality inspection & dispatch</span>
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
   );
 }

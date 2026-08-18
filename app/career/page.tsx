@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { careerPositions, careerApplicationEmail, companyInfo } from "@/lib/data";
+import { careerPositions, careerApplicationEmail } from "@/lib/data";
 import { postForm } from "@/lib/submitForm";
 
 export default function CareerPage() {
@@ -39,86 +39,56 @@ export default function CareerPage() {
   };
 
   return (
-    <div className="flex flex-col w-full bg-surface">
-      {/* Page Header */}
-      <section className="relative bg-surface border-b border-border py-16 tech-grid">
-        <div className="adk-container">
-          <h1 className="font-display text-heading text-foreground uppercase tracking-display leading-none mb-6">
-            CAREERS AT ADK
+    <div className="flex flex-col w-full bg-background text-foreground">
+      {/* Header — Exact ADK Redesigned Header */}
+      <section className="border-b border-rule panel">
+        <div className="shell py-16 md:py-24">
+          <p className="eyebrow">Careers</p>
+          <h1 className="mt-5 max-w-3xl font-display text-4xl leading-[1.05] md:text-6xl font-bold">
+            Build machines with us in Ahmedabad.
           </h1>
-          <p className="font-ui text-label text-tertiary max-w-xl leading-relaxed">
-            Join our team at {companyInfo.worksAddress.split(",")[0]}.
-            Send applications to {careerApplicationEmail}. Online submission is being finalized —
-            email applications are accepted at any time.
+          <span className="mt-6 block h-0.5 w-10 bg-accent" />
+          <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg font-sans">
+            Join our engineering, manufacturing, and service teams at Santej works. Direct applications welcome at {careerApplicationEmail}.
           </p>
         </div>
       </section>
 
-      {/* Culture Summary */}
-      <section className="py-20 adk-container w-full grid grid-cols-1 lg:grid-cols-2 gap-16 border-b border-border">
-        <div>
-          <h2 className="font-display text-subheading text-foreground uppercase mb-6 font-bold">
-            Engineering a High-Performance Future
-          </h2>
-          <div className="space-y-4 font-body text-small text-tertiary leading-relaxed">
-            <p>
-              At ADK, we believe in hands-on mechatronics and rigorous structural testing. Our team includes
-              laser physicists, control software architects, mechatronics designers, and field installation experts.
-            </p>
-            <p>
-              We foster a collaborative workshop environment where new kinematics ideas are compiled, tested, and shipped
-              daily. We values analytical troubleshooting and proactive customer support.
-            </p>
-          </div>
-        </div>
-        <div className="bg-tech-blue border border-border p-8 flex flex-col justify-center border-l-4 border-primary">
-          <h3 className="font-display text-card-title text-foreground uppercase mb-3 font-bold">What We Offer</h3>
-          <ul className="space-y-2 font-ui text-label text-tertiary list-inside list-disc">
-            <li>State-of-the-art gantry assembly laboratories</li>
-            <li>Direct mentorship from senior controls software architects</li>
-            <li>Comprehensive medical coverage and housing allowances</li>
-            <li>Flexible project schedules with clear growth metrics</li>
-          </ul>
-        </div>
-      </section>
-
       {/* Vacancies & Apply Form */}
-      <section className="py-20 adk-container w-full grid grid-cols-1 lg:grid-cols-12 gap-16">
+      <section className="shell py-16 md:py-24 border-b border-rule grid grid-cols-1 lg:grid-cols-12 gap-14">
         {/* Jobs List */}
         <div className="lg:col-span-7 space-y-10">
-          <h2 className="font-display text-subheading uppercase mb-8 text-foreground border-b border-border pb-4">
-            Open Positions
+          <p className="eyebrow">Open positions</p>
+          <h2 className="font-display text-3xl font-bold">
+            Current Vacancies
           </h2>
 
-          <div className="space-y-8">
+          <div className="space-y-6">
             {careerPositions.map((job) => (
-              <div key={job.id} className="border border-border p-6 hover:border-primary transition-colors bg-surface">
-                <div className="flex justify-between items-start gap-4">
+              <div key={job.id} className="arrow-slide group hover-lift border border-rule bg-card p-6 md:p-8 transition-all">
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4">
                   <div>
-                    <h3 className="font-display text-subheading text-foreground uppercase font-bold">
+                    <h3 className="font-display text-xl font-bold text-foreground group-hover:text-accent transition-colors">
                       {job.title}
                     </h3>
-                    <div className="font-ui text-label text-tertiary uppercase mt-1">
-                      DEPT: {job.department} &nbsp;//&nbsp; EXP: {job.experience}
+                    <div className="font-mono text-xs text-accent uppercase mt-1">
+                      DEPT: {job.department} · EXP: {job.experience}
                     </div>
                   </div>
                   <button
                     onClick={() => setSelectedJob(job.title)}
-                    className="bg-primary hover:bg-primary-hover text-white font-ui text-label uppercase px-4 py-2 border border-primary transition-all font-bold cursor-pointer"
+                    className="btn-sweep bg-accent text-accent-foreground font-display text-xs font-bold uppercase px-5 py-2.5 shrink-0 cursor-pointer"
                   >
-                    Apply
+                    Apply for role
                   </button>
                 </div>
-                <p className="font-body text-small text-tertiary leading-relaxed mt-4">
+                <p className="font-sans text-sm text-muted-foreground leading-relaxed mt-4">
                   {job.description}
                 </p>
 
-                {/* Requirements */}
-                <div className="mt-4 border-t border-border/50 pt-4">
-                  <span className="font-ui text-label uppercase text-foreground/40 tracking-wider font-bold block mb-2">
-                    Requirements
-                  </span>
-                  <ul className="space-y-1.5 font-body text-small text-tertiary list-inside list-disc">
+                <div className="mt-4 border-t border-rule pt-4 font-sans text-xs text-muted-foreground">
+                  <span className="eyebrow text-foreground block mb-2 font-bold">Key Requirements:</span>
+                  <ul className="space-y-1 list-disc list-inside">
                     {job.requirements.map((req, i) => (
                       <li key={i}>{req}</li>
                     ))}
@@ -131,33 +101,33 @@ export default function CareerPage() {
 
         {/* Application Form */}
         <div className="lg:col-span-5">
-          <div className="bg-surface border border-primary/20 p-6 sticky top-28">
-            <h3 className="font-display text-subheading text-foreground uppercase mb-6 tracking-display">
+          <div className="bg-panel border border-rule p-6 md:p-8 sticky top-24">
+            <p className="eyebrow mb-2">Direct application</p>
+            <h3 className="font-display text-2xl font-bold mb-6 tracking-tight">
               Submit Application
             </h3>
 
             {submitted ? (
-              <div className="flex flex-col items-center justify-center py-8 text-center bg-card border border-border p-4">
-                <span className="material-symbols-outlined text-5xl text-primary mb-4 animate-bounce">
+              <div className="py-8 text-center bg-card border border-rule p-6">
+                <span className="material-symbols-outlined text-4xl text-accent mb-2">
                   check_circle
                 </span>
-                <h4 className="font-display text-subheading text-foreground uppercase mb-2">Upload Successful</h4>
-                <p className="font-ui text-label text-tertiary">
-                  REGISTRATION: OK // CV: VERIFIED <br />
-                  Our talent acquisition team will review your CV.
+                <h4 className="font-display text-lg font-bold uppercase mb-2">Application Received</h4>
+                <p className="font-sans text-xs text-muted-foreground">
+                  Our HR & Engineering team will review your details and reach out within 3 business days.
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <form onSubmit={handleSubmit} className="space-y-4 font-sans text-sm">
                 <div>
-                  <label className="block font-ui text-label uppercase text-tertiary mb-1">
+                  <label className="block font-mono text-xs uppercase text-muted-foreground mb-1 font-bold">
                     Select Position
                   </label>
                   <select
                     required
                     value={selectedJob}
                     onChange={(e) => setSelectedJob(e.target.value)}
-                    className="w-full bg-card border border-border px-4 py-2 font-body text-small focus:outline-none focus:border-primary text-foreground h-[38px]"
+                    className="w-full bg-card border border-rule px-4 py-2.5 text-sm focus:outline-none focus:border-accent text-foreground"
                   >
                     <option value="">-- SELECT POSITION --</option>
                     {careerPositions.map((job) => (
@@ -169,7 +139,7 @@ export default function CareerPage() {
                 </div>
 
                 <div>
-                  <label className="block font-ui text-label uppercase text-tertiary mb-1">
+                  <label className="block font-mono text-xs uppercase text-muted-foreground mb-1 font-bold">
                     Full Name
                   </label>
                   <input
@@ -177,14 +147,14 @@ export default function CareerPage() {
                     required
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    placeholder="Your Name"
-                    className="w-full bg-card border border-border px-4 py-2 font-body text-small focus:outline-none focus:border-primary text-foreground"
+                    placeholder="Your Full Name"
+                    className="w-full bg-card border border-rule px-4 py-2.5 text-sm focus:outline-none focus:border-accent text-foreground"
                   />
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block font-ui text-label uppercase text-tertiary mb-1">
+                    <label className="block font-mono text-xs uppercase text-muted-foreground mb-1 font-bold">
                       Email
                     </label>
                     <input
@@ -193,11 +163,11 @@ export default function CareerPage() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="email@domain.com"
-                      className="w-full bg-card border border-border px-4 py-2 font-body text-small focus:outline-none focus:border-primary text-foreground"
+                      className="w-full bg-card border border-rule px-4 py-2.5 text-sm focus:outline-none focus:border-accent text-foreground"
                     />
                   </div>
                   <div>
-                    <label className="block font-ui text-label uppercase text-tertiary mb-1">
+                    <label className="block font-mono text-xs uppercase text-muted-foreground mb-1 font-bold">
                       Phone
                     </label>
                     <input
@@ -206,14 +176,14 @@ export default function CareerPage() {
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
                       placeholder="+91..."
-                      className="w-full bg-card border border-border px-4 py-2 font-body text-small focus:outline-none focus:border-primary text-foreground"
+                      className="w-full bg-card border border-rule px-4 py-2.5 text-sm focus:outline-none focus:border-accent text-foreground"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block font-ui text-label uppercase text-tertiary mb-1">
-                    Upload CV (PDF format)
+                  <label className="block font-mono text-xs uppercase text-muted-foreground mb-1 font-bold">
+                    Upload Resume / CV (PDF)
                   </label>
                   <input
                     type="file"
@@ -224,16 +194,16 @@ export default function CareerPage() {
                         setResume(e.target.files[0]);
                       }
                     }}
-                    className="w-full bg-card border border-border px-4 py-2 font-ui text-label focus:outline-none text-foreground"
+                    className="w-full bg-card border border-rule px-4 py-2 text-xs text-muted-foreground focus:outline-none"
                   />
                 </div>
 
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="w-full bg-primary hover:bg-primary-hover text-white font-ui text-label tracking-ui py-3 border border-primary transition-all font-bold cursor-pointer disabled:opacity-60"
+                  className="btn-sweep w-full bg-accent text-accent-foreground font-display text-sm font-bold uppercase tracking-wider py-3.5 mt-2 cursor-pointer disabled:opacity-60"
                 >
-                  {submitting ? "Sending…" : "Submit Application"}
+                  {submitting ? "Submitting…" : "Submit Application"}
                 </button>
               </form>
             )}

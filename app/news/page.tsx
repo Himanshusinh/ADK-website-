@@ -2,73 +2,75 @@
 
 import React from "react";
 import { newsEvents } from "@/lib/data";
+import Reveal from "@/components/Reveal";
+import { useEnquiry } from "@/components/EnquiryContext";
 
 export default function NewsEventsPage() {
-  return (
-    <div className="flex flex-col w-full bg-surface">
-      {/* Page Header */}
-      <section className="relative bg-surface border-b border-border py-16 tech-grid">
-        <div className="adk-container">
-          <h1 className="font-display text-heading text-foreground uppercase tracking-display leading-none mb-6">
-            NEWS & EVENTS
-          </h1>
-          <p className="font-ui text-label text-tertiary max-w-xl leading-relaxed">
-            Official announcements on machinery trade fairs, new product launches,
-            and company operational updates.
-          </p>
-        </div>
-      </section>
+  const { openEnquiry } = useEnquiry();
 
-      {/* Milestone Banner */}
-      <section className="py-12 bg-primary/5 border-b border-border">
-        <div className="adk-container text-center">
-          <p className="font-display text-card-title text-foreground uppercase font-bold">
-            Celebrating 10 Years of Precision & Innovation
-          </p>
-          <p className="font-body text-small text-tertiary mt-2 max-w-lg mx-auto">
-            From a bold vision in 2015 to becoming a trusted engineering partner across India&apos;s fabrication industry.
+  return (
+    <div className="flex flex-col w-full bg-background text-foreground">
+      {/* Header — Exact ADK Redesigned News Header */}
+      <section className="border-b border-rule panel">
+        <div className="shell py-16 md:py-24">
+          <p className="eyebrow">News & Events</p>
+          <h1 className="mt-5 max-w-3xl font-display text-4xl leading-[1.05] md:text-6xl font-bold">
+            From the Santej works & trade exhibitions.
+          </h1>
+          <span className="mt-6 block h-0.5 w-10 bg-accent" />
+          <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg font-sans">
+            Official announcements on machinery trade fairs, new product launches, and operational milestones.
           </p>
         </div>
       </section>
 
       {/* Chronological List */}
-      <section className="py-20 mx-auto w-full max-w-[1000px] px-[var(--adk-container-padding)]">
-        <div className="space-y-12">
+      <section className="shell py-16 md:py-24 border-b border-rule">
+        <ul className="divide-y divide-rule border-y border-rule">
           {newsEvents.map((evt) => (
-            <div
-              key={evt.id}
-              className="bg-card border border-border p-6 md:p-8 flex flex-col md:flex-row gap-6 md:items-center justify-between hover:border-primary transition-colors group"
-            >
-              <div className="flex items-start gap-4">
-                {/* Event type icon */}
-                <span className="material-symbols-outlined text-4xl text-primary bg-primary/5 p-3 border border-primary/25">
-                  {evt.type === "TRADE_FAIR"
-                    ? "storefront"
-                    : evt.type === "LAUNCH"
-                    ? "rocket_launch"
-                    : "emoji_events"}
-                </span>
-
-                <div>
-                  <span className="font-ui text-label text-primary tracking-label block mb-1">
-                    {evt.type} &nbsp;//&nbsp; {evt.date}
-                  </span>
-                  <h3 className="font-display text-subheading text-foreground uppercase font-bold group-hover:text-primary transition-colors leading-snug">
-                    {evt.title}
-                  </h3>
-                  {evt.location && (
-                    <span className="font-ui text-label text-tertiary uppercase flex items-center gap-1 mt-1">
-                      <span className="material-symbols-outlined text-[12px]">location_on</span>
-                      {evt.location}
-                    </span>
-                  )}
-                  <p className="font-body text-small text-tertiary leading-relaxed mt-4">
-                    {evt.description}
+            <li key={evt.id} className="grid gap-4 py-8 md:grid-cols-[12rem_1fr] md:gap-10 items-start">
+              <div>
+                <p className="font-mono text-xs text-accent font-bold uppercase">{evt.date}</p>
+                {evt.location && (
+                  <p className="font-mono text-[10px] text-muted-foreground uppercase mt-1">
+                    {evt.location}
                   </p>
-                </div>
+                )}
               </div>
-            </div>
+
+              <div>
+                <span className="eyebrow text-muted-foreground block mb-1">
+                  {evt.type}
+                </span>
+                <h3 className="font-display text-xl font-bold text-foreground leading-snug">
+                  {evt.title}
+                </h3>
+                <p className="font-sans text-sm text-muted-foreground leading-relaxed mt-3">
+                  {evt.description}
+                </p>
+              </div>
+            </li>
           ))}
+        </ul>
+      </section>
+
+      {/* Quote Banner */}
+      <section className="border-y border-rule bg-steel text-steel-foreground">
+        <div className="shell grid gap-10 py-16 md:grid-cols-[1.4fr_auto] md:items-end md:py-24">
+          <div>
+            <h2 className="max-w-2xl font-display text-3xl leading-tight md:text-4xl font-bold">
+              Meet our team at the next expo.
+            </h2>
+            <p className="mt-5 max-w-xl leading-relaxed text-steel-muted font-sans">
+              Schedule an exclusive live demonstration on our fiber laser or CNC press brake booth.
+            </p>
+          </div>
+          <button
+            onClick={() => openEnquiry("Expo Demonstration Request")}
+            className="btn-sweep inline-block bg-accent px-7 py-4 text-center font-display text-base font-bold tracking-tight text-accent-foreground cursor-pointer shadow-[var(--shadow-lift)]"
+          >
+            Book demo pass
+          </button>
         </div>
       </section>
     </div>

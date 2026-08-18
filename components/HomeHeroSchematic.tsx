@@ -31,9 +31,9 @@ interface HomeHeroSchematicProps {
   onSelect: (index: number) => void;
 }
 
-/* Theme-invariant premium chip */
+/* Redesigned machine-tool callout chip */
 const labelClass =
-  "shrink-0 bg-white/90 backdrop-blur-[2px] border border-primary/50 px-2 py-0.5 font-ui text-[9px] uppercase tracking-[0.14em] text-primary whitespace-nowrap";
+  "shrink-0 bg-accent/90 backdrop-blur-[2px] border border-accent px-2 py-0.5 font-mono text-[9px] uppercase tracking-[0.14em] text-accent-foreground whitespace-nowrap shadow-sm";
 
 function Callout({ callout }: { callout: HeroCallout }) {
   const { label, x, y, align, length } = callout;
@@ -45,8 +45,8 @@ function Callout({ callout }: { callout: HeroCallout }) {
         style={{ left: `${x}%`, top: `${y}%`, transform: "translate(-100%, -50%)" }}
       >
         <span className={labelClass}>{label}</span>
-        <span className="h-px bg-primary/70 shrink-0" style={{ width: length }} aria-hidden />
-        <span className="h-1.5 w-1.5 rounded-full bg-primary shrink-0" aria-hidden />
+        <span className="h-px bg-accent shrink-0" style={{ width: length }} aria-hidden />
+        <span className="h-1.5 w-1.5 rounded-full bg-accent shrink-0" aria-hidden />
       </div>
     );
   }
@@ -57,8 +57,8 @@ function Callout({ callout }: { callout: HeroCallout }) {
         className="pointer-events-none absolute z-20 hidden sm:flex items-center"
         style={{ left: `${x}%`, top: `${y}%`, transform: "translate(0, -50%)" }}
       >
-        <span className="h-1.5 w-1.5 rounded-full bg-primary shrink-0" aria-hidden />
-        <span className="h-px bg-primary/70 shrink-0" style={{ width: length }} aria-hidden />
+        <span className="h-1.5 w-1.5 rounded-full bg-accent shrink-0" aria-hidden />
+        <span className="h-px bg-accent shrink-0" style={{ width: length }} aria-hidden />
         <span className={labelClass}>{label}</span>
       </div>
     );
@@ -71,8 +71,8 @@ function Callout({ callout }: { callout: HeroCallout }) {
         style={{ left: `${x}%`, top: `${y}%`, transform: "translate(-50%, -100%)" }}
       >
         <span className={labelClass}>{label}</span>
-        <span className="w-px bg-primary/70 shrink-0" style={{ height: length }} aria-hidden />
-        <span className="h-1.5 w-1.5 rounded-full bg-primary shrink-0" aria-hidden />
+        <span className="w-px bg-accent shrink-0" style={{ height: length }} aria-hidden />
+        <span className="h-1.5 w-1.5 rounded-full bg-accent shrink-0" aria-hidden />
       </div>
     );
   }
@@ -82,8 +82,8 @@ function Callout({ callout }: { callout: HeroCallout }) {
       className="pointer-events-none absolute z-20 hidden sm:flex flex-col items-center"
       style={{ left: `${x}%`, top: `${y}%`, transform: "translate(-50%, 0)" }}
     >
-      <span className="h-1.5 w-1.5 rounded-full bg-primary shrink-0" aria-hidden />
-      <span className="w-px bg-primary/70 shrink-0" style={{ height: length }} aria-hidden />
+      <span className="h-1.5 w-1.5 rounded-full bg-accent shrink-0" aria-hidden />
+      <span className="w-px bg-accent shrink-0" style={{ height: length }} aria-hidden />
       <span className={labelClass}>{label}</span>
     </div>
   );
@@ -100,7 +100,7 @@ export default function HomeHeroSchematic({
 
   return (
     <div className="w-full relative flex flex-col gap-4">
-      <div className="group relative w-full aspect-[4/3] overflow-visible bg-transparent">
+      <div className="group relative w-full aspect-[4/3] overflow-visible bg-steel/40 border border-white/10 rounded-sm">
         {slides.map((slide, idx) => (
           <div
             key={slide.title}
@@ -110,11 +110,11 @@ export default function HomeHeroSchematic({
                 : "opacity-0 translate-x-6 scale-95 pointer-events-none"
             }`}
           >
-            <div className="absolute inset-0 flex items-center justify-center p-10 md:p-14 lg:p-16">
+            <div className="absolute inset-0 flex items-center justify-center p-8 md:p-12">
               <img
                 src={slide.src}
                 alt={slide.title}
-                className="object-contain max-h-[78%] max-w-[72%] mix-blend-normal"
+                className="object-contain max-h-[82%] max-w-[78%] drop-shadow-[0_12px_24px_rgba(0,0,0,0.5)]"
               />
             </div>
             {slide.callouts.map((callout) => (
@@ -129,7 +129,7 @@ export default function HomeHeroSchematic({
             e.stopPropagation();
             onPrev();
           }}
-          className="absolute left-2 top-1/2 -translate-y-1/2 z-30 flex h-8 w-8 items-center justify-center border border-border bg-surface/80 backdrop-blur-sm text-foreground opacity-0 transition-opacity group-hover:opacity-100 hover:border-primary hover:text-primary cursor-pointer"
+          className="absolute left-2 top-1/2 -translate-y-1/2 z-30 flex h-9 w-9 items-center justify-center border border-white/20 bg-steel/80 backdrop-blur-sm text-steel-foreground opacity-0 transition-opacity group-hover:opacity-100 hover:border-accent hover:text-accent cursor-pointer"
           aria-label="Previous image"
         >
           <span className="material-symbols-outlined text-[18px] leading-none">chevron_left</span>
@@ -140,27 +140,27 @@ export default function HomeHeroSchematic({
             e.stopPropagation();
             onNext();
           }}
-          className="absolute right-2 top-1/2 -translate-y-1/2 z-30 flex h-8 w-8 items-center justify-center border border-border bg-surface/80 backdrop-blur-sm text-foreground opacity-0 transition-opacity group-hover:opacity-100 hover:border-primary hover:text-primary cursor-pointer"
+          className="absolute right-2 top-1/2 -translate-y-1/2 z-30 flex h-9 w-9 items-center justify-center border border-white/20 bg-steel/80 backdrop-blur-sm text-steel-foreground opacity-0 transition-opacity group-hover:opacity-100 hover:border-accent hover:text-accent cursor-pointer"
           aria-label="Next image"
         >
           <span className="material-symbols-outlined text-[18px] leading-none">chevron_right</span>
         </button>
       </div>
 
-      <div className="border-t border-border pt-3">
+      <div className="border-t border-white/10 pt-3">
         <div className="flex items-baseline justify-between gap-3">
           <a
             href={active.link}
-            className="font-display text-card-title text-foreground hover:text-primary transition-colors uppercase tracking-display"
+            className="font-display text-lg text-steel-foreground hover:text-accent transition-colors uppercase tracking-tight"
           >
             {active.title}
-            <span className="material-symbols-outlined ml-1 align-middle text-[16px]">arrow_forward</span>
+            <span className="material-symbols-outlined ml-1.5 align-middle text-[16px]">arrow_forward</span>
           </a>
-          <span className="font-ui text-label text-primary border border-primary/30 px-2 py-0.5 whitespace-nowrap">
+          <span className="eyebrow text-accent border border-accent/40 px-2 py-0.5 whitespace-nowrap">
             {active.tag}
           </span>
         </div>
-        <p className="font-body font-normal text-small text-tertiary mt-2 leading-relaxed max-w-prose">
+        <p className="font-sans text-sm text-steel-muted mt-2 leading-relaxed max-w-prose">
           {active.desc}
         </p>
       </div>
@@ -173,20 +173,20 @@ export default function HomeHeroSchematic({
               key={slide.title}
               type="button"
               onClick={() => onSelect(idx)}
-              className={`text-left px-3 py-3 border transition-colors cursor-pointer bg-white dark:bg-card ${
+              className={`text-left px-3 py-3 border transition-colors cursor-pointer bg-steel/60 text-steel-foreground ${
                 isActive
-                  ? "border-primary"
-                  : "border-border hover:border-foreground/25"
+                  ? "border-accent bg-steel/90"
+                  : "border-white/10 hover:border-white/30"
               }`}
             >
               <span
-                className={`font-ui text-label block ${
-                  isActive ? "text-primary" : "text-tertiary"
+                className={`eyebrow block ${
+                  isActive ? "text-accent" : "text-steel-muted"
                 }`}
               >
                 0{idx + 1}
               </span>
-              <span className="font-display text-[11px] uppercase tracking-wider text-foreground mt-1.5 block leading-snug">
+              <span className="font-display text-[12px] uppercase tracking-wider mt-1.5 block leading-snug">
                 {slide.title.replace(" Cutting", "").replace("CNC ", "")}
               </span>
             </button>

@@ -1,168 +1,267 @@
 "use client";
 
-import React, { Suspense } from "react";
-import { useSearchParams } from "next/navigation";
-import { companyInfo, branches, contactDepartments } from "@/lib/data";
-import ContactEnquiryForm from "@/components/ContactEnquiryForm";
+import React, { useState } from "react";
+import Link from "next/link";
+import { companyInfo, branches } from "@/lib/data";
 
-function ContactFormContent() {
-  const searchParams = useSearchParams();
-  const interestParam = searchParams.get("interest") || "";
+export default function ContactPage() {
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    company: "",
+    material: "",
+    thickness: "",
+    message: "",
+  });
+  const [submitted, setSubmitted] = useState(false);
 
-  const branchCities = branches;
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmitted(true);
+  };
 
   return (
-    <div className="flex flex-col w-full bg-surface">
-      {/* Page Header */}
-      <section className="relative bg-surface border-b border-border py-16 tech-grid">
-        <div className="adk-container">
-          <h1 className="font-display text-heading text-foreground uppercase tracking-display leading-none mb-6">
-            CONTACT OPERATIONS
+    <div className="flex flex-col w-full bg-background text-foreground">
+      {/* Page Header — Exact ADK Redesigned Header */}
+      <section className="border-b border-rule panel">
+        <div className="shell py-16 md:py-24">
+          <p className="eyebrow">Contact</p>
+          <h1 className="mt-5 max-w-3xl font-display text-4xl leading-[1.05] md:text-6xl font-bold">
+            Tell us what you cut and how thick.
           </h1>
-          <p className="font-ui text-label text-tertiary max-w-xl leading-relaxed">
-            Reach our Ahmedabad corporate office and Santej works, or contact department-wise
-            for inquiries, service, and spares across 8 branch locations.
+          <span className="mt-6 block h-0.5 w-10 bg-accent" />
+          <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg font-sans">
+            A quote names a machine size, a price and a delivery week. An engineer replies within 6 working hours.
           </p>
         </div>
       </section>
 
-      {/* Main Content */}
-      <section className="py-20 adk-container w-full grid grid-cols-1 lg:grid-cols-12 gap-16">
-        {/* Addresses & Map */}
-        <div className="lg:col-span-7 space-y-10">
-          <div>
-            <h2 className="font-display text-subheading uppercase mb-6 text-foreground flex items-center gap-2">
-              <span className="material-symbols-outlined text-primary text-[22px]">location_on</span>
-              Corporate Office & Works
-            </h2>
-            <div className="bg-surface border border-border p-6 font-ui text-label text-tertiary space-y-4">
-              <p>
-                <strong>{companyInfo.name}</strong>
-                <br />
-                <strong>Corporate:</strong> {companyInfo.corporateAddress}
-              </p>
-              <p>
-                <strong>Works:</strong> {companyInfo.worksAddress}
-              </p>
-              <p>
-                <strong>General:</strong> {companyInfo.generalPhones.join(" / ")} <br />
-                {companyInfo.generalEmails.join(" / ")}
-              </p>
-            </div>
-          </div>
-
-          {/* Department Contacts */}
-          <div>
-            <h2 className="font-display text-subheading uppercase mb-6 text-foreground flex items-center gap-2">
-              <span className="material-symbols-outlined text-primary text-[22px]">support_agent</span>
-              Department Contacts
-            </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-              {contactDepartments.map((dept) => (
-                <div key={dept.label} className="border border-border p-6 hover:border-primary transition-colors bg-card">
-                  <h3 className="font-display text-card-title text-foreground uppercase font-bold border-b border-primary/20 pb-2 mb-3">
-                    {dept.label}
-                  </h3>
-                  <div className="font-ui text-label text-tertiary space-y-2">
-                    <p>{dept.phones.join(" / ")}</p>
-                    <p className="border-t border-border/50 pt-2">
-                      {dept.emails.join(" / ")}
-                    </p>
+      {/* Form & Sidebar Grid */}
+      <section className="shell py-16 md:py-24 border-b border-rule">
+        <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(18rem,0.8fr)] lg:gap-24">
+          {/* Quote Form */}
+          <div className="bg-background border border-rule p-6 md:p-10">
+            {submitted ? (
+              <div className="text-center py-12">
+                <span className="material-symbols-outlined text-5xl text-accent">check_circle</span>
+                <h3 className="mt-4 font-display text-2xl font-bold">Inquiry Received</h3>
+                <p className="mt-2 text-sm text-muted-foreground font-sans max-w-md mx-auto">
+                  Thank you, {formData.name}. An ADK sales engineer will review your material and thickness requirements and call you back within 6 working hours.
+                </p>
+                <button
+                  type="button"
+                  onClick={() => setSubmitted(false)}
+                  className="mt-6 font-mono text-xs uppercase tracking-widest text-accent font-bold cursor-pointer"
+                >
+                  Submit another inquiry →
+                </button>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <p className="eyebrow text-accent">Machinery Quote Form</p>
+                <div className="grid gap-6 sm:grid-cols-2">
+                  <div>
+                    <label className="block text-xs font-mono uppercase text-muted-foreground mb-2">
+                      Full Name *
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      placeholder="e.g. Rajesh Shah"
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      className="w-full border border-rule bg-card px-4 py-3 text-sm font-sans text-foreground focus:border-accent focus:outline-none"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-mono uppercase text-muted-foreground mb-2">
+                      Phone Number *
+                    </label>
+                    <input
+                      type="tel"
+                      required
+                      placeholder="+91 98765 43210"
+                      value={formData.phone}
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      className="w-full border border-rule bg-card px-4 py-3 text-sm font-sans text-foreground focus:border-accent focus:outline-none"
+                    />
                   </div>
                 </div>
-              ))}
-            </div>
-          </div>
 
-          {/* Branch Operations */}
-          <div>
-            <h2 className="font-display text-subheading uppercase mb-6 text-foreground flex items-center gap-2">
-              <span className="material-symbols-outlined text-primary text-[22px]">hub</span>
-              Branch Locations
-            </h2>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-              {branchCities.map((b) => (
-                <div key={b.city} className="border border-border p-4 hover:border-primary transition-colors bg-card text-center">
-                  <h3 className="font-display text-card-title text-foreground uppercase font-bold">
-                    {b.city}
-                  </h3>
-                  <span className="font-ui text-label text-tertiary uppercase mt-1 block">
-                    ADK Branch Office
-                  </span>
+                <div className="grid gap-6 sm:grid-cols-2">
+                  <div>
+                    <label className="block text-xs font-mono uppercase text-muted-foreground mb-2">
+                      Email Address
+                    </label>
+                    <input
+                      type="email"
+                      placeholder="name@company.com"
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      className="w-full border border-rule bg-card px-4 py-3 text-sm font-sans text-foreground focus:border-accent focus:outline-none"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-mono uppercase text-muted-foreground mb-2">
+                      Company / Workshop Name
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="e.g. Precision Components"
+                      value={formData.company}
+                      onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                      className="w-full border border-rule bg-card px-4 py-3 text-sm font-sans text-foreground focus:border-accent focus:outline-none"
+                    />
+                  </div>
                 </div>
-              ))}
-            </div>
+
+                <div className="grid gap-6 sm:grid-cols-2">
+                  <div>
+                    <label className="block text-xs font-mono uppercase text-muted-foreground mb-2">
+                      Material Type
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="e.g. Mild Steel / Stainless / Aluminum"
+                      value={formData.material}
+                      onChange={(e) => setFormData({ ...formData, material: e.target.value })}
+                      className="w-full border border-rule bg-card px-4 py-3 text-sm font-sans text-foreground focus:border-accent focus:outline-none"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-mono uppercase text-muted-foreground mb-2">
+                      Thickness Range
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="e.g. 1 mm to 20 mm"
+                      value={formData.thickness}
+                      onChange={(e) => setFormData({ ...formData, thickness: e.target.value })}
+                      className="w-full border border-rule bg-card px-4 py-3 text-sm font-sans text-foreground focus:border-accent focus:outline-none"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-xs font-mono uppercase text-muted-foreground mb-2">
+                    Production Requirements / Message
+                  </label>
+                  <textarea
+                    rows={4}
+                    placeholder="Tell us your bed size preference, monthly volume, or existing machinery..."
+                    value={formData.message}
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    className="w-full border border-rule bg-card px-4 py-3 text-sm font-sans text-foreground focus:border-accent focus:outline-none"
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  className="btn-sweep w-full bg-accent py-4 text-center font-display text-sm font-bold uppercase tracking-wider text-accent-foreground shadow-[var(--shadow-lift)] cursor-pointer"
+                >
+                  Send Quote Request
+                </button>
+              </form>
+            )}
           </div>
 
-          {/* Google Maps — corporate office location */}
-          <div>
-            <h2 className="font-display text-subheading uppercase mb-6 text-foreground flex items-center gap-2">
-              <span className="material-symbols-outlined text-primary text-[22px]">map</span>
-              Location Map
-            </h2>
-            <div className="w-full aspect-[4/3] min-h-[320px] border border-border overflow-hidden bg-card">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3670.6535736714864!2d72.51097991122774!3d23.07315887905137!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e9d9e82fc63a3%3A0xb4bf21d5446a4d9f!2sADK%20Engineering%20%26%20Solutions!5e0!3m2!1sen!2sin!4v1783942317606!5m2!1sen!2sin"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="strict-origin-when-cross-origin"
-                title="ADK Engineering & Solutions — Google Maps"
-                className="w-full h-full min-h-[320px]"
+          {/* Contact Details Sidebar Panel */}
+          <aside className="space-y-8 panel p-8 md:p-10 border border-rule">
+            <div>
+              <p className="eyebrow">Talk to someone now</p>
+              <div className="mt-4 space-y-3 text-sm font-sans">
+                <a
+                  href="tel:+919909953637"
+                  className="flex items-center gap-3 transition-colors duration-300 hover:text-accent font-semibold"
+                >
+                  <span className="material-symbols-outlined text-base">call</span>
+                  +91 99099 53637
+                  <span className="text-muted-foreground font-normal">· Sales Inquiry</span>
+                </a>
+                <a
+                  href="tel:+919227085416"
+                  className="flex items-center gap-3 transition-colors duration-300 hover:text-accent font-semibold"
+                >
+                  <span className="material-symbols-outlined text-base">call</span>
+                  +91 92270 85416
+                </a>
+                <a
+                  href="tel:+919510041629"
+                  className="flex items-center gap-3 transition-colors duration-300 hover:text-accent font-semibold"
+                >
+                  <span className="material-symbols-outlined text-base">build</span>
+                  +91 95100 41629
+                  <span className="text-muted-foreground font-normal">· Service Support</span>
+                </a>
+                <a
+                  href="https://wa.me/919909953637"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center gap-3 transition-colors duration-300 hover:text-accent font-semibold"
+                >
+                  <span className="material-symbols-outlined text-base">chat</span>
+                  WhatsApp Chat
+                </a>
+                <a
+                  href="mailto:info@adkeng.com"
+                  className="flex items-center gap-3 transition-colors duration-300 hover:text-accent"
+                >
+                  <span className="material-symbols-outlined text-base">mail</span>
+                  info@adkeng.com
+                </a>
+                <a
+                  href="mailto:service@adkeng.com"
+                  className="flex items-center gap-3 transition-colors duration-300 hover:text-accent"
+                >
+                  <span className="material-symbols-outlined text-base">mail</span>
+                  service@adkeng.com
+                </a>
+                <a
+                  href="mailto:spares@adkeng.com"
+                  className="flex items-center gap-3 transition-colors duration-300 hover:text-accent"
+                >
+                  <span className="material-symbols-outlined text-base">mail</span>
+                  spares@adkeng.com
+                </a>
+              </div>
+            </div>
+
+            <div className="border-t border-rule pt-6">
+              <p className="eyebrow">Head Office</p>
+              <p className="mt-3 flex gap-3 text-sm text-muted-foreground font-sans leading-relaxed">
+                <span className="material-symbols-outlined text-base shrink-0 mt-0.5 text-accent">location_on</span>
+                {companyInfo.corporateAddress}
+              </p>
+            </div>
+
+            <div className="border-t border-rule pt-6">
+              <p className="eyebrow">Works & Test Bay</p>
+              <img
+                src="/assets/workshop.jpg"
+                alt="ADK Santej works"
+                width={800}
+                height={500}
+                className="mt-4 w-full border border-rule object-cover"
               />
+              <p className="mt-3 flex gap-3 text-sm text-muted-foreground font-sans leading-relaxed">
+                <span className="material-symbols-outlined text-base shrink-0 mt-0.5 text-accent">location_on</span>
+                {companyInfo.worksAddress}
+              </p>
+              <p className="mt-3 text-sm text-muted-foreground font-sans">
+                Come and cut your own samples. Bring the plate, we will run it on our floor.
+              </p>
             </div>
-          </div>
-        </div>
 
-        {/* Contact Form */}
-        <div className="lg:col-span-5">
-          <div className="bg-surface border border-primary/20 p-6 sticky top-28">
-            <h3 className="font-display text-subheading text-foreground uppercase mb-6 tracking-display">
-              Direct Enquiry Form
-            </h3>
-            <ContactEnquiryForm key={interestParam} defaultInterest={interestParam} />
-          </div>
-        </div>
-      </section>
-
-      {/* Service Promise */}
-      <section className="py-16 bg-surface border-t border-border">
-        <div className="adk-container grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="text-center p-6">
-            <span className="material-symbols-outlined text-3xl text-primary mb-3 block">support_agent</span>
-            <h3 className="font-display text-card-title text-foreground uppercase font-bold mb-2">Technical Assistance</h3>
-            <p className="font-body text-small text-tertiary">Remote diagnostics and on-site engineer deployment within 24 hours.</p>
-          </div>
-          <div className="text-center p-6">
-            <span className="material-symbols-outlined text-3xl text-primary mb-3 block">inventory_2</span>
-            <h3 className="font-display text-card-title text-foreground uppercase font-bold mb-2">Spare Parts</h3>
-            <p className="font-body text-small text-tertiary">Common consumables stocked at regional hubs for immediate dispatch.</p>
-          </div>
-          <div className="text-center p-6">
-            <span className="material-symbols-outlined text-3xl text-primary mb-3 block">handshake</span>
-            <h3 className="font-display text-card-title text-foreground uppercase font-bold mb-2">Customer Care</h3>
-            <p className="font-body text-small text-tertiary">Dedicated account managers for installation, training, and annual calibration.</p>
-          </div>
+            <div className="border-t border-rule pt-6">
+              <p className="eyebrow">Service Branches</p>
+              <p className="mt-3 text-sm text-muted-foreground font-sans leading-relaxed">
+                {branches.map((b) => b.city).join(" · ")}
+              </p>
+            </div>
+          </aside>
         </div>
       </section>
     </div>
-  );
-}
-
-export default function ContactPage() {
-  return (
-    <Suspense
-      fallback={
-        <div className="flex items-center justify-center min-h-[500px]">
-          <div className="font-body text-small text-primary animate-pulse">
-            Loading contact form...
-          </div>
-        </div>
-      }
-    >
-      <ContactFormContent />
-    </Suspense>
   );
 }

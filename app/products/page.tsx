@@ -1,100 +1,173 @@
+"use client";
+
+import React, { useState } from "react";
 import Link from "next/link";
 import { categories } from "@/lib/data";
-import { getProductImageFallback } from "@/lib/media";
-import OptionalImage from "@/components/OptionalImage";
+import { useEnquiry } from "@/components/EnquiryContext";
+import Reveal from "@/components/Reveal";
 
-export default function ProductsHubPage() {
+const seriesMap: Record<string, string> = {
+  "fiber-laser-cutting": "FL series",
+  "cnc-plasma-cutting": "PL series",
+  "cnc-press-brake": "NADKpress",
+  "fiber-laser-welding": "LW series",
+  "panel-bender": "PB series",
+  "peb-machinery": "PEB line",
+  "shearing-machine": "SH series",
+  "spares-consumables": "Spares",
+};
+
+const categoryTitleMap: Record<string, string> = {
+  "fiber-laser-cutting": "Fiber laser cutting machines",
+  "cnc-plasma-cutting": "CNC plasma cutting systems",
+  "cnc-press-brake": "CNC press brakes",
+  "fiber-laser-welding": "Fiber laser welding machines",
+  "panel-bender": "Panel benders",
+  "peb-machinery": "PEB machinery",
+  "shearing-machine": "Hydraulic shearing machines",
+  "spares-consumables": "Spares and consumables",
+};
+
+const categorySummaryMap: Record<string, string> = {
+  "fiber-laser-cutting": "Exchange-table, single-pallet, tube, and tube+plate lasers from 1 kW to 60 kW.",
+  "cnc-plasma-cutting": "Gantry, table, and portable CNC plasma with Hypertherm sources.",
+  "cnc-press-brake": "40 T to 800 T, 4 / 5 / 7 / 9 axis, servo main drive and DSP laser guard.",
+  "fiber-laser-welding": "4-in-1 welding, cleaning, cutting and wire feeding from one source.",
+  "panel-bender": "Universal-die panel benders — 0.2 seconds per bend, no tooling changes.",
+  "peb-machinery": "H-beam welding and SAW gantry systems for pre-engineered buildings.",
+  "shearing-machine": "Hydraulic shears for plate preparation and edge trimming.",
+  "spares-consumables": "High-durability nozzles, focusing lenses, protective windows, and consumables.",
+};
+
+const categoryImageMap: Record<string, string> = {
+  "fiber-laser-cutting": "/assets/adk/studio-fiber.jpg",
+  "cnc-plasma-cutting": "/assets/adk/studio-plasma.jpg",
+  "cnc-press-brake": "/assets/adk/studio-press.jpg",
+  "fiber-laser-welding": "/assets/adk/studio-welder.jpg",
+  "panel-bender": "/assets/adk/studio-panel.jpg",
+  "peb-machinery": "/assets/adk/studio-peb.jpg",
+  "shearing-machine": "/assets/adk/studio-shear.jpg",
+  "spares-consumables": "/redesigned/product-fiber-laser.jpg",
+};
+
+export default function ProductsIndexPage() {
+  const { openEnquiry } = useEnquiry();
+  const [activeFilter, setActiveFilter] = useState("All machines");
+
+  const filters = [
+    "All machines",
+    ...categories.map((c) => seriesMap[c.slug] || c.name),
+  ];
+
+  const shownCategories =
+    activeFilter === "All machines"
+      ? categories
+      : categories.filter(
+          (c) => (seriesMap[c.slug] || c.name) === activeFilter
+        );
+
   return (
-    <div className="flex flex-col w-full bg-surface">
-      <section className="relative bg-surface border-b border-border py-16 tech-grid">
-        <div className="adk-container">
-          <h1 className="font-display text-heading text-foreground uppercase tracking-display leading-none mb-6">
-            Machinery Catalogue
+    <div className="flex flex-col w-full bg-background text-foreground">
+      {/* Page Header — Exact ADK Redesigned Header */}
+      <section className="border-b border-rule panel">
+        <div className="shell py-16 md:py-24">
+          <p className="eyebrow">Machines</p>
+          <h1 className="mt-5 max-w-3xl font-display text-4xl leading-[1.05] md:text-6xl font-bold">
+            Eight machine families, sized for the work you already have.
           </h1>
-          <p className="font-body text-small text-tertiary max-w-xl leading-relaxed">
-            Fiber laser cutting, CNC plasma, press brakes, welding, PEB lines, panel benders, and
-            genuine spares — browse by category and request a quote.
+          <span className="mt-6 block h-0.5 w-10 bg-accent" />
+          <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg font-sans">
+            Fiber laser, plasma, NADKpress, welding, panel benders, PEB lines, shears and spares — all built at Santej. Tell us the material and thickness and we will quote the right machine.
           </p>
         </div>
       </section>
 
-      <section className="py-20 adk-container w-full">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {categories.map((c) => {
-            const thumb = c.models[0]?.image ?? "";
-            const fallback = getProductImageFallback(c.slug);
+      {/* Filter Tabs & Product Grid */}
+      <section className="shell py-16 md:py-24 border-b border-rule">
+        <div className="-mx-5 mb-12 overflow-x-auto px-5">
+          <div className="flex min-w-max gap-8 border-b border-rule">
+            {filters.map((f) => (
+              <button
+                key={f}
+                type="button"
+                onClick={() => setActiveFilter(f)}
+                className={`relative pb-4 text-sm font-medium whitespace-nowrap transition-colors duration-500 cursor-pointer ${
+                  activeFilter === f
+                    ? "text-foreground font-bold"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                {f}
+                <span
+                  className={`absolute inset-x-0 -bottom-px h-0.5 origin-left bg-accent transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                    activeFilter === f ? "scale-x-100" : "scale-x-0"
+                  }`}
+                />
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {shownCategories.map((c, i) => {
+            const seriesTag = seriesMap[c.slug] || "ADK series";
+            const cardTitle = categoryTitleMap[c.slug] || c.name;
+            const cardSummary = categorySummaryMap[c.slug] || c.tagline || c.description;
+            const img = categoryImageMap[c.slug] || "/assets/adk/studio-fiber.jpg";
 
             return (
-              <div
-                key={c.slug}
-                className="bg-card border border-border hover:border-primary flex flex-col justify-between shadow-sm hover:shadow-lg transition-all duration-300 group overflow-hidden"
-              >
-                <div>
-                  <Link
-                    href={`/products/${c.slug}`}
-                    className="relative block aspect-16/10 bg-white dark:bg-tech-blue border-b border-border overflow-hidden"
-                  >
-                    <OptionalImage
-                      src={thumb}
-                      fallback={fallback}
-                      alt={c.name}
-                      className="absolute inset-0 h-full w-full object-contain p-4 mix-blend-multiply dark:mix-blend-normal transition-transform duration-500 group-hover:scale-105"
-                      placeholderLabel={c.name}
-                      containerClassName="absolute inset-0"
+              <Reveal key={c.slug} delay={(i % 3) * 90} className="h-full">
+                <Link
+                  href={`/products/${c.slug}`}
+                  className="arrow-slide group hover-lift flex flex-col panel h-full border border-rule transition-all"
+                >
+                  <div className="aspect-[4/3] overflow-hidden p-6 bg-white flex items-center justify-center border-b border-rule">
+                    <img
+                      src={img}
+                      alt={cardTitle}
+                      loading="lazy"
+                      width={1200}
+                      height={900}
+                      className="h-full w-full object-contain transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
                     />
-                  </Link>
-
-                  <div className="p-6">
-                    <div className="flex justify-between items-center mb-4">
-                      <span className="font-ui text-label text-tertiary uppercase">
-                        {c.models.length} model{c.models.length === 1 ? "" : "s"}
-                      </span>
-                      <span className="material-symbols-outlined text-4xl text-foreground/70 group-hover:text-primary transition-colors">
-                        {c.icon}
-                      </span>
-                    </div>
-                    <h3 className="font-display text-subheading text-foreground uppercase mb-3 font-bold group-hover:text-primary transition-colors">
-                      {c.name}
+                  </div>
+                  <div className="flex flex-1 flex-col px-6 pt-6 pb-7">
+                    <p className="eyebrow">{seriesTag}</p>
+                    <h3 className="mt-2.5 font-display text-xl leading-tight transition-colors duration-500 group-hover:text-accent font-bold">
+                      {cardTitle}
                     </h3>
-                    <p className="font-body text-small text-tertiary leading-relaxed mb-6">
-                      {c.tagline}
+                    <p className="mt-3 text-sm leading-relaxed text-muted-foreground font-sans line-clamp-3">
+                      {cardSummary}
                     </p>
-                  </div>
-                </div>
-
-                <div className="space-y-4 px-6 pb-6">
-                  <div className="border-t border-border/50 pt-4">
-                    <span className="font-ui text-label uppercase text-foreground/40 tracking-wider block mb-2">
-                      Configurations
+                    <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-foreground group-hover:text-accent">
+                      Learn more
+                      <span className="arrow">→</span>
                     </span>
-                    <ul className="space-y-1.5">
-                      {c.models.map((m) => (
-                        <li key={m.slug}>
-                          <Link
-                            href={`/products/${c.slug}/${m.slug}`}
-                            className="font-ui text-label text-tertiary hover:text-primary flex items-center justify-between gap-2"
-                          >
-                            <span className="truncate">{m.name}</span>
-                            <span className="font-ui text-label bg-tech-blue text-foreground px-1.5 py-0.5 border border-border/50 font-bold shrink-0">
-                              {m.status}
-                            </span>
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
                   </div>
-
-                  <Link
-                    href={`/products/${c.slug}`}
-                    className="w-full border border-foreground py-3 font-ui text-label uppercase hover:bg-charcoal hover:text-white transition-all tracking-ui flex items-center justify-center gap-1.5 text-center cursor-pointer font-bold"
-                  >
-                    Explore category{" "}
-                    <span className="material-symbols-outlined text-[12px]">arrow_forward</span>
-                  </Link>
-                </div>
-              </div>
+                </Link>
+              </Reveal>
             );
           })}
+        </div>
+      </section>
+
+      {/* Quote CTA Banner */}
+      <section className="border-y border-rule bg-steel text-steel-foreground">
+        <div className="shell grid gap-10 py-16 md:grid-cols-[1.4fr_auto] md:items-end md:py-24">
+          <div>
+            <h2 className="max-w-2xl font-display text-3xl leading-tight md:text-4xl font-bold">
+              Tell us what you cut. We will quote the right machine.
+            </h2>
+            <p className="mt-5 max-w-xl leading-relaxed text-steel-muted font-sans">
+              Send the material and thickness you work with and we will come back with a machine size, a price and a delivery date.
+            </p>
+          </div>
+          <button
+            onClick={() => openEnquiry("General Machinery Enquiry")}
+            className="btn-sweep inline-block bg-accent px-7 py-4 text-center font-display text-base font-bold tracking-tight text-accent-foreground cursor-pointer shadow-[var(--shadow-lift)]"
+          >
+            Request a quote
+          </button>
         </div>
       </section>
     </div>
