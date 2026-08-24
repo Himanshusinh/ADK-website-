@@ -115,6 +115,7 @@
 }
 
 @theme {
+  --color-background: var(--background);
   --color-primary: #9d0518;
   --color-primary-hover: #b72028;
   --color-charcoal: var(--adk-charcoal);
