@@ -12,7 +12,7 @@ type GalleryTab = "machines" | "installations" | "factory" | "videos";
 const TAB_LABELS: Record<GalleryTab, string> = {
   machines: "Machine catalogue",
   installations: "Client installations",
-  factory: "Factory & Santej works",
+  factory: "Experience Center",
   videos: "Operational videos",
 };
 
@@ -42,7 +42,7 @@ export default function GalleryPage() {
           </h1>
           <span className="mt-6 block h-0.5 w-10 bg-accent" />
           <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg font-sans">
-            Real machine footprints across Indian fabrication shops and at our Santej works in Ahmedabad.
+            Real machine footprints across Indian fabrication shops and at our Experience Center in Ahmedabad.
           </p>
         </div>
       </section>
@@ -149,7 +149,7 @@ export default function GalleryPage() {
                     />
                   </div>
                   <div className="flex flex-1 flex-col px-6 pt-6 pb-7">
-                    <p className="eyebrow">Santej Works</p>
+                    <p className="eyebrow">Experience Center</p>
                     <h3 className="mt-2.5 font-display text-xl font-bold leading-tight">
                       {photo.title}
                     </h3>
@@ -177,7 +177,7 @@ export default function GalleryPage() {
               Want to see a machine live on your cut job?
             </h2>
             <p className="mt-5 max-w-xl leading-relaxed text-steel-muted font-sans">
-              Visit our Santej works or schedule a video demonstration session with an application engineer.
+              Visit our Experience Center in Ahmedabad or schedule a video demonstration session with an application engineer.
             </p>
           </div>
           <button

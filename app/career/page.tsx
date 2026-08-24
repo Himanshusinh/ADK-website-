@@ -49,7 +49,7 @@ export default function CareerPage() {
           </h1>
           <span className="mt-6 block h-0.5 w-10 bg-accent" />
           <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg font-sans">
-            Join our engineering, manufacturing, and service teams at Santej works. Direct applications welcome at {careerApplicationEmail}.
+            Join our engineering, sales, and service teams in Ahmedabad. Direct applications welcome at {careerApplicationEmail}.
           </p>
         </div>
       </section>

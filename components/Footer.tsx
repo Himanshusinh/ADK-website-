@@ -27,9 +27,9 @@ export default function Footer() {
           <img
             src="/lightlogo.png"
             alt={companyInfo.name}
-            className="h-10 w-auto object-contain"
-            width={200}
-            height={56}
+            className="h-14 md:h-16 w-auto object-contain"
+            width={240}
+            height={64}
           />
           <p className="mt-5 max-w-xs text-sm leading-relaxed text-steel-muted">
             {companyInfo.tagline}. Over {companyInfo.stats.yearsExperience} years of excellence in fiber laser cutting, CNC plasma, press brakes, and fabrication machinery.
@@ -138,7 +138,7 @@ export default function Footer() {
           <p>
             © {new Date().getFullYear()} ADK Engineering Pvt Ltd. {companyInfo.name}, Ahmedabad.
           </p>
-          <p>Works: Santej, Gujarat.</p>
+          <p>Head Office: Ahmedabad, Gujarat.</p>
         </div>
       </div>
     </footer>

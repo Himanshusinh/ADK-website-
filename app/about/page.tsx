@@ -20,12 +20,12 @@ const principles = [
   {
     eyebrow: "Vision",
     title: "Machines that earn their keep after the first year.",
-    body: "Built at Santej, serviced from eight offices, specified around the parts you already cut.",
+    body: "Supplied and configured to your exact specifications, serviced nationwide from eight regional offices.",
   },
   {
     eyebrow: "Slogan",
     title: "Crafting precision, shaping tomorrow.",
-    body: "Fiber laser, plasma, press brake, welding, panel and PEB lines — one works, one service number.",
+    body: "Fiber laser, plasma, press brake, welding, panel and PEB lines — one service support number.",
   },
 ];
 
@@ -43,7 +43,7 @@ const timeline = [
   {
     year: "2015",
     title: "Founded in Ahmedabad",
-    body: "Started at Santej to build cutting and forming machinery with local engineering support.",
+    body: "Founded in Ahmedabad to build cutting and forming machinery with local engineering support.",
   },
   {
     year: "2017",
@@ -67,8 +67,8 @@ const timeline = [
   },
   {
     year: "2025",
-    title: "24 m table laser and 550+ installations",
-    body: "Crossed 550 installations and delivered a 3000 × 24000 mm heavy-plate machine bed.",
+    title: "24 m table laser and 850+ installations",
+    body: "Crossed 850 installations and delivered a 3000 × 24000 mm heavy-plate machine bed.",
   },
 ];
 
@@ -100,7 +100,7 @@ const whyChoose = [
 ];
 
 const branches = [
-  { city: "Ahmedabad", role: "Headquarters & Santej Works" },
+  { city: "Ahmedabad", role: "Headquarters & Experience Center" },
   { city: "Pune", role: "Maharashtra Service Branch" },
   { city: "Nashik", role: "Service Office" },
   { city: "Nagpur", role: "Vidarbha Service Branch" },
@@ -145,17 +145,17 @@ export default function AboutPage() {
             Who we are and what we do.
           </h1>
           <p className="mt-6 max-w-2xl text-base text-steel-muted md:text-lg font-sans leading-relaxed">
-            Founded in 2015 in Ahmedabad. ADK designs, builds and services fiber laser, CNC plasma,
-            press brake, welding, PEB and panel-bending machines from Santej. 550+ installations,
+            Founded in 2015 in Ahmedabad. ADK supplies and services fiber laser, CNC plasma,
+            CNC press brake, welding, PEB and panel-bending machines. 850+ installations,
             including government work at ISRO.
           </p>
           <div className="mt-14 grid w-full max-w-3xl gap-10 border-t border-white/15 pt-10 sm:grid-cols-3">
             <div>
-              <p className="font-display text-4xl leading-none md:text-5xl font-bold">750+</p>
+              <p className="font-display text-4xl leading-none md:text-5xl font-bold">850+</p>
               <p className="mt-3 text-sm text-steel-muted font-sans">Customers across India</p>
             </div>
             <div>
-              <p className="font-display text-4xl leading-none md:text-5xl font-bold">550+</p>
+              <p className="font-display text-4xl leading-none md:text-5xl font-bold">850+</p>
               <p className="mt-3 text-sm text-steel-muted font-sans">Installations on the floor</p>
             </div>
             <div>
@@ -201,25 +201,24 @@ export default function AboutPage() {
       </section>
 
       {/* —————————————————————————————————————————————————————————————————— */}
-      {/* 3. SANTEJ WORKS VIDEO SECTION                                      */}
+      {/* 3. EXPERIENCE CENTER VIDEO SECTION                                 */}
       {/* —————————————————————————————————————————————————————————————————— */}
       <section className="border-b border-rule bg-steel text-steel-foreground">
         <div className="shell grid items-center gap-12 py-16 md:grid-cols-2 md:py-24">
           <div>
-            <p className="eyebrow text-accent">Santej works</p>
+            <p className="eyebrow text-accent">Experience &amp; Service Hub</p>
             <h2 className="mt-4 font-display text-3xl md:text-5xl font-bold leading-tight">
-              A decade on the floor.
+              A decade of engineering excellence.
             </h2>
             <p className="mt-5 max-w-lg text-steel-muted font-sans leading-relaxed">
-              Gantry assembly, optical calibration, hydraulic test bays and an R&amp;D controls
-              bench at 2100/2, Santej-Khatraj Road, Santej. Every machine is run before it is crated.
+              Optical calibration, testing bays, demonstration setup and dedicated controls bench at our Ahmedabad facility. Every machine is run and thoroughly inspected before dispatch.
             </p>
           </div>
           <div>
             <div className="relative aspect-video w-full overflow-hidden bg-steel border border-white/20">
               <img
                 src="/assets/workshop.jpg"
-                alt="ADK Workshop Santej"
+                alt="ADK Experience Center"
                 className="h-full w-full object-cover"
               />
               <div className="absolute inset-0 flex items-center justify-center bg-steel/40">
@@ -238,9 +237,9 @@ export default function AboutPage() {
         <div className="shell">
           <Reveal className="text-center">
             <p className="eyebrow text-accent">Machines</p>
-            <h2 className="mt-3 font-display text-3xl md:text-5xl font-bold">The families we build.</h2>
+            <h2 className="mt-3 font-display text-3xl md:text-5xl font-bold">The machine families we offer.</h2>
             <p className="mx-auto mt-4 max-w-xl text-muted-foreground font-sans">
-              The same catalogue as the floor: fiber laser, plasma, press brake, welding, panel, PEB and shear.
+              Our comprehensive machinery range: fiber laser cutting, CNC plasma, CNC press brakes, laser welding, panel benders, PEB lines, and shearing machines.
             </p>
           </Reveal>
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -362,7 +361,7 @@ export default function AboutPage() {
             ))}
           </div>
           <p className="mt-6 text-sm text-muted-foreground font-sans">
-            Works: 2100/2, Santej-Khatraj Road, Near Gayatri Farm, Santej 382722, Gujarat. Head office: A-503/504, Empire Business Hub, Nr. Shukan Mall, Science City Road, Sola, Ahmedabad 380060, Gujarat.
+            Head office: A-503/504, Empire Business Hub, Nr. Shukan Mall, Science City Road, Sola, Ahmedabad 380060, Gujarat.
           </p>
         </div>
       </section>

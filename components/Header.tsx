@@ -29,16 +29,16 @@ export default function Header() {
           <img
             src="/darklogo.png"
             alt="ADK Engineering & Solutions"
-            className="h-8 w-auto md:h-9 object-contain dark:hidden"
-            width={180}
-            height={48}
+            className="h-11 w-auto md:h-14 lg:h-16 object-contain dark:hidden"
+            width={240}
+            height={64}
           />
           <img
             src="/lightlogo.png"
             alt="ADK Engineering & Solutions"
-            className="h-8 w-auto md:h-9 object-contain hidden dark:block"
-            width={180}
-            height={48}
+            className="h-11 w-auto md:h-14 lg:h-16 object-contain hidden dark:block"
+            width={240}
+            height={64}
           />
         </Link>
 
@@ -50,15 +50,13 @@ export default function Header() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`relative py-2 text-sm font-semibold transition-colors ${
-                    active ? "text-foreground font-bold" : "text-muted-foreground hover:text-foreground"
-                  }`}
+                  className={`relative py-2 text-sm font-semibold transition-colors ${active ? "text-foreground font-bold" : "text-muted-foreground hover:text-foreground"
+                    }`}
                 >
                   {item.label}
                   <span
-                    className={`absolute inset-x-0 -bottom-1 h-0.5 origin-left bg-accent transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-                      active ? "scale-x-100" : "scale-x-0"
-                    }`}
+                    className={`absolute inset-x-0 -bottom-1 h-0.5 origin-left bg-accent transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${active ? "scale-x-100" : "scale-x-0"
+                      }`}
                   />
                 </Link>
               );

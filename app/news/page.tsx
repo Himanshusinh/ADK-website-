@@ -15,7 +15,7 @@ export default function NewsEventsPage() {
         <div className="shell py-16 md:py-24">
           <p className="eyebrow">News & Events</p>
           <h1 className="mt-5 max-w-3xl font-display text-4xl leading-[1.05] md:text-6xl font-bold">
-            From the Santej works & trade exhibitions.
+            From ADK Engineering & trade exhibitions.
           </h1>
           <span className="mt-6 block h-0.5 w-10 bg-accent" />
           <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg font-sans">

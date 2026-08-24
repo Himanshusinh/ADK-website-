@@ -9,9 +9,9 @@ import Reveal from "@/components/Reveal";
 const seriesMap: Record<string, string> = {
   "fiber-laser-cutting": "FL series",
   "cnc-plasma-cutting": "PL series",
-  "cnc-press-brake": "NADKpress",
+  "cnc-press-brake": "PB series",
   "fiber-laser-welding": "LW series",
-  "panel-bender": "PB series",
+  "panel-bender": "PB-P series",
   "peb-machinery": "PEB line",
   "shearing-machine": "SH series",
   "spares-consumables": "Spares",
@@ -77,7 +77,7 @@ export default function ProductsIndexPage() {
           </h1>
           <span className="mt-6 block h-0.5 w-10 bg-accent" />
           <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg font-sans">
-            Fiber laser, plasma, NADKpress, welding, panel benders, PEB lines, shears and spares — all built at Santej. Tell us the material and thickness and we will quote the right machine.
+            Fiber laser (FL series), CNC plasma (PL series), CNC press brakes (PB series), laser welding (LW series), panel benders, PEB lines, shears and genuine spares. Tell us the material and thickness and we will quote the right machine.
           </p>
         </div>
       </section>

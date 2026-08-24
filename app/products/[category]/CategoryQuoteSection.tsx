@@ -116,7 +116,7 @@ export default function CategoryQuoteSection({ categoryName }: { categoryName: s
           <p className="eyebrow">This machine</p>
           <p className="mt-4 font-display text-2xl font-bold">{categoryName}</p>
           <p className="mt-3 text-sm text-muted-foreground font-sans">
-            ADK Engineering & Solutions · Built at Santej Works
+            ADK Engineering & Solutions · Ahmedabad, India
           </p>
           <p className="mt-6 text-sm text-muted-foreground font-sans leading-relaxed">
             An engineer replies within 6 working hours with a size, a price and a delivery week.

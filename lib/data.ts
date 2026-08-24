@@ -168,18 +168,18 @@ export const companyInfo = {
   founded: 2015,
   website: "https://www.adkeng.com",
   overview:
-    "ADK Engineering & Solutions is a premier provider of advanced sheet metal machinery, standing at the forefront of innovation across healthcare, manufacturing, telecommunications, and entertainment sectors. We design, manufacture, and deliver a complete range of fiber laser cutting, CNC plasma, press brake, laser welding, PEB, and panel bending solutions.",
+    "ADK Engineering & Solutions is a premier provider of advanced sheet metal machinery across manufacturing, structural steel, telecommunications, and heavy engineering sectors. We supply, configure, and service a complete range of fiber laser cutting (FL Series), CNC plasma (PL Series), CNC press brakes (PB Series), laser welding (LW Series), PEB, and panel bending solutions.",
   corporateAddress:
     "A-503/504, Empire Business Hub, Nr. Shukan Mall, Science City Road, Sola, Ahmedabad 380060, Gujarat",
   worksAddress:
-    "2100/2, Santej-Khatraj Road, Near Gayatri Farm, Santej 382722, Gujarat",
+    "Experience & Service Center, Science City Road, Ahmedabad 380060, Gujarat",
   generalPhones: ["+91 99099 53637", "079 48930224"],
   generalEmails: ["info@adkeng.com", "adkeng09@gmail.com"],
   stats: {
     yearsExperience: "16+",
-    customers: "750+",
+    customers: "850+",
     team: "50+",
-    installations: "550+",
+    installations: "850+",
   },
 };
 
@@ -258,8 +258,8 @@ export const timelineEvents: TimelineEvent[] = [
   },
   {
     year: "2025",
-    title: "550+ Installations",
-    desc: "Received first order for 3000×24000mm table-size laser machine. Vision to add 251+ new satisfied customers. Crossed 550+ installations.",
+    title: "850+ Installations",
+    desc: "Received first order for 3000×24000mm table-size laser machine. Vision to empower fabrication shops nationwide. Crossed 850+ installations.",
   },
 ];
 
@@ -312,31 +312,31 @@ export const teamPhotos: MediaItem[] = [
 export const factoryPhotos: MediaItem[] = [
   {
     id: "fac_01",
-    title: "Santej Works — Main Facility",
+    title: "Ahmedabad Facility — Experience & Service Hub",
     type: "facility",
     image: factoryPhotoPath("santej-works-main.jpg"),
-    sublabel: "Factory photo pending from client",
+    sublabel: "Facility photo",
   },
   {
     id: "fac_02",
     title: "Gantry Assembly Floor",
     type: "facility",
     image: factoryPhotoPath("gantry-assembly.jpg"),
-    sublabel: "Factory photo pending",
+    sublabel: "Assembly floor photo",
   },
   {
     id: "fac_03",
     title: "Optical Calibration Lab",
     type: "facility",
     image: factoryPhotoPath("optical-calibration-lab.jpg"),
-    sublabel: "Facility photo pending",
+    sublabel: "Facility photo",
   },
   {
     id: "fac_04",
     title: "Hydraulic Test Bay",
     type: "facility",
     image: factoryPhotoPath("hydraulic-test-bay.jpg"),
-    sublabel: "Infrastructure photo pending",
+    sublabel: "Infrastructure photo",
   },
 ];
 
@@ -388,19 +388,19 @@ export const installationPhotos: InstallationPhoto[] = [
 export const videoItems: VideoItem[] = [
   {
     id: "V_01",
-    title: "Industrial Pioneer Exchange-Table Fiber Laser Cutting Demo",
+    title: "FL Series Exchange-Table Fiber Laser Cutting Demo",
     duration: "2:45",
     thumbnail: videoThumbnailPath("V_01"),
   },
   {
     id: "V_02",
-    title: "NADKpress CNC Press Brake Bend Test",
+    title: "PB Series CNC Press Brake Bend Test",
     duration: "1:30",
     thumbnail: videoThumbnailPath("V_02"),
   },
   {
     id: "V_03",
-    title: "ADK-PB Panel Bender Folding Demonstration",
+    title: "PB-P Series Panel Bender Folding Demonstration",
     duration: "3:15",
     thumbnail: videoThumbnailPath("V_03"),
   },
@@ -416,21 +416,21 @@ const rawCategories: ProductCategory[] = [
     name: "Fiber Laser Cutting",
     slug: "fiber-laser-cutting",
     icon: "flare",
-    tagline: "High-speed fiber laser cutting from 1kW to 60kW with ±0.03 mm accuracy.",
+    tagline: "High-speed fiber laser cutting (FL Series) from 1kW to 60kW with ±0.03 mm accuracy.",
     description:
-      "ADK fiber laser cutting machines cover exchange-table, single-pallet, dual-position, futuristic large-format, tube cutting, and tube+plate configurations. Built with heavy steel pipe beds, quick exchange tables, and RAYCUS, IPG, or MAX PHOTONICS sources for round-the-clock industrial production.",
+      "ADK FL Series fiber laser cutting machines cover exchange-table, single-pallet, dual-position, futuristic large-format, tube cutting, and tube+plate configurations. Built with heavy steel pipe beds, quick exchange tables, and RAYCUS, IPG, or MAX PHOTONICS sources for round-the-clock industrial production.",
     models: [
       {
         id: "FL-3015C",
-        name: "Industrial Pioneer Series (Exchange Table)",
+        name: "FL Series — Industrial Pioneer (Exchange Table)",
         slug: "industrial-pioneer-exchange-table",
-        tagline: "Quick-exchange table for continuous high-volume sheet cutting",
+        tagline: "FL 3015C–6525C quick-exchange table for continuous high-volume sheet cutting",
         description:
-          "The Industrial Pioneer Series features a super heavy steel pipe welded bed with quick exchange table that significantly improves production efficiency and saves labour costs. Models ADK 3015C through ADK 6525C cover working areas from 3000×1500 mm to 6500×2500 mm.",
+          "The FL Series Industrial Pioneer features a super heavy steel pipe welded bed with quick exchange table that significantly improves production efficiency and saves labour costs. Models ADK FL 3015C through ADK FL 6525C cover working areas from 3000×1500 mm to 6500×2500 mm.",
         status: "IN_STOCK",
         image: IMG_LASER,
         specsSummary: {
-          Models: "ADK 3015C – 6525C",
+          Models: "ADK FL 3015C – 6525C",
           Speed: "100 m/min",
           Accuracy: "±0.03 mm",
         },
@@ -441,7 +441,7 @@ const rawCategories: ProductCategory[] = [
           "RAYCUS, IPG, MAX PHOTONICS power sources",
         ],
         specifications: [
-          { label: "Models", value: "ADK 3015C / ADK 6515C / ADK 6520C / ADK 6525C" },
+          { label: "Models", value: "ADK FL 3015C / ADK FL 6515C / ADK FL 6520C / ADK FL 6525C" },
           { label: "Working Area", value: "3000×1500 / 6500×1500 / 6500×2000 / 6500×2500 mm" },
           { label: "Speed", value: "100 m/min" },
           { label: "Accuracy", value: "±0.03 mm" },
@@ -451,15 +451,15 @@ const rawCategories: ProductCategory[] = [
       },
       {
         id: "FL-8025SL",
-        name: "Futuristic Laser Series",
+        name: "FL Series — High-Power Large Format (Futuristic)",
         slug: "futuristic-laser-series",
-        tagline: "Super large heavy-duty structure for high-power plate cutting up to 24m",
+        tagline: "FL 8025SL–24035SL super large heavy-duty structure up to 24m & 60kW",
         description:
-          "The Futuristic Laser Series is built for super large heavy-duty production. These high-power machines deliver excellent cutting ability on larger plates with smooth cutting finish. India's first 30KW installation was from this series.",
+          "The FL Series High-Power Large Format is built for super large heavy-duty production. These high-power machines deliver excellent cutting ability on larger plates with smooth cutting finish. India's first 30KW installation was from this series.",
         status: "CUSTOM",
         image: IMG_LASER,
         specsSummary: {
-          Models: "ADK 8025SL – 24035SL",
+          Models: "ADK FL 8025SL – 24035SL",
           Max_Length: "24 m",
           Power: "Up to 60KW",
         },
@@ -470,7 +470,7 @@ const rawCategories: ProductCategory[] = [
           "High-power sources up to 60KW",
         ],
         specifications: [
-          { label: "Models", value: "ADK 8025SL / ADK 14030SL / ADK 24035SL" },
+          { label: "Models", value: "ADK FL 8025SL / ADK FL 14030SL / ADK FL 24035SL" },
           { label: "Working Area", value: "2500×8000 / 3000×14000 / 3500×24000 mm" },
           { label: "Speed", value: "100 m/min" },
           { label: "Accuracy", value: "±0.05 mm/m" },
@@ -480,15 +480,15 @@ const rawCategories: ProductCategory[] = [
       },
       {
         id: "FL-3015ES",
-        name: "In-demand Innovation Series (Single Pallet)",
+        name: "FL Series — Single Pallet Innovation",
         slug: "single-pallet-es-series",
-        tagline: "Cost-effective single pallet machine capturing 75%+ market share",
+        tagline: "FL 3015ES–6525ES cost-effective single pallet machine",
         description:
-          "Single pallet machines with standard and custom table sizes. Easy loading and unloading, cost-effective and user-friendly — this innovative development captures more than 75% market ratio in its class.",
+          "Single pallet machines with standard and custom table sizes. Easy loading and unloading, cost-effective and user-friendly — this innovative development captures high market share in its class.",
         status: "IN_STOCK",
         image: IMG_LASER,
         specsSummary: {
-          Models: "ADK 3015ES – 6525ES",
+          Models: "ADK FL 3015ES – 6525ES",
           Speed: "100 m/min",
           Accuracy: "±0.03 mm",
         },
@@ -499,7 +499,7 @@ const rawCategories: ProductCategory[] = [
           "Up to 60KW source compatibility",
         ],
         specifications: [
-          { label: "Models", value: "ADK 3015ES / ADK 6515ES / ADK 6520ES / ADK 6525ES" },
+          { label: "Models", value: "ADK FL 3015ES / ADK FL 6515ES / ADK FL 6520ES / ADK FL 6525ES" },
           { label: "Working Area", value: "3000×1500 / 6500×1500 / 6500×2000 / 6500×2500 mm" },
           { label: "Speed", value: "100 m/min" },
           { label: "Accuracy", value: "±0.03 mm" },
@@ -509,17 +509,17 @@ const rawCategories: ProductCategory[] = [
       },
       {
         id: "FL-3015D",
-        name: "Dual-Position Exchange Table Series",
+        name: "FL Series — Dual-Position Exchange Table",
         slug: "dual-position-exchange-table",
-        tagline: "15–20 second table exchange for small parts high-volume cutting",
+        tagline: "FL 3015D–6525D 15–20 second table exchange for high volume cutting",
         description:
-          "Designed for higher productivity in small parts cutting. Used by sheet metal fabricators, panel manufacturers, cupboard manufacturers, and kitchen equipment producers. Table exchange time is just 15–20 seconds.",
+          "Designed for higher productivity in small and medium parts cutting. Used by sheet metal fabricators, panel manufacturers, cabinet makers, and equipment producers. Table exchange time is just 15–20 seconds.",
         status: "IN_STOCK",
         image: IMG_LASER,
         specsSummary: {
+          Models: "ADK FL 3015D – 6525D",
           Exchange: "15–20 sec",
           Speed: "100 m/min",
-          Accuracy: "±0.03 mm",
         },
         features: [
           "Dual-position exchange table",
@@ -528,7 +528,7 @@ const rawCategories: ProductCategory[] = [
           "Up to 60KW laser capacity",
         ],
         specifications: [
-          { label: "Models", value: "ADK 3015D / ADK 4020D / ADK 6515D / ADK 6520D / ADK 6525D" },
+          { label: "Models", value: "ADK FL 3015D / ADK FL 4020D / ADK FL 6515D / ADK FL 6520D / ADK FL 6525D" },
           { label: "Working Area", value: "3000×1500 / 4000×2000 / 6500×1500 / 6500×2000 / 6500×2500 mm" },
           { label: "Speed", value: "100 m/min" },
           { label: "Accuracy", value: "±0.03 mm" },
@@ -538,15 +538,15 @@ const rawCategories: ProductCategory[] = [
       },
       {
         id: "FL-GKS",
-        name: "Professional Tube Cutting Machine",
+        name: "FL Series — Professional Tube Cutting",
         slug: "professional-tube-cutting",
-        tagline: "Round, square, rectangular pipes and profiled steel tube cutting",
+        tagline: "FL-GKS 6016T2–12036BT3 round, square & profiled pipe cutting",
         description:
           "Capable of cutting round pipes, square pipes, rectangular pipes, channel steel, angle steel, I-beams, and other profiled steel. Precision pneumatic chuck with four-jaw automatic centering clamping.",
         status: "READY",
         image: IMG_LASER,
         specsSummary: {
-          Models: "GKS 6016T2 – 12036BT3",
+          Models: "ADK FL-GKS 6016T2 – 12036BT3",
           Pipe_Range: "10–250 mm",
           Power: "Up to 12KW",
         },
@@ -565,7 +565,7 @@ const rawCategories: ProductCategory[] = [
           "Stainless Steel",
         ],
         specifications: [
-          { label: "Models", value: "GKS 6016T2 / GKS 9016T2 / GKS 6024T2 / GKS 6036T2 / GKS 6036T3" },
+          { label: "Models", value: "FL-GKS 6016T2 / FL-GKS 9016T2 / FL-GKS 6024T2 / FL-GKS 6036T2 / FL-GKS 6036T3" },
           { label: "Round Pipe Capacity", value: "10–160 mm (6016) / 20–250 mm (6024+)" },
           { label: "Effective Cutting Length", value: "6500 mm / 9500 mm / 12500 mm" },
           { label: "Rotating Speed", value: "60–140 r/min" },
@@ -575,17 +575,17 @@ const rawCategories: ProductCategory[] = [
       },
       {
         id: "FL-LNR",
-        name: "Tube + Plate LNR Series",
+        name: "FL Series — Tube + Plate LNR",
         slug: "tube-plate-lnr-series",
-        tagline: "One machine for dual pipe and sheet cutting — saves cost and space",
+        tagline: "FL-LNR Series one machine for dual pipe and sheet cutting",
         description:
-          "The LNR Series meets the dual requirements of cutting pipes and sheets in a single machine, saving floor space and capital investment. Optional automatic loading/unloading and three-chuck configurations available.",
+          "The FL-LNR Series meets the dual requirements of cutting pipes and sheets in a single machine, saving floor space and capital investment. Optional automatic loading/unloading and three-chuck configurations available.",
         status: "CUSTOM",
         image: IMG_LASER,
         specsSummary: {
+          Models: "ADK FL-LNR Series",
           Function: "Tube + Plate",
           Options: "Auto load/unload",
-          Series: "LNR",
         },
         features: [
           "Dual pipe and sheet cutting in one machine",
@@ -607,21 +607,21 @@ const rawCategories: ProductCategory[] = [
     name: "CNC Plasma Cutting",
     slug: "cnc-plasma-cutting",
     icon: "precision_manufacturing",
-    tagline: "Gantry, table, and portable CNC plasma systems with Hypertherm sources.",
+    tagline: "PL Series gantry, table, and portable CNC plasma systems with Hypertherm sources.",
     description:
-      "ADK CNC plasma cutting machines include heavy-duty gantry type, table type, and portable configurations. Features anti-collision systems, backlash-free rack & pinion drives, and Hypertherm PMX/MAXPRO plasma sources for structural steel profiling.",
+      "ADK PL Series CNC plasma cutting machines include heavy-duty gantry type, table type, and portable configurations. Features anti-collision systems, backlash-free rack & pinion drives, and Hypertherm PMX/MAXPRO plasma sources for structural steel profiling.",
     models: [
       {
         id: "PL-2508",
-        name: "Gantry Type CNC Plasma",
+        name: "PL Series — Gantry Type CNC Plasma",
         slug: "gantry-plasma-cutting",
-        tagline: "Heavy-duty gantry structure for large-format structural profiling",
+        tagline: "PL 2508–5508 P/F heavy-duty gantry structure for structural profiling",
         description:
           "Heavy duty gantry type structure with dual shaft linear motion guide, rack & pinion drive, anti-collision system, and high-tension cup spring backlash compensation. Hypertherm plasma sources from PMX 45 to MAXPRO 200.",
         status: "READY",
         image: IMG_LASER,
         specsSummary: {
-          Models: "ADK 2508 – 5508 P/F",
+          Models: "ADK PL 2508 – 5508 P/F",
           Speed: "0–12000 mm/min",
           Accuracy: "±0.03 mm/3m",
         },
@@ -632,7 +632,7 @@ const rawCategories: ProductCategory[] = [
           "Hypertherm PMX 45 to MAXPRO 200 sources",
         ],
         specifications: [
-          { label: "Models", value: "ADK 2508 P/F / ADK 3508 P/F / ADK 4008 P/F / ADK 5508 P/F" },
+          { label: "Models", value: "ADK PL 2508 P/F / ADK PL 3508 P/F / ADK PL 4008 P/F / ADK PL 5508 P/F" },
           { label: "Working Width", value: "1800×6500 / 2800×6500 / 3200×6500 / 4500×6500 mm" },
           { label: "Speed", value: "0–12000 mm/min" },
           { label: "Accuracy", value: "±0.03 mm/3m" },
@@ -642,15 +642,15 @@ const rawCategories: ProductCategory[] = [
       },
       {
         id: "PL-TABLE",
-        name: "Table & Portable CNC Plasma",
+        name: "PL Series — Table & Portable CNC Plasma",
         slug: "table-portable-plasma",
-        tagline: "Table type and portable plasma for flexible workshop deployment",
+        tagline: "PL Series table type and portable plasma for flexible workshop deployment",
         description:
           "Table type and portable CNC plasma systems for workshops needing flexible deployment. Track widths from 2500 mm and above with customizable track lengths up to 8000 mm and beyond.",
         status: "READY",
         image: IMG_LASER,
         specsSummary: {
-          Types: "Table / Portable",
+          Models: "ADK PL Table / Portable",
           Track: "Up to 8000+ mm",
           Source: "Hypertherm USA",
         },
@@ -676,23 +676,23 @@ const rawCategories: ProductCategory[] = [
     name: "CNC Press Brake",
     slug: "cnc-press-brake",
     icon: "architecture",
-    tagline: "NADKpress CNC press brakes from 40T to 800T with 4, 5, 7 & 9 axis options.",
+    tagline: "PB Series CNC press brakes from 40T to 800T with 4, 5, 7 & 9 axis options.",
     description:
-      "NADKpress CNC press brakes feature integrated welded frames with shot-blast anti-rust treatment, servo main motor drive (60% lower energy consumption), DSP laser protection, mechanical crowning, and 4/5/7/9 axis configurations from 40T to 800T.",
+      "PB Series CNC press brakes feature integrated welded frames with shot-blast anti-rust treatment, servo main motor drive (60% lower energy consumption), DSP laser protection, mechanical crowning, and 4/5/7/9 axis configurations from 40T to 800T.",
     models: [
       {
-        id: "PB-NADK",
-        name: "NADKpress CNC Press Brake",
+        id: "PB-SERIES",
+        name: "PB Series — CNC Press Brake",
         slug: "nadkpress-cnc-press-brake",
-        tagline: "Servo-driven press brake with DSP laser guard and mechanical crowning",
+        tagline: "PB Series servo-driven press brake with DSP laser guard and mechanical crowning",
         description:
           "The whole frame adopts integrated welding with tempering to eliminate internal stress. Y1/Y2 axis synchronous ram control, servo main motor (60% lower energy than conventional), and high-frequency hydraulic control for faster, more stable bending.",
         status: "READY",
         image: IMG_PRESS,
         specsSummary: {
+          Models: "ADK PB Series",
           Tonnage: "40T – 800T",
           Axis: "4, 5, 7 & 9",
-          Energy: "60% lower",
         },
         features: [
           "Integrated welded frame with shot-blast anti-rust treatment",
@@ -702,12 +702,13 @@ const rawCategories: ProductCategory[] = [
           "Mechanical crowning, sheet followers, dual side clamping",
         ],
         specifications: [
+          { label: "Models", value: "ADK PB Series (40T to 800T)" },
           { label: "Bending Force Range", value: "40 Ton to 800 Ton" },
           { label: "Bending Length", value: "1600 mm to 8000 mm" },
           { label: "Axis Options", value: "4, 5, 7 & 9 Axis available" },
           { label: "Controller", value: "Y1/Y2 synchronous ram control" },
           { label: "Safety", value: "DSP laser protection, back side door, side doors" },
-          { label: "Additional Features", value: "Sheet followers, dual side clamping, mechanical crowning, ladders" },
+          { label: "Additional Features", value: "Sheet followers, dual side clamping, mechanical crowning" },
         ],
       },
     ],
@@ -717,23 +718,23 @@ const rawCategories: ProductCategory[] = [
     name: "Fiber Laser Welding",
     slug: "fiber-laser-welding",
     icon: "flare",
-    tagline: "4-in-1 laser welding, cleaning, cutting, and wire feeding system.",
+    tagline: "LW Series 4-in-1 laser welding, cleaning, cutting, and wire feeding system.",
     description:
-      "ADK's 4-in-1 Fiber Laser Welding Machine replaces traditional MIG and TIG welding with higher speed, better finishing, no grinder requirement, lower operating cost, and reduced heat hazard compared to conventional arc welding.",
+      "ADK LW Series 4-in-1 Fiber Laser Welding Machine replaces traditional MIG and TIG welding with higher speed, better finishing, no grinder requirement, lower operating cost, and reduced heat hazard compared to conventional arc welding.",
     models: [
       {
         id: "LW-4IN1",
-        name: "4-in-1 Fiber Laser Welding Machine",
+        name: "LW Series — 4-in-1 Laser Welding Machine",
         slug: "4in1-fiber-laser-welding",
-        tagline: "Laser welding, cleaning, cutting, and wire feed in one handheld system",
+        tagline: "LW Series laser welding, cleaning, cutting, and wire feed in one handheld system",
         description:
-          "The ADK 4-in-1 laser welding system delivers high speed, better finishing, no need for grinder, low operating cost, low heat hazard, and high efficiency compared to MIG & TIG welding processes.",
+          "The ADK LW Series 4-in-1 laser welding system delivers high speed, better finishing, no need for grinder, low operating cost, low heat hazard, and high efficiency compared to MIG & TIG welding processes.",
         status: "IN_STOCK",
         image: IMG_LASER,
         specsSummary: {
+          Models: "ADK LW-4IN1",
           Functions: "Weld/Clean/Cut/Feed",
           vs_MIG_TIG: "Higher speed",
-          Finish: "No grinder needed",
         },
         features: [
           "4-in-1: laser welding, cleaning, cutting, and wire feeding",
@@ -742,6 +743,7 @@ const rawCategories: ProductCategory[] = [
           "Low operating cost and reduced heat hazard",
         ],
         specifications: [
+          { label: "Model", value: "ADK LW Series 4-in-1" },
           { label: "Functions", value: "Laser Welding / Cleaning / Cutting / Wire Feed" },
           { label: "vs MIG & TIG", value: "Higher speed, better finishing, lower heat hazard" },
           { label: "Post-Weld", value: "No grinder required" },
@@ -756,23 +758,23 @@ const rawCategories: ProductCategory[] = [
     name: "PEB Machinery",
     slug: "peb-machinery",
     icon: "factory",
-    tagline: "H-beam welding and SAW gantry systems for pre-engineered buildings.",
+    tagline: "PEB Series H-beam welding and SAW gantry systems for pre-engineered buildings.",
     description:
       "PEB machines fabricate pre-engineered building components — pre-cut, pre-drilled, and pre-welded structural steel. ADK offers H-Beam Welding (PTW) and SAW Gantry Welding machines for accurate, computer-controlled fabrication.",
     models: [
       {
         id: "PEB-PTW",
-        name: "H-Beam Welding Machine (PTW)",
+        name: "PEB Series — H-Beam Welding Machine (PTW)",
         slug: "peb-h-beam-welding",
-        tagline: "Integrated H-beam assembly and submerged arc welding line",
+        tagline: "PEB Series integrated H-beam assembly and submerged arc welding line",
         description:
-          "The H-Beam Welding Machine (PTW) handles web widths from 200 to 1500 mm and flange heights from 150 to 500 mm. Beam lengths from 2.5 to 15 metres with web thickness 5–20 mm and flange thickness 5–25 mm.",
+          "The PEB Series H-Beam Welding Machine (PTW) handles web widths from 200 to 1500 mm and flange heights from 150 to 500 mm. Beam lengths from 2.5 to 15 metres with web thickness 5–20 mm and flange thickness 5–25 mm.",
         status: "CUSTOM",
         image: IMG_PEB,
         specsSummary: {
+          Models: "ADK PEB-PTW",
           Web: "200–1500 mm",
           Flange: "150–500 mm",
-          Length: "2.5–15 m",
         },
         features: [
           "Heavy duty hydraulic centering jaws",
@@ -792,17 +794,17 @@ const rawCategories: ProductCategory[] = [
       },
       {
         id: "PEB-SAW",
-        name: "SAW Gantry Welding Machine",
+        name: "PEB Series — SAW Gantry Welding",
         slug: "peb-saw-gantry-welding",
-        tagline: "Heavy-duty submerged arc gantry welding for large structural beams",
+        tagline: "PEB Series heavy-duty submerged arc gantry welding for large structural beams",
         description:
-          "SAW Gantry Welding Machine for larger web and flange dimensions — web up to 2500 mm, flange up to 1000 mm, with web thickness up to 80 mm for heavy structural steel fabrication.",
+          "PEB Series SAW Gantry Welding Machine for larger web and flange dimensions — web up to 2500 mm, flange up to 1000 mm, with web thickness up to 80 mm for heavy structural steel fabrication.",
         status: "CUSTOM",
         image: IMG_PEB,
         specsSummary: {
+          Models: "ADK PEB-SAW Gantry",
           Web: "200–2500 mm",
           Flange: "250–1000 mm",
-          Web_Thick: "5–80 mm",
         },
         features: [
           "Submerged Arc Welding gantry configuration",
@@ -827,23 +829,23 @@ const rawCategories: ProductCategory[] = [
     name: "Shearing Machine",
     slug: "shearing-machine",
     icon: "architecture",
-    tagline: "Hydraulic shearing machines for plate preparation and edge trimming.",
+    tagline: "SH Series hydraulic shearing machines for plate preparation and edge trimming.",
     description:
-      "ADK hydraulic shearing machines are used for plate preparation before laser or plasma cutting, and for edge trimming in fabrication workshops. Configurations are available to suit varying thickness and cutting length requirements.",
+      "ADK SH Series hydraulic shearing machines are used for plate preparation before laser or plasma cutting, and for edge trimming in fabrication workshops. Configurations are available to suit varying thickness and cutting length requirements.",
     models: [
       {
         id: "SH-HYD",
-        name: "Hydraulic Shearing Machine",
+        name: "SH Series — Hydraulic Shearing Machine",
         slug: "hydraulic-shearing-machine",
-        tagline: "Hydraulic guillotine shear for workshop plate preparation",
+        tagline: "SH Series hydraulic guillotine shear for workshop plate preparation",
         description:
           "Robust hydraulic shearing machines for plate preparation and edge trimming. Available in configurations to suit different thickness and length requirements for fabrication workshops.",
         status: "READY",
         image: IMG_PRESS,
         specsSummary: {
+          Models: "ADK SH Series",
           Type: "Hydraulic Guillotine",
           Application: "Plate prep",
-          Config: "Multiple sizes",
         },
         features: [
           "Hydraulic guillotine shear design",
@@ -865,21 +867,21 @@ const rawCategories: ProductCategory[] = [
     name: "Panel Bender",
     slug: "panel-bender",
     icon: "architecture",
-    tagline: "Universal bending die panel benders — 0.2s per bend, no tooling changes.",
+    tagline: "PB-P Series universal bending die panel benders — 0.2s per bend, no tooling changes.",
     description:
-      "ADK Panel Benders adopt a universal bending die that completes various shapes with only one set of die. Handles arc, hem, return, and closed profiles without custom tooling. Models ADK-PB1400P, ADK-PB2000P, and ADK-PB2500P.",
+      "ADK PB-P Series Panel Benders adopt a universal bending die that completes various shapes with only one set of die. Handles arc, hem, return, and closed profiles without custom tooling. Models ADK PB-PB1400P, ADK PB-PB2000P, and ADK PB-PB2500P.",
     models: [
       {
         id: "PB-1400",
-        name: "ADK Panel Bender Series",
+        name: "PB-P Series — Panel Bender",
         slug: "adk-panel-bender-series",
-        tagline: "Universal bending die — 0.2 seconds per bend, no tooling changes",
+        tagline: "PB-P Series universal bending die — 0.2 seconds per bend, no tooling changes",
         description:
-          "Panel Bender adopts universal bending die completing various shapes with only one set of die. Easily meets arc, hem, return, closed and other complex sheet metal bending requirements without custom tooling.",
+          "PB-P Series Panel Bender adopts universal bending die completing various shapes with only one set of die. Easily meets arc, hem, return, closed and other complex sheet metal bending requirements without custom tooling.",
         status: "CUSTOM",
         image: IMG_PEB,
         specsSummary: {
-          Models: "PB1400P – PB2500P",
+          Models: "ADK PB-P Series (PB1400P – PB2500P)",
           Bend_Speed: "0.2 s/bend",
           Width: "Up to 2500 mm",
         },
@@ -1226,7 +1228,7 @@ export const capabilityHighlights: CapabilityHighlight[] = [
     outcomes: [
       { label: "Beam Length", value: "Up to 15 m" },
       { label: "Web Width", value: "200–2500 mm" },
-      { label: "Installations", value: "550+" },
+      { label: "Installations", value: "850+" },
     ],
   },
   {
@@ -1275,9 +1277,9 @@ export const blogPosts: BlogPost[] = [
     category: "Bending Technology",
     heroImage: blogHeroPath("press-brake-vs-panel-bender"),
     summary:
-      "NADKpress CNC press brakes stay the versatile workhorse, while ADK panel benders shine on cabinets and boxes. Compare setup time, handling, and yield.",
+      "PB Series CNC press brakes stay the versatile workhorse, while ADK panel benders shine on cabinets and boxes. Compare setup time, handling, and yield.",
     content:
-      "Bending is where many shops lose time between cutting and welding. Hydraulic press brakes remain the industry baseline for versatility, but automated panel benders are now common in factories that live on enclosure and furniture geometries.\n\nThe right choice depends less on brand preference and more on part family: open profiles and thick plate favor press brakes; closed boxes and repeat flanges favor panel benders.\n\n### Setup Times and Versatility\nA press brake often needs die and punch changes when gauge or radius changes. ADK panel benders use a universal bending approach that forms many angles without tooling swaps. For doors, cabinets, and electrical boxes, that removes most setup between jobs.\n\n### Component Handling\nOn a press brake, the operator lifts and supports the sheet through each bend. A panel bender clamps the blank flat; the manipulator rotates it while blades form flanges with far less manual holding. That improves consistency on long production runs and reduces fatigue.\n\n### When Each Wins\nChoose a press brake when you need thick plate, deep channels, or frequent one-off radius work. Choose a panel bender when daily volume is box-like, cosmetic surfaces matter, and every minute of setup costs throughput.\n\n### Comparison\n- **NADKpress Press Brake**: Broad versatility, 40T–800T, multi-axis options, lower entry cost.\n- **ADK Panel Bender**: Faster on boxes and cabinets, about 0.2s per bend, minimal tooling changes, automatic manipulation.",
+      "Bending is where many shops lose time between cutting and welding. Hydraulic press brakes remain the industry baseline for versatility, but automated panel benders are now common in factories that live on enclosure and furniture geometries.\n\nThe right choice depends less on brand preference and more on part family: open profiles and thick plate favor press brakes; closed boxes and repeat flanges favor panel benders.\n\n### Setup Times and Versatility\nA press brake often needs die and punch changes when gauge or radius changes. ADK panel benders use a universal bending approach that forms many angles without tooling swaps. For doors, cabinets, and electrical boxes, that removes most setup between jobs.\n\n### Component Handling\nOn a press brake, the operator lifts and supports the sheet through each bend. A panel bender clamps the blank flat; the manipulator rotates it while blades form flanges with far less manual holding. That improves consistency on long production runs and reduces fatigue.\n\n### When Each Wins\nChoose a press brake when you need thick plate, deep channels, or frequent one-off radius work. Choose a panel bender when daily volume is box-like, cosmetic surfaces matter, and every minute of setup costs throughput.\n\n### Comparison\n- **PB Series Press Brake**: Broad versatility, 40T–800T, multi-axis options, lower entry cost.\n- **ADK Panel Bender**: Faster on boxes and cabinets, about 0.2s per bend, minimal tooling changes, automatic manipulation.",
     date: "July 2, 2026",
     readTime: "6 min read",
     author: "Engineering Dept ADK",
@@ -1377,10 +1379,10 @@ export const newsEvents: NewsEvent[] = [
   },
   {
     id: "ne_03",
-    title: "550+ Installations Milestone",
+    title: "850+ Installations Milestone",
     date: "2025",
     type: "MILESTONE",
-    description: "Crossed 550+ machine installations nationwide. Received first order for 3000×24000mm table-size laser machine — the largest in ADK's portfolio.",
+    description: "Crossed 850+ machine installations nationwide. Received first order for 3000×24000mm table-size laser machine — the largest in ADK's portfolio.",
   },
   {
     id: "ne_04",

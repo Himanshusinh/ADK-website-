@@ -21,7 +21,7 @@ export default function ClientsPage() {
           </h1>
           <span className="mt-6 block h-0.5 w-10 bg-accent" />
           <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg font-sans">
-            From ISRO and Bajaj Steel to 750+ fabrication job shops across India — the machines stay after the first year.
+            From ISRO and Bajaj Steel to 850+ fabrication job shops across India — the machines stay after the first year.
           </p>
         </div>
       </section>
@@ -66,7 +66,7 @@ export default function ClientsPage() {
           <p className="eyebrow">Organizations</p>
           <h2 className="mt-3 font-display text-3xl md:text-4xl font-bold">Trusted industry partners.</h2>
           <p className="mt-4 font-sans text-sm text-muted-foreground leading-relaxed">
-            Including installations at ISRO, Bajaj Steel, and 750+ fabrication shops across India.
+            Including installations at ISRO, Bajaj Steel, and 850+ fabrication shops across India.
           </p>
         </div>
 

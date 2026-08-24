@@ -239,7 +239,7 @@ export default function ContactPage() {
               <p className="eyebrow">Works & Test Bay</p>
               <img
                 src="/assets/workshop.jpg"
-                alt="ADK Santej works"
+                alt="ADK Experience Center"
                 width={800}
                 height={500}
                 className="mt-4 w-full border border-rule object-cover"

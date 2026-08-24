@@ -192,8 +192,8 @@ const whyChoose = [
 ];
 
 const stats = [
-  { value: "750+", n: 750, suffix: "+", label: "Customers across India" },
-  { value: "550+", n: 550, suffix: "+", label: "Installations on the floor" },
+  { value: "850+", n: 850, suffix: "+", label: "Customers across India" },
+  { value: "850+", n: 850, suffix: "+", label: "Installations on the floor" },
   { value: "16+", n: 16, suffix: "+", label: "Years of operating experience" },
   { value: "8", n: 8, suffix: "", label: "Branch offices with service engineers" },
 ];
@@ -263,8 +263,8 @@ export default function Home() {
             Shaping tomorrow.
           </h1>
           <p className="mt-6 max-w-xl text-base text-steel-muted md:text-lg font-sans leading-relaxed">
-            Fiber laser cutting to 60 kW, CNC plasma, NADKpress brakes, 4-in-1 welding, panel
-            benders and PEB lines. Built at Santej. Serviced from eight offices.
+            Fiber laser cutting to 60 kW, CNC plasma, CNC press brakes, 4-in-1 laser welding, panel
+            benders, PEB lines and shears. Serviced nationwide from eight offices.
           </p>
           <ul className="mt-6 space-y-1 text-sm text-steel-muted font-sans">
             <li className="flex items-center gap-2">
@@ -277,11 +277,11 @@ export default function Home() {
             </li>
             <li className="flex items-center gap-2">
               <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-              <span>Press brakes and panel benders</span>
+              <span>CNC press brakes and panel benders</span>
             </li>
             <li className="flex items-center gap-2">
               <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-              <span>550+ installations across India</span>
+              <span>850+ installations across India</span>
             </li>
           </ul>
           <div className="mt-9 flex flex-wrap gap-3">
@@ -525,7 +525,7 @@ export default function Home() {
             ADK across India
           </h2>
           <p className="mt-5 max-w-lg text-steel-muted font-sans leading-relaxed">
-            Built in Santej. Serviced from eight offices — so a breakdown call is answered the same
+            Serviced from eight regional offices — so a breakdown call is answered the same
             day, not from a distant headquarters.
           </p>
 
@@ -569,7 +569,7 @@ export default function Home() {
             Trusted by Industry Leaders
           </h2>
           <p className="mt-4 font-sans text-sm text-muted-foreground leading-relaxed">
-            750+ installations including ISRO, Bajaj Steel, and leading fabrication companies across India.
+            850+ installations including ISRO, Bajaj Steel, and leading fabrication companies across India.
           </p>
         </div>
 

@@ -37,12 +37,12 @@ export const metadata: Metadata = {
     template: "%s | ADK Engineering & Solutions",
   },
   description:
-    "ADK Engineering & Solutions — India's trusted manufacturer of fiber laser cutting machines (up to 60KW), CNC plasma cutters, NADKpress press brakes, panel benders, PEB machinery, and laser welders. 750+ installations, 8 branch offices.",
+    "ADK Engineering & Solutions — India's trusted provider of fiber laser cutting machines (up to 60KW), CNC plasma cutters, CNC press brakes, panel benders, PEB machinery, and laser welders. 850+ installations, 8 branch offices.",
   keywords: [
     "Fiber Laser Cutting Machine India",
     "CNC Plasma Cutting Machine",
     "CNC Press Brake Ahmedabad",
-    "NADKpress Press Brake",
+    "PB Series CNC Press Brake",
     "Panel Bender Machine",
     "PEB Machinery",
     "Fiber Laser Welding Machine",
@@ -57,13 +57,13 @@ export const metadata: Metadata = {
     siteName: companyInfo.name,
     title: "ADK Engineering & Solutions | Crafting Precision, Shaping Tomorrow",
     description:
-      "Premium sheet metal machinery — fiber laser cutting, CNC plasma, press brakes, panel benders, PEB systems. 750+ installations across India.",
+      "Premium sheet metal machinery — fiber laser cutting, CNC plasma, press brakes, panel benders, PEB systems. 850+ installations across India.",
   },
   twitter: {
     card: "summary_large_image",
     title: "ADK Engineering & Solutions",
     description:
-      "Fiber laser cutting, CNC plasma, press brakes & PEB machinery. 750+ installations across India.",
+      "Fiber laser cutting, CNC plasma, press brakes & PEB machinery. 850+ installations across India.",
   },
   robots: { index: true, follow: true },
   icons: {
@@ -90,14 +90,6 @@ const jsonLd = {
           streetAddress: "A-503/504, Empire Business Hub, Science City Road, Sola",
           addressLocality: "Ahmedabad",
           postalCode: "380060",
-          addressRegion: "Gujarat",
-          addressCountry: "IN",
-        },
-        {
-          "@type": "PostalAddress",
-          streetAddress: "2100/2, Santej-Khatraj Road, Near Gayatri Farm, Santej",
-          addressLocality: "Ahmedabad",
-          postalCode: "382722",
           addressRegion: "Gujarat",
           addressCountry: "IN",
         },

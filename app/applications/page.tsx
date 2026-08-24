@@ -25,11 +25,11 @@ export default function ApplicationsHubPage() {
         <div className="shell py-16 md:py-24">
           <p className="eyebrow">Applications</p>
           <h1 className="mt-5 max-w-3xl font-display text-4xl leading-[1.05] md:text-6xl font-bold">
-            Six industries, one common question: will it run a full shift?
+            14+ Key industries, one common question: will it run a full shift?
           </h1>
           <span className="mt-6 block h-0.5 w-10 bg-accent" />
           <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg font-sans">
-            Our machines are specified around the parts you make. These are the sectors where most of the 750 machines we have delivered are working today.
+            Our machines are specified around the parts you make. These are the sectors where over 850 machines we have delivered are working today.
           </p>
         </div>
       </section>

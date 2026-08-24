@@ -10,7 +10,7 @@ export default function CataloguesPage() {
   const catalogues = [
     { name: "Industrial Pioneer Series — Exchange Table Fiber Laser", size: "4.8 MB", id: "CAT_FL_PIONEER" },
     { name: "Futuristic Laser Series — Large Format (up to 24m)", size: "5.5 MB", id: "CAT_FL_FUTURISTIC" },
-    { name: "NADKpress CNC Press Brake Technical Data Sheet", size: "3.2 MB", id: "CAT_PB_NADK" },
+    { name: "PB Series CNC Press Brake Technical Data Sheet", size: "3.2 MB", id: "CAT_PB_NADK" },
     { name: "ADK Panel Bender Series (PB1400P–PB2500P)", size: "4.1 MB", id: "CAT_PB_PANEL" },
     { name: "Gantry CNC Plasma Cutting Machine Catalogue", size: "3.8 MB", id: "CAT_PL_GANTRY" },
     { name: "4-in-1 Fiber Laser Welding Machine Overview", size: "2.9 MB", id: "CAT_LW_4IN1" },

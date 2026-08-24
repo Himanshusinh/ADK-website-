@@ -31,7 +31,7 @@ const news = [
   },
   {
     date: "NOVEMBER 2024",
-    title: "New 24-meter table machine bed completed at Santej",
+    title: "New 24-meter table machine bed completed & delivered",
     body: "Custom fabrication for extra-large structural plates engineered for shipbuilding and infrastructure projects.",
   },
   {
@@ -133,7 +133,7 @@ export default function ResourcesPage() {
       {/* News Section */}
       <section className="shell py-16 md:py-24 border-b border-rule">
         <p className="eyebrow">News</p>
-        <h2 className="mt-3 font-display text-3xl md:text-4xl font-bold">From the Santej works.</h2>
+        <h2 className="mt-3 font-display text-3xl md:text-4xl font-bold">From ADK Engineering.</h2>
         <ul className="mt-10 divide-y divide-rule border-y border-rule">
           {news.map((n) => (
             <li key={n.title} className="grid gap-2 py-8 md:grid-cols-[10rem_1fr] md:gap-10">
