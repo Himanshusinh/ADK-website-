@@ -20,7 +20,7 @@ const principles = [
   {
     eyebrow: "Vision",
     title: "Machines that earn their keep after the first year.",
-    body: "Supplied and configured to your exact specifications, serviced nationwide from eight regional offices.",
+    body: "Supplied and configured to your exact specifications, serviced nationwide from ten regional offices.",
   },
   {
     eyebrow: "Slogan",
@@ -159,7 +159,7 @@ export default function AboutPage() {
               <p className="mt-3 text-sm text-steel-muted font-sans">Installations on the floor</p>
             </div>
             <div>
-              <p className="font-display text-4xl leading-none md:text-5xl font-bold">8</p>
+              <p className="font-display text-4xl leading-none md:text-5xl font-bold">10</p>
               <p className="mt-3 text-sm text-steel-muted font-sans">Branch offices with service engineers</p>
             </div>
           </div>

@@ -5,20 +5,6 @@ const CLOUDINARY_BASE_URL = `https://res.cloudinary.com/${cloudName}/image/uploa
 
 // Cloudinary public IDs under AC-QMS/Product details (no file extension required for delivery)
 const CLOUDINARY_MAPPINGS: Record<string, string> = {
-  // — Factory / installations —
-  "factory/santej-works-main.jpg":
-    "AC-QMS/Product details/Fiber Laser Cutting Machine ( Photos )/ADK MAKE/IMG_20240309_112027",
-  "installations/fiber-laser-01.jpg":
-    "AC-QMS/Product details/Fiber Laser Cutting Machine ( Photos )/ADK MAKE/Fiber Laser Cutting Machine S Model",
-  "installations/laser-welding-01.jpg":
-    "AC-QMS/Product details/Machine Photo/Laser Welding Machine/Fiber Laser Welding Machine",
-  "installations/peb-welding-01.jpg":
-    "AC-QMS/Product details/CNC Plasma Cutting Machine ( Photos )/Single Layer Forming Machine",
-  "installations/plasma-01.jpg":
-    "AC-QMS/Product details/CNC Plasma Cutting Machine ( Photos )/CNC Plasma Cutting Machine-TableType",
-  "installations/press-brake-01.jpg":
-    "AC-QMS/Product details/CNC Prass Brake Machine ( Photos )/CNC Press Brake Machine",
-
   // — CNC Plasma —
   "products/cnc-plasma-cutting/gantry-plasma-cutting/hero.jpg":
     "AC-QMS/Product details/CNC Plasma Cutting Machine ( Photos )/CNC Plasma Cutting Machine-Gantry Type",
@@ -31,14 +17,20 @@ const CLOUDINARY_MAPPINGS: Record<string, string> = {
   "products/cnc-plasma-cutting/gantry-plasma-cutting/gallery-4.jpg":
     "AC-QMS/Product details/CNC Plasma Cutting Machine ( Photos )/Single Layer Forming Machine",
 
-  "products/cnc-plasma-cutting/table-portable-plasma/hero.jpg":
+  "products/cnc-plasma-cutting/table-type-plasma/hero.jpg":
     "AC-QMS/Product details/CNC Plasma Cutting Machine ( Photos )/CNC Plasma Cutting Machine-TableType",
-  "products/cnc-plasma-cutting/table-portable-plasma/gallery-1.jpg":
+  "products/cnc-plasma-cutting/table-type-plasma/gallery-1.jpg":
     "AC-QMS/Product details/CNC Plasma Cutting Machine ( Photos )/CNC Plasma Cutting Machine-Portable Type",
-  "products/cnc-plasma-cutting/table-portable-plasma/gallery-2.jpg":
+  "products/cnc-plasma-cutting/table-type-plasma/gallery-2.jpg":
     "AC-QMS/Product details/CNC Plasma Cutting Machine ( Photos )/CNC Plasma Cutting Machine-TableType",
-  "products/cnc-plasma-cutting/table-portable-plasma/gallery-3.jpg":
+  "products/cnc-plasma-cutting/table-type-plasma/gallery-3.jpg":
     "AC-QMS/Product details/CNC Plasma Cutting Machine ( Photos )/CNC Plasma Cutting Machine-Gantry Type",
+  "products/cnc-plasma-cutting/portable-plasma/hero.jpg":
+    "AC-QMS/Product details/CNC Plasma Cutting Machine ( Photos )/CNC Plasma Cutting Machine-Portable Type",
+  "products/cnc-plasma-cutting/portable-plasma/gallery-1.jpg":
+    "AC-QMS/Product details/CNC Plasma Cutting Machine ( Photos )/CNC Plasma Cutting Machine-Portable Type",
+  "products/cnc-plasma-cutting/portable-plasma/gallery-2.jpg":
+    "AC-QMS/Product details/CNC Plasma Cutting Machine ( Photos )/CNC Plasma Cutting Machine-TableType",
 
   // — CNC Press Brake —
   "products/cnc-press-brake/nadkpress-cnc-press-brake/hero.jpg":
@@ -298,6 +290,8 @@ export function getProductImageFallback(categorySlug: string): string {
   switch (categorySlug) {
     case "cnc-press-brake":
     case "shearing-machine":
+    case "v-grooving-machine":
+    case "newly-launched-products":
       return FALLBACK_IMG_PRESS;
     case "peb-machinery":
     case "panel-bender":

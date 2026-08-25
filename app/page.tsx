@@ -5,7 +5,9 @@ import Link from "next/link";
 import { useEnquiry } from "@/components/EnquiryContext";
 import Reveal from "@/components/Reveal";
 import ClientLogoMarquee from "@/components/ClientLogoMarquee";
-import { clientMarqueeRowA, clientMarqueeRowB } from "@/lib/data";
+import { blogPosts, clientMarqueeRowA, clientMarqueeRowB } from "@/lib/data";
+
+const latestBlogPosts = blogPosts.slice(0, 3);
 
 /* —————————————————————————————————————————————————————————————————————————— */
 /* Data Definitions matching adk-engineering-site                            */
@@ -65,10 +67,18 @@ const productCategories = [
   {
     id: "shearing",
     label: "Shearing",
-    slug: "shearing",
+    slug: "shearing-machine",
     title: "Hydraulic shears",
     blurb: "Plate preparation and edge trimming before the laser or the brake.",
     lineup: "shear",
+  },
+  {
+    id: "v-grooving",
+    label: "V-grooving",
+    slug: "v-grooving-machine",
+    title: "V grooving machines",
+    blurb: "Precision V-groove scoring for sharp architectural folds on stainless and mild steel.",
+    lineup: "forming",
   },
 ];
 
@@ -101,6 +111,12 @@ const formingLineup = [
     image: "/assets/adk/studio-welder.jpg",
   },
   {
+    model: "V grooving",
+    note: "Architectural folds",
+    slug: "v-grooving-machine",
+    image: "/assets/adk/studio-panel.jpg",
+  },
+  {
     model: "Panel bender",
     note: "0.2 s per bend",
     slug: "panel-bender",
@@ -117,7 +133,7 @@ const formingLineup = [
 const shearCard = {
   model: "Hydraulic shears",
   note: "Plate preparation",
-  slug: "shearing",
+  slug: "shearing-machine",
   image: "/assets/adk/studio-shear.jpg",
 };
 
@@ -195,7 +211,7 @@ const stats = [
   { value: "850+", n: 850, suffix: "+", label: "Customers across India" },
   { value: "850+", n: 850, suffix: "+", label: "Installations on the floor" },
   { value: "16+", n: 16, suffix: "+", label: "Years of operating experience" },
-  { value: "8", n: 8, suffix: "", label: "Branch offices with service engineers" },
+  { value: "10", n: 10, suffix: "", label: "Branch offices with service engineers" },
 ];
 
 /* —————————————————————————————————————————————————————————————————————————— */
@@ -525,7 +541,7 @@ export default function Home() {
             ADK across India
           </h2>
           <p className="mt-5 max-w-lg text-steel-muted font-sans leading-relaxed">
-            Serviced from eight regional offices — so a breakdown call is answered the same
+            Serviced from ten regional offices — so a breakdown call is answered the same
             day, not from a distant headquarters.
           </p>
 
@@ -622,7 +638,7 @@ export default function Home() {
           </Reveal>
           <div className="mt-14 grid gap-6 sm:grid-cols-3">
             <Link
-              href="/resources"
+              href="/resources/catalogues"
               className="arrow-slide group flex h-full flex-col items-center gap-5 border border-rule bg-card px-8 py-16 text-center transition-colors duration-500 hover:border-foreground"
             >
               <span className="material-symbols-outlined text-3xl text-accent">description</span>
@@ -653,7 +669,74 @@ export default function Home() {
       </section>
 
       {/* —————————————————————————————————————————————————————————————————— */}
-      {/* 9. QUOTE CTA BANNER                                                 */}
+      {/* 9. TECHNICAL BLOG                                                   */}
+      {/* —————————————————————————————————————————————————————————————————— */}
+      <section className="border-b border-rule bg-background">
+        <div className="shell py-20 md:py-28">
+          <Reveal className="text-center max-w-2xl mx-auto">
+            <p className="eyebrow text-accent">Technical blog</p>
+            <h2 className="mt-3 font-display text-3xl leading-tight md:text-5xl font-bold">
+              From the engineering desk
+            </h2>
+            <p className="mt-4 text-muted-foreground font-sans">
+              Practical guides on power selection, bending tech, PEB lines, and installation — written for shop floors that run full shifts.
+            </p>
+          </Reveal>
+
+          <div className="mt-14 grid gap-8 md:grid-cols-3">
+            {latestBlogPosts.map((post, i) => (
+              <Reveal key={post.slug} delay={(i % 3) * 80} className="h-full">
+                <Link
+                  href={`/resources/blog/${post.slug}`}
+                  className="arrow-slide group hover-lift flex h-full flex-col panel border border-rule transition-all"
+                >
+                  <div className="aspect-[16/10] overflow-hidden border-b border-rule bg-steel relative">
+                    <img
+                      src={post.heroImage ?? "/redesigned/workshop.jpg"}
+                      alt={post.title}
+                      loading={i === 0 ? "eager" : "lazy"}
+                      width={1200}
+                      height={750}
+                      className="h-full w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
+                    />
+                    <span className="absolute top-4 left-4 eyebrow text-accent border border-accent/40 bg-background/80 px-2 py-1">
+                      {post.category ?? "Technical"}
+                    </span>
+                  </div>
+                  <div className="flex flex-1 flex-col p-6 md:p-8">
+                    <div className="flex justify-between items-center mb-3 font-mono text-xs text-muted-foreground">
+                      <span>{post.date}</span>
+                      <span>{post.readTime}</span>
+                    </div>
+                    <h3 className="font-display text-xl font-bold leading-tight group-hover:text-accent transition-colors">
+                      {post.title}
+                    </h3>
+                    <p className="mt-3 text-sm leading-relaxed text-muted-foreground font-sans line-clamp-3">
+                      {post.summary}
+                    </p>
+                    <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-foreground group-hover:text-accent">
+                      Read article
+                      <span className="arrow">→</span>
+                    </span>
+                  </div>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
+
+          <div className="mt-12 text-center">
+            <Link
+              href="/resources/blog"
+              className="link-underline font-mono text-xs uppercase tracking-widest font-bold text-accent"
+            >
+              View all articles →
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* —————————————————————————————————————————————————————————————————— */}
+      {/* 10. QUOTE CTA BANNER                                                */}
       {/* —————————————————————————————————————————————————————————————————— */}
       <section className="border-y border-rule bg-steel text-steel-foreground">
         <div className="shell grid gap-10 py-16 md:grid-cols-[1.4fr_auto] md:items-end md:py-24">
@@ -675,7 +758,7 @@ export default function Home() {
       </section>
 
       {/* —————————————————————————————————————————————————————————————————— */}
-      {/* 10. TAGLINE BANNER                                                 */}
+      {/* 11. TAGLINE BANNER                                                 */}
       {/* —————————————————————————————————————————————————————————————————— */}
       <section className="py-16 md:py-20 border-b border-rule bg-background">
         <p className="text-center font-display text-2xl font-bold tracking-tight">

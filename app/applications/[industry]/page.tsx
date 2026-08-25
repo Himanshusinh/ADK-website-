@@ -56,15 +56,26 @@ export default async function IndustryPage(props: IndustryPageProps) {
 
       {/* Header — Exact ADK Redesigned Industry Header */}
       <section className="border-b border-rule panel">
-        <div className="shell py-16 md:py-24">
-          <p className="eyebrow">Sector application</p>
-          <h1 className="mt-5 max-w-3xl font-display text-4xl leading-[1.05] md:text-6xl font-bold">
-            {app.name}
-          </h1>
-          <span className="mt-6 block h-0.5 w-10 bg-accent" />
-          <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg font-sans">
-            {app.tagline || app.description}
-          </p>
+        <div className="shell py-16 md:py-24 grid gap-10 lg:grid-cols-2 lg:items-end">
+          <div>
+            <p className="eyebrow">Sector application</p>
+            <h1 className="mt-5 max-w-3xl font-display text-4xl leading-[1.05] md:text-6xl font-bold">
+              {app.name}
+            </h1>
+            <span className="mt-6 block h-0.5 w-10 bg-accent" />
+            <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg font-sans">
+              {app.tagline || app.description}
+            </p>
+          </div>
+          <div className="relative aspect-[16/10] overflow-hidden border border-rule bg-steel">
+            <img
+              src={app.heroImage}
+              alt={`${app.name} manufacturing on ADK machines`}
+              width={1200}
+              height={750}
+              className="h-full w-full object-cover"
+            />
+          </div>
         </div>
       </section>
 
