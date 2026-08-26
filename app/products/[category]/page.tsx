@@ -26,7 +26,7 @@ export async function generateMetadata(props: CategoryPageProps): Promise<Metada
 }
 
 const redesignedImageMap: Record<string, string> = {
-  "fiber-laser-cutting": "/assets/adk/studio-fiber.jpg",
+  "fiber-laser-cutting": "/assets/adk/studio-fiber.png",
   "cnc-plasma-cutting": "/assets/adk/studio-plasma.jpg",
   "cnc-press-brake": "/assets/adk/studio-press.jpg",
   "fiber-laser-welding": "/assets/adk/studio-welder.jpg",
@@ -56,7 +56,7 @@ export default async function CategoryPage(props: CategoryPageProps) {
   }
 
   const seriesTag = seriesTagMap[category.slug] ?? "ADK series";
-  const heroImage = redesignedImageMap[category.slug] ?? "/assets/adk/studio-fiber.jpg";
+  const heroImage = redesignedImageMap[category.slug] ?? "/assets/adk/studio-fiber.png";
   const siblingCategories = categories.filter((c) => c.slug !== category.slug);
 
   return (

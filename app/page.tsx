@@ -87,7 +87,7 @@ const heroLineup = [
     model: "Fiber laser cutting",
     note: "1 kW – 60 kW",
     slug: "fiber-laser-cutting",
-    image: "/assets/adk/studio-fiber.jpg",
+    image: "/assets/adk/studio-fiber.png",
   },
   {
     model: "CNC plasma cutting",

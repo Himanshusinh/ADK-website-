@@ -30,7 +30,7 @@ const principles = [
 ];
 
 const familyLineup = [
-  { model: "Fiber laser cutting", slug: "fiber-laser-cutting", image: "/assets/adk/studio-fiber.jpg" },
+  { model: "Fiber laser cutting", slug: "fiber-laser-cutting", image: "/assets/adk/studio-fiber.png" },
   { model: "CNC plasma cutting", slug: "cnc-plasma-cutting", image: "/assets/adk/studio-plasma.jpg" },
   { model: "CNC press brake", slug: "cnc-press-brake", image: "/assets/adk/studio-press.jpg" },
   { model: "Fiber laser welding", slug: "fiber-laser-welding", image: "/assets/adk/studio-welder.jpg" },

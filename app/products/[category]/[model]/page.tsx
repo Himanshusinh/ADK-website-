@@ -35,7 +35,7 @@ export async function generateMetadata(props: ModelPageProps): Promise<Metadata>
 }
 
 const redesignedImageMap: Record<string, string> = {
-  "fiber-laser-cutting": "/assets/adk/studio-fiber.jpg",
+  "fiber-laser-cutting": "/assets/adk/studio-fiber.png",
   "cnc-plasma-cutting": "/assets/adk/studio-plasma.jpg",
   "cnc-press-brake": "/assets/adk/studio-press.jpg",
   "fiber-laser-welding": "/assets/adk/studio-welder.jpg",
@@ -60,7 +60,10 @@ export default async function ModelPage(props: ModelPageProps) {
 
   const siblings = category.models.filter((m) => m.slug !== model.slug);
   const brochureHref = model.brochureUrl || "/resources/catalogues";
-  const heroImage = redesignedImageMap[category.slug] ?? model.image;
+  const heroImage =
+    category.slug === "fiber-laser-cutting"
+      ? model.image
+      : (redesignedImageMap[category.slug] ?? model.image);
 
   return (
     <div className="flex flex-col w-full bg-background text-foreground">

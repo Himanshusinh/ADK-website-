@@ -40,7 +40,7 @@ const categorySummaryMap: Record<string, string> = {
 };
 
 const categoryImageMap: Record<string, string> = {
-  "fiber-laser-cutting": "/assets/adk/studio-fiber.jpg",
+  "fiber-laser-cutting": "/assets/adk/studio-fiber.png",
   "cnc-plasma-cutting": "/assets/adk/studio-plasma.jpg",
   "cnc-press-brake": "/assets/adk/studio-press.jpg",
   "fiber-laser-welding": "/assets/adk/studio-welder.jpg",
@@ -113,7 +113,7 @@ export default function ProductsIndexPage() {
             const seriesTag = seriesMap[c.slug] || "ADK series";
             const cardTitle = categoryTitleMap[c.slug] || c.name;
             const cardSummary = categorySummaryMap[c.slug] || c.tagline || c.description;
-            const img = categoryImageMap[c.slug] || "/assets/adk/studio-fiber.jpg";
+            const img = categoryImageMap[c.slug] || "/assets/adk/studio-fiber.png";
 
             return (
               <Reveal key={c.slug} delay={(i % 3) * 90} className="h-full">
