@@ -63,32 +63,29 @@ export default function CareerPage() {
             Current Vacancies
           </h2>
 
-          <div className="space-y-8">
+          <div className="space-y-10">
             {careerPositions.map((job) => (
               <div key={job.id} className="arrow-slide group hover-lift border border-rule bg-card overflow-hidden transition-all shadow-sm">
                 {job.image && (
-                  <div className="aspect-[16/9] w-full overflow-hidden bg-steel border-b border-rule relative">
+                  <div className="w-full bg-white border-b border-rule flex items-center justify-center p-2 sm:p-4">
                     <img
                       src={job.image}
                       alt={job.title}
-                      width={800}
-                      height={450}
-                      className="h-full w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
+                      width={1200}
+                      height={675}
+                      className="w-full h-auto object-contain transition-transform duration-500 group-hover:scale-[1.01]"
                     />
-                    <span className="absolute top-4 left-4 eyebrow text-accent border border-accent/40 bg-background/90 px-2.5 py-1">
-                      {job.department}
-                    </span>
                   </div>
                 )}
                 <div className="p-6 md:p-8">
-                  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4">
+                  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
                     <div>
                       <h3 className="font-display text-2xl font-bold text-foreground group-hover:text-accent transition-colors">
                         {job.title}
                       </h3>
-                      <div className="font-mono text-xs text-accent uppercase tracking-wider mt-1 font-bold">
-                        EXP: {job.experience} · {job.location}
-                      </div>
+                      <p className="font-mono text-xs text-accent uppercase tracking-wider mt-1 font-bold">
+                        {job.department} · {job.location}
+                      </p>
                     </div>
                     <button
                       onClick={() => {
@@ -96,22 +93,10 @@ export default function CareerPage() {
                         const formElem = document.getElementById("application-form");
                         if (formElem) formElem.scrollIntoView({ behavior: "smooth" });
                       }}
-                      className="btn-sweep bg-accent text-accent-foreground font-display text-xs font-bold uppercase px-6 py-3 shrink-0 cursor-pointer shadow-[var(--shadow-lift)]"
+                      className="btn-sweep bg-accent text-accent-foreground font-display text-xs font-bold uppercase px-7 py-3.5 shrink-0 cursor-pointer shadow-[var(--shadow-lift)]"
                     >
                       Apply now
                     </button>
-                  </div>
-                  <p className="font-sans text-sm text-muted-foreground leading-relaxed mt-4">
-                    {job.description}
-                  </p>
-
-                  <div className="mt-6 border-t border-rule pt-4 font-sans text-xs text-muted-foreground">
-                    <span className="eyebrow text-foreground block mb-2 font-bold">Key Requirements:</span>
-                    <ul className="space-y-1.5 list-disc list-inside">
-                      {job.requirements.map((req, i) => (
-                        <li key={i}>{req}</li>
-                      ))}
-                    </ul>
                   </div>
                 </div>
               </div>
