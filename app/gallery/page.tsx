@@ -117,7 +117,7 @@ export default function GalleryPage() {
                 >
                   <div className="aspect-video bg-steel overflow-hidden border-b border-rule relative">
                     <img
-                      src="/assets/case-cutting-bay.jpg"
+                      src={inst.image ?? "/assets/case-cutting-bay.jpg"}
                       alt={inst.title}
                       className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-700"
                     />
@@ -143,7 +143,7 @@ export default function GalleryPage() {
                 >
                   <div className="aspect-video bg-steel overflow-hidden border-b border-rule">
                     <img
-                      src="/assets/workshop.jpg"
+                      src={photo.image ?? "/assets/workshop.jpg"}
                       alt={photo.title}
                       className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-700"
                     />

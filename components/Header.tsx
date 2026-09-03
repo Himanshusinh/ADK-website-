@@ -5,22 +5,38 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEnquiry } from "./EnquiryContext";
 import { useTheme } from "./ThemeProvider";
+import { productCompactLinks } from "@/lib/navigation";
 
 const navItems = [
-  { href: "/products", label: "Products" },
+  { href: "/products", label: "Products", hasProductsMenu: true },
   { href: "/applications", label: "Applications" },
   { href: "/about", label: "About" },
   { href: "/resources", label: "Resources" },
+  { href: "/resources/blog", label: "Blog" },
   { href: "/gallery", label: "Gallery" },
   { href: "/clients", label: "Clients" },
+  { href: "/news", label: "News" },
   { href: "/contact", label: "Contact" },
 ] as const;
+
+function isNavActive(pathname: string, href: string): boolean {
+  if (href === "/resources") {
+    return (
+      pathname === "/resources" ||
+      pathname.startsWith("/resources/catalogues") ||
+      pathname.startsWith("/resources/faq")
+    );
+  }
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
 
 export default function Header() {
   const pathname = usePathname();
   const { openEnquiry } = useEnquiry();
   const { theme, toggleTheme } = useTheme();
   const [open, setOpen] = useState(false);
+  const [productsOpen, setProductsOpen] = useState(false);
+  const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -36,7 +52,6 @@ export default function Header() {
 
   const isDark = mounted && theme === "dark";
   const isHeroPage = pathname === "/";
-  // On hero landing page at the top in light mode, header overlays dark hero image
   const isTransparentHero = !isDark && isHeroPage && !scrolled;
   const isWhiteTextNav = isDark || isTransparentHero;
 
@@ -62,14 +77,74 @@ export default function Header() {
         </Link>
 
         <div className="flex items-center gap-2 md:gap-4">
-          <nav className="hidden items-center gap-6 lg:flex">
+          <nav className="hidden items-center gap-4 xl:gap-6 lg:flex">
             {navItems.map((item) => {
-              const active = pathname.startsWith(item.href);
+              const active = isNavActive(pathname, item.href);
+              if ("hasProductsMenu" in item && item.hasProductsMenu) {
+                return (
+                  <div
+                    key={item.href}
+                    className="relative"
+                    onMouseEnter={() => setProductsOpen(true)}
+                    onMouseLeave={() => setProductsOpen(false)}
+                  >
+                    <Link
+                      href={item.href}
+                      className={`relative inline-flex items-center gap-1 py-2 text-sm font-semibold whitespace-nowrap transition-colors ${
+                        active
+                          ? "text-accent font-bold"
+                          : isWhiteTextNav
+                          ? "text-white/90 hover:text-white"
+                          : "text-foreground hover:text-accent"
+                      }`}
+                    >
+                      {item.label}
+                      <span className="material-symbols-outlined text-base">expand_more</span>
+                      <span
+                        className={`absolute inset-x-0 -bottom-1 h-0.5 origin-left bg-accent transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                          active ? "scale-x-100" : "scale-x-0"
+                        }`}
+                      />
+                    </Link>
+                    {productsOpen && (
+                      <div
+                        className={`absolute left-0 top-full z-50 w-[22rem] border py-3 shadow-lg ${
+                          isWhiteTextNav
+                            ? "border-white/15 bg-[#0f1112] text-white"
+                            : "border-rule bg-background text-foreground"
+                        }`}
+                      >
+                        <div className="grid grid-cols-1">
+                          {productCompactLinks.map((link) => (
+                            <Link
+                              key={link.path}
+                              href={link.path}
+                              className={`flex items-center gap-3 px-4 py-2.5 text-sm transition-colors ${
+                                isWhiteTextNav
+                                  ? "hover:bg-white/10 hover:text-accent"
+                                  : "hover:bg-panel hover:text-accent"
+                              }`}
+                            >
+                              {link.icon ? (
+                                <span className="material-symbols-outlined text-lg text-accent">
+                                  {link.icon}
+                                </span>
+                              ) : null}
+                              <span className="font-semibold">{link.label}</span>
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                );
+              }
+
               return (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`relative py-2 text-sm font-semibold transition-colors ${
+                  className={`relative py-2 text-sm font-semibold whitespace-nowrap transition-colors ${
                     active
                       ? "text-accent font-bold"
                       : isWhiteTextNav
@@ -88,7 +163,6 @@ export default function Header() {
             })}
           </nav>
 
-          {/* Theme Toggle Button */}
           <button
             type="button"
             onClick={toggleTheme}
@@ -105,7 +179,6 @@ export default function Header() {
             </span>
           </button>
 
-          {/* Inquiry Button */}
           <button
             onClick={() => openEnquiry("General Machinery Inquiry")}
             className={`hidden rounded-full border px-5 py-2 text-sm font-bold transition-all duration-300 sm:inline-block cursor-pointer ${
@@ -144,20 +217,58 @@ export default function Header() {
           }`}
         >
           <nav className="shell flex flex-col py-2">
-            {navItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={() => setOpen(false)}
-                className={`border-b py-3 font-display text-lg tracking-tight hover:text-accent last:border-b-0 ${
-                  isWhiteTextNav
-                    ? "border-white/10 text-white"
-                    : "border-rule text-foreground"
-                }`}
-              >
-                {item.label}
-              </Link>
-            ))}
+            {navItems.map((item) => {
+              if ("hasProductsMenu" in item && item.hasProductsMenu) {
+                return (
+                  <div
+                    key={item.href}
+                    className={`border-b last:border-b-0 ${
+                      isWhiteTextNav ? "border-white/10" : "border-rule"
+                    }`}
+                  >
+                    <button
+                      type="button"
+                      onClick={() => setMobileProductsOpen((v) => !v)}
+                      className="flex w-full items-center justify-between py-3 font-display text-lg tracking-tight"
+                    >
+                      <span>{item.label}</span>
+                      <span className="material-symbols-outlined text-xl">
+                        {mobileProductsOpen ? "expand_less" : "expand_more"}
+                      </span>
+                    </button>
+                    {mobileProductsOpen && (
+                      <div className="pb-3 pl-2">
+                        {productCompactLinks.map((link) => (
+                          <Link
+                            key={link.path}
+                            href={link.path}
+                            onClick={() => setOpen(false)}
+                            className="block py-2 text-sm font-semibold text-muted-foreground hover:text-accent"
+                          >
+                            {link.label}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                );
+              }
+
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setOpen(false)}
+                  className={`border-b py-3 font-display text-lg tracking-tight hover:text-accent last:border-b-0 ${
+                    isWhiteTextNav
+                      ? "border-white/10 text-white"
+                      : "border-rule text-foreground"
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
             <div className="mt-4 flex items-center justify-between gap-3">
               <button
                 type="button"

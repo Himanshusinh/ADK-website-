@@ -4,17 +4,10 @@ import React from "react";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import { useEnquiry } from "@/components/EnquiryContext";
-
-const catalogues = [
-  { name: "ADK Fiber Laser Master Catalogue 2025", size: "8.4 MB · PDF" },
-  { name: "ADK CNC Plasma Range Spec Sheet", size: "4.1 MB · PDF" },
-  { name: "ADK Press Brake & Panel Bender Brochure", size: "6.2 MB · PDF" },
-  { name: "ADK Laser Welding & PEB Machinery Specs", size: "3.8 MB · PDF" },
-  { name: "ADK Spares & Consumables Catalog", size: "5.5 MB · PDF" },
-];
+import { catalogueItems } from "@/lib/catalogues";
 
 const familyLineup = [
-  { model: "Fiber laser cutting", slug: "fiber-laser-cutting", image: "/assets/adk/studio-fiber.jpg" },
+  { model: "Fiber laser cutting", slug: "fiber-laser-cutting", image: "/assets/adk/studio-fiber.png" },
   { model: "CNC plasma cutting", slug: "cnc-plasma-cutting", image: "/assets/adk/studio-plasma.jpg" },
   { model: "CNC press brake", slug: "cnc-press-brake", image: "/assets/adk/studio-press.jpg" },
   { model: "Fiber laser welding", slug: "fiber-laser-welding", image: "/assets/adk/studio-welder.jpg" },
@@ -36,17 +29,13 @@ const news = [
   },
   {
     date: "SEPTEMBER 2024",
-    title: "Eight service hubs now operational across India",
-    body: "Dedicated service engineers and spare parts hubs established in Pune, Nashik, Nagpur, Kolhapur, Indore, Kolkata and Bhopal.",
+    title: "Ten service hubs now operational across India",
+    body: "Dedicated service engineers and spare parts hubs across Ahmedabad, Pune, Nashik, Nagpur, Kolhapur, Indore, Jaipur, Kolkata, Bhopal, and Hubli.",
   },
 ];
 
 export default function ResourcesPage() {
   const { openEnquiry } = useEnquiry();
-
-  const handleDownload = (name: string) => {
-    alert(`Thank you for requesting "${name}". The catalogue download link has been prepared.`);
-  };
 
   return (
     <div className="flex flex-col w-full bg-background text-foreground">
@@ -66,25 +55,38 @@ export default function ResourcesPage() {
 
       {/* Catalogues Section */}
       <section className="shell py-16 md:py-24 border-b border-rule">
-        <p className="eyebrow">Catalogues</p>
-        <h2 className="mt-3 font-display text-3xl md:text-4xl font-bold">Specifications in print.</h2>
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <p className="eyebrow">Catalogues</p>
+            <h2 className="mt-3 font-display text-3xl md:text-4xl font-bold">Specifications in print.</h2>
+          </div>
+          <Link
+            href="/resources/catalogues"
+            className="link-underline font-mono text-xs uppercase tracking-widest font-bold text-accent"
+          >
+            View all catalogues →
+          </Link>
+        </div>
         <ul className="mt-10 divide-y divide-rule border-y border-rule">
-          {catalogues.map((c) => (
+          {catalogueItems.slice(0, 6).map((c) => (
             <li
-              key={c.name}
+              key={c.id}
               className="group grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 py-7"
             >
               <div className="min-w-0">
                 <p className="truncate font-display text-xl font-bold">{c.name}</p>
-                <p className="text-sm text-muted-foreground font-sans mt-1">{c.size}</p>
+                <p className="text-sm text-muted-foreground font-sans mt-1">
+                  {c.size} · PDF
+                  {c.brochureAlias ? ` · ${c.brochureAlias}` : ""}
+                </p>
               </div>
               <button
                 type="button"
-                onClick={() => handleDownload(c.name)}
+                onClick={() => openEnquiry(`Download Request: ${c.name}`)}
                 className="arrow-slide inline-flex shrink-0 items-center gap-2 border border-rule px-5 py-2.5 text-sm font-semibold transition-colors duration-500 hover:border-foreground hover:text-accent cursor-pointer"
               >
                 <span className="material-symbols-outlined text-lg">download</span>
-                Download
+                Request PDF
               </button>
             </li>
           ))}

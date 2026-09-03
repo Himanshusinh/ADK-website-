@@ -6,15 +6,6 @@ import { applications } from "@/lib/data";
 import { useEnquiry } from "@/components/EnquiryContext";
 import Reveal from "@/components/Reveal";
 
-const redesignedIndustryImages: Record<string, string> = {
-  "sheet-metal": "/redesigned/industry-sheet-metal.jpg",
-  automobile: "/redesigned/industry-automobile.jpg",
-  aerospace: "/redesigned/industry-aerospace.jpg",
-  agriculture: "/redesigned/industry-agriculture.jpg",
-  "steel-furniture": "/redesigned/industry-steel-furniture.jpg",
-  architecture: "/redesigned/industry-architecture.jpg",
-};
-
 export default function ApplicationsHubPage() {
   const { openEnquiry } = useEnquiry();
 
@@ -38,14 +29,12 @@ export default function ApplicationsHubPage() {
       <section className="shell py-16 md:py-24 border-b border-rule">
         <div className="grid gap-8 md:grid-cols-2">
           {applications.map((a, i) => {
-            const img = redesignedIndustryImages[a.slug] ?? "/redesigned/industry-sheet-metal.jpg";
-
             return (
               <Reveal key={a.slug} delay={(i % 2) * 90} className="h-full">
                 <article className="arrow-slide group hover-lift flex h-full flex-col panel border border-rule transition-all">
                   <div className="relative aspect-[16/10] overflow-hidden">
                     <img
-                      src={img}
+                      src={a.heroImage}
                       alt={`${a.name} parts made on ADK machines`}
                       loading={i < 2 ? "eager" : "lazy"}
                       width={1200}

@@ -35,14 +35,14 @@ export async function generateMetadata(props: ModelPageProps): Promise<Metadata>
 }
 
 const redesignedImageMap: Record<string, string> = {
-  "fiber-laser-cutting": "/ADK product images/fiber laser cutting machine/ChatGPT Image Aug 26, 2026, 12_02_49 PM.png",
-  "cnc-plasma-cutting": "/ADK product images/CNC plazma cutting machine/a2afb5aa-7812-4b39-9366-fa29f01a37a0.png",
-  "cnc-press-brake": "/ADK product images/CNC Press brake machine/5c7c27c6-c60a-40f0-950b-b929bf24b7b9.png",
-  "fiber-laser-welding": "/ADK product images/Fiber Laser Welding machine/aa70e19f-c67a-435d-8b31-b0c10be39751.png",
-  "panel-bender": "/ADK product images/Panel Bender/6ccbcbe7-e9c0-469a-9c5d-1c31c2d1f83b.png",
-  "peb-machinery": "/ADK product images/PEB Machinery/11449a4d-ca3f-4e66-878a-1ddfea8f62ed.png",
-  "shearing-machine": "/ADK product images/Shearing Machine/7c87af1d-c7ab-4576-a291-651722f272d7.png",
-  "spares-consumables": "/ADK product images/Spares & Consumables/bcde404d-733c-47eb-bb15-f9642b519dbc.png",
+  "fiber-laser-cutting": "/assets/adk/studio-fiber.png",
+  "cnc-plasma-cutting": "/assets/adk/studio-plasma.jpg",
+  "cnc-press-brake": "/assets/adk/studio-press.jpg",
+  "fiber-laser-welding": "/assets/adk/studio-welder.jpg",
+  "panel-bender": "/assets/adk/studio-panel.jpg",
+  "peb-machinery": "/assets/adk/studio-peb.jpg",
+  "shearing-machine": "/assets/adk/studio-shear.jpg",
+  "spares-consumables": "/redesigned/product-fiber-laser.jpg",
 };
 
 export default async function ModelPage(props: ModelPageProps) {
@@ -59,8 +59,11 @@ export default async function ModelPage(props: ModelPageProps) {
   }
 
   const siblings = category.models.filter((m) => m.slug !== model.slug);
-  const brochureHref = model.brochureUrl || "/resources";
-  const heroImage = redesignedImageMap[category.slug] ?? model.image;
+  const brochureHref = model.brochureUrl || "/resources/catalogues";
+  const heroImage =
+    category.slug === "fiber-laser-cutting"
+      ? model.image
+      : (redesignedImageMap[category.slug] ?? model.image);
 
   return (
     <div className="flex flex-col w-full bg-background text-foreground">

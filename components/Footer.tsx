@@ -8,6 +8,7 @@ const companyLinks = [
   { href: "/applications", label: "Applications" },
   { href: "/about", label: "About Us" },
   { href: "/resources", label: "Resources" },
+  { href: "/resources/blog", label: "Technical Blog" },
   { href: "/gallery", label: "Gallery" },
   { href: "/clients", label: "Clients & Cases" },
   { href: "/career", label: "Careers" },

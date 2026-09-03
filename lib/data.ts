@@ -190,8 +190,10 @@ export const branches: Branch[] = [
   { city: "Nagpur" },
   { city: "Kolhapur" },
   { city: "Indore" },
+  { city: "Jaipur" },
   { city: "Kolkata" },
   { city: "Bhopal" },
+  { city: "Hubli" },
 ];
 
 export const contactDepartments: ContactDepartment[] = [
@@ -424,9 +426,9 @@ const rawCategories: ProductCategory[] = [
         id: "FL-3015C",
         name: "FL Series — Industrial Pioneer (Exchange Table)",
         slug: "industrial-pioneer-exchange-table",
-        tagline: "FL 3015C–6525C quick-exchange table for continuous high-volume sheet cutting",
+        tagline: "Industrial Pioneer Series — ADK 3015 C–6525 C quick-exchange table for continuous sheet cutting",
         description:
-          "The FL Series Industrial Pioneer features a super heavy steel pipe welded bed with quick exchange table that significantly improves production efficiency and saves labour costs. Models ADK FL 3015C through ADK FL 6525C cover working areas from 3000×1500 mm to 6500×2500 mm.",
+          "Also listed in the ADK print catalogue as Industrial Pioneer Series (models ADK 3015 C through ADK 6525 C). Super heavy steel pipe welded bed with quick exchange table that improves production efficiency and saves labour. Working areas from 3000×1500 mm to 6500×2500 mm.",
         status: "IN_STOCK",
         image: "/ADK product images/fiber laser cutting machine/ChatGPT Image Aug 26, 2026, 12_02_49 PM.png",
         specsSummary: {
@@ -441,7 +443,8 @@ const rawCategories: ProductCategory[] = [
           "RAYCUS, IPG, MAX PHOTONICS power sources",
         ],
         specifications: [
-          { label: "Models", value: "ADK FL 3015C / ADK FL 6515C / ADK FL 6520C / ADK FL 6525C" },
+          { label: "Models", value: "ADK 3015 C / 6515 C / 6520 C / 6525 C (site FL 3015C–6525C)" },
+          { label: "Brochure series", value: "Industrial Pioneer Series" },
           { label: "Working Area", value: "3000×1500 / 6500×1500 / 6500×2000 / 6500×2500 mm" },
           { label: "Speed", value: "100 m/min" },
           { label: "Accuracy", value: "±0.03 mm" },
@@ -453,13 +456,13 @@ const rawCategories: ProductCategory[] = [
         id: "FL-8025SL",
         name: "FL Series — High-Power Large Format (Futuristic)",
         slug: "futuristic-laser-series",
-        tagline: "FL 8025SL–24035SL super large heavy-duty structure up to 24m & 60kW",
+        tagline: "Futuristic Laser Series — ADK 8025 SL–24035 SL up to 24 m & 60 kW",
         description:
-          "The FL Series High-Power Large Format is built for super large heavy-duty production. These high-power machines deliver excellent cutting ability on larger plates with smooth cutting finish. India's first 30KW installation was from this series.",
+          "Catalogue Futuristic Laser Series: super large heavy-duty structure for larger plates with smooth finish. Models ADK 8025 SL, 14030 SL, and 24035 SL. India's first 30KW installation was from this series.",
         status: "CUSTOM",
         image: "/ADK product images/fiber laser cutting machine/c241836d-4276-4292-bed0-7a6e11bab879.png",
         specsSummary: {
-          Models: "ADK FL 8025SL – 24035SL",
+          Models: "ADK 8025 SL – 24035 SL",
           Max_Length: "24 m",
           Power: "Up to 60KW",
         },
@@ -470,7 +473,8 @@ const rawCategories: ProductCategory[] = [
           "High-power sources up to 60KW",
         ],
         specifications: [
-          { label: "Models", value: "ADK FL 8025SL / ADK FL 14030SL / ADK FL 24035SL" },
+          { label: "Models", value: "ADK 8025 SL / 14030 SL / 24035 SL" },
+          { label: "Brochure series", value: "Futuristic Laser Series" },
           { label: "Working Area", value: "2500×8000 / 3000×14000 / 3500×24000 mm" },
           { label: "Speed", value: "100 m/min" },
           { label: "Accuracy", value: "±0.05 mm/m" },
@@ -480,15 +484,15 @@ const rawCategories: ProductCategory[] = [
       },
       {
         id: "FL-3015ES",
-        name: "FL Series — Single Pallet Innovation",
+        name: "FL Series — In-demand Innovation (Single Pallet)",
         slug: "single-pallet-es-series",
-        tagline: "FL 3015ES–6525ES cost-effective single pallet machine",
+        tagline: "In-demand Innovation / Fibercut — ADK 3015 ES–6525 ES single pallet",
         description:
-          "Single pallet machines with standard and custom table sizes. Easy loading and unloading, cost-effective and user-friendly — this innovative development captures high market share in its class.",
+          "Catalogue In-demand Innovation (Fibercut-3015): single pallet machines with standard and custom table sizes. Easy loading and unloading, cost-effective and user-friendly — capturing high market share in its class.",
         status: "IN_STOCK",
         image: "/ADK product images/fiber laser cutting machine/ChatGPT Image Aug 26, 2026, 12_05_03 PM.png",
         specsSummary: {
-          Models: "ADK FL 3015ES – 6525ES",
+          Models: "ADK 3015 ES – 6525 ES",
           Speed: "100 m/min",
           Accuracy: "±0.03 mm",
         },
@@ -499,7 +503,8 @@ const rawCategories: ProductCategory[] = [
           "Up to 60KW source compatibility",
         ],
         specifications: [
-          { label: "Models", value: "ADK FL 3015ES / ADK FL 6515ES / ADK FL 6520ES / ADK FL 6525ES" },
+          { label: "Models", value: "ADK 3015 ES / 6515 ES / 6520 ES / 6525 ES" },
+          { label: "Brochure series", value: "In-demand Innovation (Fibercut)" },
           { label: "Working Area", value: "3000×1500 / 6500×1500 / 6500×2000 / 6500×2500 mm" },
           { label: "Speed", value: "100 m/min" },
           { label: "Accuracy", value: "±0.03 mm" },
@@ -540,13 +545,13 @@ const rawCategories: ProductCategory[] = [
         id: "FL-GKS",
         name: "FL Series — Professional Tube Cutting",
         slug: "professional-tube-cutting",
-        tagline: "FL-GKS 6016T2–12036BT3 round, square & profiled pipe cutting",
+        tagline: "GKS Series — round, square & profiled pipe cutting (catalogue GKS codes)",
         description:
-          "Capable of cutting round pipes, square pipes, rectangular pipes, channel steel, angle steel, I-beams, and other profiled steel. Precision pneumatic chuck with four-jaw automatic centering clamping.",
+          "Catalogue professional tube cutting: round, square, rectangular pipes, channel, angle, I-beams, and other profiled steel. Precision pneumatic chuck with four-jaw automatic centering clamping.",
         status: "READY",
         image: "/ADK product images/fiber laser cutting machine/c241836d-4276-4292-bed0-7a6e11bab879.png",
         specsSummary: {
-          Models: "ADK FL-GKS 6016T2 – 12036BT3",
+          Models: "GKS 6016T2 – 12036B T3",
           Pipe_Range: "10–250 mm",
           Power: "Up to 12KW",
         },
@@ -565,7 +570,8 @@ const rawCategories: ProductCategory[] = [
           "Stainless Steel",
         ],
         specifications: [
-          { label: "Models", value: "FL-GKS 6016T2 / FL-GKS 9016T2 / FL-GKS 6024T2 / FL-GKS 6036T2 / FL-GKS 6036T3" },
+          { label: "Models", value: "GKS 6016T2 / 9016T2 / 6024T2 / 6036T2 / 6036T3 / 9036 T3 / 12036B T3" },
+          { label: "Brochure series", value: "Professional Tube Cutting (GKS)" },
           { label: "Round Pipe Capacity", value: "10–160 mm (6016) / 20–250 mm (6024+)" },
           { label: "Effective Cutting Length", value: "6500 mm / 9500 mm / 12500 mm" },
           { label: "Rotating Speed", value: "60–140 r/min" },
@@ -577,13 +583,13 @@ const rawCategories: ProductCategory[] = [
         id: "FL-LNR",
         name: "FL Series — Tube + Plate LNR",
         slug: "tube-plate-lnr-series",
-        tagline: "FL-LNR Series one machine for dual pipe and sheet cutting",
+        tagline: "LNR SERIES — one machine for dual pipe and sheet cutting",
         description:
-          "The FL-LNR Series meets the dual requirements of cutting pipes and sheets in a single machine, saving floor space and capital investment. Optional automatic loading/unloading and three-chuck configurations available.",
+          "Catalogue LNR SERIES: dual pipe and sheet cutting in one machine, saving floor space and capital. Optional automatic loading/unloading and three-chuck configurations available.",
         status: "CUSTOM",
         image: "/ADK product images/fiber laser cutting machine/ChatGPT Image Aug 26, 2026, 12_05_03 PM.png",
         specsSummary: {
-          Models: "ADK FL-LNR Series",
+          Models: "ADK LNR Series",
           Function: "Tube + Plate",
           Options: "Auto load/unload",
         },
@@ -642,20 +648,20 @@ const rawCategories: ProductCategory[] = [
       },
       {
         id: "PL-TABLE",
-        name: "PL Series — Table & Portable CNC Plasma",
-        slug: "table-portable-plasma",
-        tagline: "PL Series table type and portable plasma for flexible workshop deployment",
+        name: "PL Series — Table Type CNC Plasma",
+        slug: "table-type-plasma",
+        tagline: "PL Series table type plasma for workshop plate profiling",
         description:
-          "Table type and portable CNC plasma systems for workshops needing flexible deployment. Track widths from 2500 mm and above with customizable track lengths up to 8000 mm and beyond.",
+          "Table type CNC plasma systems for workshops needing dedicated bed capacity. Track widths from 2500 mm and above with customizable track lengths up to 8000 mm and beyond.",
         status: "READY",
         image: "/ADK product images/CNC plazma cutting machine/30e5a74f-1939-46de-88a1-50ecd26ed8ef.png",
         specsSummary: {
-          Models: "ADK PL Table / Portable",
+          Models: "ADK PL Table Type",
           Track: "Up to 8000+ mm",
           Source: "Hypertherm USA",
         },
         features: [
-          "Table type and portable configurations",
+          "Dedicated table type configuration",
           "Dual linear motion guide transmission",
           "Heat resistive heavy duty iron frame",
           "FastCam nesting software (Australia)",
@@ -663,10 +669,37 @@ const rawCategories: ProductCategory[] = [
         specifications: [
           { label: "Table Track Width", value: "2500, 3500, 4200 mm & above" },
           { label: "Track Length", value: "4000, 6000, 8000 mm & above" },
+          { label: "Controller", value: "FLSK 2300B (Weldarc) / NC Controller" },
+          { label: "Power Source", value: "Hypertherm, USA" },
+          { label: "Rapid Positioning Speed", value: "0–12000 mm/min" },
+        ],
+      },
+      {
+        id: "PL-PORTABLE",
+        name: "PL Series — Portable CNC Plasma",
+        slug: "portable-plasma",
+        tagline: "PL Series portable plasma for flexible on-site and shop-floor cutting",
+        description:
+          "Portable CNC plasma systems for flexible deployment across the shop floor or temporary cutting bays. Compact cutting area with Hypertherm sources and NC control.",
+        status: "READY",
+        image: IMG_LASER,
+        specsSummary: {
+          Models: "ADK PL Portable",
+          Area: "1250×2500 mm",
+          Source: "Hypertherm USA",
+        },
+        features: [
+          "Portable frame for flexible workshop deployment",
+          "Compact cutting envelope for job shops",
+          "Hypertherm plasma source options",
+          "NC controller with nesting support",
+        ],
+        specifications: [
           { label: "Portable Cutting Area", value: "1250×2500 mm" },
           { label: "Controller", value: "FLSK 2300B (Weldarc) / NC Controller" },
           { label: "Power Source", value: "Hypertherm, USA" },
           { label: "Rapid Positioning Speed", value: "0–12000 mm/min" },
+          { label: "Application", value: "Structural plate, repair bays, flexible job work" },
         ],
       },
     ],
@@ -676,21 +709,21 @@ const rawCategories: ProductCategory[] = [
     name: "CNC Press Brake",
     slug: "cnc-press-brake",
     icon: "architecture",
-    tagline: "PB Series CNC press brakes from 40T to 800T with 4, 5, 7 & 9 axis options.",
+    tagline: "PB Series CNC, NC, and tandem / heavy-tonnage press brakes from 40T to 800T+.",
     description:
-      "PB Series CNC press brakes feature integrated welded frames with shot-blast anti-rust treatment, servo main motor drive (60% lower energy consumption), DSP laser protection, mechanical crowning, and 4/5/7/9 axis configurations from 40T to 800T.",
+      "PB Series press brakes feature integrated welded frames with shot-blast anti-rust treatment, servo or NC main drives, DSP laser protection on CNC models, mechanical crowning, and configurations from standard CNC/NC machines to tandem and heavy-tonnage lines.",
     models: [
       {
         id: "PB-SERIES",
-        name: "PB Series — CNC Press Brake",
+        name: "PB Series — CNC Press Brake (NADKpress)",
         slug: "nadkpress-cnc-press-brake",
-        tagline: "PB Series servo-driven press brake with DSP laser guard and mechanical crowning",
+        tagline: "NADKpress catalogue line — servo CNC press brake, 40T–800T, 4/5/7/9 axis",
         description:
-          "The whole frame adopts integrated welding with tempering to eliminate internal stress. Y1/Y2 axis synchronous ram control, servo main motor (60% lower energy than conventional), and high-frequency hydraulic control for faster, more stable bending.",
+          "Catalogue brand NADKpress. Integrated welded frame with tempering; Y1/Y2 synchronous ram; servo main motor (~60% lower energy); high-frequency hydraulics. Brochure data sheet covers configurations from 40T×1600 mm through 800T×8000 mm.",
         status: "READY",
         image: "/ADK product images/CNC Press brake machine/5c7c27c6-c60a-40f0-950b-b929bf24b7b9.png",
         specsSummary: {
-          Models: "ADK PB Series",
+          Models: "NADKpress / ADK PB",
           Tonnage: "40T – 800T",
           Axis: "4, 5, 7 & 9",
         },
@@ -702,13 +735,71 @@ const rawCategories: ProductCategory[] = [
           "Mechanical crowning, sheet followers, dual side clamping",
         ],
         specifications: [
-          { label: "Models", value: "ADK PB Series (40T to 800T)" },
+          { label: "Brochure brand", value: "NADKpress" },
+          { label: "Models", value: "ADK PB / NADKpress (40T to 800T)" },
+          { label: "Example configs", value: "40T×1600 · 110T×3200/4000 · 250T×3200/4000 · 500T×4000/6000 · 800T×8000" },
           { label: "Bending Force Range", value: "40 Ton to 800 Ton" },
           { label: "Bending Length", value: "1600 mm to 8000 mm" },
           { label: "Axis Options", value: "4, 5, 7 & 9 Axis available" },
           { label: "Controller", value: "Y1/Y2 synchronous ram control" },
           { label: "Safety", value: "DSP laser protection, back side door, side doors" },
-          { label: "Additional Features", value: "Sheet followers, dual side clamping, mechanical crowning" },
+          { label: "Additional Features", value: "Sheet followers, dual side clamping, mechanical crowning, ladders" },
+        ],
+      },
+      {
+        id: "PB-NC",
+        name: "PB Series — NC Press Brake",
+        slug: "nc-press-brake",
+        tagline: "NC-controlled press brake for reliable workshop bending without full CNC complexity",
+        description:
+          "Extended live-site line (not a separate print-brochure SKU). NC Press Brake machines deliver accurate, repeatable bends with straightforward NC control — ideal for shops that need dependable tonnage without multi-axis CNC programming overhead.",
+        status: "READY",
+        image: IMG_PRESS,
+        specsSummary: {
+          Models: "ADK PB NC Series",
+          Control: "NC",
+          Tonnage: "Workshop range",
+        },
+        features: [
+          "NC backgauge and ram control for repeatable bends",
+          "Integrated welded frame construction",
+          "Cost-effective entry for job shops and OEMs",
+          "Compatible with standard press brake tooling",
+        ],
+        specifications: [
+          { label: "Models", value: "ADK PB NC Series" },
+          { label: "Control", value: "NC controller with programmable backgauge" },
+          { label: "Frame", value: "Integrated welded construction" },
+          { label: "Application", value: "General fabrication, brackets, enclosures" },
+          { label: "Contact", value: "Share tonnage and bed length for a tailored quote" },
+        ],
+      },
+      {
+        id: "PB-TANDEM",
+        name: "PB Series — Tandem & Heavy Tonnage Press Brake",
+        slug: "tandem-heavy-tonnage-press-brake",
+        tagline: "Synchronised tandem and heavy-tonnage brakes for long and thick plate bending",
+        description:
+          "Extended live-site line; brochure lists heavy tonnage under the NADKpress data sheet rather than a separate tandem product page. Synchronised rams for long beams and thick plate — PEB, ship, and heavy fab shops.",
+        status: "CUSTOM",
+        image: IMG_PRESS,
+        specsSummary: {
+          Models: "ADK PB Tandem / Heavy",
+          Mode: "Tandem sync",
+          Duty: "Heavy plate",
+        },
+        features: [
+          "Synchronised tandem operation for extended bend lengths",
+          "Heavy-tonnage frames for thick structural plate",
+          "Suitable for PEB and heavy engineering shops",
+          "Custom bed length and tonnage packages",
+        ],
+        specifications: [
+          { label: "Models", value: "ADK PB Tandem & Heavy Tonnage Series" },
+          { label: "Configuration", value: "Single heavy tonnage or synchronised tandem" },
+          { label: "Application", value: "Long beams, thick plate, structural sections" },
+          { label: "Control", value: "Synchronised CNC/NC ram control" },
+          { label: "Contact", value: "Share max length, thickness, and tonnage for engineering review" },
         ],
       },
     ],
@@ -718,9 +809,9 @@ const rawCategories: ProductCategory[] = [
     name: "Fiber Laser Welding",
     slug: "fiber-laser-welding",
     icon: "flare",
-    tagline: "LW Series 4-in-1 laser welding, cleaning, cutting, and wire feeding system.",
+    tagline: "LW Series 4-in-1 handheld welding and 3D fiber laser welding robot systems.",
     description:
-      "ADK LW Series 4-in-1 Fiber Laser Welding Machine replaces traditional MIG and TIG welding with higher speed, better finishing, no grinder requirement, lower operating cost, and reduced heat hazard compared to conventional arc welding.",
+      "ADK LW Series covers handheld 4-in-1 fiber laser welding (weld, clean, cut, wire feed) and 3D fiber laser welding robot cells for automated production — replacing traditional MIG and TIG with higher speed and better finishing.",
     models: [
       {
         id: "LW-4IN1",
@@ -749,6 +840,34 @@ const rawCategories: ProductCategory[] = [
           { label: "Post-Weld", value: "No grinder required" },
           { label: "Operating Cost", value: "Significantly lower than conventional arc welding" },
           { label: "Applications", value: "Stainless steel, carbon steel, aluminum fabrication" },
+        ],
+      },
+      {
+        id: "LW-3D-ROBOT",
+        name: "LW Series — 3D Fiber Laser Welding Machine Robot",
+        slug: "3d-fiber-laser-welding-robot",
+        tagline: "Robotic 3D fiber laser welding cell (distinct from brochure cutting robot)",
+        description:
+          "Live-site welding robot cell — not the same as the print-catalogue Newly Launched CNC Fiber Laser Cutting Machine Robot. Integrates a fiber laser source with a multi-axis robot for programmable weld paths on cabinets, frames, and complex assemblies.",
+        status: "CUSTOM",
+        image: IMG_LASER,
+        specsSummary: {
+          Models: "ADK LW 3D Robot",
+          Type: "Robotic cell",
+          Process: "Fiber laser weld",
+        },
+        features: [
+          "Multi-axis robot with fiber laser welding torch",
+          "Programmable paths for repeatable production welds",
+          "Suitable for cabinets, frames, and complex assemblies",
+          "Lower heat input vs conventional robotic MIG",
+        ],
+        specifications: [
+          { label: "Model", value: "ADK 3D Fiber Laser Welding Machine Robot" },
+          { label: "Process", value: "Fiber laser welding with robotic path control" },
+          { label: "Application", value: "Series production joints, enclosures, frames" },
+          { label: "vs Conventional Robot MIG", value: "Faster, cleaner, lower heat distortion" },
+          { label: "Contact", value: "Share part geometry and volume for a cell proposal" },
         ],
       },
     ],
@@ -839,7 +958,7 @@ const rawCategories: ProductCategory[] = [
         slug: "hydraulic-shearing-machine",
         tagline: "SH Series hydraulic guillotine shear for workshop plate preparation",
         description:
-          "Robust hydraulic shearing machines for plate preparation and edge trimming. Available in configurations to suit different thickness and length requirements for fabrication workshops.",
+          "Extended live-site line (not in the current print brochure extract). Robust hydraulic shearing for plate preparation and edge trimming — multiple thickness and length configurations for fabrication workshops.",
         status: "READY",
         image: "/ADK product images/Shearing Machine/7c87af1d-c7ab-4576-a291-651722f272d7.png",
         specsSummary: {
@@ -864,6 +983,45 @@ const rawCategories: ProductCategory[] = [
   },
   {
     id: "cat_07",
+    name: "V Grooving Machine",
+    slug: "v-grooving-machine",
+    icon: "architecture",
+    tagline: "VG Series V-grooving for sharp architectural bends and decorative sheet metal.",
+    description:
+      "ADK V Grooving machines score precise V-channels in sheet metal so panels fold to crisp architectural radii — used for elevator interiors, cladding, signage, and furniture-grade stainless work.",
+    models: [
+      {
+        id: "VG-SERIES",
+        name: "VG Series — V Grooving Machine",
+        slug: "v-grooving-machine-series",
+        tagline: "Precision V-groove scoring for sharp folds on stainless and mild steel panels",
+        description:
+          "Extended live-site / homepage line (not in the current print brochure extract). Cuts controlled V-channels along bend lines so sheets fold cleanly with minimal radius — architectural panels, elevator cabins, and high-finish stainless.",
+        status: "READY",
+        image: IMG_PRESS,
+        specsSummary: {
+          Models: "ADK VG Series",
+          Process: "V-groove",
+          Finish: "Architectural",
+        },
+        features: [
+          "Precise V-channel scoring for sharp architectural bends",
+          "Suitable for stainless and mild steel decorative panels",
+          "Common in elevator, cladding, and furniture fab",
+          "Configurable bed length for panel sizes",
+        ],
+        specifications: [
+          { label: "Models", value: "ADK VG Series" },
+          { label: "Process", value: "CNC/NC V-grooving for fold lines" },
+          { label: "Materials", value: "Stainless steel, mild steel, aluminium panels" },
+          { label: "Application", value: "Architecture, elevators, cladding, furniture" },
+          { label: "Contact", value: "Share sheet size and groove depth for a configuration quote" },
+        ],
+      },
+    ],
+  },
+  {
+    id: "cat_08",
     name: "Panel Bender",
     slug: "panel-bender",
     icon: "architecture",
@@ -892,7 +1050,8 @@ const rawCategories: ProductCategory[] = [
           "Models from 1400 mm to 2500 mm bend width",
         ],
         specifications: [
-          { label: "Models", value: "ADK-PB1400P / ADK-PB2000P / ADK-PB2500P" },
+          { label: "Models", value: "ADK-PB1400 P / ADK-PB2000 P / ADK-PB2500 P" },
+          { label: "Brochure series", value: "Panel Bender" },
           { label: "Fastest Bend Speed", value: "0.2 s/bend" },
           { label: "Maximum Bend Width", value: "1400 / 2000 / 2500 mm" },
           { label: "Bend Height", value: "170 mm" },
@@ -904,7 +1063,126 @@ const rawCategories: ProductCategory[] = [
     ],
   },
   {
-    id: "cat_08",
+    id: "cat_09",
+    name: "Newly Launched Products",
+    slug: "newly-launched-products",
+    icon: "new_releases",
+    tagline: "New ADK lines: iron worker, laser cutting robot, busbar processing, and CNC pipe bending.",
+    description:
+      "ADK newly launched equipment expands the shop beyond core cutting and bending — iron workers, robotic fiber laser cutting cells, busbar processing, and CNC pipe bending for electrical and structural fabricators.",
+    models: [
+      {
+        id: "NL-IRON",
+        name: "Iron Worker",
+        slug: "iron-worker",
+        tagline: "Multi-station iron worker for punching, shearing, and notching structural steel",
+        description:
+          "The ADK Iron Worker combines punching, shearing, and notching stations for angle, flat, and structural sections — a compact workhorse for fabrication shops preparing steel before welding.",
+        status: "READY",
+        image: IMG_PRESS,
+        specsSummary: {
+          Models: "ADK Iron Worker",
+          Stations: "Multi-station",
+          Duty: "Structural steel",
+        },
+        features: [
+          "Punching, shearing, and notching in one machine",
+          "Ideal for angle, flat bar, and structural prep",
+          "Compact footprint for job shops",
+          "Supports PEB and general fabrication workflows",
+        ],
+        specifications: [
+          { label: "Model", value: "ADK Iron Worker" },
+          { label: "Functions", value: "Punch / shear / notch (configuration dependent)" },
+          { label: "Application", value: "Structural steel preparation" },
+          { label: "Contact", value: "Share section sizes for a station configuration quote" },
+        ],
+      },
+      {
+        id: "NL-LASER-ROBOT",
+        name: "CNC Fiber Laser Cutting Machine Robot",
+        slug: "cnc-fiber-laser-cutting-robot",
+        tagline: "Newly launched (print catalogue) — robotic fiber laser cutting cell",
+        description:
+          "Listed under Newly Launched Products in the ADK print catalogue. Robotic CNC fiber laser cutting for 3D parts, tubes, and fixtures that flat-bed lasers cannot reach — distinct from the 3D Fiber Laser Welding robot.",
+        status: "CUSTOM",
+        image: IMG_LASER,
+        specsSummary: {
+          Models: "ADK Laser Cutting Robot",
+          Type: "Robotic cell",
+          Process: "Fiber laser cut",
+        },
+        features: [
+          "Robot-mounted fiber laser for 3D cutting",
+          "Suited to fixtures, formed parts, and tube assemblies",
+          "Programmable production paths",
+          "Complements flat-bed FL Series lasers",
+        ],
+        specifications: [
+          { label: "Model", value: "ADK CNC Fiber Laser Cutting Machine Robot" },
+          { label: "Process", value: "Robotic fiber laser cutting" },
+          { label: "Application", value: "3D parts, formed sheets, tube assemblies" },
+          { label: "Contact", value: "Share CAD parts for a cell feasibility review" },
+        ],
+      },
+      {
+        id: "NL-BUSBAR",
+        name: "Busbar Processing Machine",
+        slug: "busbar-processing-machine",
+        tagline: "Punch, bend, and cut copper and aluminium busbars for electrical panels",
+        description:
+          "Busbar processing machines punch, bend, and cut copper and aluminium busbars for switchgear and control panel manufacturers — reducing manual marking and drilling on electrical shop floors.",
+        status: "READY",
+        image: IMG_PRESS,
+        specsSummary: {
+          Models: "ADK Busbar",
+          Materials: "Cu / Al",
+          Use: "Switchgear",
+        },
+        features: [
+          "Punch, bend, and cut busbars in one workflow",
+          "Copper and aluminium busbar processing",
+          "Built for panel and switchgear shops",
+          "Reduces manual layout and drilling time",
+        ],
+        specifications: [
+          { label: "Model", value: "ADK Busbar Processing Machine" },
+          { label: "Materials", value: "Copper and aluminium busbars" },
+          { label: "Application", value: "Electrical panels, switchgear, control cabinets" },
+          { label: "Contact", value: "Share busbar width and thickness for a quote" },
+        ],
+      },
+      {
+        id: "NL-PIPE-BEND",
+        name: "CNC Pipe Bending Machine",
+        slug: "cnc-pipe-bending-machine",
+        tagline: "CNC pipe and tube bending for furniture, automotive, and process piping",
+        description:
+          "CNC pipe bending machines form tubes and pipes to programmed radii for furniture frames, automotive exhaust and chassis tubes, and process piping — with repeatable CNC control.",
+        status: "READY",
+        image: IMG_PRESS,
+        specsSummary: {
+          Models: "ADK CNC Pipe Bender",
+          Control: "CNC",
+          Duty: "Tube / pipe",
+        },
+        features: [
+          "CNC-controlled bend angles and radii",
+          "Suitable for furniture, auto, and process tubing",
+          "Repeatable production bends",
+          "Complements ADK tube laser cutting lines",
+        ],
+        specifications: [
+          { label: "Model", value: "ADK CNC Pipe Bending Machine" },
+          { label: "Control", value: "CNC programmable bends" },
+          { label: "Application", value: "Furniture frames, automotive tubes, process piping" },
+          { label: "Contact", value: "Share OD, wall thickness, and bend radius for sizing" },
+        ],
+      },
+    ],
+  },
+  {
+    id: "cat_10",
     name: "Spares & Consumables",
     slug: "spares-consumables",
     icon: "precision_manufacturing",
@@ -961,7 +1239,9 @@ const CATEGORY_MATERIALS: Record<string, string[]> = {
   "fiber-laser-welding": ["Stainless Steel", "Mild Steel", "Aluminium"],
   "peb-machinery": ["Structural Steel", "H-Beam", "I-Beam", "Plate"],
   "shearing-machine": ["Mild Steel", "Stainless Steel", "Aluminium"],
+  "v-grooving-machine": ["Stainless Steel", "Mild Steel", "Aluminium"],
   "panel-bender": ["Mild Steel", "Stainless Steel", "Aluminium", "Galvanized Sheet"],
+  "newly-launched-products": ["Mild Steel", "Stainless Steel", "Copper", "Aluminium"],
   "spares-consumables": [
     "Cutting Heads",
     "Nozzles",
@@ -984,9 +1264,12 @@ export const categories: ProductCategory[] = rawCategories.map((cat) => ({
 // Slug reference for applications recommendedMachines:
 // industrial-pioneer-exchange-table, futuristic-laser-series, single-pallet-es-series,
 // dual-position-exchange-table, professional-tube-cutting, tube-plate-lnr-series,
-// gantry-plasma-cutting, table-portable-plasma, nadkpress-cnc-press-brake,
-// 4in1-fiber-laser-welding, peb-h-beam-welding, peb-saw-gantry-welding,
-// hydraulic-shearing-machine, adk-panel-bender-series, spares-consumables-catalogue
+// gantry-plasma-cutting, table-type-plasma, portable-plasma, nadkpress-cnc-press-brake,
+// nc-press-brake, tandem-heavy-tonnage-press-brake, 4in1-fiber-laser-welding,
+// 3d-fiber-laser-welding-robot, peb-h-beam-welding, peb-saw-gantry-welding,
+// hydraulic-shearing-machine, v-grooving-machine-series, adk-panel-bender-series,
+// iron-worker, cnc-fiber-laser-cutting-robot, busbar-processing-machine,
+// cnc-pipe-bending-machine, spares-consumables-catalogue
 
 export const applications: IndustryApplication[] = [
   {
@@ -1024,6 +1307,27 @@ export const applications: IndustryApplication[] = [
     solutions: ["Servo-driven panel benders bending multiple profiles in under 20 seconds", "Laser cutting lines with integrated shuttle tables for non-stop feeding"],
     recommendedMachines: ["adk-panel-bender-series", "industrial-pioneer-exchange-table"],
   heroImage: applicationHeroPath("automobile"),
+  },
+  {
+    id: "app_arch",
+    name: "Architecture",
+    slug: "architecture",
+    icon: "apartment",
+    tagline: "Architectural cladding, elevator interiors, and decorative stainless panels.",
+    description:
+      "Architectural metalwork needs crisp folds, clean edges, and finish-ready stainless or coated panels for facades, lobbies, and elevator cabins.",
+    challenges: [
+      "Sharp architectural radii without cracking coated or stainless sheet",
+      "Cosmetic surface quality on visible cladding panels",
+      "Repeatable panel geometry across large facade packages",
+    ],
+    solutions: [
+      "V-grooving before folding for tight decorative radii",
+      "Fiber laser cutting with nitrogen for oxide-free stainless edges",
+      "Panel benders for repeat enclosure and cabin geometries",
+    ],
+    recommendedMachines: ["v-grooving-machine-series", "adk-panel-bender-series", "industrial-pioneer-exchange-table"],
+    heroImage: applicationHeroPath("architecture"),
   },
   {
     id: "app_04",
@@ -1256,6 +1560,34 @@ export const capabilityHighlights: CapabilityHighlight[] = [
 ];
 
 export const blogPosts: BlogPost[] = [
+  {
+    id: "bp_04",
+    title: "Specifying a PEB H-Beam Welding Line for Indian Fabricators",
+    slug: "peb-h-beam-welding-line-guide",
+    category: "PEB Machinery",
+    heroImage: blogHeroPath("peb-h-beam-welding-line-guide"),
+    summary:
+      "How to size H-beam welding capacity for PEB shops — bed length, flange thickness, SAW vs gantry, and the throughput traps that slow Indian fabricators.",
+    content:
+      "Pre-engineered building (PEB) fabricators win on schedule only when the welding line matches the beam mix they actually ship. Oversized gantries waste floor space; undersized lines create night-shift bottlenecks on thick flanges and long columns.\n\nADK PEB machinery covers H-beam welding and SAW gantry configurations so shops can align capital spend with the spans and sections in their order book.\n\n### Start With the Beam Mix\nPull six months of shipped beams: length bands, flange thickness, and web height. If most work sits under 12 m with moderate flanges, a compact H-beam welding line often beats a long gantry on cost per ton. When columns regularly exceed 18–24 m or flanges climb into heavy plate, plan for extended bed length and a SAW gantry that keeps heat input and travel speed consistent.\n\n### SAW vs Dedicated H-Beam Lines\nDedicated H-beam welding lines excel at repeat I/H sections with fixtures that hold web and flange alignment through the pass. SAW gantry systems add flexibility when you also weld plates, girders, or non-standard assemblies on the same floor. Many PEB plants run both: a dedicated line for standard rafters and columns, and a gantry for odd lengths and thick plate work.\n\n### Throughput Traps to Avoid\n- **Fixture changeovers** that eat more time than the weld itself.\n- **No plan for flange prep** — torch cutting and grinding before the weld bay.\n- **Ignoring crane reach** between cutting, fitting, and welding stations.\n- **Buying length without duty cycle** — a long bed that sits idle between sparse long-beam jobs.\n\n### Practical Spec Checklist\n- Match bed length to the 90th percentile of your longest regular beams, not the one-off outlier.\n- Confirm flange and web thickness ranges against your thickest recurring section.\n- Budget floor space for infeed, outfeed, and crane swing — not just the machine footprint.\n- Ask for training on parameter sets for the steel grades you buy most often.\n\n### Summary\n- **Standard PEB mix**: Dedicated H-beam welding line sized to your common spans.\n- **Heavy / long columns**: Extended bed + SAW gantry capacity.\n- **Mixed fab**: Combine dedicated PEB welding with gantry flexibility.\n\nFor a line shortlist matched to your beam history, contact inquiry1@adkeng.com or call +91 92270 85416.",
+    date: "August 18, 2026",
+    readTime: "6 min read",
+    author: "Engineering Dept ADK",
+  },
+  {
+    id: "bp_05",
+    title: "What ADK On-Site Installation and Calibration Actually Includes",
+    slug: "adk-installation-calibration-guide",
+    category: "Service & Support",
+    heroImage: blogHeroPath("adk-installation-calibration-guide"),
+    summary:
+      "From foundation checks to first production nests — what happens when ADK engineers install a machine, calibrate optics or crowning, and train your operators.",
+    content:
+      "Buying a machine is only half the project. The other half is getting it level, aligned, parameterised, and into the hands of operators who can run a full shift without guesswork. ADK includes on-site mechanical installation, optical or axis calibration, and operator training with every machine purchase.\n\nKnowing what that visit covers helps you prepare the shop floor so commissioning days are productive instead of spent waiting on civil work or power.\n\n### Before the Crew Arrives\nConfirm foundation drawings, power (typically 3-phase 380V/50Hz for laser and press systems), assist-gas supply for cutting, and crane access for unloading. Clear the bed footprint plus service aisles. Have sample materials and thicknesses ready for acceptance cuts or bends.\n\n### Mechanical Installation\nEngineers position and level the machine, connect utilities, and verify safety systems (guards, light curtains, E-stops). For lasers this includes table, gantry, and enclosure checks. For press brakes it includes bed alignment and crowning system verification. PEB and plasma systems get similar mechanical and travel checks on their rails or beds.\n\n### Calibration and First Jobs\nOptical calibration on fiber lasers locks beam path and focus for the bed size you bought. Press brakes get crowning and axis checks so angles stay consistent along the length. The team then runs representative nests or bends on your material so parameters match your shop — not a demo plate from another city.\n\n### Operator Training\nTraining covers safety, daily checks, material/parameter selection, nesting or bend programming basics, and routine preventive maintenance. The goal is a crew that can start the next shift without calling support for every thickness change.\n\n### After Handover\nRegional service hubs in Ahmedabad, Pune, Nashik, Nagpur, Kolhapur, Indore, Kolkata, and Bhopal back the install. Use service@adkeng.com or +91 95100 41629 / +91 82008 52505 when you need a callback. Spares: spares@adkeng.com or +91 63526 43947.\n\n### Checklist\n- **You prepare**: foundation, power, gas, crane, sample material.\n- **ADK delivers**: install, calibrate, train, acceptance runs.\n- **You keep**: documented parameters and a service contact path.\n\nVisit the Ahmedabad Experience Center if you want to see calibration and demo cuts before you buy — or request a video demonstration with an application engineer.",
+    date: "August 12, 2026",
+    readTime: "5 min read",
+    author: "Technical Team ADK",
+  },
   {
     id: "bp_01",
     title: "Understanding Fiber Laser Power Requirements for Sheet Metal",

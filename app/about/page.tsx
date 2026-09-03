@@ -20,7 +20,7 @@ const principles = [
   {
     eyebrow: "Vision",
     title: "Machines that earn their keep after the first year.",
-    body: "Supplied and configured to your exact specifications, serviced nationwide from eight regional offices.",
+    body: "Supplied and configured to your exact specifications, serviced nationwide from ten regional offices.",
   },
   {
     eyebrow: "Slogan",
@@ -30,7 +30,7 @@ const principles = [
 ];
 
 const familyLineup = [
-  { model: "Fiber laser cutting", slug: "fiber-laser-cutting", image: "/assets/adk/studio-fiber.jpg" },
+  { model: "Fiber laser cutting", slug: "fiber-laser-cutting", image: "/assets/adk/studio-fiber.png" },
   { model: "CNC plasma cutting", slug: "cnc-plasma-cutting", image: "/assets/adk/studio-plasma.jpg" },
   { model: "CNC press brake", slug: "cnc-press-brake", image: "/assets/adk/studio-press.jpg" },
   { model: "Fiber laser welding", slug: "fiber-laser-welding", image: "/assets/adk/studio-welder.jpg" },
@@ -159,7 +159,7 @@ export default function AboutPage() {
               <p className="mt-3 text-sm text-steel-muted font-sans">Installations on the floor</p>
             </div>
             <div>
-              <p className="font-display text-4xl leading-none md:text-5xl font-bold">8</p>
+              <p className="font-display text-4xl leading-none md:text-5xl font-bold">10</p>
               <p className="mt-3 text-sm text-steel-muted font-sans">Branch offices with service engineers</p>
             </div>
           </div>

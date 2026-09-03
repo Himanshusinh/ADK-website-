@@ -9,7 +9,7 @@ export interface NavChildLink {
 
 export interface NavItem {
   label: string;
-  path: string; 
+  path: string;
   mega?: MegaMenuId;
   children?: NavChildLink[];
   activePaths?: string[];
@@ -19,17 +19,25 @@ export const featuredProductSlugs = [
   "fiber-laser-cutting",
   "cnc-plasma-cutting",
   "cnc-press-brake",
+  "fiber-laser-welding",
+  "v-grooving-machine",
   "panel-bender",
   "peb-machinery",
+  "newly-launched-products",
 ] as const;
 
 export const productCompactLinks: NavChildLink[] = [
-  { label: "All Products", path: "/products" },
+  { label: "All Products", path: "/products", icon: "grid_view" },
   { label: "Fiber Laser", path: "/products/fiber-laser-cutting", icon: "flare" },
   { label: "CNC Plasma", path: "/products/cnc-plasma-cutting", icon: "precision_manufacturing" },
   { label: "Press Brake", path: "/products/cnc-press-brake", icon: "architecture" },
-  { label: "Panel Bender", path: "/products/panel-bender", icon: "view_in_ar" },
+  { label: "Laser Welding", path: "/products/fiber-laser-welding", icon: "flare" },
+  { label: "V Grooving", path: "/products/v-grooving-machine", icon: "architecture" },
   { label: "PEB Machinery", path: "/products/peb-machinery", icon: "foundation" },
+  { label: "Shearing", path: "/products/shearing-machine", icon: "content_cut" },
+  { label: "Panel Bender", path: "/products/panel-bender", icon: "view_in_ar" },
+  { label: "Newly Launched", path: "/products/newly-launched-products", icon: "new_releases" },
+  { label: "Spares", path: "/products/spares-consumables", icon: "build" },
 ];
 
 export const solutionsCompactLinks: NavChildLink[] = [
@@ -89,6 +97,7 @@ export const primaryNav: NavItem[] = [
       "/news",
       "/career",
       "/resources",
+      "/resources/blog",
     ],
   },
 ];

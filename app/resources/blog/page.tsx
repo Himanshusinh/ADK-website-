@@ -43,7 +43,7 @@ export default function BlogHubPage() {
               >
                 <div className="aspect-[16/9] overflow-hidden border-b border-rule bg-steel relative">
                   <img
-                    src="/redesigned/workshop.jpg"
+                    src={post.heroImage ?? "/redesigned/workshop.jpg"}
                     alt={post.title}
                     className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-700"
                   />
