@@ -14,59 +14,59 @@ import { clientMarqueeRowA, clientMarqueeRowB } from "@/lib/data";
 const productCategories = [
   {
     id: "sheet-laser",
-    label: "Sheet laser",
+    label: "Fiber Laser Cutting",
     slug: "fiber-laser-cutting",
-    title: "Fiber laser cutting",
+    title: "FIBER LASER CUTTING MACHINE",
     blurb:
       "Exchange-table, single-pallet and 24 m plate lasers to 60 kW. ±0.03 mm, 100 m/min, RAYCUS / IPG / MAX sources.",
     lineup: "hero",
   },
   {
     id: "plasma",
-    label: "Plasma",
+    label: "CNC Plasma Cutting",
     slug: "cnc-plasma-cutting",
-    title: "CNC plasma cutting",
+    title: "CNC PLASMA CUTTING MACHINE",
     blurb:
       "Gantry, table and portable systems with Hypertherm sources for thick plate and structural steel.",
     lineup: "hero",
   },
   {
     id: "press-brake",
-    label: "Press brake",
+    label: "CNC Press Brake",
     slug: "cnc-press-brake",
-    title: "CNC press brake",
+    title: "CNC PRESS BRAKE MACHINE",
     blurb: "40 T to 800 T. Servo main drive, DSP laser guard, mechanical crowning, 4 to 9 axis.",
     lineup: "hero",
   },
   {
-    id: "welding",
-    label: "Welding",
-    slug: "fiber-laser-welding",
-    title: "Fiber laser welding",
-    blurb: "4-in-1 handheld fiber welding: weld, clean, cut and wire feed from one source.",
-    lineup: "forming",
-  },
-  {
     id: "panel-bender",
-    label: "Panel bender",
+    label: "Panel Bender",
     slug: "panel-bender",
-    title: "Panel benders",
+    title: "PANEL BENDER MACHINE",
     blurb: "Universal die, 0.2 seconds per bend, no tooling changes. Panels to 2500 mm.",
     lineup: "forming",
   },
   {
+    id: "welding",
+    label: "Laser Welding",
+    slug: "fiber-laser-welding",
+    title: "LASER WELDING MACHINE",
+    blurb: "4-in-1 handheld fiber welding: weld, clean, cut and wire feed from one source.",
+    lineup: "forming",
+  },
+  {
     id: "peb",
-    label: "PEB line",
+    label: "PEB Line",
     slug: "peb-machinery",
-    title: "PEB machinery",
+    title: "PEB MACHINERY",
     blurb: "H-beam welding and SAW gantry systems for pre-engineered buildings.",
     lineup: "forming",
   },
   {
     id: "shearing",
-    label: "Shearing",
-    slug: "shearing",
-    title: "Hydraulic shears",
+    label: "Hydraulic Shears",
+    slug: "shearing-machine",
+    title: "HYDRAULIC SHEARING MACHINE",
     blurb: "Plate preparation and edge trimming before the laser or the brake.",
     lineup: "shear",
   },
@@ -74,51 +74,51 @@ const productCategories = [
 
 const heroLineup = [
   {
-    model: "Fiber laser cutting",
+    model: "FIBER LASER CUTTING MACHINE",
     note: "1 kW – 60 kW",
     slug: "fiber-laser-cutting",
-    image: "/assets/adk/studio-fiber.jpg",
+    image: "/ADK product images/fiber laser cutting machine/ChatGPT Image Aug 26, 2026, 12_02_49 PM.png",
   },
   {
-    model: "CNC plasma cutting",
+    model: "CNC PLASMA CUTTING MACHINE",
     note: "Gantry · Hypertherm",
     slug: "cnc-plasma-cutting",
-    image: "/assets/adk/studio-plasma.jpg",
+    image: "/ADK product images/CNC plazma cutting machine/a2afb5aa-7812-4b39-9366-fa29f01a37a0.png",
   },
   {
-    model: "CNC press brake",
+    model: "CNC PRESS BRAKE MACHINE",
     note: "40 T – 800 T",
     slug: "cnc-press-brake",
-    image: "/assets/adk/studio-press.jpg",
+    image: "/ADK product images/CNC Press brake machine/5c7c27c6-c60a-40f0-950b-b929bf24b7b9.png",
   },
 ];
 
 const formingLineup = [
   {
-    model: "Fiber laser welding",
-    note: "4-in-1 weld / clean / cut",
-    slug: "fiber-laser-welding",
-    image: "/assets/adk/studio-welder.jpg",
-  },
-  {
-    model: "Panel bender",
+    model: "PANEL BENDER MACHINE",
     note: "0.2 s per bend",
     slug: "panel-bender",
-    image: "/assets/adk/studio-panel.jpg",
+    image: "/ADK product images/Panel Bender/6ccbcbe7-e9c0-469a-9c5d-1c31c2d1f83b.png",
   },
   {
-    model: "PEB machinery",
+    model: "LASER WELDING MACHINE",
+    note: "4-in-1 weld / clean / cut",
+    slug: "fiber-laser-welding",
+    image: "/ADK product images/Fiber Laser Welding machine/aa70e19f-c67a-435d-8b31-b0c10be39751.png",
+  },
+  {
+    model: "PEB MACHINERY",
     note: "H-beam welding and SAW gantry",
     slug: "peb-machinery",
-    image: "/assets/adk/studio-peb.jpg",
+    image: "/ADK product images/PEB Machinery/11449a4d-ca3f-4e66-878a-1ddfea8f62ed.png",
   },
 ];
 
 const shearCard = {
-  model: "Hydraulic shears",
+  model: "HYDRAULIC SHEARING MACHINE",
   note: "Plate preparation",
-  slug: "shearing",
-  image: "/assets/adk/studio-shear.jpg",
+  slug: "shearing-machine",
+  image: "/ADK product images/Shearing Machine/7c87af1d-c7ab-4576-a291-651722f272d7.png",
 };
 
 const customerCases = [
@@ -263,25 +263,29 @@ export default function Home() {
             Shaping tomorrow.
           </h1>
           <p className="mt-6 max-w-xl text-base text-steel-muted md:text-lg font-sans leading-relaxed">
-            Fiber laser cutting to 60 kW, CNC plasma, CNC press brakes, 4-in-1 laser welding, panel
-            benders, PEB lines and shears. Serviced nationwide from eight offices.
+            Fiber laser cutting machines up to 60 kW, CNC plasma cutting machines, CNC press brakes, panel
+            benders, laser welding machines, PEB lines and shearing machines. Serviced nationwide from eight offices.
           </p>
-          <ul className="mt-6 space-y-1 text-sm text-steel-muted font-sans">
-            <li className="flex items-center gap-2">
-              <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-              <span>Fiber laser cutting up to 60 kW</span>
+          <ul className="mt-6 space-y-2.5 text-sm md:text-base font-display font-bold text-steel-foreground uppercase tracking-wide">
+            <li className="flex items-center gap-3">
+              <span className="h-2 w-2 rounded-full bg-accent shrink-0" />
+              <span>FIBER LASER CUTTING MACHINE</span>
             </li>
-            <li className="flex items-center gap-2">
-              <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-              <span>CNC plasma systems · Hypertherm</span>
+            <li className="flex items-center gap-3">
+              <span className="h-2 w-2 rounded-full bg-accent shrink-0" />
+              <span>CNC PLASMA CUTTING MACHINE</span>
             </li>
-            <li className="flex items-center gap-2">
-              <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-              <span>CNC press brakes and panel benders</span>
+            <li className="flex items-center gap-3">
+              <span className="h-2 w-2 rounded-full bg-accent shrink-0" />
+              <span>CNC PRESS BRAKE MACHINE</span>
             </li>
-            <li className="flex items-center gap-2">
-              <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-              <span>850+ installations across India</span>
+            <li className="flex items-center gap-3">
+              <span className="h-2 w-2 rounded-full bg-accent shrink-0" />
+              <span>PANEL BENDER MACHINE</span>
+            </li>
+            <li className="flex items-center gap-3">
+              <span className="h-2 w-2 rounded-full bg-accent shrink-0" />
+              <span>LASER WELDING MACHINE</span>
             </li>
           </ul>
           <div className="mt-9 flex flex-wrap gap-3">
@@ -316,8 +320,8 @@ export default function Home() {
                 type="button"
                 onClick={() => setActiveTab(i)}
                 className={`relative pb-4 text-sm font-medium whitespace-nowrap transition-colors duration-500 cursor-pointer ${i === activeTab
-                    ? "text-foreground font-bold"
-                    : "text-muted-foreground hover:text-foreground"
+                  ? "text-foreground font-bold"
+                  : "text-muted-foreground hover:text-foreground"
                   }`}
               >
                 {cat.label}

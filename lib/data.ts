@@ -428,7 +428,7 @@ const rawCategories: ProductCategory[] = [
         description:
           "The FL Series Industrial Pioneer features a super heavy steel pipe welded bed with quick exchange table that significantly improves production efficiency and saves labour costs. Models ADK FL 3015C through ADK FL 6525C cover working areas from 3000×1500 mm to 6500×2500 mm.",
         status: "IN_STOCK",
-        image: IMG_LASER,
+        image: "/ADK product images/fiber laser cutting machine/ChatGPT Image Aug 26, 2026, 12_02_49 PM.png",
         specsSummary: {
           Models: "ADK FL 3015C – 6525C",
           Speed: "100 m/min",
@@ -457,7 +457,7 @@ const rawCategories: ProductCategory[] = [
         description:
           "The FL Series High-Power Large Format is built for super large heavy-duty production. These high-power machines deliver excellent cutting ability on larger plates with smooth cutting finish. India's first 30KW installation was from this series.",
         status: "CUSTOM",
-        image: IMG_LASER,
+        image: "/ADK product images/fiber laser cutting machine/c241836d-4276-4292-bed0-7a6e11bab879.png",
         specsSummary: {
           Models: "ADK FL 8025SL – 24035SL",
           Max_Length: "24 m",
@@ -486,7 +486,7 @@ const rawCategories: ProductCategory[] = [
         description:
           "Single pallet machines with standard and custom table sizes. Easy loading and unloading, cost-effective and user-friendly — this innovative development captures high market share in its class.",
         status: "IN_STOCK",
-        image: IMG_LASER,
+        image: "/ADK product images/fiber laser cutting machine/ChatGPT Image Aug 26, 2026, 12_05_03 PM.png",
         specsSummary: {
           Models: "ADK FL 3015ES – 6525ES",
           Speed: "100 m/min",
@@ -515,7 +515,7 @@ const rawCategories: ProductCategory[] = [
         description:
           "Designed for higher productivity in small and medium parts cutting. Used by sheet metal fabricators, panel manufacturers, cabinet makers, and equipment producers. Table exchange time is just 15–20 seconds.",
         status: "IN_STOCK",
-        image: IMG_LASER,
+        image: "/ADK product images/fiber laser cutting machine/ChatGPT Image Aug 26, 2026, 12_02_49 PM.png",
         specsSummary: {
           Models: "ADK FL 3015D – 6525D",
           Exchange: "15–20 sec",
@@ -544,7 +544,7 @@ const rawCategories: ProductCategory[] = [
         description:
           "Capable of cutting round pipes, square pipes, rectangular pipes, channel steel, angle steel, I-beams, and other profiled steel. Precision pneumatic chuck with four-jaw automatic centering clamping.",
         status: "READY",
-        image: IMG_LASER,
+        image: "/ADK product images/fiber laser cutting machine/c241836d-4276-4292-bed0-7a6e11bab879.png",
         specsSummary: {
           Models: "ADK FL-GKS 6016T2 – 12036BT3",
           Pipe_Range: "10–250 mm",
@@ -581,7 +581,7 @@ const rawCategories: ProductCategory[] = [
         description:
           "The FL-LNR Series meets the dual requirements of cutting pipes and sheets in a single machine, saving floor space and capital investment. Optional automatic loading/unloading and three-chuck configurations available.",
         status: "CUSTOM",
-        image: IMG_LASER,
+        image: "/ADK product images/fiber laser cutting machine/ChatGPT Image Aug 26, 2026, 12_05_03 PM.png",
         specsSummary: {
           Models: "ADK FL-LNR Series",
           Function: "Tube + Plate",
@@ -619,7 +619,7 @@ const rawCategories: ProductCategory[] = [
         description:
           "Heavy duty gantry type structure with dual shaft linear motion guide, rack & pinion drive, anti-collision system, and high-tension cup spring backlash compensation. Hypertherm plasma sources from PMX 45 to MAXPRO 200.",
         status: "READY",
-        image: IMG_LASER,
+        image: "/ADK product images/CNC plazma cutting machine/a2afb5aa-7812-4b39-9366-fa29f01a37a0.png",
         specsSummary: {
           Models: "ADK PL 2508 – 5508 P/F",
           Speed: "0–12000 mm/min",
@@ -648,7 +648,7 @@ const rawCategories: ProductCategory[] = [
         description:
           "Table type and portable CNC plasma systems for workshops needing flexible deployment. Track widths from 2500 mm and above with customizable track lengths up to 8000 mm and beyond.",
         status: "READY",
-        image: IMG_LASER,
+        image: "/ADK product images/CNC plazma cutting machine/30e5a74f-1939-46de-88a1-50ecd26ed8ef.png",
         specsSummary: {
           Models: "ADK PL Table / Portable",
           Track: "Up to 8000+ mm",
@@ -688,7 +688,7 @@ const rawCategories: ProductCategory[] = [
         description:
           "The whole frame adopts integrated welding with tempering to eliminate internal stress. Y1/Y2 axis synchronous ram control, servo main motor (60% lower energy than conventional), and high-frequency hydraulic control for faster, more stable bending.",
         status: "READY",
-        image: IMG_PRESS,
+        image: "/ADK product images/CNC Press brake machine/5c7c27c6-c60a-40f0-950b-b929bf24b7b9.png",
         specsSummary: {
           Models: "ADK PB Series",
           Tonnage: "40T – 800T",
@@ -730,7 +730,7 @@ const rawCategories: ProductCategory[] = [
         description:
           "The ADK LW Series 4-in-1 laser welding system delivers high speed, better finishing, no need for grinder, low operating cost, low heat hazard, and high efficiency compared to MIG & TIG welding processes.",
         status: "IN_STOCK",
-        image: IMG_LASER,
+        image: "/ADK product images/Fiber Laser Welding machine/aa70e19f-c67a-435d-8b31-b0c10be39751.png",
         specsSummary: {
           Models: "ADK LW-4IN1",
           Functions: "Weld/Clean/Cut/Feed",
@@ -770,7 +770,7 @@ const rawCategories: ProductCategory[] = [
         description:
           "The PEB Series H-Beam Welding Machine (PTW) handles web widths from 200 to 1500 mm and flange heights from 150 to 500 mm. Beam lengths from 2.5 to 15 metres with web thickness 5–20 mm and flange thickness 5–25 mm.",
         status: "CUSTOM",
-        image: IMG_PEB,
+        image: "/ADK product images/PEB Machinery/11449a4d-ca3f-4e66-878a-1ddfea8f62ed.png",
         specsSummary: {
           Models: "ADK PEB-PTW",
           Web: "200–1500 mm",
@@ -800,7 +800,7 @@ const rawCategories: ProductCategory[] = [
         description:
           "PEB Series SAW Gantry Welding Machine for larger web and flange dimensions — web up to 2500 mm, flange up to 1000 mm, with web thickness up to 80 mm for heavy structural steel fabrication.",
         status: "CUSTOM",
-        image: IMG_PEB,
+        image: "/ADK product images/PEB Machinery/7510abb7-3af5-493e-a492-27e0f4973e3f.png",
         specsSummary: {
           Models: "ADK PEB-SAW Gantry",
           Web: "200–2500 mm",
@@ -841,7 +841,7 @@ const rawCategories: ProductCategory[] = [
         description:
           "Robust hydraulic shearing machines for plate preparation and edge trimming. Available in configurations to suit different thickness and length requirements for fabrication workshops.",
         status: "READY",
-        image: IMG_PRESS,
+        image: "/ADK product images/Shearing Machine/7c87af1d-c7ab-4576-a291-651722f272d7.png",
         specsSummary: {
           Models: "ADK SH Series",
           Type: "Hydraulic Guillotine",
@@ -879,7 +879,7 @@ const rawCategories: ProductCategory[] = [
         description:
           "PB-P Series Panel Bender adopts universal bending die completing various shapes with only one set of die. Easily meets arc, hem, return, closed and other complex sheet metal bending requirements without custom tooling.",
         status: "CUSTOM",
-        image: IMG_PEB,
+        image: "/ADK product images/Panel Bender/6ccbcbe7-e9c0-469a-9c5d-1c31c2d1f83b.png",
         specsSummary: {
           Models: "ADK PB-P Series (PB1400P – PB2500P)",
           Bend_Speed: "0.2 s/bend",
@@ -920,7 +920,7 @@ const rawCategories: ProductCategory[] = [
         description:
           "ADK stocks genuine spares and consumables to keep your machinery running at peak performance. Quick dispatch from our spares department with dedicated support at spares@adkeng.com.",
         status: "IN_STOCK",
-        image: IMG_LASER,
+        image: "/ADK product images/Spares & Consumables/bcde404d-733c-47eb-bb15-f9642b519dbc.png",
         specsSummary: {
           Categories: "10+ types",
           Dispatch: "Quick delivery",
