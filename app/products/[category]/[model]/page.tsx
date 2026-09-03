@@ -61,7 +61,9 @@ export default async function ModelPage(props: ModelPageProps) {
   const siblings = category.models.filter((m) => m.slug !== model.slug);
   const brochureHref = model.brochureUrl || "/resources/catalogues";
   const heroImage =
-    category.slug === "fiber-laser-cutting"
+    category.slug === "fiber-laser-cutting" ||
+    category.slug === "newly-launched-products" ||
+    category.slug === "spares-consumables"
       ? model.image
       : (redesignedImageMap[category.slug] ?? model.image);
 

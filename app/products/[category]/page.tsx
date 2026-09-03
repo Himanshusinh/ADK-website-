@@ -33,7 +33,8 @@ const redesignedImageMap: Record<string, string> = {
   "panel-bender": "/assets/adk/studio-panel.jpg",
   "peb-machinery": "/assets/adk/studio-peb.jpg",
   "shearing-machine": "/assets/adk/studio-shear.jpg",
-  "spares-consumables": "/redesigned/product-fiber-laser.jpg",
+  "newly-launched-products": "/images/newly-launched/iron-worker.webp",
+  "spares-consumables": "/images/spares-consumables/consumables.webp",
 };
 
 const seriesTagMap: Record<string, string> = {
