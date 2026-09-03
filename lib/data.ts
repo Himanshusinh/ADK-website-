@@ -1067,9 +1067,9 @@ const rawCategories: ProductCategory[] = [
     name: "Newly Launched Products",
     slug: "newly-launched-products",
     icon: "new_releases",
-    tagline: "New ADK lines: Iron Worker, Laser Cutting Robot, Busbar Processing, Pipe Bending, and Turret Punch.",
+    tagline: "New ADK lines: Iron Worker, Laser Cutting Robot, Busbar Processing, and Pipe Bending.",
     description:
-      "ADK newly launched equipment expands shop floor productivity — Iron Workers, robotic fiber laser cutting cells, busbar processing units, CNC pipe benders, and CNC turret punches for electrical, architectural, and structural fabricators.",
+      "ADK newly launched equipment expands shop floor productivity — Iron Workers, robotic fiber laser cutting cells, busbar processing units, and CNC pipe benders for electrical and structural fabricators.",
     models: [
       {
         id: "NL-IRON",
@@ -1079,7 +1079,7 @@ const rawCategories: ProductCategory[] = [
         description:
           "The ADK Iron Worker combines punching, shearing, and notching stations for angle, flat bar, and structural sections — a compact workhorse for fabrication shops preparing steel before welding.",
         status: "READY",
-        image: "/images/newly-launched/iron-worker.webp",
+        image: "/new product images/iron-worker.webp",
         specsSummary: {
           Models: "ADK Iron Worker",
           Stations: "Multi-station",
@@ -1106,7 +1106,7 @@ const rawCategories: ProductCategory[] = [
         description:
           "Robotic CNC fiber laser cutting cell for 3D parts, hydroformed tubes, and fixtures that flat-bed lasers cannot reach — delivering precision multi-axis cutting for automotive and aerospace components.",
         status: "CUSTOM",
-        image: "/images/newly-launched/cnc-fiber-laser-cutting-machine-robot.webp",
+        image: "/new product images/cnc-fiber-laser-cutting-machine-robot.webp",
         specsSummary: {
           Models: "ADK Laser Cutting Robot",
           Type: "6-Axis Robotic Cell",
@@ -1133,7 +1133,7 @@ const rawCategories: ProductCategory[] = [
         description:
           "Busbar processing machines punch, bend, and cut copper and aluminium busbars for switchgear and control panel manufacturers — reducing manual marking and drilling on electrical shop floors.",
         status: "READY",
-        image: "/images/newly-launched/busbar-processing-machine.webp",
+        image: "/new product images/busbar-processing-machine.webp",
         specsSummary: {
           Models: "ADK Busbar Processor",
           Materials: "Cu / Al",
@@ -1160,7 +1160,7 @@ const rawCategories: ProductCategory[] = [
         description:
           "CNC pipe bending machines form tubes and pipes to programmed radii for furniture frames, automotive exhaust and chassis tubes, and process piping — with repeatable CNC control.",
         status: "READY",
-        image: "/images/newly-launched/cnc-pipe-bending-machine.webp",
+        image: "/new product images/cnc-pipe-bending-machine.webp",
         specsSummary: {
           Models: "ADK CNC Pipe Bender",
           Control: "CNC Multi-Axis",
@@ -1177,110 +1177,6 @@ const rawCategories: ProductCategory[] = [
           { label: "Control", value: "CNC programmable bends" },
           { label: "Application", value: "Furniture frames, automotive tubes, process piping" },
           { label: "Contact", value: "Share OD, wall thickness, and bend radius for sizing" },
-        ],
-      },
-      {
-        id: "NL-TURRET-PUNCH",
-        name: "CNC Turret Punch",
-        slug: "cnc-turret-punch",
-        tagline: "High-speed CNC turret punch press for high-volume perforated sheet metal",
-        description:
-          "ADK CNC Turret Punch Press offers rapid punching, forming, and louvering for HVAC panels, enclosures, and perforated sheets with minimal tool change time.",
-        status: "READY",
-        image: "/images/newly-launched/cnc-turret-punch.webp",
-        specsSummary: {
-          Models: "ADK Turret Punch",
-          Process: "Punch & Form",
-          Speed: "High Speed",
-        },
-        features: [
-          "High-speed CNC turret punch auto-indexing station",
-          "Ideal for HVAC louvers, electrical boxes, and cabinets",
-          "Low operating cost for repetitive sheet perforation",
-          "Auto tool lubrication and scrap conveyor",
-        ],
-        specifications: [
-          { label: "Model", value: "ADK CNC Turret Punch" },
-          { label: "Turret Stations", value: "Multi-station auto-indexing turret" },
-          { label: "Applications", value: "Enclosures, HVAC louvers, cabinet manufacturing" },
-          { label: "Contact", value: "Inquire for bed size and tonnage specifications" },
-        ],
-      },
-      {
-        id: "NL-3D-WELDER",
-        name: "3D Fiber Laser Welding Machine Robot",
-        slug: "3d-fiber-laser-welding-robot",
-        tagline: "Articulated robotic arm 3D laser welding cell for complex automotive assemblies",
-        description:
-          "The 3D Fiber Laser Welding Machine Robot couples a fiber laser source with a 6-axis robot for flexible spatial seam welding on complex automotive, aerospace, and enclosure assemblies.",
-        status: "CUSTOM",
-        image: "/images/newly-launched/3d-fiber-laser-welding-machine-robot.webp",
-        specsSummary: {
-          Models: "ADK 3D Laser Welder",
-          Type: "6-Axis Robot Arm",
-          Process: "Spatial Laser Seam",
-        },
-        features: [
-          "6-axis articulated robot for complex 3D laser welding",
-          "High welding speed with zero thermal distortion",
-          "Integrates with automatic loading jigs and turntables",
-          "Replaces multi-pass TIG welding on complex profiles",
-        ],
-        specifications: [
-          { label: "Model", value: "3D Fiber Laser Welding Machine Robot" },
-          { label: "Laser Power", value: "1.5 kW – 6 kW Fiber Laser" },
-          { label: "Robot Reach", value: "6-Axis articulated arm (Custom payload)" },
-          { label: "Applications", value: "Automotive body parts, battery packs, aerospace components" },
-        ],
-      },
-      {
-        id: "NL-V-GROOVE",
-        name: "V Grooving Machine",
-        slug: "v-grooving-machine-new",
-        tagline: "Precision V-groove scoring for sharp architectural bends and stainless panels",
-        description:
-          "ADK V Grooving Machine scores controlled V-channels along fold lines so metal sheets fold with minimal radius — ideal for architectural cladding, elevator cabins, and high-finish stainless.",
-        status: "READY",
-        image: "/images/newly-launched/v-grooving-machine.webp",
-        specsSummary: {
-          Models: "ADK V-Groover",
-          Process: "V-Groove Score",
-          Duty: "Architectural",
-        },
-        features: [
-          "Precise V-channel scoring for sharp architectural bends",
-          "Suitable for stainless and mild steel decorative panels",
-          "Essential for elevator interior, cladding, and furniture fab",
-        ],
-        specifications: [
-          { label: "Model", value: "ADK V Grooving Machine" },
-          { label: "Process", value: "V-groove scoring for fold lines" },
-          { label: "Materials", value: "Stainless steel, mild steel, aluminium" },
-        ],
-      },
-      {
-        id: "NL-PANEL-BENDER",
-        name: "Panel Bender",
-        slug: "panel-bender-new",
-        tagline: "Universal die automated panel bender — 0.2s per bend with no tooling changes",
-        description:
-          "Newly launched automated panel bender equipped with universal bending dies to execute arc, hem, return, and closed profile bends without custom tooling.",
-        status: "CUSTOM",
-        image: "/images/newly-launched/panel-bender.webp",
-        specsSummary: {
-          Models: "ADK Panel Bender",
-          Speed: "0.2 s/bend",
-          Tooling: "Universal Die",
-        },
-        features: [
-          "Universal bending die — no manual tooling changes",
-          "0.2 seconds per bend fast cycle time",
-          "Handles complex panel boxes and enclosures",
-        ],
-        specifications: [
-          { label: "Model", value: "ADK Panel Bender" },
-          { label: "Bend Speed", value: "0.2 s/bend" },
-          { label: "Applications", value: "Steel doors, HVAC panels, elevator doors, cabinet boxes" },
         ],
       },
     ],
