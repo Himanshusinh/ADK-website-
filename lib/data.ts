@@ -1233,6 +1233,56 @@ const rawCategories: ProductCategory[] = [
           { label: "Applications", value: "Automotive body parts, battery packs, aerospace components" },
         ],
       },
+      {
+        id: "NL-V-GROOVE",
+        name: "V Grooving Machine",
+        slug: "v-grooving-machine-new",
+        tagline: "Precision V-groove scoring for sharp architectural bends and stainless panels",
+        description:
+          "ADK V Grooving Machine scores controlled V-channels along fold lines so metal sheets fold with minimal radius — ideal for architectural cladding, elevator cabins, and high-finish stainless.",
+        status: "READY",
+        image: "/images/newly-launched/v-grooving-machine.webp",
+        specsSummary: {
+          Models: "ADK V-Groover",
+          Process: "V-Groove Score",
+          Duty: "Architectural",
+        },
+        features: [
+          "Precise V-channel scoring for sharp architectural bends",
+          "Suitable for stainless and mild steel decorative panels",
+          "Essential for elevator interior, cladding, and furniture fab",
+        ],
+        specifications: [
+          { label: "Model", value: "ADK V Grooving Machine" },
+          { label: "Process", value: "V-groove scoring for fold lines" },
+          { label: "Materials", value: "Stainless steel, mild steel, aluminium" },
+        ],
+      },
+      {
+        id: "NL-PANEL-BENDER",
+        name: "Panel Bender",
+        slug: "panel-bender-new",
+        tagline: "Universal die automated panel bender — 0.2s per bend with no tooling changes",
+        description:
+          "Newly launched automated panel bender equipped with universal bending dies to execute arc, hem, return, and closed profile bends without custom tooling.",
+        status: "CUSTOM",
+        image: "/images/newly-launched/panel-bender.webp",
+        specsSummary: {
+          Models: "ADK Panel Bender",
+          Speed: "0.2 s/bend",
+          Tooling: "Universal Die",
+        },
+        features: [
+          "Universal bending die — no manual tooling changes",
+          "0.2 seconds per bend fast cycle time",
+          "Handles complex panel boxes and enclosures",
+        ],
+        specifications: [
+          { label: "Model", value: "ADK Panel Bender" },
+          { label: "Bend Speed", value: "0.2 s/bend" },
+          { label: "Applications", value: "Steel doors, HVAC panels, elevator doors, cabinet boxes" },
+        ],
+      },
     ],
   },
   {
@@ -1622,7 +1672,7 @@ export const applications: IndustryApplication[] = [
     challenges: ["No-taper profiles for complex aluminum alloys", "Extremely tight material traceability and repeatability", "Thermal stress minimization in heat-treated components"],
     solutions: ["Dynamic gantry lasers with autofocus sensors calibrating heights based on sheet topology", "Closed-loop servo-controlled press brakes maintaining bend tolerances within 0.05 degrees"],
     recommendedMachines: ["industrial-pioneer-exchange-table", "nadkpress-cnc-press-brake"],
-  heroImage: applicationHeroPath("aerospace"),
+    heroImage: applicationHeroPath("aerospace"),
   },
   {
     id: "app_02",
@@ -1634,7 +1684,7 @@ export const applications: IndustryApplication[] = [
     challenges: ["Cracking at bend zones of high-yield-strength plates", "Heavy rust and oxidation scale on storage-yard sheets", "Consistent weld joints on thick-walled structures"],
     solutions: ["Guillotine shearing with variable rake and blade gap adjusters", "High-definition plasma cutting on dedicated water tables"],
     recommendedMachines: ["gantry-plasma-cutting", "hydraulic-shearing-machine"],
-  heroImage: applicationHeroPath("agriculture"),
+    heroImage: applicationHeroPath("agriculture"),
   },
   {
     id: "app_03",
@@ -1646,7 +1696,7 @@ export const applications: IndustryApplication[] = [
     challenges: ["Short cycle times for complex panel forming", "Integration with robotic welding lines", "High surface finish requirements for body parts"],
     solutions: ["Servo-driven panel benders bending multiple profiles in under 20 seconds", "Laser cutting lines with integrated shuttle tables for non-stop feeding"],
     recommendedMachines: ["adk-panel-bender-series", "industrial-pioneer-exchange-table"],
-  heroImage: applicationHeroPath("automobile"),
+    heroImage: applicationHeroPath("automobile"),
   },
   {
     id: "app_arch",
@@ -1679,7 +1729,7 @@ export const applications: IndustryApplication[] = [
     challenges: ["Complex weld bevel preparations on heavy curved plates", "Contamination-free sheet metal profiling", "High quality welding with zero micro-cracks or voids"],
     solutions: ["CNC plasma beveling for V/K bevel preparation profiles", "4-in-1 fiber laser welding for robust joints without structural embrittlement"],
     recommendedMachines: ["gantry-plasma-cutting", "4in1-fiber-laser-welding"],
-  heroImage: applicationHeroPath("chemical-plant"),
+    heroImage: applicationHeroPath("chemical-plant"),
   },
   {
     id: "app_05",
@@ -1691,7 +1741,7 @@ export const applications: IndustryApplication[] = [
     challenges: ["Multi-bend profiles requiring frequent tooling adjustments", "Handling scratch-sensitive galvanized and pre-painted sheets", "Consistent door flange alignments"],
     solutions: ["Universal bending tools on panel benders forming box shapes automatically", "Autofocus lasers cutting ventilation patterns and cabinet holes at high speeds"],
     recommendedMachines: ["adk-panel-bender-series", "industrial-pioneer-exchange-table"],
-  heroImage: applicationHeroPath("control-panel"),
+    heroImage: applicationHeroPath("control-panel"),
   },
   {
     id: "app_06",
@@ -1703,7 +1753,7 @@ export const applications: IndustryApplication[] = [
     challenges: ["Visible press brake tooling marks on mirror-finish stainless steel panels", "Tight parallel door flange requirements", "High-volume small brackets manufacturing"],
     solutions: ["Panel bender with soft-touch clamps eliminating mechanical scratches", "Fiber laser cutting with nitrogen assist for bright, scale-free edges"],
     recommendedMachines: ["adk-panel-bender-series", "industrial-pioneer-exchange-table"],
-  heroImage: applicationHeroPath("elevators"),
+    heroImage: applicationHeroPath("elevators"),
   },
   {
     id: "app_07",
@@ -1715,7 +1765,7 @@ export const applications: IndustryApplication[] = [
     challenges: ["Time-consuming post-weld grinding and polishing on stainless steel joints", "Intricate slicing patterns for hopper and feeder systems", "High reflectivity processing"],
     solutions: ["4-in-1 laser welders making narrow, clean weld lines without burning adjacent panels", "High-transmission fiber optics cutting copper, brass, and SS sheets"],
     recommendedMachines: ["4in1-fiber-laser-welding", "industrial-pioneer-exchange-table"],
-  heroImage: applicationHeroPath("food-machinery"),
+    heroImage: applicationHeroPath("food-machinery"),
   },
   {
     id: "app_08",
@@ -1727,7 +1777,7 @@ export const applications: IndustryApplication[] = [
     challenges: ["Beveling and cutting plates up to 50mm thick", "High-power structural welding with thick wires", "Material handling and alignment of multi-ton steel sections"],
     solutions: ["High-tonnage CNC press brakes with hydraulic crowning", "SAW H-beam welding lines to automatically construct structural pillars"],
     recommendedMachines: ["nadkpress-cnc-press-brake", "peb-h-beam-welding"],
-  heroImage: applicationHeroPath("heavy-fabrication"),
+    heroImage: applicationHeroPath("heavy-fabrication"),
   },
   {
     id: "app_09",
@@ -1739,7 +1789,7 @@ export const applications: IndustryApplication[] = [
     challenges: ["Weld joint leakages in high pressure hydraulic tanks", "Precise alignment of pump mounting holes on structural bases", "Thick structural frame profile cutting"],
     solutions: ["Direct CNC profiling of mounting holes using high gantry lasers", "Precision bending of tank sidewalls to reduce overall weld seams"],
     recommendedMachines: ["industrial-pioneer-exchange-table", "nadkpress-cnc-press-brake"],
-  heroImage: applicationHeroPath("hydraulic-machinery"),
+    heroImage: applicationHeroPath("hydraulic-machinery"),
   },
   {
     id: "app_10",
@@ -1751,7 +1801,7 @@ export const applications: IndustryApplication[] = [
     challenges: ["Frequent setup and tear-down times", "Diverse material stock management", "Quick nesting generation to maximize sheet yield"],
     solutions: ["Single pallet ES series with easy loading and 75%+ market adoption", "User-friendly controller screens with built-in auto-nesting databases"],
     recommendedMachines: ["single-pallet-es-series", "nadkpress-cnc-press-brake"],
-  heroImage: applicationHeroPath("job-work"),
+    heroImage: applicationHeroPath("job-work"),
   },
   {
     id: "app_11",
@@ -1763,7 +1813,7 @@ export const applications: IndustryApplication[] = [
     challenges: ["High-volume repetitive cuts of structural channels", "Consistent hole pitches along long structural profiles", "Precision structural corner welds"],
     solutions: ["Fiber laser cutting with custom rotary pipe fixtures", "Hydraulic shearing machines to chop structural bars cleanly"],
     recommendedMachines: ["industrial-pioneer-exchange-table", "hydraulic-shearing-machine"],
-  heroImage: applicationHeroPath("material-handling"),
+    heroImage: applicationHeroPath("material-handling"),
   },
   {
     id: "app_12",
@@ -1775,7 +1825,7 @@ export const applications: IndustryApplication[] = [
     challenges: ["Production bottleneck in building structural H-beams manually", "Correcting flange distortion post-welding", "Fast processing of structural plates for joist connections"],
     solutions: ["Integrated H-Beam Assembly and SAW Welding lines running continuously", "CNC Plasma cutters to prepare splice plate connections"],
     recommendedMachines: ["peb-h-beam-welding", "gantry-plasma-cutting"],
-  heroImage: applicationHeroPath("peb"),
+    heroImage: applicationHeroPath("peb"),
   },
   {
     id: "app_13",
@@ -1787,7 +1837,7 @@ export const applications: IndustryApplication[] = [
     challenges: ["Dross and slag build-up on underside profiles", "Hardened cut edges that degrade subsequent drilling tools", "Beveling error on thick cutouts"],
     solutions: ["Fine-focus fiber laser cutting on gantry beds", "High-definition plasma systems with regulated gas proportions"],
     recommendedMachines: ["industrial-pioneer-exchange-table", "gantry-plasma-cutting"],
-  heroImage: applicationHeroPath("profile-cutting"),
+    heroImage: applicationHeroPath("profile-cutting"),
   },
   {
     id: "app_14",
@@ -1799,7 +1849,7 @@ export const applications: IndustryApplication[] = [
     challenges: ["Processing thick wear-resistant steels (e.g. Hardox plate)", "High force requirements to bend heavy structural wear plates", "Precision bevel joints for massive cylinders"],
     solutions: ["Ultra-high power fiber lasers (30kW+) capable of cutting high-hard alloys", "Tonnage-boosted press brakes up to 800T with specialized tooling"],
     recommendedMachines: ["futuristic-laser-series", "nadkpress-cnc-press-brake"],
-  heroImage: applicationHeroPath("road-construction"),
+    heroImage: applicationHeroPath("road-construction"),
   },
   {
     id: "app_15",
@@ -1811,7 +1861,7 @@ export const applications: IndustryApplication[] = [
     challenges: ["Welding thin-gauge sheets without burn-through or buckling", "High volume folding setups", "Clean edges without micro-burrs"],
     solutions: ["Panel benders folding cabinets on all 4 sides automatically", "4-in-1 laser welding with wire feeding for clean joint fillets"],
     recommendedMachines: ["adk-panel-bender-series", "4in1-fiber-laser-welding"],
-  heroImage: applicationHeroPath("steel-furniture"),
+    heroImage: applicationHeroPath("steel-furniture"),
   },
   {
     id: "app_16",
@@ -1823,7 +1873,7 @@ export const applications: IndustryApplication[] = [
     challenges: ["Intricate decorative cut designs without thermal warp", "Cutting reflective yellow metals without back-reflection damage", "Short turnaround for customized architect jobs"],
     solutions: ["High-speed fiber lasers with back-reflection optical isolators", "Integrated software converters accepting CAD DXF profiles directly"],
     recommendedMachines: ["industrial-pioneer-exchange-table", "4in1-fiber-laser-welding"],
-  heroImage: applicationHeroPath("steel-metal-work"),
+    heroImage: applicationHeroPath("steel-metal-work"),
   },
   {
     id: "app_17",
@@ -1835,7 +1885,7 @@ export const applications: IndustryApplication[] = [
     challenges: ["Welding long horizontal plate joints uniformly", "Aligning plate edges before welding without gap variances", "Perfect circle rolling and edge preparation"],
     solutions: ["CNC plasma bevel heads to cut circular port flanges", "SAW welding systems adapted for cylindrical tank rotators"],
     recommendedMachines: ["gantry-plasma-cutting", "peb-saw-gantry-welding"],
-  heroImage: applicationHeroPath("tank-manufacturing"),
+    heroImage: applicationHeroPath("tank-manufacturing"),
   },
   {
     id: "app_18",
@@ -1847,7 +1897,7 @@ export const applications: IndustryApplication[] = [
     challenges: ["Massive component counts with multi-axis bracket geometry", "Surface finish must be mirror-smooth to avoid catching threads", "Weight optimization via skeletal sheet structures"],
     solutions: ["High-speed fiber laser cutting for lightweight structural cutouts", "Multi-axis CNC press brakes for complex bracket geometry"],
     recommendedMachines: ["industrial-pioneer-exchange-table", "nadkpress-cnc-press-brake"],
-  heroImage: applicationHeroPath("textile-machinery"),
+    heroImage: applicationHeroPath("textile-machinery"),
   },
   {
     id: "app_19",
@@ -1859,7 +1909,7 @@ export const applications: IndustryApplication[] = [
     challenges: ["Processing thick angle iron and structural steel profiles", "Accurate flange plate cutting and multi-hole punching", "High volume assembly alignment"],
     solutions: ["CNC Plasma profiling for thick connector plates", "Hydraulic shearing machines to chop angle bars without edge deformation"],
     recommendedMachines: ["gantry-plasma-cutting", "hydraulic-shearing-machine"],
-  heroImage: applicationHeroPath("tower-manufacturing"),
+    heroImage: applicationHeroPath("tower-manufacturing"),
   },
 ];
 
