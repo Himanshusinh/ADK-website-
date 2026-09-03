@@ -63,36 +63,56 @@ export default function CareerPage() {
             Current Vacancies
           </h2>
 
-          <div className="space-y-6">
+          <div className="space-y-8">
             {careerPositions.map((job) => (
-              <div key={job.id} className="arrow-slide group hover-lift border border-rule bg-card p-6 md:p-8 transition-all">
-                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4">
-                  <div>
-                    <h3 className="font-display text-xl font-bold text-foreground group-hover:text-accent transition-colors">
-                      {job.title}
-                    </h3>
-                    <div className="font-mono text-xs text-accent uppercase mt-1">
-                      DEPT: {job.department} · EXP: {job.experience}
-                    </div>
+              <div key={job.id} className="arrow-slide group hover-lift border border-rule bg-card overflow-hidden transition-all shadow-sm">
+                {job.image && (
+                  <div className="aspect-[16/9] w-full overflow-hidden bg-steel border-b border-rule relative">
+                    <img
+                      src={job.image}
+                      alt={job.title}
+                      width={800}
+                      height={450}
+                      className="h-full w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
+                    />
+                    <span className="absolute top-4 left-4 eyebrow text-accent border border-accent/40 bg-background/90 px-2.5 py-1">
+                      {job.department}
+                    </span>
                   </div>
-                  <button
-                    onClick={() => setSelectedJob(job.title)}
-                    className="btn-sweep bg-accent text-accent-foreground font-display text-xs font-bold uppercase px-5 py-2.5 shrink-0 cursor-pointer"
-                  >
-                    Apply for role
-                  </button>
-                </div>
-                <p className="font-sans text-sm text-muted-foreground leading-relaxed mt-4">
-                  {job.description}
-                </p>
+                )}
+                <div className="p-6 md:p-8">
+                  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4">
+                    <div>
+                      <h3 className="font-display text-2xl font-bold text-foreground group-hover:text-accent transition-colors">
+                        {job.title}
+                      </h3>
+                      <div className="font-mono text-xs text-accent uppercase tracking-wider mt-1 font-bold">
+                        EXP: {job.experience} · {job.location}
+                      </div>
+                    </div>
+                    <button
+                      onClick={() => {
+                        setSelectedJob(job.title);
+                        const formElem = document.getElementById("application-form");
+                        if (formElem) formElem.scrollIntoView({ behavior: "smooth" });
+                      }}
+                      className="btn-sweep bg-accent text-accent-foreground font-display text-xs font-bold uppercase px-6 py-3 shrink-0 cursor-pointer shadow-[var(--shadow-lift)]"
+                    >
+                      Apply now
+                    </button>
+                  </div>
+                  <p className="font-sans text-sm text-muted-foreground leading-relaxed mt-4">
+                    {job.description}
+                  </p>
 
-                <div className="mt-4 border-t border-rule pt-4 font-sans text-xs text-muted-foreground">
-                  <span className="eyebrow text-foreground block mb-2 font-bold">Key Requirements:</span>
-                  <ul className="space-y-1 list-disc list-inside">
-                    {job.requirements.map((req, i) => (
-                      <li key={i}>{req}</li>
-                    ))}
-                  </ul>
+                  <div className="mt-6 border-t border-rule pt-4 font-sans text-xs text-muted-foreground">
+                    <span className="eyebrow text-foreground block mb-2 font-bold">Key Requirements:</span>
+                    <ul className="space-y-1.5 list-disc list-inside">
+                      {job.requirements.map((req, i) => (
+                        <li key={i}>{req}</li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
               </div>
             ))}
@@ -100,7 +120,7 @@ export default function CareerPage() {
         </div>
 
         {/* Application Form */}
-        <div className="lg:col-span-5">
+        <div className="lg:col-span-5" id="application-form">
           <div className="bg-panel border border-rule p-6 md:p-8 sticky top-24">
             <p className="eyebrow mb-2">Direct application</p>
             <h3 className="font-display text-2xl font-bold mb-6 tracking-tight">

@@ -109,6 +109,7 @@ export interface CareerPosition {
   experience: string;
   description: string;
   requirements: string[];
+  image?: string;
 }
 
 export interface NewsEvent {
@@ -1952,30 +1953,47 @@ export const faqs: FaqItem[] = [
 export const careerPositions: CareerPosition[] = [
   {
     id: "job_01",
-    title: "Field Service Engineer (CNC / Laser)",
-    department: "After-Sales Support",
+    title: "Back Office Executive",
+    department: "Administration & Operations",
     location: "Ahmedabad, Gujarat",
-    experience: "3 - 5 Years",
-    description: "Oversee installation, commissioning, and diagnostic repair of ADK fiber laser cutters, CNC press brakes, and plasma systems at customer sites across India.",
+    experience: "1 - 3 Years",
+    image: "/images/career/Back-Office-Executive.jpeg",
+    description: "Manage coordination between sales, service engineers, and customers. Maintain documentation, CRM records, and customer communication workflows.",
     requirements: [
-      "Diploma or Bachelor's in Electrical/Mechanical/Mechatronics engineering",
-      "Hands-on experience with servo systems, hydraulic pumps, and gantry alignments",
-      "Familiarity with laser cutting parameter tuning and CNC controllers (CypCut, Delem)",
-      "Willingness to travel across regional industrial clusters",
+      "Bachelor's degree in Any Discipline / Business Admin",
+      "Good communication skills in Hindi, Gujarati & English",
+      "Proficiency in MS Office, Excel, and CRM software",
+      "Strong organizational skills and attention to detail",
     ],
   },
   {
     id: "job_02",
-    title: "CNC Controls Software Engineer",
-    department: "Research & Development",
-    location: "Ahmedabad, Gujarat",
-    experience: "4 - 8 Years",
-    description: "Develop and optimize automated motion algorithms, kinematic controllers, and nesting integration for ADK's next-generation panel benders and laser systems.",
+    title: "Sales Engineer",
+    department: "Machinery Sales",
+    location: "Ahmedabad / Regional Branches",
+    experience: "2 - 5 Years",
+    image: "/images/career/Sales-Engineer.jpeg",
+    description: "Drive technical machinery sales for ADK Fiber Laser Cutting Machines, CNC Press Brakes, and Plasma Cutting systems across industrial manufacturing hubs.",
     requirements: [
-      "Strong coding skills in C++/C# and PLC programming (Beckhoff, Siemens, or Omron)",
-      "Understanding of multi-axis kinematics and coordinate transformations",
-      "Experience with EtherCAT protocols and servo parameter optimizations",
-      "Knowledge of CAD/CAM geometry parsers (DXF/G-code compilation)",
+      "BE / B.Tech / Diploma in Mechanical or Electrical Engineering",
+      "Proven sales experience in capital machine tools or sheet metal machinery",
+      "Ability to understand customer drawings, cutting speeds, and power selection",
+      "Willingness to visit customer shop floors and industrial expos",
+    ],
+  },
+  {
+    id: "job_03",
+    title: "Service Engineer",
+    department: "After-Sales & Technical Support",
+    location: "Ahmedabad / Regional Branches",
+    experience: "2 - 5 Years",
+    image: "/images/career/Service-Engineer.jpeg",
+    description: "Oversee installation, commissioning, troubleshooting, and preventive maintenance of Fiber Laser cutters, CNC Press Brakes, and Laser Welding units.",
+    requirements: [
+      "Diploma / Degree in Electrical, Electronics, or Mechatronics Engineering",
+      "Hands-on experience with CNC controllers (CypCut, Delem), optical heads, and servos",
+      "Troubleshooting skills for electrical, pneumatic, and hydraulic systems",
+      "Field travel across customer sites in India",
     ],
   },
 ];
