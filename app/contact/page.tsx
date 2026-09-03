@@ -262,6 +262,33 @@ export default function ContactPage() {
           </aside>
         </div>
       </section>
+
+      {/* —————————————————————————————————————————————————————————————————— */}
+      {/* Google Map Section                                                 */}
+      {/* —————————————————————————————————————————————————————————————————— */}
+      <section className="shell py-16 md:py-24 border-b border-rule">
+        <div className="flex flex-col gap-2 mb-8">
+          <p className="eyebrow text-accent font-mono text-xs uppercase tracking-widest">Location</p>
+          <h2 className="font-display text-3xl font-bold md:text-4xl">
+            Find us on Google Maps
+          </h2>
+          <p className="text-sm text-muted-foreground font-sans max-w-xl">
+            A-503/504, Empire Business Hub, Science City Road, Sola, Ahmedabad, Gujarat 380060
+          </p>
+        </div>
+        <div className="w-full aspect-[21/9] min-h-[400px] border border-rule overflow-hidden shadow-sm">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.541370858102!2d72.5135602!3d23.0731589!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e9d9e82fc63a3%3A0xb4bf21d5446a4d9f!2sADK%20Engineering%20%26%20Solutions!5e1!3m2!1sen!2sin!4v1788427496060!5m2!1sen!2sin"
+            width="100%"
+            height="100%"
+            style={{ border: 0 }}
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="strict-origin-when-cross-origin"
+            className="w-full h-full"
+          />
+        </div>
+      </section>
     </div>
   );
 }
