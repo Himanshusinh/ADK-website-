@@ -1541,7 +1541,7 @@ export const categories: ProductCategory[] = rawCategories.map((cat) => ({
   ...cat,
   models: cat.models.map((m) => ({
     ...m,
-    image: productHeroPath(cat.slug, m.slug),
+    image: m.image ?? productHeroPath(cat.slug, m.slug),
     images: m.images ?? productGalleryPaths(cat.slug, m.slug),
     materials: m.materials ?? CATEGORY_MATERIALS[cat.slug],
   })),
