@@ -95,13 +95,62 @@ export default async function CategoryPage(props: CategoryPageProps) {
         </div>
       </section>
 
+      {/* Visual Product Grid Section */}
+      <section className="shell py-12 md:py-16 border-b border-rule">
+        <div className="flex flex-col gap-2">
+          <p className="eyebrow text-accent">Available Lineup</p>
+          <h2 className="font-display text-2xl md:text-3xl font-bold">
+            {category.name} Models & Components
+          </h2>
+        </div>
+
+        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {category.models.map((m) => (
+            <Link
+              key={m.slug}
+              href={`/products/${category.slug}/${m.slug}`}
+              className="group flex flex-col border border-rule bg-card overflow-hidden hover:border-foreground transition-all duration-300 shadow-sm"
+            >
+              <div className="aspect-[4/3] bg-white p-6 relative overflow-hidden flex items-center justify-center border-b border-rule">
+                <img
+                  src={m.image}
+                  alt={m.name}
+                  width={600}
+                  height={450}
+                  className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+              <div className="p-6 flex flex-1 flex-col justify-between">
+                <div>
+                  <h3 className="font-display text-lg font-bold text-neutral-900 dark:text-neutral-100 group-hover:text-accent transition-colors">
+                    {m.name}
+                  </h3>
+                  <p className="mt-2 text-xs leading-relaxed text-muted-foreground font-sans line-clamp-2">
+                    {m.tagline}
+                  </p>
+                </div>
+
+                <div className="mt-6 pt-4 border-t border-rule flex items-center justify-between font-mono text-xs">
+                  <span className="font-bold text-accent group-hover:underline">
+                    View Specs →
+                  </span>
+                  <span className="text-[0.7rem] uppercase tracking-wider text-muted-foreground">
+                    {m.status.replace("_", " ")}
+                  </span>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
+
       {/* Models & Specifications Section */}
       <section className="shell py-16 md:py-24 border-b border-rule">
         <div className="grid gap-12 lg:grid-cols-2">
           {/* Models Column */}
           <div>
             <h2 className="border-t border-foreground pt-4 font-display text-2xl font-bold">
-              Models
+              Full Lineup Listing
             </h2>
             <ul className="mt-5 divide-y divide-rule border-y border-rule">
               {category.models.map((m) => (
