@@ -47,7 +47,7 @@ const categoryImageMap: Record<string, string> = {
   "panel-bender": "/assets/adk/studio-panel.jpg",
   "peb-machinery": "/assets/adk/studio-peb.jpg",
   "shearing-machine": "/assets/adk/studio-shear.jpg",
-  "newly-launched-products": "/new product images/iron-worker.webp",
+  "newly-launched-products": "/new-product-images/iron-worker.webp",
   "spares-consumables": "/images/spares-consumables/consumables.webp",
 };
 

@@ -1079,7 +1079,7 @@ const rawCategories: ProductCategory[] = [
         description:
           "The ADK Iron Worker combines punching, shearing, and notching stations for angle, flat bar, and structural sections — a compact workhorse for fabrication shops preparing steel before welding.",
         status: "READY",
-        image: "/new product images/iron-worker.webp",
+        image: "/new-product-images/iron-worker.webp",
         specsSummary: {
           Models: "ADK Iron Worker",
           Stations: "Multi-station",
@@ -1106,7 +1106,7 @@ const rawCategories: ProductCategory[] = [
         description:
           "Robotic CNC fiber laser cutting cell for 3D parts, hydroformed tubes, and fixtures that flat-bed lasers cannot reach — delivering precision multi-axis cutting for automotive and aerospace components.",
         status: "CUSTOM",
-        image: "/new product images/cnc-fiber-laser-cutting-machine-robot.webp",
+        image: "/new-product-images/cnc-fiber-laser-cutting-machine-robot.webp",
         specsSummary: {
           Models: "ADK Laser Cutting Robot",
           Type: "6-Axis Robotic Cell",
@@ -1133,7 +1133,7 @@ const rawCategories: ProductCategory[] = [
         description:
           "Busbar processing machines punch, bend, and cut copper and aluminium busbars for switchgear and control panel manufacturers — reducing manual marking and drilling on electrical shop floors.",
         status: "READY",
-        image: "/new product images/busbar-processing-machine.webp",
+        image: "/new-product-images/busbar-processing-machine.webp",
         specsSummary: {
           Models: "ADK Busbar Processor",
           Materials: "Cu / Al",
@@ -1160,7 +1160,7 @@ const rawCategories: ProductCategory[] = [
         description:
           "CNC pipe bending machines form tubes and pipes to programmed radii for furniture frames, automotive exhaust and chassis tubes, and process piping — with repeatable CNC control.",
         status: "READY",
-        image: "/new product images/cnc-pipe-bending-machine.webp",
+        image: "/new-product-images/cnc-pipe-bending-machine.webp",
         specsSummary: {
           Models: "ADK CNC Pipe Bender",
           Control: "CNC Multi-Axis",
