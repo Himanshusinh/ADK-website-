@@ -99,9 +99,13 @@ export default async function ModelPage(props: ModelPageProps) {
             <p className="mt-5 text-muted-foreground md:text-lg font-sans leading-relaxed">
               {model.tagline} — {model.description}
             </p>
-            <p className="mt-6 inline-block border border-foreground px-3 py-1.5 font-mono text-sm font-bold uppercase">
-              {model.status}
-            </p>
+            <Link
+              href={`/contact?product=${encodeURIComponent(model.name)}`}
+              className="mt-6 btn-sweep inline-flex items-center gap-2 bg-accent text-accent-foreground font-display text-sm font-bold uppercase px-6 py-3 shadow-[var(--shadow-lift)] transition-transform hover:scale-[1.02] cursor-pointer"
+            >
+              <span className="material-symbols-outlined text-base">mail</span>
+              Inquire Now
+            </Link>
           </div>
         </div>
       </section>
@@ -178,9 +182,14 @@ export default async function ModelPage(props: ModelPageProps) {
                       {sib.tagline}
                     </p>
                   </div>
-                  <span className="mt-4 font-mono text-xs text-accent uppercase block pt-3 border-t border-rule">
-                    {sib.status}
-                  </span>
+                  <div className="mt-4 pt-3 border-t border-rule flex items-center justify-between font-mono text-xs">
+                    <span className="font-bold text-accent group-hover:underline">
+                      View Specs →
+                    </span>
+                    <span className="text-[0.7rem] font-bold uppercase text-muted-foreground group-hover:text-accent transition-colors tracking-wider">
+                      Inquire →
+                    </span>
+                  </div>
                 </Link>
               ))}
             </div>

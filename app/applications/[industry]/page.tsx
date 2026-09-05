@@ -138,7 +138,7 @@ export default async function IndustryPage(props: IndustryPageProps) {
                 <div>
                   <div className="flex justify-between items-center mb-4 font-mono text-xs">
                     <span className="text-muted-foreground">{model.id}</span>
-                    <span className="text-accent font-bold">{model.status}</span>
+                    <span className="text-accent font-bold font-mono text-[0.7rem] tracking-wider uppercase">ADK Series</span>
                   </div>
                   <h3 className="font-display text-xl font-bold text-foreground group-hover:text-accent transition-colors">
                     {model.name}

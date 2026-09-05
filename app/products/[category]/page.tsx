@@ -106,12 +106,14 @@ export default async function CategoryPage(props: CategoryPageProps) {
 
         <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {category.models.map((m) => (
-            <Link
+            <div
               key={m.slug}
-              href={`/products/${category.slug}/${m.slug}`}
               className="group flex flex-col border border-rule bg-card overflow-hidden hover:border-foreground transition-all duration-300 shadow-sm"
             >
-              <div className="aspect-[4/3] bg-white p-6 relative overflow-hidden flex items-center justify-center border-b border-rule">
+              <Link
+                href={`/products/${category.slug}/${m.slug}`}
+                className="aspect-[4/3] bg-white p-6 relative overflow-hidden flex items-center justify-center border-b border-rule block"
+              >
                 <img
                   src={m.image}
                   alt={m.name}
@@ -119,27 +121,36 @@ export default async function CategoryPage(props: CategoryPageProps) {
                   height={450}
                   className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-105"
                 />
-              </div>
+              </Link>
               <div className="p-6 flex flex-1 flex-col justify-between">
                 <div>
-                  <h3 className="font-display text-lg font-bold text-neutral-900 dark:text-neutral-100 group-hover:text-accent transition-colors">
-                    {m.name}
-                  </h3>
+                  <Link href={`/products/${category.slug}/${m.slug}`}>
+                    <h3 className="font-display text-lg font-bold text-neutral-900 dark:text-neutral-100 group-hover:text-accent transition-colors">
+                      {m.name}
+                    </h3>
+                  </Link>
                   <p className="mt-2 text-xs leading-relaxed text-muted-foreground font-sans line-clamp-2">
                     {m.tagline}
                   </p>
                 </div>
 
                 <div className="mt-6 pt-4 border-t border-rule flex items-center justify-between font-mono text-xs">
-                  <span className="font-bold text-accent group-hover:underline">
+                  <Link
+                    href={`/products/${category.slug}/${m.slug}`}
+                    className="font-bold text-accent hover:underline flex items-center gap-1"
+                  >
                     View Specs →
-                  </span>
-                  <span className="text-[0.7rem] uppercase tracking-wider text-muted-foreground">
-                    {m.status.replace("_", " ")}
-                  </span>
+                  </Link>
+                  <Link
+                    href={`/contact?product=${encodeURIComponent(m.name)}`}
+                    className="btn-sweep bg-accent text-accent-foreground font-display text-[0.7rem] font-bold uppercase px-3.5 py-1.5 shadow-sm hover:scale-[1.03] transition-all flex items-center gap-1 cursor-pointer"
+                  >
+                    <span className="material-symbols-outlined text-[0.85rem]">mail</span>
+                    Inquiry
+                  </Link>
                 </div>
               </div>
-            </Link>
+            </div>
           ))}
         </div>
       </section>
